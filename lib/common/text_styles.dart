@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 
 const textStyle = TextTheme(
   headline1: TextStyle(
-    fontSize: 20,
+    fontSize: 24,
     fontWeight: FontWeight.bold,
+    color: Colors.black,
   ),
   headline2: TextStyle(
     fontSize: 20,
@@ -24,7 +25,7 @@ const textStyle = TextTheme(
     color: Colors.indigo,
   ),
   caption: TextStyle(
-    fontSize: 10,
+    fontSize: 12,
     fontWeight: FontWeight.normal,
     color: Colors.grey,
   ),

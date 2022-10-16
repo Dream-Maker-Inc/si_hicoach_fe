@@ -123,10 +123,13 @@ class _LoginPageState extends State<LoginPage> {
                 top: smallPadding,
                 left: defaultPadding,
                 right: defaultPadding,
+                bottom: defaultPadding,
               ),
               width: double.infinity,
               child: CustomOutlinedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).pushNamed('/sign_up');
+                },
                 text: '30초 회원가입',
               ),
             ),

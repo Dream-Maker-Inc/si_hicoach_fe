@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:si_hicoach_fe/common/checkbox_themes.dart';
 import 'package:si_hicoach_fe/common/color_schemes.dart';
 import 'package:si_hicoach_fe/common/text_styles.dart';
 import 'package:si_hicoach_fe/pages/login/login.dart';
+import 'package:si_hicoach_fe/pages/sign_up/sign_up_agreement.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +20,11 @@ class MyApp extends StatelessWidget {
         brightness: Brightness.light,
         textTheme: textStyle,
         colorScheme: colorScheme,
+        checkboxTheme: checkboxThemes,
       ),
+      routes: <String, WidgetBuilder>{
+        '/sign_up': (BuildContext context) => SignUpAgreementPage()
+      },
       home: LoginPage(),
     );
   }
