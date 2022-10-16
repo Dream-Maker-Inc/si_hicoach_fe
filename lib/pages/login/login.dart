@@ -103,12 +103,31 @@ class _LoginPageState extends State<LoginPage> {
                       margin: const EdgeInsets.only(top: defaultPadding),
                       width: double.infinity,
                       child: CustomElevatedButton(
-                        handleButtonPressed: _handleButtonPressed,
+                        onPressed: _handleButtonPressed,
                         text: '로그인',
                       ),
                     ),
                   ],
                 ),
+              ),
+            ),
+            Container(
+              margin: const EdgeInsets.only(top: 90),
+              child: Text(
+                '아직 회원이 아니세요?',
+                style: Theme.of(context).textTheme.overline,
+              ),
+            ),
+            Container(
+              margin: const EdgeInsets.only(
+                top: smallPadding,
+                left: defaultPadding,
+                right: defaultPadding,
+              ),
+              width: double.infinity,
+              child: CustomOutlinedButton(
+                onPressed: () {},
+                text: '30초 회원가입',
               ),
             ),
           ],
