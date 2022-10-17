@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/common/buttons.dart';
 import 'package:si_hicoach_fe/common/constants.dart';
+import 'package:si_hicoach_fe/pages/sign_up/agreement/agreement_list_item.dart';
 
 class SignUpAgreementPage extends StatefulWidget {
   const SignUpAgreementPage({Key? key}) : super(key: key);
@@ -12,6 +13,7 @@ class SignUpAgreementPage extends StatefulWidget {
 class _SignUpAgreementPageState extends State<SignUpAgreementPage> {
   bool _isAllChecked = false;
   bool _isCarouselExpanded = false;
+  static const agreements = ['[필수] 개인정보처리방침', '[필수] 서비스 이용약관'];
 
   @override
   Widget build(BuildContext context) {
@@ -92,63 +94,9 @@ class _SignUpAgreementPageState extends State<SignUpAgreementPage> {
                         );
                       },
                       body: Column(
-                        children: <Widget>[
-                          ListTile(
-                            title: Text(
-                              '[필수] 개인정보처리방침',
-                              style: TextStyle(
-                                color: _isAllChecked
-                                    ? Colors.indigo
-                                    : Colors.black,
-                              ),
-                            ),
-                            leading: Checkbox(
-                              value: _isAllChecked,
-                              onChanged: (value) {
-                                setState(() {
-                                  _isAllChecked = value!;
-                                });
-                              },
-                              activeColor: Colors.indigo,
-                            ),
-                            trailing: const IconButton(
-                              onPressed: _handleDropdownPressed,
-                              icon: Icon(Icons.keyboard_arrow_right),
-                            ),
-                            onTap: () {
-                              setState(() {
-                                _isAllChecked = !_isAllChecked;
-                              });
-                            },
-                          ),
-                          ListTile(
-                            title: Text(
-                              '[필수] 서비스 이용약관',
-                              style: TextStyle(
-                                color: _isAllChecked
-                                    ? Colors.indigo
-                                    : Colors.black,
-                              ),
-                            ),
-                            leading: Checkbox(
-                              value: _isAllChecked,
-                              onChanged: (value) {
-                                setState(() {
-                                  _isAllChecked = value!;
-                                });
-                              },
-                              activeColor: Colors.indigo,
-                            ),
-                            trailing: const IconButton(
-                              onPressed: _handleDropdownPressed,
-                              icon: Icon(Icons.keyboard_arrow_right),
-                            ),
-                            onTap: () {
-                              setState(() {
-                                _isAllChecked = !_isAllChecked;
-                              });
-                            },
-                          )
+                        children: const <Widget>[
+                          AgreementListItem(text: '[필수] 서비스 이용약관'),
+                          AgreementListItem(text: '[필수] 개인정보 처라방침'),
                         ],
                       ),
                       isExpanded: _isCarouselExpanded,
@@ -164,9 +112,7 @@ class _SignUpAgreementPageState extends State<SignUpAgreementPage> {
               width: double.infinity,
               margin: const EdgeInsets.all(defaultPadding),
               child: CustomElevatedButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
+                onPressed: () => _handleSubmitButtonPressed(context),
                 text: '다음',
               ),
             ),
@@ -178,3 +124,7 @@ class _SignUpAgreementPageState extends State<SignUpAgreementPage> {
 }
 
 void _handleDropdownPressed() {}
+
+void _handleSubmitButtonPressed(BuildContext context) {
+  Navigator.of(context).pop();
+}
