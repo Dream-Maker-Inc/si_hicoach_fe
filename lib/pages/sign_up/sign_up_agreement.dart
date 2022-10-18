@@ -33,9 +33,9 @@ class _SignUpAgreementPageState extends State<SignUpAgreementPage> {
             Column(
               children: [
                 LinearProgressIndicator(
-                  value: 0.25,
-                  color: Colors.indigo,
-                  backgroundColor: Colors.indigo.withOpacity(0.5),
+                  value: 0.2,
+                  color: Theme.of(context).colorScheme.primary,
+                  backgroundColor: const Color.fromRGBO(75, 128, 255, 0.4),
                 ),
                 Container(
                   margin: const EdgeInsets.all(defaultPadding),
