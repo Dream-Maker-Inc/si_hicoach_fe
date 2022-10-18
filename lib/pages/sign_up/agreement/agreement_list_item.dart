@@ -32,7 +32,10 @@ class _AgreementListItemState extends State<AgreementListItem> {
       ),
       trailing: const IconButton(
         onPressed: _handleDropdownPressed,
-        icon: Icon(Icons.keyboard_arrow_right),
+        icon: Icon(
+          Icons.keyboard_arrow_right,
+          color: Colors.grey,
+        ),
       ),
       onTap: () {
         setState(() {

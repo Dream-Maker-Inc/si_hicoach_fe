@@ -55,12 +55,19 @@ class _SignUpAgreementPageState extends State<SignUpAgreementPage> {
                   ),
                 ),
                 Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      width: 1,
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
+                  ),
                   margin: const EdgeInsets.only(
                     top: defaultPadding,
                     left: defaultPadding,
                     right: defaultPadding,
                   ),
                   child: ExpansionPanelList(
+                    elevation: 0,
                     expansionCallback: (int index, bool isExpanded) {
                       setState(() {
                         _isCarouselExpanded = !_isCarouselExpanded;
@@ -97,7 +104,20 @@ class _SignUpAgreementPageState extends State<SignUpAgreementPage> {
                         body: Column(
                           children: const <Widget>[
                             AgreementListItem(text: '[필수] 서비스 이용약관'),
+                            Divider(
+                              height: 0,
+                              indent: 30,
+                              endIndent: 30,
+                              color: Color.fromRGBO(0, 0, 0, 0.2),
+                            ),
                             AgreementListItem(text: '[필수] 개인정보 처라방침'),
+                            Divider(
+                              height: 0,
+                              indent: 30,
+                              endIndent: 30,
+                              color: Color.fromRGBO(0, 0, 0, 0.2),
+                            ),
+                            AgreementListItem(text: '[선택] 광고마케팅 활용정보 수집'),
                           ],
                         ),
                         isExpanded: _isCarouselExpanded,

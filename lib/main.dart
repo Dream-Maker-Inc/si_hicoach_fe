@@ -16,12 +16,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        useMaterial3: true,
-        brightness: Brightness.light,
-        textTheme: textStyle,
-        colorScheme: colorScheme,
-        checkboxTheme: checkboxThemes,
-      ),
+          useMaterial3: true,
+          brightness: Brightness.light,
+          textTheme: textStyle,
+          colorScheme: colorScheme,
+          checkboxTheme: checkboxThemes,
+          scaffoldBackgroundColor: const Color.fromRGBO(255, 255, 255, 1)),
       routes: <String, WidgetBuilder>{
         '/sign_up': (BuildContext context) => SignUpAgreementPage()
       },
