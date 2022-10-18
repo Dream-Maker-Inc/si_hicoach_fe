@@ -13,7 +13,6 @@ class SignUpAgreementPage extends StatefulWidget {
 class _SignUpAgreementPageState extends State<SignUpAgreementPage> {
   bool _isAllChecked = false;
   bool _isCarouselExpanded = false;
-  static const agreements = ['[필수] 개인정보처리방침', '[필수] 서비스 이용약관'];
 
   @override
   Widget build(BuildContext context) {
