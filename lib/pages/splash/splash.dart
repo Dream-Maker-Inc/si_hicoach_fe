@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:si_hicoach_fe/pages/login/login.dart';
 import 'package:si_hicoach_fe/pages/splash/splash_section.dart';
 
 class SplashPage extends StatelessWidget {
@@ -9,7 +10,11 @@ class SplashPage extends StatelessWidget {
   Widget build(BuildContext context) {
     Timer(
       const Duration(milliseconds: 2500),
-      () => Navigator.of(context).pushReplacementNamed('/login'),
+      () => Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => const LoginPage(),
+        ),
+      ),
     );
 
     var assetsImage = const AssetImage('assets/splash_logo.png');

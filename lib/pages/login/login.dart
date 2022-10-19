@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/common/buttons.dart';
 import 'package:si_hicoach_fe/common/constants.dart';
+import 'package:si_hicoach_fe/pages/sign_up/agreement/agreement.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -135,7 +136,11 @@ class _LoginPageState extends State<LoginPage> {
                 width: double.infinity,
                 child: CustomOutlinedButton(
                   onPressed: () {
-                    Navigator.of(context).pushNamed('/sign_up/agreement');
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => const SignUpAgreementPage(),
+                      ),
+                    );
                   },
                   text: '30초 회원가입',
                 ),

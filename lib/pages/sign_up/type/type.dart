@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/common/buttons.dart';
 import 'package:si_hicoach_fe/common/constants.dart';
 import 'package:si_hicoach_fe/common/sign_up/input_header.dart';
+import 'package:si_hicoach_fe/pages/sign_up/information/information.dart';
 
 class SignUpTypePage extends StatefulWidget {
   const SignUpTypePage({Key? key}) : super(key: key);
@@ -21,6 +22,24 @@ class _SignUpTypePageState extends State<SignUpTypePage> {
   void dispose() {
     _nameController.dispose();
     super.dispose();
+  }
+
+  void _handleSubmitButtonPressed() {
+    if (_memberType == MemberType.trainer) {
+      if (_formKey.currentState!.validate()) {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => const SignUpInformationPage(),
+          ),
+        );
+      }
+    } else {
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => const SignUpInformationPage(),
+        ),
+      );
+    }
   }
 
   @override
@@ -86,7 +105,7 @@ class _SignUpTypePageState extends State<SignUpTypePage> {
                     ),
                     controller: _nameController,
                     validator: (value) {
-                      if (value!.isEmpty) {
+                      if (value!.trim().isEmpty) {
                         return '소속 헬스장명을 입력해 주세요.';
                       }
                       return null;
@@ -106,7 +125,7 @@ class _SignUpTypePageState extends State<SignUpTypePage> {
                 right: defaultPadding,
               ),
               child: CustomElevatedButton(
-                onPressed: () => _handleSubmitButtonPressed,
+                onPressed: _handleSubmitButtonPressed,
                 text: '다음',
               ),
             ),
@@ -114,12 +133,5 @@ class _SignUpTypePageState extends State<SignUpTypePage> {
         ),
       ),
     );
-  }
-
-  _handleSubmitButtonPressed() {
-    if (_formKey.currentState!.validate()) {
-      print('ok');
-      Navigator.of(context).pushNamed('/sign_up/information');
-    }
   }
 }

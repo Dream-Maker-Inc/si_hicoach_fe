@@ -3,6 +3,7 @@ import 'package:si_hicoach_fe/common/buttons.dart';
 import 'package:si_hicoach_fe/common/constants.dart';
 import 'package:si_hicoach_fe/common/sign_up/input_header.dart';
 import 'package:si_hicoach_fe/pages/sign_up/agreement/agreement_list_item.dart';
+import 'package:si_hicoach_fe/pages/sign_up/type/type.dart';
 
 class SignUpAgreementPage extends StatefulWidget {
   const SignUpAgreementPage({Key? key}) : super(key: key);
@@ -150,5 +151,9 @@ class _SignUpAgreementPageState extends State<SignUpAgreementPage> {
 void _handleDropdownPressed() {}
 
 void _handleSubmitButtonPressed(BuildContext context) {
-  Navigator.of(context).pushNamed('/sign_up/type');
+  Navigator.of(context).push(
+    MaterialPageRoute(
+      builder: (context) => const SignUpTypePage(),
+    ),
+  );
 }

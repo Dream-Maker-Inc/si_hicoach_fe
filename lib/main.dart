@@ -17,22 +17,19 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        useMaterial3: true,
-        brightness: Brightness.light,
-        textTheme: textStyle,
-        colorScheme: colorScheme,
-        checkboxTheme: checkboxThemes,
-        scaffoldBackgroundColor: const Color.fromRGBO(255, 255, 255, 1),
+    return GestureDetector(
+      child: MaterialApp(
+        theme: ThemeData(
+          useMaterial3: true,
+          brightness: Brightness.light,
+          textTheme: textStyle,
+          colorScheme: colorScheme,
+          checkboxTheme: checkboxThemes,
+          scaffoldBackgroundColor: const Color.fromRGBO(255, 255, 255, 1),
+        ),
+        home: const SplashPage(),
       ),
-      routes: <String, WidgetBuilder>{
-        '/login': (BuildContext context) => const LoginPage(),
-        '/sign_up/agreement': (BuildContext context) =>
-            const SignUpAgreementPage(),
-        '/sign_up/type': (BuildContext context) => const SignUpTypePage(),
-      },
-      home: const SplashPage(),
+      onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
     );
   }
 }
