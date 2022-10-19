@@ -5,7 +5,7 @@ const colorScheme = ColorScheme(
   onPrimary: Colors.white,
   secondary: Color.fromRGBO(57, 116, 255, 1),
   onSecondary: Colors.white,
-  onTertiary: Color.fromRGBO(0, 0, 0, 0.5),
+  onTertiary: Color.fromRGBO(33, 33, 33, 0.08),
   background: Color.fromRGBO(75, 128, 255, 1),
   onBackground: Color.fromRGBO(255, 255, 255, 1),
   surface: Color.fromRGBO(255, 255, 255, 1),
@@ -13,4 +13,5 @@ const colorScheme = ColorScheme(
   error: Color.fromRGBO(255, 255, 255, 1),
   onError: Colors.red,
   brightness: Brightness.light,
+  surfaceTint: Color.fromRGBO(255, 255, 255, 1),
 );

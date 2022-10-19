@@ -134,7 +134,7 @@ class _LoginPageState extends State<LoginPage> {
               width: double.infinity,
               child: CustomOutlinedButton(
                 onPressed: () {
-                  Navigator.of(context).pushNamed('/sign_up');
+                  Navigator.of(context).pushNamed('/sign_up/agreement');
                 },
                 text: '30초 회원가입',
               ),

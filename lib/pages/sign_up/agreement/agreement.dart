@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/common/buttons.dart';
 import 'package:si_hicoach_fe/common/constants.dart';
+import 'package:si_hicoach_fe/common/sign_up/input_header.dart';
 import 'package:si_hicoach_fe/pages/sign_up/agreement/agreement_list_item.dart';
 
 class SignUpAgreementPage extends StatefulWidget {
@@ -31,7 +32,7 @@ class _SignUpAgreementPageState extends State<SignUpAgreementPage> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             Column(
-              children: [
+              children: <Widget>[
                 LinearProgressIndicator(
                   value: 0.2,
                   color: Theme.of(context).colorScheme.primary,
@@ -41,16 +42,11 @@ class _SignUpAgreementPageState extends State<SignUpAgreementPage> {
                   margin: const EdgeInsets.all(defaultPadding),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: <Widget>[
-                      Text(
-                        '약관 동의',
-                        style: Theme.of(context).textTheme.headline1,
+                    children: const <Widget>[
+                      SignUpInputHeader(
+                        title: '약관 동의',
+                        description: '앱 사용을 위해 필수 이용 약관에 동의해 주세요.',
                       ),
-                      const SizedBox(height: 16),
-                      Text(
-                        '앱 사용을 위해 필수 이용 약관에 동의해 주세요.',
-                        style: Theme.of(context).textTheme.caption,
-                      )
                     ],
                   ),
                 ),
@@ -62,7 +58,6 @@ class _SignUpAgreementPageState extends State<SignUpAgreementPage> {
                     ),
                   ),
                   margin: const EdgeInsets.only(
-                    top: defaultPadding,
                     left: defaultPadding,
                     right: defaultPadding,
                   ),
@@ -155,5 +150,5 @@ class _SignUpAgreementPageState extends State<SignUpAgreementPage> {
 void _handleDropdownPressed() {}
 
 void _handleSubmitButtonPressed(BuildContext context) {
-  Navigator.of(context).pop();
+  Navigator.of(context).pushNamed('/sign_up/type');
 }
