@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:si_hicoach_fe/pages/splash/splash_section.dart';
 
 class SplashPage extends StatelessWidget {
   const SplashPage({Key? key}) : super(key: key);
@@ -14,18 +15,6 @@ class SplashPage extends StatelessWidget {
     var assetsImage = const AssetImage('assets/splash_logo.png');
     var image = Image(image: assetsImage, width: 96);
 
-    return Container(
-      decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topRight,
-          end: Alignment.bottomLeft,
-          colors: [
-            Color.fromRGBO(64, 194, 242, 1),
-            Color.fromRGBO(99, 61, 227, 1),
-          ],
-        ),
-      ),
-      child: Center(child: image),
-    );
+    return SplashSection(image: image);
   }
 }
