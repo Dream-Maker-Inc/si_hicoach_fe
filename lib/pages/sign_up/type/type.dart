@@ -35,79 +35,79 @@ class _SignUpTypePageState extends State<SignUpTypePage> {
           },
         ),
       ),
-      body: SafeArea(
+      body: SingleChildScrollView(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            Column(
-              children: [
-                LinearProgressIndicator(
-                  value: 0.4,
-                  color: Theme.of(context).colorScheme.primary,
-                  backgroundColor: const Color.fromRGBO(75, 128, 255, 0.4),
-                ),
-                const SignUpInputHeader(
-                  title: '회원 분류',
-                  description: '회원의 종류를 선택해 주세요.',
-                ),
-                RadioListTile<MemberType>(
-                  title: const Text('헬스 트레이너'),
-                  value: MemberType.trainer,
-                  groupValue: _memberType,
-                  onChanged: (MemberType? value) {
-                    setState(() {
-                      _memberType = value!;
-                    });
-                  },
-                ),
-                RadioListTile<MemberType>(
-                  title: const Text('일반 회원'),
-                  value: MemberType.ordinary,
-                  groupValue: _memberType,
-                  onChanged: (MemberType? value) {
-                    setState(() {
-                      _memberType = value!;
-                    });
-                  },
-                ),
-                const SizedBox(height: 40),
-                const SignUpInputHeader(
-                  title: '헬스장 정보',
-                  description: '소속 헬스장명을 입력해 주세요.',
-                ),
-                Form(
-                  key: _formKey,
-                  child: Container(
-                    margin: const EdgeInsets.all(defaultPadding),
-                    child: TextFormField(
-                      keyboardType: TextInputType.text,
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        hintText: '소속 헬스장명을 입력해 주세요.',
-                        labelText: '소속 헬스장명',
-                      ),
-                      obscureText: true,
-                      controller: _nameController,
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return '소속 헬스장명을 입력해 주세요.';
-                        }
-                        return null;
-                      },
+          children: [
+            LinearProgressIndicator(
+              value: 0.4,
+              color: Theme.of(context).colorScheme.primary,
+              backgroundColor: const Color.fromRGBO(75, 128, 255, 0.4),
+            ),
+            const SignUpInputHeader(
+              title: '회원 분류',
+              description: '회원의 종류를 선택해 주세요.',
+            ),
+            RadioListTile<MemberType>(
+              title: const Text('헬스 트레이너'),
+              value: MemberType.trainer,
+              groupValue: _memberType,
+              onChanged: (MemberType? value) {
+                setState(() {
+                  _memberType = value!;
+                });
+              },
+            ),
+            RadioListTile<MemberType>(
+              title: const Text('일반 회원'),
+              value: MemberType.ordinary,
+              groupValue: _memberType,
+              onChanged: (MemberType? value) {
+                setState(() {
+                  _memberType = value!;
+                });
+              },
+            ),
+            if (_memberType == MemberType.trainer) ...[
+              const SizedBox(height: 40),
+              const SignUpInputHeader(
+                title: '헬스장 정보',
+                description: '소속 헬스장명을 입력해 주세요.',
+              ),
+              Form(
+                key: _formKey,
+                child: Container(
+                  margin: const EdgeInsets.all(defaultPadding),
+                  child: TextFormField(
+                    keyboardType: TextInputType.text,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: '소속 헬스장명을 입력해 주세요.',
+                      labelText: '소속 헬스장명',
                     ),
+                    controller: _nameController,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return '소속 헬스장명을 입력해 주세요.';
+                      }
+                      return null;
+                    },
                   ),
                 ),
-              ],
-            ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: Container(
-                width: double.infinity,
-                margin: const EdgeInsets.all(defaultPadding),
-                child: CustomElevatedButton(
-                  onPressed: () => _handleSubmitButtonPressed,
-                  text: '다음',
-                ),
+              ),
+              const SizedBox(height: 200),
+            ],
+            if (_memberType == MemberType.ordinary) ...[
+              const SizedBox(height: 440),
+            ],
+            Container(
+              width: double.infinity,
+              margin: const EdgeInsets.only(
+                left: defaultPadding,
+                right: defaultPadding,
+              ),
+              child: CustomElevatedButton(
+                onPressed: () => _handleSubmitButtonPressed,
+                text: '다음',
               ),
             ),
           ],
@@ -119,6 +119,7 @@ class _SignUpTypePageState extends State<SignUpTypePage> {
   _handleSubmitButtonPressed() {
     if (_formKey.currentState!.validate()) {
       print('ok');
+      Navigator.of(context).pushNamed('/sign_up/information');
     }
   }
 }
