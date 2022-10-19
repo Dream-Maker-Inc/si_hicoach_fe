@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 const colorScheme = ColorScheme(
-  primary: Color.fromRGBO(75, 128, 255, 1),
+  primary: Color.fromRGBO(70, 103, 240, 1),
   onPrimary: Colors.white,
-  secondary: Color.fromRGBO(75, 128, 255, 1),
+  secondary: Color.fromRGBO(57, 116, 255, 1),
   onSecondary: Colors.white,
   onTertiary: Color.fromRGBO(0, 0, 0, 0.5),
   background: Color.fromRGBO(75, 128, 255, 1),

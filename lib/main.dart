@@ -4,6 +4,7 @@ import 'package:si_hicoach_fe/common/color_schemes.dart';
 import 'package:si_hicoach_fe/common/text_styles.dart';
 import 'package:si_hicoach_fe/pages/login/login.dart';
 import 'package:si_hicoach_fe/pages/sign_up/sign_up_agreement.dart';
+import 'package:si_hicoach_fe/pages/splash/splash.dart';
 
 void main() {
   runApp(const MyApp());
@@ -23,9 +24,10 @@ class MyApp extends StatelessWidget {
           checkboxTheme: checkboxThemes,
           scaffoldBackgroundColor: const Color.fromRGBO(255, 255, 255, 1)),
       routes: <String, WidgetBuilder>{
-        '/sign_up': (BuildContext context) => SignUpAgreementPage()
+        '/login': (BuildContext context) => const LoginPage(),
+        '/sign_up': (BuildContext context) => const SignUpAgreementPage(),
       },
-      home: LoginPage(),
+      home: SplashPage(),
     );
   }
 }
