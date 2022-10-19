@@ -81,8 +81,9 @@ class _SignUpAgreementPageState extends State<SignUpAgreementPage> {
                               '모든 약관에 동의합니다.',
                               style: TextStyle(
                                 color: _isAllChecked
-                                    ? Colors.indigo
-                                    : Colors.black,
+                                    ? Theme.of(context).colorScheme.primary
+                                    : Theme.of(context).colorScheme.onSurface,
+                                fontSize: 18,
                               ),
                             ),
                             leading: Checkbox(
@@ -92,7 +93,8 @@ class _SignUpAgreementPageState extends State<SignUpAgreementPage> {
                                   _isAllChecked = value!;
                                 });
                               },
-                              activeColor: Colors.indigo,
+                              activeColor:
+                                  Theme.of(context).colorScheme.primary,
                             ),
                             onTap: () {
                               setState(() {
@@ -102,22 +104,27 @@ class _SignUpAgreementPageState extends State<SignUpAgreementPage> {
                           );
                         },
                         body: Column(
-                          children: const <Widget>[
-                            AgreementListItem(text: '[필수] 서비스 이용약관'),
+                          children: <Widget>[
                             Divider(
+                              height: 1,
+                              thickness: 1,
+                              color: Theme.of(context).colorScheme.primary,
+                            ),
+                            const AgreementListItem(text: '[필수] 서비스 이용약관'),
+                            const Divider(
                               height: 0,
                               indent: 30,
                               endIndent: 30,
                               color: Color.fromRGBO(0, 0, 0, 0.2),
                             ),
-                            AgreementListItem(text: '[필수] 개인정보 처라방침'),
-                            Divider(
+                            const AgreementListItem(text: '[필수] 개인정보 처라방침'),
+                            const Divider(
                               height: 0,
                               indent: 30,
                               endIndent: 30,
                               color: Color.fromRGBO(0, 0, 0, 0.2),
                             ),
-                            AgreementListItem(text: '[선택] 광고마케팅 활용정보 수집'),
+                            const AgreementListItem(text: '[선택] 광고마케팅 활용정보 수집'),
                           ],
                         ),
                         isExpanded: _isCarouselExpanded,

@@ -18,7 +18,10 @@ class _AgreementListItemState extends State<AgreementListItem> {
       title: Text(
         widget.text,
         style: TextStyle(
-          color: _isAgreementChecked ? Colors.indigo : Colors.black,
+          color: _isAgreementChecked
+              ? Theme.of(context).colorScheme.primary
+              : Theme.of(context).colorScheme.onTertiary,
+          fontSize: 18,
         ),
       ),
       leading: Checkbox(
