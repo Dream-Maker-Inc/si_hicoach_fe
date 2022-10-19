@@ -30,7 +30,11 @@ class MyApp extends StatelessWidget {
             const SignUpAgreementPage(),
         '/sign_up/type': (BuildContext context) => const SignUpTypePage(),
       },
-      home: SplashPage(),
+      home: const SafeArea(
+        child: Scaffold(
+          body: SplashPage(),
+        ),
+      ),
     );
   }
 }

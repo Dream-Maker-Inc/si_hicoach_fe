@@ -76,6 +76,7 @@ class _SignUpTypePageState extends State<SignUpTypePage> {
                   description: '소속 헬스장명을 입력해 주세요.',
                 ),
                 Form(
+                  key: _formKey,
                   child: Container(
                     margin: const EdgeInsets.all(defaultPadding),
                     child: TextFormField(
@@ -104,7 +105,7 @@ class _SignUpTypePageState extends State<SignUpTypePage> {
                 width: double.infinity,
                 margin: const EdgeInsets.all(defaultPadding),
                 child: CustomElevatedButton(
-                  onPressed: () => _handleSubmitButtonPressed(context),
+                  onPressed: () => _handleSubmitButtonPressed,
                   text: '다음',
                 ),
               ),
@@ -114,8 +115,10 @@ class _SignUpTypePageState extends State<SignUpTypePage> {
       ),
     );
   }
-}
 
-void _handleSubmitButtonPressed(BuildContext context) {
-  Navigator.of(context).pop();
+  _handleSubmitButtonPressed() {
+    if (_formKey.currentState!.validate()) {
+      print('ok');
+    }
+  }
 }
