@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/common/checkbox_themes.dart';
 import 'package:si_hicoach_fe/common/color_schemes.dart';
 import 'package:si_hicoach_fe/common/text_styles.dart';
+import 'package:si_hicoach_fe/pages/information/account_find/account_find.dart';
 import 'package:si_hicoach_fe/pages/login/login.dart';
 import 'package:si_hicoach_fe/pages/sign_up/agreement/agreement.dart';
 import 'package:si_hicoach_fe/pages/sign_up/type/type.dart';
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
           checkboxTheme: checkboxThemes,
           scaffoldBackgroundColor: const Color.fromRGBO(255, 255, 255, 1)),
       routes: <String, WidgetBuilder>{
-        '/login': (BuildContext context) => const LoginPage(),
+        '/login': (BuildContext context) =>  AccountFindPage(),
         '/sign_up/agreement': (BuildContext context) =>
             const SignUpAgreementPage(),
         '/sign_up/type': (BuildContext context) => const SignUpTypePage(),

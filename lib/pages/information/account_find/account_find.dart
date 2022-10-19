@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:si_hicoach_fe/common/color_schemes.dart';
 
 class AccountFindPage extends StatelessWidget {
   AccountFindPage({Key? key}) : super(key: key);
@@ -28,7 +29,7 @@ class TitleSection extends StatelessWidget {
       decoration: BoxDecoration(
         border: Border(
           bottom: BorderSide(
-            color: Theme.of(context).colorScheme.tertiary,
+            color: colorScheme.onTertiary,
             width: 1,
           ),
         ),
