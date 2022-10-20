@@ -3,14 +3,14 @@ import 'package:si_hicoach_fe/domain/common/buttons.dart';
 import 'package:si_hicoach_fe/domain/common/constants.dart';
 import 'package:si_hicoach_fe/domain/member/views/sign_up/agreement/agreement.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+class LoginView extends StatefulWidget {
+  const LoginView({Key? key}) : super(key: key);
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<LoginView> createState() => _LoginPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _LoginPageState extends State<LoginView> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
@@ -31,7 +31,7 @@ class _LoginPageState extends State<LoginPage> {
   _handleSignUpButtonClicked() {
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (context) => const SignUpAgreementPage(),
+        builder: (context) => const SignUpAgreementView(),
       ),
     );
   }

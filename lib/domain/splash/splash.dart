@@ -12,7 +12,7 @@ class SplashPage extends StatelessWidget {
       const Duration(milliseconds: 2500),
       () => Navigator.of(context).push(
         MaterialPageRoute(
-          builder: (context) => const LoginPage(),
+          builder: (context) => const LoginView(),
         ),
       ),
     );

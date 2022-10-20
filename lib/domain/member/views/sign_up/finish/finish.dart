@@ -4,8 +4,8 @@ import 'package:si_hicoach_fe/domain/common/constants.dart';
 import 'package:si_hicoach_fe/domain/common/sign_up/input_header.dart';
 import 'package:si_hicoach_fe/domain/member/views/login/login.dart';
 
-class SignUpFinishPage extends StatelessWidget {
-  const SignUpFinishPage({Key? key}) : super(key: key);
+class SignUpFinishView extends StatelessWidget {
+  const SignUpFinishView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +44,7 @@ class SignUpFinishPage extends StatelessWidget {
                 child: CustomElevatedButton(
                   onPressed: () => Navigator.of(context).pushAndRemoveUntil(
                     MaterialPageRoute(
-                      builder: (context) => const LoginPage(),
+                      builder: (context) => const LoginView(),
                     ),
                     (Route<dynamic> route) => false,
                   ),

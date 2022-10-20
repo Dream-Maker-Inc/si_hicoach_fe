@@ -5,14 +5,14 @@ import 'package:si_hicoach_fe/domain/common/sign_up/input_header.dart';
 import 'package:si_hicoach_fe/domain/member/views/sign_up/agreement/agreement_list_item.dart';
 import 'package:si_hicoach_fe/domain/member/views/sign_up/type/type.dart';
 
-class SignUpAgreementPage extends StatefulWidget {
-  const SignUpAgreementPage({Key? key}) : super(key: key);
+class SignUpAgreementView extends StatefulWidget {
+  const SignUpAgreementView({Key? key}) : super(key: key);
 
   @override
-  State<SignUpAgreementPage> createState() => _SignUpAgreementPageState();
+  State<SignUpAgreementView> createState() => _SignUpAgreementPageState();
 }
 
-class _SignUpAgreementPageState extends State<SignUpAgreementPage> {
+class _SignUpAgreementPageState extends State<SignUpAgreementView> {
   bool _isAllChecked = false;
   bool _isCarouselExpanded = false;
 
@@ -33,7 +33,7 @@ class _SignUpAgreementPageState extends State<SignUpAgreementPage> {
   void _handleSubmitButtonPressed(BuildContext context) {
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (context) => const SignUpTypePage(),
+        builder: (context) => const SignUpTypeView(),
       ),
     );
   }

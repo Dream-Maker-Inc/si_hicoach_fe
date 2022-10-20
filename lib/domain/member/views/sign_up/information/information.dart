@@ -4,14 +4,14 @@ import 'package:si_hicoach_fe/domain/common/constants.dart';
 import 'package:si_hicoach_fe/domain/common/sign_up/input_header.dart';
 import 'package:si_hicoach_fe/domain/member/views/sign_up/finish/finish.dart';
 
-class SignUpInformationPage extends StatefulWidget {
-  const SignUpInformationPage({Key? key}) : super(key: key);
+class SignUpInformationView extends StatefulWidget {
+  const SignUpInformationView({Key? key}) : super(key: key);
 
   @override
-  State<SignUpInformationPage> createState() => _SignUpInformationPageState();
+  State<SignUpInformationView> createState() => _SignUpInformationPageState();
 }
 
-class _SignUpInformationPageState extends State<SignUpInformationPage> {
+class _SignUpInformationPageState extends State<SignUpInformationView> {
   final _formKey = GlobalKey<FormState>();
   final _idController = TextEditingController();
   final _passwordController = TextEditingController();
@@ -25,7 +25,7 @@ class _SignUpInformationPageState extends State<SignUpInformationPage> {
     if (_formKey.currentState!.validate()) {
       Navigator.of(context).push(
         MaterialPageRoute(
-          builder: (context) => const SignUpFinishPage(),
+          builder: (context) => const SignUpFinishView(),
         ),
       );
     }

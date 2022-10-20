@@ -4,16 +4,16 @@ import 'package:si_hicoach_fe/domain/common/constants.dart';
 import 'package:si_hicoach_fe/domain/common/sign_up/input_header.dart';
 import 'package:si_hicoach_fe/domain/member/views/sign_up/information/information.dart';
 
-class SignUpTypePage extends StatefulWidget {
-  const SignUpTypePage({Key? key}) : super(key: key);
+class SignUpTypeView extends StatefulWidget {
+  const SignUpTypeView({Key? key}) : super(key: key);
 
   @override
-  State<SignUpTypePage> createState() => _SignUpTypePageState();
+  State<SignUpTypeView> createState() => _SignUpTypePageState();
 }
 
 enum MemberType { trainer, ordinary }
 
-class _SignUpTypePageState extends State<SignUpTypePage> {
+class _SignUpTypePageState extends State<SignUpTypeView> {
   MemberType _memberType = MemberType.trainer;
   final _formKey = GlobalKey<FormState>();
   final _nameController = TextEditingController();
@@ -29,14 +29,14 @@ class _SignUpTypePageState extends State<SignUpTypePage> {
       if (_formKey.currentState!.validate()) {
         Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (context) => const SignUpInformationPage(),
+            builder: (context) => const SignUpInformationView(),
           ),
         );
       }
     } else {
       Navigator.of(context).push(
         MaterialPageRoute(
-          builder: (context) => const SignUpInformationPage(),
+          builder: (context) => const SignUpInformationView(),
         ),
       );
     }
