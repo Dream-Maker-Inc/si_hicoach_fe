@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/common/buttons.dart';
 import 'package:si_hicoach_fe/domain/common/constants.dart';
 import 'package:si_hicoach_fe/domain/common/sign_up/input_header.dart';
+import 'package:si_hicoach_fe/domain/member/views/sign_up/finish/finish.dart';
 
 class SignUpInformationPage extends StatefulWidget {
   const SignUpInformationPage({Key? key}) : super(key: key);
@@ -22,7 +23,11 @@ class _SignUpInformationPageState extends State<SignUpInformationPage> {
 
   void _handleSubmitButtonClicked() {
     if (_formKey.currentState!.validate()) {
-      print('폼 데이터 검증 완료');
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => const SignUpFinishPage(),
+        ),
+      );
     }
   }
 
