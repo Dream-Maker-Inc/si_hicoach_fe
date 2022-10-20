@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:si_hicoach_fe/common/constants.dart';
+import 'package:si_hicoach_fe/domain/common/constants.dart';
 
 class SignUpInputHeader extends StatelessWidget {
   final String title;
