@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:si_hicoach_fe/pages/login/login.dart';
-import 'package:si_hicoach_fe/pages/splash/splash_section.dart';
+import 'package:si_hicoach_fe/domain/member/views/login/login.dart';
+import 'package:si_hicoach_fe/domain/splash/splash_section.dart';
 
 class SplashPage extends StatelessWidget {
   const SplashPage({Key? key}) : super(key: key);

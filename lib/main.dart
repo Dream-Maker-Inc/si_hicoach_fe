@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:si_hicoach_fe/common/checkbox_themes.dart';
-import 'package:si_hicoach_fe/common/color_schemes.dart';
-import 'package:si_hicoach_fe/common/text_styles.dart';
-import 'package:si_hicoach_fe/pages/login/login.dart';
-import 'package:si_hicoach_fe/pages/sign_up/agreement/agreement.dart';
-import 'package:si_hicoach_fe/pages/sign_up/type/type.dart';
-import 'package:si_hicoach_fe/pages/splash/splash.dart';
+import 'package:si_hicoach_fe/domain/common/checkbox_themes.dart';
+import 'package:si_hicoach_fe/domain/common/color_schemes.dart';
+import 'package:si_hicoach_fe/domain/common/text_styles.dart';
+import 'package:si_hicoach_fe/domain/splash/splash.dart';
 
 void main() {
   runApp(const MyApp());

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:si_hicoach_fe/common/buttons.dart';
-import 'package:si_hicoach_fe/common/constants.dart';
-import 'package:si_hicoach_fe/pages/sign_up/agreement/agreement.dart';
+import 'package:si_hicoach_fe/domain/common/buttons.dart';
+import 'package:si_hicoach_fe/domain/common/constants.dart';
+import 'package:si_hicoach_fe/domain/member/views/sign_up/agreement/agreement.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
