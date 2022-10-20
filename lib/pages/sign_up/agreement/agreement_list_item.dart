@@ -12,6 +12,14 @@ class AgreementListItem extends StatefulWidget {
 class _AgreementListItemState extends State<AgreementListItem> {
   bool _isAgreementChecked = false;
 
+  _handleCheckBoxChanged(value) {
+    setState(() => _isAgreementChecked = value!);
+  }
+
+  _handleTapAgreementDetail() {
+    setState(() => _isAgreementChecked = !_isAgreementChecked);
+  }
+
   @override
   Widget build(BuildContext context) {
     return ListTile(
@@ -26,11 +34,7 @@ class _AgreementListItemState extends State<AgreementListItem> {
       ),
       leading: Checkbox(
         value: _isAgreementChecked,
-        onChanged: (value) {
-          setState(() {
-            _isAgreementChecked = value!;
-          });
-        },
+        onChanged: (value) => _handleCheckBoxChanged(value),
         activeColor: Colors.indigo,
       ),
       trailing: const IconButton(
@@ -40,11 +44,7 @@ class _AgreementListItemState extends State<AgreementListItem> {
           color: Colors.grey,
         ),
       ),
-      onTap: () {
-        setState(() {
-          _isAgreementChecked = !_isAgreementChecked;
-        });
-      },
+      onTap: _handleTapAgreementDetail,
     );
   }
 }

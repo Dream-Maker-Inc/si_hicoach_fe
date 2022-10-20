@@ -16,6 +16,28 @@ class _SignUpAgreementPageState extends State<SignUpAgreementPage> {
   bool _isAllChecked = false;
   bool _isCarouselExpanded = false;
 
+  _handleCarouselExpanded(int index, bool isExpanded) {
+    setState(() => _isCarouselExpanded = !_isCarouselExpanded);
+  }
+
+  _handleCheckBoxChanged(bool value) {
+    setState(() => _isAllChecked = value);
+  }
+
+  _handleCheckBoxTapped() {
+    setState(() {
+      _isAllChecked = !_isAllChecked;
+    });
+  }
+
+  void _handleSubmitButtonPressed(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const SignUpTypePage(),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,11 +86,7 @@ class _SignUpAgreementPageState extends State<SignUpAgreementPage> {
                   ),
                   child: ExpansionPanelList(
                     elevation: 0,
-                    expansionCallback: (int index, bool isExpanded) {
-                      setState(() {
-                        _isCarouselExpanded = !_isCarouselExpanded;
-                      });
-                    },
+                    expansionCallback: _handleCarouselExpanded,
                     children: [
                       ExpansionPanel(
                         headerBuilder: (BuildContext context, bool isExpanded) {
@@ -84,19 +102,12 @@ class _SignUpAgreementPageState extends State<SignUpAgreementPage> {
                             ),
                             leading: Checkbox(
                               value: _isAllChecked,
-                              onChanged: (value) {
-                                setState(() {
-                                  _isAllChecked = value!;
-                                });
-                              },
+                              onChanged: (value) =>
+                                  _handleCheckBoxChanged(value!),
                               activeColor:
                                   Theme.of(context).colorScheme.primary,
                             ),
-                            onTap: () {
-                              setState(() {
-                                _isAllChecked = !_isAllChecked;
-                              });
-                            },
+                            onTap: _handleCheckBoxTapped,
                           );
                         },
                         body: Column(
@@ -146,14 +157,4 @@ class _SignUpAgreementPageState extends State<SignUpAgreementPage> {
       ),
     );
   }
-}
-
-void _handleDropdownPressed() {}
-
-void _handleSubmitButtonPressed(BuildContext context) {
-  Navigator.of(context).push(
-    MaterialPageRoute(
-      builder: (context) => const SignUpTypePage(),
-    ),
-  );
 }

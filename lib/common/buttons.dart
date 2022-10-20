@@ -21,7 +21,6 @@ class CustomElevatedButton extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(4),
         ),
-        minimumSize: const Size.fromHeight(66),
       ),
       child: Text(text),
     );
@@ -45,7 +44,6 @@ class CustomOutlinedButton extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(4),
         ),
-        minimumSize: const Size.fromHeight(66),
         side: BorderSide(
           width: 1,
           color: colorScheme.primary,

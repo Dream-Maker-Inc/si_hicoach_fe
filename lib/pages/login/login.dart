@@ -22,10 +22,34 @@ class _LoginPageState extends State<LoginPage> {
     super.dispose();
   }
 
-  void _handleButtonPressed() {
+  void _handleLoginButtonClicked() {
     if (_formKey.currentState!.validate()) {
-      print('ok');
+      print('폼 데이터 검증 완료');
     }
+  }
+
+  _handleSignUpButtonClicked() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const SignUpAgreementPage(),
+      ),
+    );
+  }
+
+  _validateEmail(String value) {
+    if (value.trim().isEmpty) {
+      return '아이디(이메일)을 입력해 주세요.';
+    }
+  }
+
+  _validatePassword(String value) {
+    if (value.trim().isEmpty) {
+      return '비밀번호를 입력해 주세요.';
+    }
+  }
+
+  _handleTextButtonPressed() {
+    print('회원정보 찾기 버튼 클릭');
   }
 
   @override
@@ -67,12 +91,7 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         keyboardType: TextInputType.emailAddress,
                         controller: _emailController,
-                        validator: (value) {
-                          if (value!.trim().isEmpty) {
-                            return '아이디(이메일)을 입력해 주세요.';
-                          }
-                          return null;
-                        },
+                        validator: (value) => _validateEmail(value!),
                       ),
                       Container(
                         margin: const EdgeInsets.only(top: defaultPadding),
@@ -85,19 +104,14 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                           obscureText: true,
                           controller: _passwordController,
-                          validator: (value) {
-                            if (value!.trim().isEmpty) {
-                              return '비밀번호를 입력해 주세요.';
-                            }
-                            return null;
-                          },
+                          validator: (value) => _validatePassword(value!),
                         ),
                       ),
                       Container(
                         alignment: Alignment.topRight,
-                        child: const TextButton(
+                        child: TextButton(
                           onPressed: _handleTextButtonPressed,
-                          child: Text(
+                          child: const Text(
                             '회원정보 찾기',
                             style: TextStyle(
                               color: Colors.grey,
@@ -110,7 +124,7 @@ class _LoginPageState extends State<LoginPage> {
                         margin: const EdgeInsets.only(top: defaultPadding),
                         width: double.infinity,
                         child: CustomElevatedButton(
-                          onPressed: _handleButtonPressed,
+                          onPressed: _handleLoginButtonClicked,
                           text: '로그인',
                         ),
                       ),
@@ -135,13 +149,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 width: double.infinity,
                 child: CustomOutlinedButton(
-                  onPressed: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => const SignUpAgreementPage(),
-                      ),
-                    );
-                  },
+                  onPressed: _handleSignUpButtonClicked,
                   text: '30초 회원가입',
                 ),
               ),
@@ -152,5 +160,3 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 }
-
-void _handleTextButtonPressed() {}
