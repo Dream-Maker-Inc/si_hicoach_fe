@@ -1,19 +1,42 @@
 import 'package:flutter/material.dart';
-import 'package:si_hicoach_fe/common/buttons.dart';
-import 'package:si_hicoach_fe/common/constants.dart';
-import 'package:si_hicoach_fe/common/sign_up/input_header.dart';
-import 'package:si_hicoach_fe/pages/sign_up/agreement/agreement_list_item.dart';
+import 'package:si_hicoach_fe/domain/common/buttons.dart';
+import 'package:si_hicoach_fe/domain/common/constants.dart';
+import 'package:si_hicoach_fe/domain/common/sign_up/input_header.dart';
+import 'package:si_hicoach_fe/domain/member/views/sign_up/agreement/agreement_list_item.dart';
+import 'package:si_hicoach_fe/domain/member/views/sign_up/type/type.dart';
 
-class SignUpAgreementPage extends StatefulWidget {
-  const SignUpAgreementPage({Key? key}) : super(key: key);
+class SignUpAgreementView extends StatefulWidget {
+  const SignUpAgreementView({Key? key}) : super(key: key);
 
   @override
-  State<SignUpAgreementPage> createState() => _SignUpAgreementPageState();
+  State<SignUpAgreementView> createState() => _SignUpAgreementPageState();
 }
 
-class _SignUpAgreementPageState extends State<SignUpAgreementPage> {
+class _SignUpAgreementPageState extends State<SignUpAgreementView> {
   bool _isAllChecked = false;
   bool _isCarouselExpanded = false;
+
+  _handleCarouselExpanded(int index, bool isExpanded) {
+    setState(() => _isCarouselExpanded = !_isCarouselExpanded);
+  }
+
+  _handleCheckBoxChanged(bool value) {
+    setState(() => _isAllChecked = value);
+  }
+
+  _handleCheckBoxTapped() {
+    setState(() {
+      _isAllChecked = !_isAllChecked;
+    });
+  }
+
+  void _handleSubmitButtonPressed(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const SignUpTypeView(),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -63,11 +86,7 @@ class _SignUpAgreementPageState extends State<SignUpAgreementPage> {
                   ),
                   child: ExpansionPanelList(
                     elevation: 0,
-                    expansionCallback: (int index, bool isExpanded) {
-                      setState(() {
-                        _isCarouselExpanded = !_isCarouselExpanded;
-                      });
-                    },
+                    expansionCallback: _handleCarouselExpanded,
                     children: [
                       ExpansionPanel(
                         headerBuilder: (BuildContext context, bool isExpanded) {
@@ -83,19 +102,12 @@ class _SignUpAgreementPageState extends State<SignUpAgreementPage> {
                             ),
                             leading: Checkbox(
                               value: _isAllChecked,
-                              onChanged: (value) {
-                                setState(() {
-                                  _isAllChecked = value!;
-                                });
-                              },
+                              onChanged: (value) =>
+                                  _handleCheckBoxChanged(value!),
                               activeColor:
                                   Theme.of(context).colorScheme.primary,
                             ),
-                            onTap: () {
-                              setState(() {
-                                _isAllChecked = !_isAllChecked;
-                              });
-                            },
+                            onTap: _handleCheckBoxTapped,
                           );
                         },
                         body: Column(
@@ -145,10 +157,4 @@ class _SignUpAgreementPageState extends State<SignUpAgreementPage> {
       ),
     );
   }
-}
-
-void _handleDropdownPressed() {}
-
-void _handleSubmitButtonPressed(BuildContext context) {
-  Navigator.of(context).pushNamed('/sign_up/type');
 }
