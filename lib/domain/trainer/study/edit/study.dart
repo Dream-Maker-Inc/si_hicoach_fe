@@ -9,10 +9,6 @@ import 'package:si_hicoach_fe/domain/trainer/study/edit/time.dart';
 class TrainerStudyEditView extends StatelessWidget {
   const TrainerStudyEditView({Key? key}) : super(key: key);
 
-  _handleSubmitButtonPressed() {
-    print('_handleSubmitButtonPressed');
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +21,7 @@ class TrainerStudyEditView extends StatelessWidget {
         actions: <Widget>[
           IconButton(
             icon: const Icon(Icons.check),
-            onPressed: _handleSubmitButtonPressed,
+            onPressed: () => Navigator.of(context).pop(),
             color: colorScheme.primary,
           ),
         ],
@@ -78,7 +74,10 @@ class TrainerStudyEditView extends StatelessWidget {
                     const TrainerMainEditExercise(),
                     const SizedBox(height: 16),
                     Divider(
-                        thickness: 1, height: 1, color: colorScheme.onTertiary),
+                      thickness: 1,
+                      height: 1,
+                      color: colorScheme.onTertiary,
+                    ),
                   ],
                 ),
                 const SizedBox(height: widePadding),

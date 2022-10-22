@@ -4,17 +4,10 @@ import 'package:si_hicoach_fe/domain/common/constants.dart';
 import 'package:si_hicoach_fe/domain/trainer/study/detail/exercise.dart';
 import 'package:si_hicoach_fe/domain/trainer/study/detail/memo.dart';
 import 'package:si_hicoach_fe/domain/trainer/study/detail/time.dart';
+import 'package:si_hicoach_fe/domain/trainer/study/edit/study.dart';
 
 class TrainerStudyDetailView extends StatelessWidget {
   const TrainerStudyDetailView({Key? key}) : super(key: key);
-
-  _handleEditButtonPressed() {
-    print('_handleEditButtonPressed');
-  }
-
-  _handleDeleteButtonPressed() {
-    print('_handleDeleteButtonPressed');
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,11 +21,15 @@ class TrainerStudyDetailView extends StatelessWidget {
         actions: <Widget>[
           IconButton(
             icon: const Icon(Icons.edit),
-            onPressed: _handleEditButtonPressed,
+            onPressed: () => Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => const TrainerStudyEditView(),
+              ),
+            ),
           ),
           IconButton(
             icon: const Icon(Icons.delete_forever),
-            onPressed: _handleDeleteButtonPressed,
+            onPressed: () {},
           ),
         ],
         bottom: PreferredSize(
