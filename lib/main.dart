@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/common/checkbox_themes.dart';
 import 'package:si_hicoach_fe/domain/common/color_schemes.dart';
 import 'package:si_hicoach_fe/domain/common/text_styles.dart';
-import 'package:si_hicoach_fe/domain/splash/splash.dart';
+import 'package:si_hicoach_fe/domain/trainer/study/edit/study.dart';
 
 void main() {
   runApp(const MyApp());
@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
           checkboxTheme: checkboxThemes,
           scaffoldBackgroundColor: const Color.fromRGBO(255, 255, 255, 1),
         ),
-        home: const SplashPage(),
+        home: const TrainerStudyEditView(),
       ),
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
     );
