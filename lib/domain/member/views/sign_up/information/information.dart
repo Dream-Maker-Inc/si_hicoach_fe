@@ -45,8 +45,6 @@ class _SignUpInformationPageState extends State<SignUpInformationView> {
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('회원가입'),

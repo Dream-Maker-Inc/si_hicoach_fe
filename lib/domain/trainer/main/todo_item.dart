@@ -43,7 +43,7 @@ class TrainerMainTodoItem extends StatelessWidget {
                     ),
                     child: Padding(
                       padding: const EdgeInsets.all(defaultPadding),
-                      child: Container(
+                      child: SizedBox(
                         width: double.infinity,
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.stretch,

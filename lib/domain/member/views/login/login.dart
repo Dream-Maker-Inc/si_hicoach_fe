@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/common/buttons.dart';
 import 'package:si_hicoach_fe/domain/common/constants.dart';
 import 'package:si_hicoach_fe/domain/member/views/sign_up/agreement/agreement.dart';
-import 'package:si_hicoach_fe/domain/trainer/main/main.dart';
+import 'package:si_hicoach_fe/domain/trainer/base.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({Key? key}) : super(key: key);
@@ -27,7 +27,7 @@ class _LoginPageState extends State<LoginView> {
     if (_formKey.currentState!.validate()) {
       Navigator.of(context).push(
         MaterialPageRoute(
-          builder: (context) => const TrainerMainView(),
+          builder: (context) => const TrainerBaseView(),
         ),
       );
     }

@@ -1,20 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/common/color_schemes.dart';
 import 'package:si_hicoach_fe/domain/common/constants.dart';
-import 'package:si_hicoach_fe/domain/common/text_styles.dart';
-import 'package:si_hicoach_fe/domain/common/trainer/bottom_navigation_bar.dart';
 import 'package:si_hicoach_fe/domain/trainer/main/calendar.dart';
 import 'package:si_hicoach_fe/domain/trainer/main/hello.dart';
 import 'package:si_hicoach_fe/domain/trainer/main/todo_item.dart';
 
-class TrainerMainView extends StatefulWidget {
-  const TrainerMainView({Key? key}) : super(key: key);
+class TrainerHomeView extends StatefulWidget {
+  const TrainerHomeView({Key? key}) : super(key: key);
 
   @override
-  State<TrainerMainView> createState() => _TrainerMainViewState();
+  State<TrainerHomeView> createState() => _TrainerHomeViewState();
 }
 
-class _TrainerMainViewState extends State<TrainerMainView> {
+class _TrainerHomeViewState extends State<TrainerHomeView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,7 +33,6 @@ class _TrainerMainViewState extends State<TrainerMainView> {
           ),
         ),
       ),
-      bottomNavigationBar: const TrainerBottomNavigationBar(),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
