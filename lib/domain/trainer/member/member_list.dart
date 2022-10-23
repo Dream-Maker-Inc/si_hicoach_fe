@@ -70,6 +70,7 @@ class TrainerMemberListView extends StatelessWidget {
                 length: 2,
                 child: Scaffold(
                   appBar: AppBar(
+                    automaticallyImplyLeading: false,
                     bottom: TabBar(
                       tabs: const <Widget>[
                         Tab(text: '수강 중'),

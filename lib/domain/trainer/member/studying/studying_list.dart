@@ -6,19 +6,25 @@ class StudyingListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: const <Widget>[
-          StudyingListItemView(),
-          StudyingListItemView(),
-          StudyingListItemView(),
-          StudyingListItemView(),
-          StudyingListItemView(),
-          StudyingListItemView(),
-          StudyingListItemView(),
-          StudyingListItemView(),
+    return ListView(
+      scrollDirection: Axis.vertical,
+      shrinkWrap: true,
+      children: ListTile.divideTiles(
+        context: context,
+        tiles: <Widget>[
+          const StudyingListItemView(),
+          const StudyingListItemView(),
+          const StudyingListItemView(),
+          const StudyingListItemView(),
+          const StudyingListItemView(),
+          const StudyingListItemView(),
+          const StudyingListItemView(),
+          const StudyingListItemView(),
+          const StudyingListItemView(),
+          const StudyingListItemView(),
+          const StudyingListItemView(),
         ],
-      ),
+      ).toList(),
     );
   }
 }
