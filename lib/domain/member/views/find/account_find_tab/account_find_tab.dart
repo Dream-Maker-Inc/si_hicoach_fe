@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/common/color_schemes.dart';
 
-void main() => runApp(const AccountFindTabPage());
+void main() => runApp(const AccountFindTabView());
 
-class AccountFindTabPage extends StatelessWidget {
-  const AccountFindTabPage({super.key});
+class AccountFindTabView extends StatelessWidget {
+  const AccountFindTabView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -41,6 +41,7 @@ class TabSection extends StatelessWidget {
           leading: IconButton(
               icon: Icon(Icons.arrow_back, color: Colors.black),
               onPressed: null),
+
           bottom: const TabBar(
             tabs: <Widget>[
               Tab(

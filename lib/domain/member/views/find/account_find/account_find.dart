@@ -1,16 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/common/color_schemes.dart';
 
-class AccountFindPage extends StatelessWidget {
-  AccountFindPage({Key? key}) : super(key: key);
+class AccountFindView extends StatelessWidget {
+  AccountFindView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          centerTitle: false,
+          titleSpacing: 0.0,
+          title: Text('회원정보 찾기',
+              style: TextStyle(
+                color: Colors.black,
+              )),
+          leading: IconButton(
+              icon: Icon(Icons.arrow_back, color: Colors.black),
+              onPressed: null),
+          elevation: 1,
+        ),
         body: SafeArea(
-          child: Column(
-            children: [const TitleSection(), const ContentSection()],
+          child: Container(
+            color: Colors.white,
+            child: const ContentSection(),
           ),
         ),
       ),
@@ -18,42 +32,6 @@ class AccountFindPage extends StatelessWidget {
   }
 
   Widget contentSection = Container();
-}
-
-class TitleSection extends StatelessWidget {
-  const TitleSection({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        border: Border(
-          bottom: BorderSide(
-            color: colorScheme.onTertiary,
-            width: 1,
-          ),
-        ),
-      ),
-      padding: const EdgeInsets.all(16),
-      child: Row(
-        children: [
-          Padding(
-            padding: EdgeInsets.fromLTRB(0, 0, 16, 0),
-            child: IconButton(
-              icon: Icon(Icons.arrow_back),
-              onPressed: () {},
-            ),
-          ),
-          Expanded(
-            child: Text(
-              '회원 정보 찾기',
-              style: TextStyle(fontSize: 20),
-            ),
-          )
-        ],
-      ),
-    );
-  }
 }
 
 class ContentSection extends StatelessWidget {
