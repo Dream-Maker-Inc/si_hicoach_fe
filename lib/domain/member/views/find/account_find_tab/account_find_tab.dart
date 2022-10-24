@@ -11,10 +11,6 @@ class AccountFindTabView extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(
         brightness: Brightness.light,
-        // add tabBarTheme
-        tabBarTheme: const TabBarTheme(
-            indicator: UnderlineTabIndicator(
-                borderSide: BorderSide(color: Colors.blue))),
       ),
       home: TabSection(),
     );
@@ -41,23 +37,36 @@ class TabSection extends StatelessWidget {
           leading: IconButton(
               icon: Icon(Icons.arrow_back, color: Colors.black),
               onPressed: null),
-
-          bottom: const TabBar(
-            tabs: <Widget>[
-              Tab(
-                child: Text(
-                  '아이디 찾기',
-                  style: TextStyle(color: Colors.black),
+          bottom: PreferredSize(
+              child: Container(
+                child: Column(
+                  children: [
+                    Container(
+                      width: double.infinity,
+                      height: 1.0,
+                      color: colorScheme.onTertiary,
+                    ),
+                    TabBar(
+                      tabs: <Widget>[
+                        Tab(
+                          height: 40,
+                          child: Text(
+                            '아이디 찾기',
+                            style: TextStyle(color: Colors.black),
+                          ),
+                        ),
+                        Tab(
+                          child: Text(
+                            '비밀번호 찾기',
+                            style: TextStyle(color: Colors.black),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
               ),
-              Tab(
-                child: Text(
-                  '비밀번호 찾기',
-                  style: TextStyle(color: Colors.black),
-                ),
-              ),
-            ],
-          ),
+              preferredSize: Size.fromHeight(50)),
         ),
         body: SafeArea(
           child: const TabBarView(
@@ -93,7 +102,7 @@ class IdSection extends StatelessWidget {
             Spacer(),
             ElevatedButton(
               onPressed: () {},
-              child: Text('휴대폰 인증하기',style: TextStyle(fontSize: 14)),
+              child: Text('휴대폰 인증하기', style: TextStyle(fontSize: 14)),
               style: ElevatedButton.styleFrom(
                 primary: colorScheme.primary,
                 minimumSize: const Size.fromHeight(50), // NEW
@@ -126,14 +135,15 @@ class PwSection extends StatelessWidget {
             TextField(
               obscureText: true,
               decoration: InputDecoration(
-                border: OutlineInputBorder(borderSide: BorderSide(color: colorScheme.primary)),
+                border: OutlineInputBorder(
+                    borderSide: BorderSide(color: colorScheme.primary)),
                 labelText: '이메일 입력',
               ),
             ),
             Spacer(),
             ElevatedButton(
               onPressed: () {},
-              child: Text('다음',style: TextStyle(fontSize: 14)),
+              child: Text('다음', style: TextStyle(fontSize: 14)),
               style: ElevatedButton.styleFrom(
                 primary: colorScheme.primary,
                 minimumSize: const Size.fromHeight(50), // NEW
