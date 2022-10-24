@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/common/color_schemes.dart';
 
@@ -38,10 +36,13 @@ class TitleSection extends StatelessWidget {
       ),
       padding: const EdgeInsets.all(16),
       child: Row(
-        children: const <Widget>[
+        children: [
           Padding(
             padding: EdgeInsets.fromLTRB(0, 0, 16, 0),
-            child: Icon(Icons.arrow_back),
+            child: IconButton(
+              icon: Icon(Icons.arrow_back),
+              onPressed: () {},
+            ),
           ),
           Expanded(
             child: Text(
