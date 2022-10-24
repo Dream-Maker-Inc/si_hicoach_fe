@@ -24,7 +24,7 @@ class AccountFindIdSuccessView extends StatelessWidget {
         body: SafeArea(
           child: Container(
             color: Colors.white,
-            child: const ContentSection(),
+            child: ContentSection(id: 'hicoach'),
           ),
         ),
       ),
@@ -34,9 +34,15 @@ class AccountFindIdSuccessView extends StatelessWidget {
   Widget contentSection = Container();
 }
 
-class ContentSection extends StatelessWidget {
-  const ContentSection({Key? key}) : super(key: key);
+class ContentSection extends StatefulWidget {
+  const ContentSection({Key? key, required this.id}) : super(key: key);
+  final String id;
 
+  @override
+  State<ContentSection> createState() => _ContentSectionState();
+}
+
+class _ContentSectionState extends State<ContentSection> {
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -55,11 +61,18 @@ class ContentSection extends StatelessWidget {
                         TextStyle(fontSize: 12, fontWeight: FontWeight.w400)),
                 SizedBox(height: 40),
                 Container(
-                    color: colorScheme.onTertiary,
-                    height: 60,
-                    child: Center(
-                        child:
-                            Text('hicoach', style: TextStyle(fontSize: 16)))),
+                  height: 60,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      color: colorScheme.onTertiary,
+                      border: Border.all(width: 1, color: Colors.transparent)),
+                  child: Center(
+                    child: Text(
+                      widget.id,
+                      style: TextStyle(fontSize: 16),
+                    ),
+                  ),
+                ),
                 Spacer(),
                 ElevatedButton(
                   onPressed: () {},
@@ -71,5 +84,6 @@ class ContentSection extends StatelessWidget {
                 )
               ],
             )));
+    ;
   }
 }
