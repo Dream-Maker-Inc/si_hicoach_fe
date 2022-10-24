@@ -92,7 +92,7 @@ class IdSection extends StatelessWidget {
             Spacer(),
             ElevatedButton(
               onPressed: () {},
-              child: Text('휴대폰 인증하기'),
+              child: Text('휴대폰 인증하기',style: TextStyle(fontSize: 14)),
               style: ElevatedButton.styleFrom(
                 primary: colorScheme.primary,
                 minimumSize: const Size.fromHeight(50), // NEW
@@ -132,7 +132,7 @@ class PwSection extends StatelessWidget {
             Spacer(),
             ElevatedButton(
               onPressed: () {},
-              child: Text('다음'),
+              child: Text('다음',style: TextStyle(fontSize: 14)),
               style: ElevatedButton.styleFrom(
                 primary: colorScheme.primary,
                 minimumSize: const Size.fromHeight(50), // NEW
