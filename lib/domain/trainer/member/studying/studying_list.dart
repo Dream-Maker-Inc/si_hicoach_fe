@@ -11,19 +11,10 @@ class StudyingListView extends StatelessWidget {
       shrinkWrap: true,
       children: ListTile.divideTiles(
         context: context,
-        tiles: <Widget>[
-          const StudyingListItemView(),
-          const StudyingListItemView(),
-          const StudyingListItemView(),
-          const StudyingListItemView(),
-          const StudyingListItemView(),
-          const StudyingListItemView(),
-          const StudyingListItemView(),
-          const StudyingListItemView(),
-          const StudyingListItemView(),
-          const StudyingListItemView(),
-          const StudyingListItemView(),
-        ],
+        tiles: List.generate(
+          10,
+          (int index) => const StudyingListItemView(),
+        ),
       ).toList(),
     );
   }

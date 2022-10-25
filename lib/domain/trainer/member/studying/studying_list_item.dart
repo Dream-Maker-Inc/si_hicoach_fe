@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/common/constants.dart';
+import 'package:si_hicoach_fe/domain/trainer/member/detail/detail.dart';
 
 class StudyingListItemView extends StatelessWidget {
   const StudyingListItemView({Key? key}) : super(key: key);
@@ -8,7 +9,11 @@ class StudyingListItemView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       onTap: () {
-        print('asdf');
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => const TrainerMemberDetailView(),
+          ),
+        );
       },
       title: const Text(
         '이은석 회원님',
@@ -25,7 +30,13 @@ class StudyingListItemView extends StatelessWidget {
           children: <Widget>[
             const Text('5회차 (15회)', style: TextStyle(color: Colors.grey)),
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const TrainerMemberDetailView(),
+                  ),
+                );
+              },
               icon: const Icon(
                 Icons.keyboard_arrow_right,
                 color: Colors.grey,

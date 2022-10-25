@@ -19,7 +19,7 @@ class TrainerStudyEditExerciseItem extends StatelessWidget {
               children: <Widget>[
                 SizedBox(
                   width: 70,
-                  height: 50,
+                  height: 40,
                   child: TextField(
                     decoration: InputDecoration(
                       border: const OutlineInputBorder(),
@@ -37,7 +37,7 @@ class TrainerStudyEditExerciseItem extends StatelessWidget {
                 const SizedBox(width: 10),
                 SizedBox(
                   width: 70,
-                  height: 50,
+                  height: 40,
                   child: TextField(
                     decoration: InputDecoration(
                       border: const OutlineInputBorder(),
@@ -55,7 +55,7 @@ class TrainerStudyEditExerciseItem extends StatelessWidget {
                 const SizedBox(width: 10),
                 SizedBox(
                   width: 70,
-                  height: 50,
+                  height: 40,
                   child: TextField(
                     decoration: InputDecoration(
                       border: const OutlineInputBorder(),

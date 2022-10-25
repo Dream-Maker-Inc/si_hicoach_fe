@@ -15,6 +15,8 @@ class _TrainerBaseViewState extends State<TrainerBaseView> {
   final List _pages = [
     const TrainerHomeView(),
     const TrainerMemberListView(),
+    const TrainerMemberListView(),
+    const TrainerMemberListView(),
   ];
 
   Widget _bottomNavigationBar() {
