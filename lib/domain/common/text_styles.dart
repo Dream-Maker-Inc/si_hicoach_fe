@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 const textStyle = TextTheme(
   headline1: TextStyle(
     fontSize: 30,
-    fontWeight: FontWeight.bold,
+    fontWeight: FontWeight.w700,
     color: Colors.black,
   ),
   headline2: TextStyle(
@@ -11,8 +11,19 @@ const textStyle = TextTheme(
     fontWeight: FontWeight.normal,
   ),
   headline3: TextStyle(
-    fontSize: 24,
-    fontWeight: FontWeight.bold,
+    fontSize: 26,
+    fontWeight: FontWeight.normal,
+    color: Colors.white,
+  ),
+  headline4: TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w700,
+    color: Colors.grey,
+  ),
+  headline5: TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w700,
+    color: Color.fromRGBO(70, 103, 240, 1),
   ),
   button: TextStyle(
     fontSize: 20,
@@ -20,12 +31,12 @@ const textStyle = TextTheme(
     color: Colors.white,
   ),
   overline: TextStyle(
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: FontWeight.normal,
-    color: Colors.indigo,
+    color: Colors.grey,
   ),
   caption: TextStyle(
-    fontSize: 16,
+    fontSize: 20,
     fontWeight: FontWeight.normal,
     color: Colors.grey,
   ),

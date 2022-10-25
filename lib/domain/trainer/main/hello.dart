@@ -30,24 +30,25 @@ class _TrainerMainHelloState extends State<TrainerMainHello> {
               left: defaultPadding,
               top: defaultPadding,
             ),
-            child: Text(
-              '반갑습니다, $trainerName 코치님',
-              textAlign: TextAlign.left,
-              style: const TextStyle(
-                fontSize: 30,
-                fontWeight: FontWeight.w700,
-              ),
+            child: Wrap(
+              children: <Widget>[
+                Text(
+                  '반갑습니다, $trainerName 코치님',
+                  textAlign: TextAlign.left,
+                  style: Theme.of(context).textTheme.headline1,
+                )
+              ],
             ),
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(left: defaultPadding),
+          padding: const EdgeInsets.only(
+            left: defaultPadding,
+            top: smallPadding,
+          ),
           child: Text(
             formattedDate,
-            style: const TextStyle(
-              fontSize: 20,
-              color: Colors.grey,
-            ),
+            style: Theme.of(context).textTheme.caption,
           ),
         ),
       ],

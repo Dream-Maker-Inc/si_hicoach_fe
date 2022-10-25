@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/common/color_schemes.dart';
+import 'package:si_hicoach_fe/domain/common/constants.dart';
 
 class TrainerMainCalendar extends StatelessWidget {
   const TrainerMainCalendar({Key? key}) : super(key: key);
@@ -20,11 +21,8 @@ class TrainerMainCalendar extends StatelessWidget {
                   width: 58,
                   child: Column(
                     children: <Widget>[
-                      const Text(
-                        '월',
-                        style: TextStyle(color: Colors.grey, fontSize: 20),
-                      ),
-                      const SizedBox(height: 10),
+                      Text('월', style: Theme.of(context).textTheme.caption),
+                      const SizedBox(height: smallPadding),
                       Container(
                         width: 40,
                         height: 40,
@@ -32,15 +30,10 @@ class TrainerMainCalendar extends StatelessWidget {
                           borderRadius: BorderRadius.circular(20),
                           color: colorScheme.primary,
                         ),
-                        child: const Align(
-                          alignment: Alignment.center,
+                        child: Align(
                           child: Text(
                             '11',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w700,
-                              fontSize: 26,
-                            ),
+                            style: Theme.of(context).textTheme.headline3,
                           ),
                         ),
                       ),
