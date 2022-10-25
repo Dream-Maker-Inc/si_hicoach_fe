@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/common/buttons.dart';
 import 'package:si_hicoach_fe/domain/common/constants.dart';
+import 'package:si_hicoach_fe/domain/member/views/find/account_find_tab/account_find_tab.dart';
 import 'package:si_hicoach_fe/domain/member/views/sign_up/agreement/agreement.dart';
 import 'package:si_hicoach_fe/domain/trainer/base.dart';
 
@@ -54,7 +55,11 @@ class _LoginPageState extends State<LoginView> {
   }
 
   _handleTextButtonPressed() {
-    print('회원정보 찾기 버튼 클릭');
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const AccountFindTabView(),
+      ),
+    );
   }
 
   @override
