@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/common/buttons.dart';
 import 'package:si_hicoach_fe/domain/common/constants.dart';
-import 'package:si_hicoach_fe/domain/member/views/find/account_find_tab/account_find_tab.dart';
-import 'package:si_hicoach_fe/domain/member/views/sign_up/agreement/agreement.dart';
+import 'package:si_hicoach_fe/domain/member/find/tab.dart';
+import 'package:si_hicoach_fe/domain/member/sign_up/agreement/agreement.dart';
 import 'package:si_hicoach_fe/domain/trainer/base.dart';
 
 class LoginView extends StatefulWidget {
@@ -57,7 +57,7 @@ class _LoginPageState extends State<LoginView> {
   _handleTextButtonPressed() {
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (context) => const AccountFindTabView(),
+        builder: (context) => const MemberFindTabView(),
       ),
     );
   }

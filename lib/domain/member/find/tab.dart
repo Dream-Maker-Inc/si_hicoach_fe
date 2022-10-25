@@ -1,18 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/common/color_schemes.dart';
 
-void main() => runApp(const AccountFindTabView());
-
-class AccountFindTabView extends StatelessWidget {
-  const AccountFindTabView({super.key});
+class MemberFindTabView extends StatelessWidget {
+  const MemberFindTabView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-        brightness: Brightness.light,
-      ),
-      home: TabSection(),
+      home: const TabSection(),
     );
   }
 }
@@ -23,18 +18,15 @@ class TabSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      initialIndex: 0,
       length: 2,
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.white,
-          centerTitle: false,
-          titleSpacing: 0.0,
-          title: const Text('회원정보 찾기', style: TextStyle(color: Colors.black)),
-          leading: const IconButton(
-            icon: Icon(Icons.arrow_back, color: Colors.black),
-            onPressed: null,
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back),
+            onPressed: () => Navigator.of(context).pop(),
           ),
+          title: const Text('회원정보 찾기', style: TextStyle(color: Colors.black)),
           bottom: PreferredSize(
               preferredSize: const Size.fromHeight(50),
               child: Column(

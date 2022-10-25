@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/common/buttons.dart';
 import 'package:si_hicoach_fe/domain/common/constants.dart';
 import 'package:si_hicoach_fe/domain/common/sign_up/input_header.dart';
-import 'package:si_hicoach_fe/domain/member/views/sign_up/agreement/agreement_list_item.dart';
-import 'package:si_hicoach_fe/domain/member/views/sign_up/type/type.dart';
+import 'package:si_hicoach_fe/domain/member/sign_up/agreement/agreement_list_item.dart';
+import 'package:si_hicoach_fe/domain/member/sign_up/type/type.dart';
 
 class SignUpAgreementView extends StatefulWidget {
   const SignUpAgreementView({Key? key}) : super(key: key);

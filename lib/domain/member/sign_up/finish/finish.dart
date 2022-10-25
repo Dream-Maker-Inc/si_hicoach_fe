@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/common/buttons.dart';
 import 'package:si_hicoach_fe/domain/common/constants.dart';
 import 'package:si_hicoach_fe/domain/common/sign_up/input_header.dart';
-import 'package:si_hicoach_fe/domain/member/views/login/login.dart';
+import 'package:si_hicoach_fe/domain/member/login/login.dart';
 
 class SignUpFinishView extends StatelessWidget {
   const SignUpFinishView({Key? key}) : super(key: key);

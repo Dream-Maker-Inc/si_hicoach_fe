@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/common/color_schemes.dart';
 
-class AccountFindPwSuccessView extends StatefulWidget {
-  const AccountFindPwSuccessView({Key? key}) : super(key: key);
+class MemberFindPwSuccessView extends StatefulWidget {
+  const MemberFindPwSuccessView({Key? key}) : super(key: key);
 
   @override
-  State<AccountFindPwSuccessView> createState() =>
-      _AccountFindPwSuccessViewState();
+  State<MemberFindPwSuccessView> createState() =>
+      _MemberFindPwSuccessViewState();
 }
 
-class _AccountFindPwSuccessViewState extends State<AccountFindPwSuccessView> {
+class _MemberFindPwSuccessViewState extends State<MemberFindPwSuccessView> {
   Widget contentSection = Container();
 
   @override
