@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/common/color_schemes.dart';
 import 'package:si_hicoach_fe/domain/common/constants.dart';
-import 'package:si_hicoach_fe/domain/trainer/study/detail/study.dart';
+import 'package:si_hicoach_fe/domain/trainer/study/detail/detail.dart';
 
 class TrainerMainTodoItem extends StatelessWidget {
   final int time;

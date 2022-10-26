@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:si_hicoach_fe/domain/common/alert.dart';
+import 'package:si_hicoach_fe/domain/common/app_bar/arrow_back_icon.dart';
 import 'package:si_hicoach_fe/domain/common/color_schemes.dart';
 import 'package:si_hicoach_fe/domain/common/constants.dart';
 import 'package:si_hicoach_fe/domain/trainer/study/edit/exercise.dart';
@@ -12,23 +14,25 @@ class TrainerStudyEditView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('운동 일지 작성'),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
-        actions: <Widget>[
+      appBar: CustomAppBarArrowBack(
+        titleText: '운동 일지 작성',
+        actionsWidget: <Widget>[
           IconButton(
             icon: const Icon(Icons.check),
-            onPressed: () => Navigator.of(context).pop(),
-            color: colorScheme.primary,
+            onPressed: () {
+              showDialog<String>(
+                context: context,
+                barrierDismissible: false,
+                builder: (BuildContext context) => CustomAlertDialog(
+                  title: '작성 완료',
+                  content: '운동 일지가 정상 등록되었습니다.',
+                  positiveText: '확인',
+                  onPositivePressed: () => Navigator.of(context).pop(),
+                ),
+              );
+            },
           ),
         ],
-        bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(1),
-          child: Container(color: colorScheme.onTertiary, height: 1),
-        ),
       ),
       body: SafeArea(
         child: SingleChildScrollView(

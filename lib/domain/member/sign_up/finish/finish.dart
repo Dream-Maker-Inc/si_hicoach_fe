@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:si_hicoach_fe/domain/common/app_bar/arrow_back_icon.dart';
 import 'package:si_hicoach_fe/domain/common/buttons.dart';
 import 'package:si_hicoach_fe/domain/common/constants.dart';
 import 'package:si_hicoach_fe/domain/common/sign_up/input_header.dart';
@@ -10,15 +11,7 @@ class SignUpFinishView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('회원가입'),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-        ),
-      ),
+      appBar: const CustomAppBarArrowBack(titleText: '회원가입'),
       body: SafeArea(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

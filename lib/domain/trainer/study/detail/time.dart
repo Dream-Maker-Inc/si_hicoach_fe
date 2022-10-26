@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/common/color_schemes.dart';
+import 'package:si_hicoach_fe/domain/common/constants.dart';
 
 class TrainerStudyDetailTime extends StatelessWidget {
   const TrainerStudyDetailTime({Key? key}) : super(key: key);
@@ -8,72 +10,58 @@ class TrainerStudyDetailTime extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        const SizedBox(
+        SizedBox(
           width: double.infinity,
           child: Text(
             '수업 시간',
-            style: TextStyle(
-              fontWeight: FontWeight.w700,
-              fontSize: 26,
-            ),
+            style: Theme.of(context).textTheme.headline1,
           ),
         ),
-        const SizedBox(height: 10),
+        const SizedBox(height: smallPadding),
         Row(
           children: <Widget>[
             Container(
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(8)),
-                color: Color.fromRGBO(70, 103, 240, 0.1),
+              decoration: BoxDecoration(
+                borderRadius: const BorderRadius.all(Radius.circular(8)),
+                color: colorScheme.secondary,
               ),
               child: Padding(
                 padding: const EdgeInsets.only(
-                  left: 10,
-                  right: 10,
+                  left: smallPadding,
+                  right: smallPadding,
                   top: 6,
                   bottom: 6,
                 ),
                 child: Text(
                   '오전 11:00',
-                  style: TextStyle(
-                    color: colorScheme.primary,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 20,
-                  ),
+                  style: Theme.of(context).textTheme.overline,
                 ),
               ),
             ),
             const Padding(
-              padding: EdgeInsets.only(left: 10, right: 20),
-              child: Text(
-                '부터',
-                style: TextStyle(fontSize: 20),
+              padding: EdgeInsets.only(
+                left: smallPadding,
+                right: defaultPadding,
               ),
+              child: Text('부터', style: TextStyle(fontSize: 20)),
             ),
             Container(
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(8)),
-                color: Color.fromRGBO(70, 103, 240, 0.1),
+              decoration: BoxDecoration(
+                borderRadius: const BorderRadius.all(Radius.circular(8)),
+                color: colorScheme.shadow,
               ),
-              child: Padding(
-                padding: const EdgeInsets.only(
-                  left: 10,
-                  right: 10,
+              child: const Padding(
+                padding: EdgeInsets.only(
+                  left: smallPadding,
+                  right: smallPadding,
                   top: 6,
                   bottom: 6,
                 ),
-                child: Text(
-                  '오전 11:50',
-                  style: TextStyle(
-                    color: colorScheme.primary,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 20,
-                  ),
-                ),
+                child: Text('오전 11:50', style: TextStyle(fontSize: 20)),
               ),
             ),
             const Padding(
-              padding: EdgeInsets.only(left: 10),
+              padding: EdgeInsets.only(left: defaultPadding),
               child: Text('까지', style: TextStyle(fontSize: 20)),
             ),
           ],

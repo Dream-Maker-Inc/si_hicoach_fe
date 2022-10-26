@@ -1,25 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/common/color_schemes.dart';
+import 'package:si_hicoach_fe/domain/common/divider.dart';
 
 class TrainerMainExercise extends StatelessWidget {
-  const TrainerMainExercise({Key? key}) : super(key: key);
+  final String title;
+  final int weight;
+  final int count;
+  final int set;
+
+  const TrainerMainExercise({
+    Key? key,
+    required this.title,
+    required this.weight,
+    required this.count,
+    required this.set,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
         const SizedBox(height: 16),
-        Divider(thickness: 1, height: 1, color: colorScheme.onTertiary),
+        const CustomDivider(),
         const SizedBox(height: 16),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             Text(
-              '벤치프레스',
-              style: TextStyle(
-                fontSize: 20,
-                color: colorScheme.primary,
-              ),
+              title,
+              style: TextStyle(fontSize: 20, color: colorScheme.primary),
             ),
             Container(
               decoration: const BoxDecoration(
@@ -27,11 +36,11 @@ class TrainerMainExercise extends StatelessWidget {
                 color: Color.fromRGBO(70, 103, 240, 0.1),
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.only(left: 10),
+            Padding(
+              padding: const EdgeInsets.only(left: 10),
               child: Text(
-                '100KG · 100회 · 100세트',
-                style: TextStyle(fontSize: 20),
+                "${weight}KG · $count회 · $set세트",
+                style: const TextStyle(fontSize: 20),
               ),
             ),
           ],

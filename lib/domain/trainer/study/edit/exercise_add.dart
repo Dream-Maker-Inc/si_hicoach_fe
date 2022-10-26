@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:si_hicoach_fe/domain/common/app_bar/arrow_back_icon.dart';
 import 'package:si_hicoach_fe/domain/common/color_schemes.dart';
 import 'package:si_hicoach_fe/domain/common/constants.dart';
 import 'package:si_hicoach_fe/domain/trainer/study/edit/exercise_add_item.dart';
@@ -13,17 +14,7 @@ class TrainerStudyEditExerciseAdd extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('운동 추가'),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
-        bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(1),
-          child: Container(color: colorScheme.onTertiary, height: 1),
-        ),
-      ),
+      appBar: const CustomAppBarArrowBack(titleText: '운동 추가'),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(

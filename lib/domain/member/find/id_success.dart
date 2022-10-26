@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:si_hicoach_fe/domain/common/app_bar/arrow_back_icon.dart';
 import 'package:si_hicoach_fe/domain/common/color_schemes.dart';
 
 class MemberFindIdSuccessView extends StatefulWidget {
@@ -16,17 +17,7 @@ class _MemberFindIdSuccessViewState extends State<MemberFindIdSuccessView> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          centerTitle: false,
-          titleSpacing: 0.0,
-          title: const Text('회원정보 찾기', style: TextStyle(color: Colors.black)),
-          leading: const IconButton(
-            icon: Icon(Icons.arrow_back, color: Colors.black),
-            onPressed: null,
-          ),
-          elevation: 1,
-        ),
+        appBar: const CustomAppBarArrowBack(titleText: '회원 정보 찾기'),
         body: SafeArea(
           child: Container(
               color: Colors.white, child: const ContentSection(id: 'hicoach')),

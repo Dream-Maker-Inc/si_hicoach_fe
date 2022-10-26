@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:si_hicoach_fe/domain/common/color_schemes.dart';
 
 const textStyle = TextTheme(
   headline1: TextStyle(
@@ -26,14 +27,14 @@ const textStyle = TextTheme(
     color: Color.fromRGBO(70, 103, 240, 1),
   ),
   button: TextStyle(
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: FontWeight.normal,
-    color: Colors.white,
+    color: Colors.black,
   ),
   overline: TextStyle(
     fontSize: 20,
-    fontWeight: FontWeight.normal,
-    color: Colors.grey,
+    fontWeight: FontWeight.w500,
+    color: Color.fromRGBO(70, 103, 240, 1),
   ),
   caption: TextStyle(
     fontSize: 20,

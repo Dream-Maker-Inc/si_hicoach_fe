@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:si_hicoach_fe/domain/common/app_bar/arrow_back_icon.dart';
 import 'package:si_hicoach_fe/domain/common/color_schemes.dart';
 import 'package:si_hicoach_fe/domain/common/constants.dart';
 import 'package:si_hicoach_fe/domain/trainer/member/detail/information/information.dart';
@@ -10,22 +11,14 @@ class TrainerMemberDetailView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('회원 상세'),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
-        actions: <Widget>[
+      appBar: CustomAppBarArrowBack(
+        titleText: '회원 상세',
+        actionsWidget: <Widget>[
           IconButton(
             icon: const SizedBox(width: 20, child: Icon(Icons.delete_outline)),
             onPressed: () {},
           )
         ],
-        bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(1),
-          child: Container(color: colorScheme.onTertiary, height: 1),
-        ),
       ),
       body: SizedBox(
         child: Column(
