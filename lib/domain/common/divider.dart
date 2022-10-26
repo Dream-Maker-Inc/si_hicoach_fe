@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:si_hicoach_fe/domain/common/constants.dart';
 
 class CustomDivider extends StatelessWidget {
   const CustomDivider({Key? key}) : super(key: key);
@@ -10,8 +9,6 @@ class CustomDivider extends StatelessWidget {
       height: 1,
       thickness: 1,
       color: Colors.grey.shade200,
-      indent: defaultPadding,
-      endIndent: defaultPadding,
     );
   }
 }
