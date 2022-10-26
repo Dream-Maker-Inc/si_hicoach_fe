@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/common/app_bar.dart';
 import 'package:si_hicoach_fe/domain/common/buttons.dart';
 import 'package:si_hicoach_fe/domain/common/constants.dart';
-import 'package:si_hicoach_fe/domain/common/sign_up/sign_up_input_header.dart';
+import 'package:si_hicoach_fe/domain/common/title_with_description.dart';
 import 'package:si_hicoach_fe/domain/member/login/login.dart';
 
 class SignUpFinishView extends StatelessWidget {
@@ -23,7 +23,7 @@ class SignUpFinishView extends StatelessWidget {
                   color: Theme.of(context).colorScheme.primary,
                   backgroundColor: const Color.fromRGBO(75, 128, 255, 0.4),
                 ),
-                const SignUpInputHeader(
+                const TitleWithDescription(
                   title: '회원가입 완료',
                   description: '하이코치 회원가입을 축하드립니다.',
                 ),
@@ -36,9 +36,7 @@ class SignUpFinishView extends StatelessWidget {
                 margin: const EdgeInsets.all(defaultPadding),
                 child: CustomElevatedButton(
                   onPressed: () => Navigator.of(context).pushAndRemoveUntil(
-                    MaterialPageRoute(
-                      builder: (context) => const LoginView(),
-                    ),
+                    MaterialPageRoute(builder: (context) => const LoginView()),
                     (Route<dynamic> route) => false,
                   ),
                   text: '완료',

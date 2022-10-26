@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/common/app_bar.dart';
 import 'package:si_hicoach_fe/domain/common/buttons.dart';
 import 'package:si_hicoach_fe/domain/common/constants.dart';
-import 'package:si_hicoach_fe/domain/common/sign_up/sign_up_input_header.dart';
+import 'package:si_hicoach_fe/domain/common/title_with_description.dart';
 import 'package:si_hicoach_fe/domain/member/sign_up/agreement/agreement_list_item.dart';
 import 'package:si_hicoach_fe/domain/member/sign_up/type/type.dart';
 
@@ -59,7 +59,7 @@ class _SignUpAgreementPageState extends State<SignUpAgreementView> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: const <Widget>[
-                      SignUpInputHeader(
+                      TitleWithDescription(
                         title: '약관 동의',
                         description: '앱 사용을 위해 필수 이용 약관에 동의해 주세요.',
                       ),

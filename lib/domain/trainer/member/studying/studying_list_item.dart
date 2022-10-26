@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:si_hicoach_fe/domain/common/constants.dart';
 import 'package:si_hicoach_fe/domain/trainer/member/detail/detail.dart';
 
 class StudyingListItemView extends StatelessWidget {

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/common/app_bar.dart';
-import 'package:si_hicoach_fe/domain/common/buttons.dart';
 import 'package:si_hicoach_fe/domain/common/constants.dart';
-import 'package:si_hicoach_fe/domain/common/sign_up/sign_up_input_header.dart';
+import 'package:si_hicoach_fe/domain/common/title_with_description.dart';
 import 'package:si_hicoach_fe/domain/member/sign_up/information/information.dart';
+import '../../../common/buttons.dart';
 
 class SignUpTypeView extends StatefulWidget {
   const SignUpTypeView({Key? key}) : super(key: key);
@@ -63,9 +63,9 @@ class _SignUpTypePageState extends State<SignUpTypeView> {
             LinearProgressIndicator(
               value: 0.6,
               color: Theme.of(context).colorScheme.primary,
-              backgroundColor: const Color.fromRGBO(75, 128, 255, 0.4),
+              backgroundColor: const Color.fromRGBO(70, 103, 240, 1),
             ),
-            const SignUpInputHeader(
+            const TitleWithDescription(
               title: '회원 분류',
               description: '회원의 종류를 선택해 주세요.',
             ),
@@ -83,7 +83,7 @@ class _SignUpTypePageState extends State<SignUpTypeView> {
             ),
             if (_memberType == MemberType.trainer) ...[
               const SizedBox(height: 40),
-              const SignUpInputHeader(
+              const TitleWithDescription(
                 title: '헬스장 정보',
                 description: '소속 헬스장명을 입력해 주세요.',
               ),

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/common/app_bar.dart';
 import 'package:si_hicoach_fe/domain/common/buttons.dart';
 import 'package:si_hicoach_fe/domain/common/constants.dart';
-import 'package:si_hicoach_fe/domain/common/sign_up/sign_up_input_header.dart';
+import 'package:si_hicoach_fe/domain/common/title_with_description.dart';
 import 'package:si_hicoach_fe/domain/member/sign_up/finish/finish.dart';
 
 class SignUpInformationView extends StatefulWidget {
@@ -47,7 +47,7 @@ class _SignUpInformationPageState extends State<SignUpInformationView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBarArrowBack(titleText: '회원가입'),
+      appBar: const CustomAppBarArrowBack(titleText: '회원가입'),
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
@@ -60,7 +60,7 @@ class _SignUpInformationPageState extends State<SignUpInformationView> {
               key: _formKey,
               child: Column(
                 children: <Widget>[
-                  const SignUpInputHeader(
+                  const TitleWithDescription(
                     title: '아이디 (이메일)',
                     description: '실제 사용하시는 이메일 주소를 정확히 입력해 주세요.',
                   ),
@@ -87,7 +87,7 @@ class _SignUpInformationPageState extends State<SignUpInformationView> {
                       ),
                     ],
                   ),
-                  const SignUpInputHeader(
+                  const TitleWithDescription(
                     title: '비밀번호',
                     description: '영문 대문자와 특수문자가 포함된 8자 이상의 비밀번호를 설정해 주세요.',
                   ),
@@ -102,10 +102,10 @@ class _SignUpInformationPageState extends State<SignUpInformationView> {
                       ),
                       obscureText: true,
                       controller: _passwordController,
-                      validator: (value) => _validatePassword(value!),
+                      validator: (value) => value!,
                     ),
                   ),
-                  const SignUpInputHeader(
+                  const TitleWithDescription(
                     title: '비밀번호 확인',
                     description: '비밀번호를 다시 한 번 입력해 주세요.',
                   ),

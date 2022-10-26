@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/common/color_schemes.dart';
 import 'package:si_hicoach_fe/domain/common/constants.dart';
+import 'package:si_hicoach_fe/domain/trainer/member/add/add.dart';
 import 'package:si_hicoach_fe/domain/trainer/member/studying/studying_list.dart';
 
 class TrainerMemberListView extends StatelessWidget {
@@ -21,7 +22,14 @@ class TrainerMemberListView extends StatelessWidget {
         actions: <Widget>[
           IconButton(
             icon: const SizedBox(width: 20, child: Icon(Icons.add_rounded)),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (BuildContext context) =>
+                      const TrainerMemberAddView(),
+                ),
+              );
+            },
           )
         ],
         bottom: PreferredSize(

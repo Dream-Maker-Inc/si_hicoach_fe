@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:si_hicoach_fe/domain/common/color_schemes.dart';
 
 const textStyle = TextTheme(
   headline1: TextStyle(
