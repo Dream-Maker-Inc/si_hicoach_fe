@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:si_hicoach_fe/domain/common/app_bar/arrow_back_icon.dart';
+import 'package:si_hicoach_fe/domain/common/app_bar.dart';
 import 'package:si_hicoach_fe/domain/common/color_schemes.dart';
 
 class MemberFindPwSuccessView extends StatefulWidget {

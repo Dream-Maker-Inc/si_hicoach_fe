@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:si_hicoach_fe/domain/common/app_bar/arrow_back_icon.dart';
+import 'package:si_hicoach_fe/domain/common/app_bar.dart';
 import 'package:si_hicoach_fe/domain/common/buttons.dart';
 import 'package:si_hicoach_fe/domain/common/constants.dart';
-import 'package:si_hicoach_fe/domain/common/sign_up/input_header.dart';
+import 'package:si_hicoach_fe/domain/common/sign_up/sign_up_input_header.dart';
 import 'package:si_hicoach_fe/domain/member/sign_up/information/information.dart';
 
 class SignUpTypeView extends StatefulWidget {
