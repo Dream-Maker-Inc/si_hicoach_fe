@@ -4,7 +4,6 @@ import 'package:si_hicoach_fe/domain/common/color_schemes.dart';
 import 'package:si_hicoach_fe/domain/common/constants.dart';
 import 'package:si_hicoach_fe/domain/trainer/member/detail/information/information.dart';
 import 'package:si_hicoach_fe/domain/trainer/member/detail/studying_list.dart';
-import 'package:si_hicoach_fe/domain/trainer/member/studying/studying_list.dart';
 
 class TrainerMemberDetailView extends StatelessWidget {
   const TrainerMemberDetailView({Key? key}) : super(key: key);
