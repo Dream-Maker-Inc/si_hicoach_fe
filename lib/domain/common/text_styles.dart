@@ -25,6 +25,11 @@ const textStyle = TextTheme(
     fontWeight: FontWeight.w700,
     color: Color.fromRGBO(70, 103, 240, 1),
   ),
+  labelMedium: TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w700,
+    color: Colors.grey,
+  ),
   button: TextStyle(
     fontSize: 18,
     fontWeight: FontWeight.normal,

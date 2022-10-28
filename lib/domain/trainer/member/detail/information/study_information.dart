@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/common/buttons.dart';
 import 'package:si_hicoach_fe/domain/common/constants.dart';
+import 'package:si_hicoach_fe/domain/trainer/member/detail/inbody/inbody.dart';
+import 'package:si_hicoach_fe/domain/trainer/member/detail/tickets/tickets.dart';
 
 class TrainerMemberDetailStudyInformation extends StatelessWidget {
   const TrainerMemberDetailStudyInformation({Key? key}) : super(key: key);
@@ -97,11 +99,29 @@ class TrainerMemberDetailStudyInformation extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             Expanded(
-              child: CustomOutlinedButton(onPressed: () {}, text: '수강권 관리'),
+              child: CustomOutlinedButton(
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (BuildContext context) =>
+                            const TrainerMemberDetailTicketsView(),
+                      ),
+                    );
+                  },
+                  text: '수강권 관리'),
             ),
             const SizedBox(width: 10),
             Expanded(
-              child: CustomOutlinedButton(onPressed: () {}, text: '인바디 데이터'),
+              child: CustomOutlinedButton(
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (BuildContext context) =>
+                            const TrainerMemberDetailInbodyView(),
+                      ),
+                    );
+                  },
+                  text: '인바디 데이터'),
             )
           ],
         ),
