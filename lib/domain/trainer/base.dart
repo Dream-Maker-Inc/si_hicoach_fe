@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/trainer/main/main.dart';
+import 'package:si_hicoach_fe/domain/trainer/my/my.dart';
 import 'package:si_hicoach_fe/domain/trainer/member/member_list.dart';
 
 class TrainerBaseView extends StatefulWidget {
@@ -16,7 +17,7 @@ class _TrainerBaseViewState extends State<TrainerBaseView> {
     const TrainerHomeView(),
     const TrainerMemberListView(),
     const TrainerMemberListView(),
-    const TrainerMemberListView(),
+    const TrainerMypageView(),
   ];
 
   Widget _bottomNavigationBar() {
