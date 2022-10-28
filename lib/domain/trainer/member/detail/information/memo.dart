@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/common/color_schemes.dart';
 import 'package:si_hicoach_fe/domain/common/constants.dart';
+import 'package:si_hicoach_fe/domain/trainer/member/edit/memo.dart';
 
 class TrainerMemberDetailMemo extends StatelessWidget {
   const TrainerMemberDetailMemo({Key? key}) : super(key: key);
@@ -18,7 +19,14 @@ class TrainerMemberDetailMemo extends StatelessWidget {
               style: TextStyle(fontSize: 30, fontWeight: FontWeight.w700),
             ),
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (BuildContext context) =>
+                        const TrainerMemberDetailEditMemoView(),
+                  ),
+                );
+              },
               style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all(
                   const Color.fromRGBO(70, 103, 240, 0.1),
