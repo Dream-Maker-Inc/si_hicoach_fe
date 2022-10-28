@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/common/color_schemes.dart';
+import 'package:si_hicoach_fe/domain/trainer/member/edit/purpose.dart';
 
 class TrainerMemberDetailExercisePurpose extends StatefulWidget {
   const TrainerMemberDetailExercisePurpose({Key? key}) : super(key: key);
@@ -29,7 +30,14 @@ class _TrainerMemberDetailExercisePurposeState
               ),
             ),
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (BuildContext context) =>
+                        const TrainerMemberEditView(),
+                  ),
+                );
+              },
               style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all(
                   const Color.fromRGBO(70, 103, 240, 0.1),
