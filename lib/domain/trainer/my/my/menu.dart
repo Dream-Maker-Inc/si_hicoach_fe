@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/splash/splash.dart';
 import 'package:si_hicoach_fe/domain/trainer/my/account/account.dart';
+import 'package:si_hicoach_fe/domain/trainer/my/invite.dart';
 
 class TrainerMypageMenuView extends StatelessWidget {
   const TrainerMypageMenuView({Key? key}) : super(key: key);
@@ -33,7 +34,7 @@ class TrainerMypageMenuView extends StatelessWidget {
               onTap: () => {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => const SplashPage(),
+                    builder: (context) => const TrainerMypageInviteView(),
                   ),
                 )
               },
