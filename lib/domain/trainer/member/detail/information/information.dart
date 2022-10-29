@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:si_hicoach_fe/domain/common/constants.dart';
+import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
 import 'package:si_hicoach_fe/domain/trainer/member/detail/information/exercise_purpose.dart';
 import 'package:si_hicoach_fe/domain/trainer/member/detail/information/memo.dart';
 import 'package:si_hicoach_fe/domain/trainer/member/detail/information/study_information.dart';

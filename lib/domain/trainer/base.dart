@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/trainer/main/main.dart';
-import 'package:si_hicoach_fe/domain/trainer/my/my.dart';
 import 'package:si_hicoach_fe/domain/trainer/member/member_list.dart';
+import 'package:si_hicoach_fe/domain/trainer/my/my/my.dart';
 
 class TrainerBaseView extends StatefulWidget {
   const TrainerBaseView({Key? key}) : super(key: key);

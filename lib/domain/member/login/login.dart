@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:si_hicoach_fe/domain/common/buttons.dart';
-import 'package:si_hicoach_fe/domain/common/constants.dart';
+import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
+import 'package:si_hicoach_fe/domain/common/theme/button.dart';
 import 'package:si_hicoach_fe/domain/member/find/tab.dart';
 import 'package:si_hicoach_fe/domain/member/sign_up/agreement/agreement.dart';
 import 'package:si_hicoach_fe/domain/trainer/base.dart';

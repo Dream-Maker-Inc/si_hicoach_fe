@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:si_hicoach_fe/domain/common/divider.dart';
+import 'package:si_hicoach_fe/domain/common/components/divider.dart';
 
-class CustomAppBarWithLogo extends StatelessWidget
+class CustomAppBarArrowBack extends StatelessWidget
     implements PreferredSizeWidget {
   final String titleText;
   final List<Widget>? actionsWidget;
 
-  const CustomAppBarWithLogo({
+  const CustomAppBarArrowBack({
     Key? key,
     required this.titleText,
     this.actionsWidget,
@@ -17,13 +17,8 @@ class CustomAppBarWithLogo extends StatelessWidget
     return AppBar(
       title: Text(titleText),
       leading: IconButton(
-        icon: const SizedBox(
-          width: 20,
-          child: Image(
-            image: AssetImage('assets/icon.png'),
-          ),
-        ),
-        onPressed: () {},
+        icon: const Icon(Icons.arrow_back),
+        onPressed: () => Navigator.of(context).pop(),
       ),
       actions: actionsWidget,
       bottom: const PreferredSize(

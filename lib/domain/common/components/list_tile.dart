@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:si_hicoach_fe/domain/common/divider.dart';
+import 'package:si_hicoach_fe/domain/common/components/divider.dart';
 
 class CustomListTileWithArrow extends StatelessWidget {
   final String title;

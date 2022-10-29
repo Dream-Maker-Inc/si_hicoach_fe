@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:si_hicoach_fe/domain/common/constants.dart';
+import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
 
 class TrainerMypageSummaryView extends StatelessWidget {
   const TrainerMypageSummaryView({Key? key}) : super(key: key);

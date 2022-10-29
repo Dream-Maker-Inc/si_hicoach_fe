@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:si_hicoach_fe/domain/common/app_bar.dart';
+import 'package:si_hicoach_fe/domain/common/components/app_bar.dart';
 
 class TrainerMypageAccountView extends StatelessWidget {
   const TrainerMypageAccountView({Key? key}) : super(key: key);

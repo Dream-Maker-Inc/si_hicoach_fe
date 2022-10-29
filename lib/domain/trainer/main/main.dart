@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:si_hicoach_fe/domain/common/app_bar_with_logo.dart';
-import 'package:si_hicoach_fe/domain/common/constants.dart';
-import 'package:si_hicoach_fe/domain/common/divider.dart';
+import 'package:si_hicoach_fe/domain/common/components/app_bar_with_logo.dart';
+import 'package:si_hicoach_fe/domain/common/components/divider.dart';
+import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
 import 'package:si_hicoach_fe/domain/trainer/main/calendar.dart';
 import 'package:si_hicoach_fe/domain/trainer/main/hello.dart';
 import 'package:si_hicoach_fe/domain/trainer/main/todo_item.dart';

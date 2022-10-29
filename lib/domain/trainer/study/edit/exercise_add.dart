@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:si_hicoach_fe/domain/common/app_bar.dart';
-import 'package:si_hicoach_fe/domain/common/constants.dart';
-import 'package:si_hicoach_fe/domain/common/divider.dart';
-import 'package:si_hicoach_fe/domain/common/list_tile.dart';
+import 'package:si_hicoach_fe/domain/common/components/app_bar.dart';
+import 'package:si_hicoach_fe/domain/common/components/divider.dart';
+import 'package:si_hicoach_fe/domain/common/components/list_tile.dart';
+import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
 
 class TrainerStudyEditExerciseAdd extends StatelessWidget {
   const TrainerStudyEditExerciseAdd({Key? key}) : super(key: key);

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:si_hicoach_fe/domain/common/app_bar_with_logo.dart';
+import 'package:si_hicoach_fe/domain/common/components/app_bar_with_logo.dart';
 import 'package:si_hicoach_fe/domain/trainer/my/my/menu.dart';
 import 'package:si_hicoach_fe/domain/trainer/my/my/summary.dart';
 

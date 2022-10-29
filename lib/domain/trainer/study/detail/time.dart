@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:si_hicoach_fe/domain/common/color_schemes.dart';
-import 'package:si_hicoach_fe/domain/common/constants.dart';
+import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
+import 'package:si_hicoach_fe/domain/common/theme/color.dart';
 
 class TrainerStudyDetailTime extends StatelessWidget {
   const TrainerStudyDetailTime({Key? key}) : super(key: key);

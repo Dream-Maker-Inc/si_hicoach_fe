@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/splash/splash.dart';
 import 'package:si_hicoach_fe/domain/trainer/my/account/account.dart';
-import 'package:si_hicoach_fe/domain/trainer/my/invite.dart';
+import 'package:si_hicoach_fe/domain/trainer/my/invite/invite.dart';
 
 class TrainerMypageMenuView extends StatelessWidget {
   const TrainerMypageMenuView({Key? key}) : super(key: key);

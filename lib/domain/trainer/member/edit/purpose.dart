@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:si_hicoach_fe/domain/common/app_bar.dart';
-import 'package:si_hicoach_fe/domain/common/checkbox.dart';
-import 'package:si_hicoach_fe/domain/common/color_schemes.dart';
-import 'package:si_hicoach_fe/domain/common/constants.dart';
+import 'package:si_hicoach_fe/domain/common/components/app_bar.dart';
+import 'package:si_hicoach_fe/domain/common/components/checkbox.dart';
+import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
+import 'package:si_hicoach_fe/domain/common/theme/color.dart';
 
 class TrainerMemberEditView extends StatefulWidget {
   const TrainerMemberEditView({Key? key}) : super(key: key);

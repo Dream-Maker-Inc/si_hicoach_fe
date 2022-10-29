@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:si_hicoach_fe/domain/common/constants.dart';
+import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
 
 class TrainerMainHello extends StatefulWidget {
   const TrainerMainHello({Key? key}) : super(key: key);

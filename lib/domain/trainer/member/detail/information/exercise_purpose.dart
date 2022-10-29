@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:si_hicoach_fe/domain/common/color_schemes.dart';
+import 'package:si_hicoach_fe/domain/common/theme/color.dart';
 import 'package:si_hicoach_fe/domain/trainer/member/edit/purpose.dart';
 
 class TrainerMemberDetailExercisePurpose extends StatefulWidget {
