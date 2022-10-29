@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:si_hicoach_fe/domain/common/color_schemes.dart';
+import 'package:si_hicoach_fe/domain/common/app_bar_with_logo.dart';
 import 'package:si_hicoach_fe/domain/common/constants.dart';
 import 'package:si_hicoach_fe/domain/common/divider.dart';
 import 'package:si_hicoach_fe/domain/trainer/main/calendar.dart';
@@ -17,23 +17,7 @@ class _TrainerHomeViewState extends State<TrainerHomeView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('메인'),
-        leading: IconButton(
-          icon: const SizedBox(
-            width: 20,
-            child: Image(image: AssetImage('assets/icon.png')),
-          ),
-          onPressed: () {},
-        ),
-        bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(1),
-          child: Container(
-            color: colorScheme.onTertiary,
-            height: 1,
-          ),
-        ),
-      ),
+      appBar: const CustomAppBarWithLogo(titleText: '메인'),
       body: SafeArea(
         child: Column(
           children: <Widget>[
@@ -45,7 +29,7 @@ class _TrainerHomeViewState extends State<TrainerHomeView> {
               child: ListView(
                 children: List.generate(
                   24,
-                  (int index) =>  TrainerMainTodoItem(
+                  (int index) => TrainerMainTodoItem(
                     time: index,
                     name: '한장현',
                     isCompleted: true,
