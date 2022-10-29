@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:si_hicoach_fe/domain/account/find/views/tabs/tab.dart';
+import 'package:si_hicoach_fe/domain/account/sign_up/views/agreement/agreement.dart';
 import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
 import 'package:si_hicoach_fe/domain/common/theme/button.dart';
-import 'package:si_hicoach_fe/domain/member/find/views/tabs/tab.dart';
-import 'package:si_hicoach_fe/domain/member/sign_up/views/agreement/agreement.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/base.dart';
 
 class LoginView extends StatefulWidget {

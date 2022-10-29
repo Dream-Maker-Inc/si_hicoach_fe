@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:si_hicoach_fe/domain/account/sign_up/views/agreement/agreement_list_item.dart';
+import 'package:si_hicoach_fe/domain/account/sign_up/views/type/type.dart';
 import 'package:si_hicoach_fe/domain/common/components/app_bar.dart';
 import 'package:si_hicoach_fe/domain/common/components/title_with_description.dart';
 import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
 import 'package:si_hicoach_fe/domain/common/theme/button.dart';
-import 'package:si_hicoach_fe/domain/member/sign_up/views/agreement/agreement_list_item.dart';
-import 'package:si_hicoach_fe/domain/member/sign_up/views/type/type.dart';
 
 class SignUpAgreementView extends StatefulWidget {
   const SignUpAgreementView({Key? key}) : super(key: key);

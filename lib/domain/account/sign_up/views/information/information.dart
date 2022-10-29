@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:si_hicoach_fe/domain/account/sign_up/views/finish/finish.dart';
 import 'package:si_hicoach_fe/domain/common/components/app_bar.dart';
 import 'package:si_hicoach_fe/domain/common/components/title_with_description.dart';
 import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
 import 'package:si_hicoach_fe/domain/common/theme/button.dart';
-import 'package:si_hicoach_fe/domain/member/sign_up/views/finish/finish.dart';
 
 class SignUpInformationView extends StatefulWidget {
   const SignUpInformationView({Key? key}) : super(key: key);

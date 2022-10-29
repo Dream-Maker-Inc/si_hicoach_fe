@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:si_hicoach_fe/domain/account/find/views/id/success.dart';
 import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
 import 'package:si_hicoach_fe/domain/common/theme/button.dart';
-import 'package:si_hicoach_fe/domain/member/find/views/id/success.dart';
 
 class MemberIDFindView extends StatelessWidget {
   const MemberIDFindView({Key? key}) : super(key: key);

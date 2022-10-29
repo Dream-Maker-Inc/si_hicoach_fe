@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:si_hicoach_fe/domain/account/find/views/pw/success.dart';
 import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
 import 'package:si_hicoach_fe/domain/common/theme/button.dart';
 import 'package:si_hicoach_fe/domain/common/theme/color.dart';
-import 'package:si_hicoach_fe/domain/member/find/views/pw/success.dart';
 
 class MemberPWFindView extends StatelessWidget {
   const MemberPWFindView({Key? key}) : super(key: key);

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:si_hicoach_fe/domain/account/login/views/login/login.dart';
 import 'package:si_hicoach_fe/domain/common/components/app_bar.dart';
 import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
 import 'package:si_hicoach_fe/domain/common/theme/button.dart';
 import 'package:si_hicoach_fe/domain/common/theme/color.dart';
-import 'package:si_hicoach_fe/domain/member/login/views/login/login.dart';
 
 class MemberIDFindSuccessView extends StatefulWidget {
   const MemberIDFindSuccessView({Key? key}) : super(key: key);

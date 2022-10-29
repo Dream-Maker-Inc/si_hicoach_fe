@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:si_hicoach_fe/domain/account/find/views/id/find.dart';
+import 'package:si_hicoach_fe/domain/account/find/views/pw/find.dart';
 import 'package:si_hicoach_fe/domain/common/theme/color.dart';
-import 'package:si_hicoach_fe/domain/member/find/views/id/find.dart';
-import 'package:si_hicoach_fe/domain/member/find/views/pw/find.dart';
 
 class MemberInformationFindView extends StatefulWidget {
   const MemberInformationFindView({Key? key}) : super(key: key);
