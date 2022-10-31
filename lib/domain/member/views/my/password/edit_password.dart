@@ -3,8 +3,8 @@ import 'package:si_hicoach_fe/domain/common/components/app_bar.dart';
 import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
 import 'package:si_hicoach_fe/domain/common/theme/color.dart';
 
-class TrainerMypageEditPasswordView extends StatelessWidget {
-  const TrainerMypageEditPasswordView({Key? key}) : super(key: key);
+class MemberMypageEditPasswordView extends StatelessWidget {
+  const MemberMypageEditPasswordView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
