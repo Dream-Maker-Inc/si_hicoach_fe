@@ -3,6 +3,7 @@ import 'package:si_hicoach_fe/domain/common/components/divider.dart';
 import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
 import 'package:si_hicoach_fe/domain/common/theme/button.dart';
 import 'package:si_hicoach_fe/domain/member/views/my/my/inbody/inbody.dart';
+import 'package:si_hicoach_fe/domain/member/views/my/my/memo/list.dart';
 
 class MemberMypageSummaryView extends StatelessWidget {
   const MemberMypageSummaryView({Key? key}) : super(key: key);
@@ -73,7 +74,14 @@ class MemberMypageSummaryView extends StatelessWidget {
             children: <Widget>[
               Expanded(
                 child: CustomOutlinedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (BuildContext context) =>
+                            const MemberMypageMemoListView(),
+                      ),
+                    );
+                  },
                   text: '메모 모아보기',
                 ),
               ),
