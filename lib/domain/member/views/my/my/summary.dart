@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/common/components/divider.dart';
 import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
 import 'package:si_hicoach_fe/domain/common/theme/button.dart';
+import 'package:si_hicoach_fe/domain/member/views/my/my/inbody/inbody.dart';
 
 class MemberMypageSummaryView extends StatelessWidget {
   const MemberMypageSummaryView({Key? key}) : super(key: key);
@@ -79,7 +80,14 @@ class MemberMypageSummaryView extends StatelessWidget {
               const SizedBox(width: defaultPadding),
               Expanded(
                 child: CustomOutlinedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (BuildContext context) =>
+                            const MemberInbodyView(),
+                      ),
+                    );
+                  },
                   text: '인바디 데이터',
                 ),
               ),
