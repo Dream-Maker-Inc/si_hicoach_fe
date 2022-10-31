@@ -25,6 +25,7 @@ class _MemberInformationFindViewState extends State<MemberInformationFindView> {
               Tab(text: '아이디 찾기'),
               Tab(text: '비밀번호 찾기'),
             ],
+            indicatorColor: colorScheme.primary,
             labelColor: colorScheme.primary,
             unselectedLabelColor: Colors.black,
             labelStyle: const TextStyle(

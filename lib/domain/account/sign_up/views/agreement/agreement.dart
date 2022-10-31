@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/account/sign_up/views/agreement/agreement_list_item.dart';
 import 'package:si_hicoach_fe/domain/account/sign_up/views/type/type.dart';
 import 'package:si_hicoach_fe/domain/common/components/app_bar.dart';
+import 'package:si_hicoach_fe/domain/common/components/divider.dart';
 import 'package:si_hicoach_fe/domain/common/components/title_with_description.dart';
 import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
 import 'package:si_hicoach_fe/domain/common/theme/button.dart';
@@ -111,20 +112,10 @@ class _SignUpAgreementPageState extends State<SignUpAgreementView> {
                               color: Theme.of(context).colorScheme.primary,
                             ),
                             const AgreementListItem(text: '[필수] 서비스 이용약관'),
-                            const Divider(
-                              height: 0,
-                              indent: 30,
-                              endIndent: 30,
-                              color: Color.fromRGBO(0, 0, 0, 0.2),
-                            ),
+                            const CustomDivider(),
                             const AgreementListItem(text: '[필수] 개인정보 처라방침'),
-                            const Divider(
-                              height: 0,
-                              indent: 30,
-                              endIndent: 30,
-                              color: Color.fromRGBO(0, 0, 0, 0.2),
-                            ),
-                            const AgreementListItem(text: '[선택] 광고마케팅 활용정보 수집'),
+                            const CustomDivider(),
+                            const AgreementListItem(text: '[선택] 광고마케팅'),
                           ],
                         ),
                         isExpanded: _isCarouselExpanded,
@@ -134,15 +125,13 @@ class _SignUpAgreementPageState extends State<SignUpAgreementView> {
                 ),
               ],
             ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: Container(
-                width: double.infinity,
-                margin: const EdgeInsets.all(defaultPadding),
-                child: CustomElevatedButton(
-                  onPressed: () => _handleSubmitButtonPressed(context),
-                  text: '다음',
-                ),
+            const Spacer(),
+            Container(
+              width: double.infinity,
+              margin: const EdgeInsets.all(defaultPadding),
+              child: CustomElevatedButton(
+                onPressed: () => _handleSubmitButtonPressed(context),
+                text: '다음',
               ),
             )
           ],

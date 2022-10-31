@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/account/find/views/pw/success.dart';
+import 'package:si_hicoach_fe/domain/common/components/text_field.dart';
+import 'package:si_hicoach_fe/domain/common/components/title_with_description.dart';
 import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
 import 'package:si_hicoach_fe/domain/common/theme/button.dart';
-import 'package:si_hicoach_fe/domain/common/theme/color.dart';
 
 class MemberPWFindView extends StatelessWidget {
   const MemberPWFindView({Key? key}) : super(key: key);
@@ -15,25 +16,11 @@ class MemberPWFindView extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          Text(
-            '비밀번호 찾기',
-            style: Theme.of(context).textTheme.headline1,
+          const TitleWithDescription(
+            title: '비밀번호 찾기',
+            description: '회원가입 시 작성하신 아이디를 입력해 주세요.\n본인 확인을 위해 본인 인증을 진행해 주세요.',
           ),
-          const SizedBox(height: defaultPadding),
-          Text(
-            '회원가입 시 작성하신 아이디를 입력해 주세요.\n 본인 확인을 위해 본인 인증을 진행해 주세요.',
-            style: Theme.of(context).textTheme.headline4,
-          ),
-          const SizedBox(height: defaultPadding),
-          TextField(
-            obscureText: true,
-            decoration: InputDecoration(
-              border: OutlineInputBorder(
-                borderSide: BorderSide(color: colorScheme.primary),
-              ),
-              labelText: '아이디 입력',
-            ),
-          ),
+          const CustomTextField(hintText: '아이디 입력'),
           const Spacer(),
           SizedBox(
             width: double.infinity,
@@ -42,7 +29,7 @@ class MemberPWFindView extends StatelessWidget {
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (BuildContext context) =>
-                    const MemberFindPwSuccessView(),
+                        const MemberFindPwSuccessView(),
                   ),
                 );
               },

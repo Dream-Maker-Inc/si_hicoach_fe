@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/account/find/views/tabs/tab.dart';
 import 'package:si_hicoach_fe/domain/account/sign_up/views/agreement/agreement.dart';
+import 'package:si_hicoach_fe/domain/common/components/text_field.dart';
 import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
 import 'package:si_hicoach_fe/domain/common/theme/button.dart';
-import 'package:si_hicoach_fe/domain/member/views/base.dart';
+import 'package:si_hicoach_fe/domain/trainer/views/base.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({Key? key}) : super(key: key);
@@ -28,7 +29,7 @@ class _LoginPageState extends State<LoginView> {
     if (_formKey.currentState!.validate()) {
       Navigator.of(context).push(
         MaterialPageRoute(
-          builder: (context) => const MemberBaseView(),
+          builder: (context) => const TrainerBaseView(),
         ),
       );
     }
@@ -78,7 +79,7 @@ class _LoginPageState extends State<LoginView> {
                 ),
                 child: Text(
                   '퍼스널 트레이닝을 더 가치있게',
-                  style: Theme.of(context).textTheme.overline,
+                  style: Theme.of(context).textTheme.headline4,
                   textAlign: TextAlign.center,
                 ),
               ),
@@ -93,31 +94,18 @@ class _LoginPageState extends State<LoginView> {
                   key: _formKey,
                   child: Column(
                     children: <Widget>[
-                      TextFormField(
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(),
-                          hintText: '아이디 (이메일)을 입력하세요.',
-                          labelText: '아이디 (이메일)',
-                        ),
+                      CustomTextField(
                         keyboardType: TextInputType.emailAddress,
-                        controller: _emailController,
+                        hintText: '아이디 (이메일)을 입력하세요.',
                         validator: (value) => _validateEmail(value!),
                       ),
-                      Container(
-                        margin: const EdgeInsets.only(top: defaultPadding),
-                        width: double.infinity,
-                        child: TextFormField(
-                          decoration: const InputDecoration(
-                            border: OutlineInputBorder(),
-                            hintText: '비밀번호를 입력하세요.',
-                            labelText: '비밀번호',
-                          ),
-                          obscureText: true,
-                          controller: _passwordController,
-                          validator: (value) => _validatePassword(value!),
-                        ),
+                      const SizedBox(height: defaultPadding),
+                      CustomTextField(
+                        isPassword: true,
+                        hintText: '비밀번호를 입력하세요.',
+                        validator: (value) => _validatePassword(value!),
                       ),
-                      Container(
+                      Align(
                         alignment: Alignment.topRight,
                         child: TextButton(
                           onPressed: _handleTextButtonPressed,
@@ -130,8 +118,8 @@ class _LoginPageState extends State<LoginView> {
                           ),
                         ),
                       ),
-                      Container(
-                        margin: const EdgeInsets.only(top: defaultPadding),
+                      const SizedBox(height: defaultPadding),
+                      SizedBox(
                         width: double.infinity,
                         child: CustomElevatedButton(
                           onPressed: _handleLoginButtonClicked,
@@ -146,8 +134,7 @@ class _LoginPageState extends State<LoginView> {
                 margin: const EdgeInsets.only(top: 90),
                 child: Text(
                   '아직 회원이 아니세요?',
-                  style: Theme.of(context).textTheme.overline,
-                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.headline4,
                 ),
               ),
               Container(

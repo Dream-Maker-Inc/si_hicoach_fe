@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:si_hicoach_fe/domain/common/edit_password/edit_password.dart';
 import 'package:si_hicoach_fe/domain/splash/splash.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/my/account/account.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/my/invite/invite.dart';
@@ -46,7 +47,7 @@ class TrainerMypageMenuView extends StatelessWidget {
               onTap: () => {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => const SplashPage(),
+                    builder: (context) => const MypageEditPasswordView(),
                   ),
                 )
               },

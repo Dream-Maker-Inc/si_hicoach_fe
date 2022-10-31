@@ -15,4 +15,5 @@ const colorScheme = ColorScheme(
   brightness: Brightness.light,
   surfaceTint: Color.fromRGBO(255, 255, 255, 1),
   shadow: Color.fromRGBO(0, 0, 0, 0.05),
+  tertiary: Color.fromRGBO(0, 0, 0, 0.5),
 );

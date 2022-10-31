@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:si_hicoach_fe/domain/common/theme/color.dart';
 
 class AgreementListItem extends StatefulWidget {
   final String text;
@@ -28,14 +29,16 @@ class _AgreementListItemState extends State<AgreementListItem> {
         style: TextStyle(
           color: _isAgreementChecked
               ? Theme.of(context).colorScheme.primary
-              : Theme.of(context).colorScheme.onTertiary,
-          fontSize: 18,
+              : Theme.of(context).colorScheme.tertiary,
+          fontSize: 16,
         ),
       ),
       leading: Checkbox(
         value: _isAgreementChecked,
         onChanged: (value) => _handleCheckBoxChanged(value),
-        activeColor: Colors.indigo,
+        activeColor: Colors.transparent,
+        checkColor: colorScheme.primary,
+        fillColor: MaterialStateProperty.all(Colors.transparent),
       ),
       trailing: const IconButton(
         onPressed: _handleDropdownPressed,

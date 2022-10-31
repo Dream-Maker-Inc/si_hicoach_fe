@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/common/components/app_bar.dart';
+import 'package:si_hicoach_fe/domain/common/components/title_with_description.dart';
 import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
 import 'package:si_hicoach_fe/domain/common/theme/color.dart';
 
-class TrainerMypageEditPasswordView extends StatelessWidget {
-  const TrainerMypageEditPasswordView({Key? key}) : super(key: key);
+class MypageEditPasswordView extends StatelessWidget {
+  const MypageEditPasswordView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,16 +28,10 @@ class TrainerMypageEditPasswordView extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Text(
-              '기존 비밀번호',
-              style: Theme.of(context).textTheme.headline6,
+            const TitleWithDescription(
+              title: '기존 비밀번호',
+              description: '기존 비밀번호를 입력해 주세요.',
             ),
-            const SizedBox(height: smallPadding),
-            Text(
-              '기존 비밀번호를 입력해 주세요.',
-              style: Theme.of(context).textTheme.labelMedium,
-            ),
-            const SizedBox(height: smallPadding),
             TextField(
               obscureText: true,
               decoration: InputDecoration(
@@ -47,16 +42,10 @@ class TrainerMypageEditPasswordView extends StatelessWidget {
               ),
             ),
             const SizedBox(height: widePadding),
-            Text(
-              '변경할 비밀번호',
-              style: Theme.of(context).textTheme.headline6,
+            const TitleWithDescription(
+              title: '변경할 비밀번호',
+              description: '변경할 비밀번호를 입력해 주세요.',
             ),
-            const SizedBox(height: smallPadding),
-            Text(
-              '변경할 비밀번호를 입력해 주세요.',
-              style: Theme.of(context).textTheme.labelMedium,
-            ),
-            const SizedBox(height: smallPadding),
             TextField(
               obscureText: true,
               decoration: InputDecoration(
@@ -67,16 +56,10 @@ class TrainerMypageEditPasswordView extends StatelessWidget {
               ),
             ),
             const SizedBox(height: widePadding),
-            Text(
-              '변경할 비밀번호 확인',
-              style: Theme.of(context).textTheme.headline6,
+            const TitleWithDescription(
+              title: '변경할 비밀번호 확인',
+              description: '변경할 비밀번호를 한번 더 입력해 주세요.',
             ),
-            const SizedBox(height: smallPadding),
-            Text(
-              '변경할 비밀번호를 한번 더 입력해 주세요.',
-              style: Theme.of(context).textTheme.labelMedium,
-            ),
-            const SizedBox(height: smallPadding),
             TextField(
               obscureText: true,
               decoration: InputDecoration(

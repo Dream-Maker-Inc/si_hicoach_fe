@@ -20,6 +20,13 @@ class _TrainerBaseViewState extends State<TrainerBaseView> {
     const TrainerMypageView(),
   ];
 
+  final _bottomNavigationBarItems = const <BottomNavigationBarItem>[
+    BottomNavigationBarItem(icon: Icon(Icons.home), label: "홈"),
+    BottomNavigationBarItem(icon: Icon(Icons.calendar_month), label: "캘린더"),
+    BottomNavigationBarItem(icon: Icon(Icons.list), label: "회원 목록"),
+    BottomNavigationBarItem(icon: Icon(Icons.person), label: "머아페이지"),
+  ];
+
   Widget _bottomNavigationBar() {
     return BottomNavigationBar(
       backgroundColor: Colors.white,
@@ -28,17 +35,18 @@ class _TrainerBaseViewState extends State<TrainerBaseView> {
       type: BottomNavigationBarType.fixed,
       onTap: _onTap,
       currentIndex: _currentTabIndex,
-      items: const <BottomNavigationBarItem>[
-        BottomNavigationBarItem(icon: Icon(Icons.home), label: "홈"),
-        BottomNavigationBarItem(icon: Icon(Icons.calendar_month), label: "캘린더"),
-        BottomNavigationBarItem(icon: Icon(Icons.list), label: "회원 목록"),
-        BottomNavigationBarItem(icon: Icon(Icons.person), label: "머아페이지"),
-      ],
+      items: _bottomNavigationBarItems,
     );
   }
 
   _onTap(int tabIndex) {
-    _pages.map((page) => MaterialPageRoute(builder: (context) => page));
+    _pages.map(
+      (page) => MaterialPageRoute(
+        builder: (BuildContext context) {
+          return page;
+        },
+      ),
+    );
     setState(() => _currentTabIndex = tabIndex);
   }
 
