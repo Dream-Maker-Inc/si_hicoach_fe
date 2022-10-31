@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
 import 'package:si_hicoach_fe/domain/common/theme/color.dart';
 
-class TrainerExerciseEditMemo extends StatelessWidget {
-  const TrainerExerciseEditMemo({Key? key}) : super(key: key);
+class StudyEditMemo extends StatelessWidget {
+  const StudyEditMemo({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

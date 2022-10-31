@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/common/components/alert.dart';
 import 'package:si_hicoach_fe/domain/common/components/app_bar.dart';
 import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
+import 'package:si_hicoach_fe/domain/common/study/edit/exercise.dart';
+import 'package:si_hicoach_fe/domain/common/study/edit/exercise_add.dart';
+import 'package:si_hicoach_fe/domain/common/study/edit/memo.dart';
+import 'package:si_hicoach_fe/domain/common/study/edit/time.dart';
 import 'package:si_hicoach_fe/domain/common/theme/color.dart';
-import 'package:si_hicoach_fe/domain/trainer/views/study/edit/exercise.dart';
-import 'package:si_hicoach_fe/domain/trainer/views/study/edit/exercise_add.dart';
-import 'package:si_hicoach_fe/domain/trainer/views/study/edit/memo.dart';
-import 'package:si_hicoach_fe/domain/trainer/views/study/edit/time.dart';
 
-class TrainerStudyEditView extends StatelessWidget {
-  const TrainerStudyEditView({Key? key}) : super(key: key);
+class StudyEditView extends StatelessWidget {
+  const StudyEditView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +40,7 @@ class TrainerStudyEditView extends StatelessWidget {
             padding: const EdgeInsets.all(defaultPadding),
             child: Column(
               children: <Widget>[
-                const TrainerStudyEditTime(),
+                const StudyEditTime(),
                 const SizedBox(height: widePadding),
                 Column(
                   children: <Widget>[
@@ -62,7 +62,7 @@ class TrainerStudyEditView extends StatelessWidget {
                           onPressed: () => Navigator.of(context).push(
                             MaterialPageRoute(
                               builder: (context) =>
-                                  const TrainerStudyEditExerciseAdd(),
+                                  const StudyEditExerciseAdd(),
                             ),
                           ),
                           icon: const Icon(Icons.add_rounded),
@@ -75,7 +75,7 @@ class TrainerStudyEditView extends StatelessWidget {
                         ),
                       ],
                     ),
-                    const TrainerMainEditExercise(),
+                    const StudyEditExercise(),
                     const SizedBox(height: 16),
                     Divider(
                       thickness: 1,
@@ -85,7 +85,7 @@ class TrainerStudyEditView extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: widePadding),
-                const TrainerExerciseEditMemo(),
+                const StudyEditMemo(),
               ],
             ),
           ),

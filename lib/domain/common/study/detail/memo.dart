@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class TrainerExerciseDetailMemo extends StatelessWidget {
-  const TrainerExerciseDetailMemo({Key? key}) : super(key: key);
+class StudyDetailMemo extends StatelessWidget {
+  const StudyDetailMemo({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

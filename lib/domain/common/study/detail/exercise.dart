@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/common/components/divider.dart';
 import 'package:si_hicoach_fe/domain/common/theme/color.dart';
 
-class TrainerMainExercise extends StatelessWidget {
+class StudyDetailExercise extends StatelessWidget {
   final String title;
   final int weight;
   final int count;
   final int set;
 
-  const TrainerMainExercise({
+  const StudyDetailExercise({
     Key? key,
     required this.title,
     required this.weight,
@@ -30,18 +30,9 @@ class TrainerMainExercise extends StatelessWidget {
               title,
               style: TextStyle(fontSize: 20, color: colorScheme.primary),
             ),
-            Container(
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(8)),
-                color: Color.fromRGBO(70, 103, 240, 0.1),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 10),
-              child: Text(
-                "${weight}KG · $count회 · $set세트",
-                style: const TextStyle(fontSize: 20),
-              ),
+            Text(
+              "${weight}KG · $count회 · $set세트",
+              style: const TextStyle(fontSize: 20),
             ),
           ],
         ),

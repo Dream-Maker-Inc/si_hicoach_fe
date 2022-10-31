@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/member/views/main/main.dart';
+import 'package:si_hicoach_fe/domain/member/views/studies/studies.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/member_list.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/my/my/my.dart';
 
@@ -16,7 +17,7 @@ class _TrainerBaseViewState extends State<MemberBaseView> {
   final List _pages = [
     const MemberHomeView(),
     const TrainerMemberListView(),
-    const TrainerMemberListView(),
+    const MemberStudiesView(),
     const TrainerMypageView(),
   ];
 

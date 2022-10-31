@@ -29,7 +29,6 @@ class _LoginPageState extends State<LoginView> {
       Navigator.of(context).push(
         MaterialPageRoute(
           builder: (context) => const MemberBaseView(),
-          // builder: (context) => const TrainerBaseView(),
         ),
       );
     }

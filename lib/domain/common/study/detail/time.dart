@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
 import 'package:si_hicoach_fe/domain/common/theme/color.dart';
 
-class TrainerStudyDetailTime extends StatelessWidget {
-  const TrainerStudyDetailTime({Key? key}) : super(key: key);
+class StudyDetailTime extends StatelessWidget {
+  const StudyDetailTime({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

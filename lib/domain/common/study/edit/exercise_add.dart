@@ -4,8 +4,8 @@ import 'package:si_hicoach_fe/domain/common/components/divider.dart';
 import 'package:si_hicoach_fe/domain/common/components/list_tile.dart';
 import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
 
-class TrainerStudyEditExerciseAdd extends StatelessWidget {
-  const TrainerStudyEditExerciseAdd({Key? key}) : super(key: key);
+class StudyEditExerciseAdd extends StatelessWidget {
+  const StudyEditExerciseAdd({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

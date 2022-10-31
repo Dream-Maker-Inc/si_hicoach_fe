@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/common/components/alert.dart';
 import 'package:si_hicoach_fe/domain/common/components/app_bar.dart';
 import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
+import 'package:si_hicoach_fe/domain/common/study/detail/exercise.dart';
+import 'package:si_hicoach_fe/domain/common/study/detail/memo.dart';
+import 'package:si_hicoach_fe/domain/common/study/detail/time.dart';
+import 'package:si_hicoach_fe/domain/common/study/edit/study.dart';
 import 'package:si_hicoach_fe/domain/common/theme/color.dart';
-import 'package:si_hicoach_fe/domain/trainer/views/study/detail/exercise.dart';
-import 'package:si_hicoach_fe/domain/trainer/views/study/detail/memo.dart';
-import 'package:si_hicoach_fe/domain/trainer/views/study/detail/time.dart';
-import 'package:si_hicoach_fe/domain/trainer/views/study/edit/study.dart';
 
-class TrainerStudyDetailView extends StatelessWidget {
-  const TrainerStudyDetailView({Key? key}) : super(key: key);
+class StudyDetailView extends StatelessWidget {
+  const StudyDetailView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class TrainerStudyDetailView extends StatelessWidget {
             icon: const Icon(Icons.edit),
             onPressed: () => Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (context) => const TrainerStudyEditView(),
+                builder: (context) => const StudyEditView(),
               ),
             ),
           ),
@@ -70,7 +70,7 @@ class TrainerStudyDetailView extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: widePadding),
-              const TrainerStudyDetailTime(),
+              const StudyDetailTime(),
               const SizedBox(height: widePadding),
               Column(
                 children: <Widget>[
@@ -81,19 +81,19 @@ class TrainerStudyDetailView extends StatelessWidget {
                       style: Theme.of(context).textTheme.headline1,
                     ),
                   ),
-                  const TrainerMainExercise(
+                  const StudyDetailExercise(
                     title: '푸시업',
                     weight: 12,
                     count: 34,
                     set: 56,
                   ),
-                  const TrainerMainExercise(
+                  const StudyDetailExercise(
                     title: '벤치프레스',
                     weight: 12,
                     count: 34,
                     set: 56,
                   ),
-                  const TrainerMainExercise(
+                  const StudyDetailExercise(
                     title: '윗몸일으키기',
                     weight: 12,
                     count: 34,
@@ -108,7 +108,7 @@ class TrainerStudyDetailView extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: widePadding),
-              const TrainerExerciseDetailMemo(),
+              const StudyDetailMemo(),
             ],
           ),
         ),

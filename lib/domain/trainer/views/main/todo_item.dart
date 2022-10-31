@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
+import 'package:si_hicoach_fe/domain/common/study/detail/detail.dart';
 import 'package:si_hicoach_fe/domain/common/theme/color.dart';
-import 'package:si_hicoach_fe/domain/trainer/views/study/detail/detail.dart';
 
 class TrainerMainTodoItem extends StatelessWidget {
   final int time;
@@ -60,43 +60,18 @@ class TrainerMainTodoItem extends StatelessWidget {
                   ),
                   onPressed: () => Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) => const TrainerStudyDetailView(),
+                      builder: (context) => const StudyDetailView(),
                     ),
                   ),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: <Widget>[
-                      Center(
-                        child: isCompleted
-                            ? Text(
-                                '$name 회원님 (완료)',
-                                style: Theme.of(context).textTheme.headline4,
-                              )
-                            : Text(
-                                '$name 회원님',
-                                style: Theme.of(context).textTheme.headline5,
-                              ),
-                      ),
-                      Expanded(
-                        flex: 1,
-                        child: Align(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: <Widget>[
-                              Text(
-                                '$currentStudy회차 (총 $totalStudy회차)',
-                                style: Theme.of(context).textTheme.headline4,
-                              ),
-                              const SizedBox(width: 10),
-                              const Icon(
-                                Icons.keyboard_arrow_right,
-                                color: Colors.grey,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
+                  child: ListTile(
+                    leading: Text(
+                      '$name 회원님 $currentStudy/$totalStudy (완료)',
+                      style: Theme.of(context).textTheme.headline4,
+                    ),
+                    trailing: const Icon(
+                      Icons.keyboard_arrow_right,
+                      color: Colors.grey,
+                    ),
                   ),
                 ),
               ),

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/common/theme/color.dart';
 
-class TrainerStudyEditTime extends StatelessWidget {
-  const TrainerStudyEditTime({Key? key}) : super(key: key);
+class StudyEditTime extends StatelessWidget {
+  const StudyEditTime({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
