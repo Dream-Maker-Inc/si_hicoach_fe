@@ -21,7 +21,7 @@ class _TrainerHomeViewState extends State<TrainerHomeView> {
       body: SafeArea(
         child: Column(
           children: <Widget>[
-            const TrainerMainHello(),
+            const MemberMainHello(),
             const SizedBox(height: widePadding),
             const TrainerMainCalendar(),
             const CustomDivider(),

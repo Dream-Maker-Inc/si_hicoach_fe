@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
 
-class TrainerMainHello extends StatefulWidget {
-  const TrainerMainHello({Key? key}) : super(key: key);
+class MemberMainHello extends StatefulWidget {
+  const MemberMainHello({Key? key}) : super(key: key);
 
   @override
-  State<TrainerMainHello> createState() => _TrainerMainHelloState();
+  State<MemberMainHello> createState() => _TrainerMainHelloState();
 }
 
-class _TrainerMainHelloState extends State<TrainerMainHello> {
+class _TrainerMainHelloState extends State<MemberMainHello> {
   String trainerName = '은석';
 
   DateTime now = DateTime.now();
