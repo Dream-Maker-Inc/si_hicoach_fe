@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:si_hicoach_fe/domain/member/views/my/my/account.dart';
+import 'package:si_hicoach_fe/domain/member/views/my/my/notification.dart';
 import 'package:si_hicoach_fe/domain/splash/splash.dart';
-import 'package:si_hicoach_fe/domain/trainer/views/my/account/account.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/my/invite/invite.dart';
 
 class MemberMypageMenuView extends StatelessWidget {
@@ -22,7 +23,7 @@ class MemberMypageMenuView extends StatelessWidget {
               onTap: () => {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => const TrainerMypageAccountView(),
+                    builder: (context) => const MemberMypageAccountView(),
                   ),
                 )
               },
@@ -34,7 +35,7 @@ class MemberMypageMenuView extends StatelessWidget {
               onTap: () => {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => const TrainerMypageAccountView(),
+                    builder: (context) => const MemberMypageNotificationView(),
                   ),
                 )
               },

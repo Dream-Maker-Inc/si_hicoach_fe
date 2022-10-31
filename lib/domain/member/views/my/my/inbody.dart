@@ -20,7 +20,8 @@ class MemberInbodyView extends StatelessWidget {
             children: <Widget>[
               Expanded(
                 child: Image.network(
-                    'https://www.gymgair.co.uk/wp-content/uploads/2019/11/270rs-English.jpg'),
+                  'https://www.gymgair.co.uk/wp-content/uploads/2019/11/270rs-English.jpg',
+                ),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
