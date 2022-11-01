@@ -14,6 +14,31 @@ class _TrainerMemberDetailExercisePurposeState
     extends State<TrainerMemberDetailExercisePurpose> {
   List<String> purpose = ['다이어트', '체형교정', '근력증가', '건강관리', '기초체력향상', '스트레스해소'];
 
+  onEditIconPressed() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (BuildContext context) => const TrainerMemberEditView(),
+      ),
+    );
+  }
+
+  Widget chip(String text) {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20),
+        color: colorScheme.secondary,
+      ),
+      margin: const EdgeInsets.all(4),
+      child: Padding(
+        padding: const EdgeInsets.only(top: 8, bottom: 8, left: 12, right: 12),
+        child: Text(
+          text,
+          style: TextStyle(color: colorScheme.primary, fontSize: 20),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -22,55 +47,15 @@ class _TrainerMemberDetailExercisePurposeState
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            const Text(
-              '운동 목표',
-              style: TextStyle(
-                fontSize: 30,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
+            Text('운동 목표', style: Theme.of(context).textTheme.headline2),
             IconButton(
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (BuildContext context) =>
-                        const TrainerMemberEditView(),
-                  ),
-                );
-              },
-              style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(
-                  const Color.fromRGBO(70, 103, 240, 0.1),
-                ),
-              ),
-              icon: Icon(Icons.edit_sharp, color: colorScheme.primary),
+              onPressed: onEditIconPressed,
+              icon: const Icon(Icons.edit_sharp, color: Colors.grey),
             ),
           ],
         ),
         Wrap(
-          children: <Widget>[
-            ...purpose.map(
-              (text) => Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: const Color.fromRGBO(70, 103, 240, 0.1),
-                ),
-                margin: const EdgeInsets.all(4),
-                child: Padding(
-                  padding: const EdgeInsets.only(
-                    top: 8,
-                    bottom: 8,
-                    left: 12,
-                    right: 12,
-                  ),
-                  child: Text(
-                    text,
-                    style: TextStyle(color: colorScheme.primary, fontSize: 20),
-                  ),
-                ),
-              ),
-            ),
-          ],
+          children: <Widget>[...purpose.map((text) => chip(text))],
         ),
       ],
     );

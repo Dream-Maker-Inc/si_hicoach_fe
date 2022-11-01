@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/detail/information/exercise_purpose.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/detail/information/memo.dart';
-import 'package:si_hicoach_fe/domain/trainer/views/member/detail/information/study_information.dart';
+import 'package:si_hicoach_fe/domain/trainer/views/member/detail/information/study_information/study_information.dart';
 
 class TrainerMemberDetailInformation extends StatelessWidget {
   const TrainerMemberDetailInformation({Key? key}) : super(key: key);

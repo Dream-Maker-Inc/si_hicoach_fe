@@ -8,31 +8,25 @@ class TrainerMemberDetailMemo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    onEditButtonPressed() {
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (BuildContext context) =>
+              const TrainerMemberDetailEditMemoView(),
+        ),
+      );
+    }
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            const Text(
-              '메모',
-              style: TextStyle(fontSize: 30, fontWeight: FontWeight.w700),
-            ),
+            Text('메모', style: Theme.of(context).textTheme.headline2),
             IconButton(
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (BuildContext context) =>
-                        const TrainerMemberDetailEditMemoView(),
-                  ),
-                );
-              },
-              style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(
-                  const Color.fromRGBO(70, 103, 240, 0.1),
-                ),
-              ),
-              icon: Icon(Icons.edit_sharp, color: colorScheme.primary),
+              onPressed: onEditButtonPressed,
+              icon: const Icon(Icons.edit_sharp, color: Colors.grey),
             ),
           ],
         ),
