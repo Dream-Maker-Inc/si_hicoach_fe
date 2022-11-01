@@ -32,8 +32,8 @@ class StudyDetailView extends StatelessWidget {
                 context: context,
                 barrierDismissible: false,
                 builder: (BuildContext context) => CustomAlertDialog(
-                  title: '회원 삭제',
-                  content: '회원을 삭제하면 해당 회원의 수업 예약 내역이 모두 삭제됩니다.',
+                  title: '일지 삭제',
+                  content: '운동 일지를 삭제하시겠습니까?',
                   positiveText: '삭제',
                   onPositivePressed: () => Navigator.of(context).pop(),
                   negativeText: '취소',
@@ -56,7 +56,7 @@ class StudyDetailView extends StatelessWidget {
                     style: Theme.of(context).textTheme.headline1,
                   ),
                   IconButton(
-                    icon: const Icon(Icons.link_rounded),
+                    icon: const Icon(Icons.open_in_new_rounded),
                     onPressed: () {},
                     color: Colors.grey,
                   ),
@@ -83,18 +83,6 @@ class StudyDetailView extends StatelessWidget {
                   ),
                   const StudyDetailExercise(
                     title: '푸시업',
-                    weight: 12,
-                    count: 34,
-                    set: 56,
-                  ),
-                  const StudyDetailExercise(
-                    title: '벤치프레스',
-                    weight: 12,
-                    count: 34,
-                    set: 56,
-                  ),
-                  const StudyDetailExercise(
-                    title: '윗몸일으키기',
                     weight: 12,
                     count: 34,
                     set: 56,
