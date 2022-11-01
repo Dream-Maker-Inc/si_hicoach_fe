@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/common/components/alert.dart';
 import 'package:si_hicoach_fe/domain/common/components/app_bar.dart';
+import 'package:si_hicoach_fe/domain/common/components/divider.dart';
 import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
 import 'package:si_hicoach_fe/domain/common/study/detail/exercise.dart';
 import 'package:si_hicoach_fe/domain/common/study/detail/memo.dart';
 import 'package:si_hicoach_fe/domain/common/study/detail/time.dart';
 import 'package:si_hicoach_fe/domain/common/study/edit/study.dart';
-import 'package:si_hicoach_fe/domain/common/theme/color.dart';
 
 class StudyDetailView extends StatelessWidget {
   const StudyDetailView({Key? key}) : super(key: key);
@@ -87,12 +87,8 @@ class StudyDetailView extends StatelessWidget {
                     count: 34,
                     set: 56,
                   ),
-                  const SizedBox(height: 16),
-                  Divider(
-                    thickness: 1,
-                    height: 1,
-                    color: colorScheme.onTertiary,
-                  ),
+                  const SizedBox(height: defaultPadding),
+                  const CustomDivider(),
                 ],
               ),
               const SizedBox(height: widePadding),
