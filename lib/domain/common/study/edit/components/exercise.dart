@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:si_hicoach_fe/domain/common/study/edit/exercise_item.dart';
+import 'package:si_hicoach_fe/domain/common/study/edit/components/exercise_item.dart';
 
 class StudyEditExercise extends StatelessWidget {
   const StudyEditExercise({Key? key}) : super(key: key);

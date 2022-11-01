@@ -34,7 +34,10 @@ class StudyEditExerciseAdd extends StatelessWidget {
                       ),
                       IconButton(
                         onPressed: () {},
-                        icon: const Icon(Icons.search_rounded),
+                        icon: const Icon(
+                          Icons.search_rounded,
+                          color: Colors.grey,
+                        ),
                       ),
                     ],
                   ),
