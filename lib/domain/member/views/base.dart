@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/member/views/main/main.dart';
 import 'package:si_hicoach_fe/domain/member/views/my/my/my.dart';
 import 'package:si_hicoach_fe/domain/member/views/studies/studies.dart';
-import 'package:si_hicoach_fe/domain/trainer/views/member/member_list.dart';
+import 'package:si_hicoach_fe/domain/trainer/views/member/list/member_list.dart';
 
 class MemberBaseView extends StatefulWidget {
   const MemberBaseView({Key? key}) : super(key: key);

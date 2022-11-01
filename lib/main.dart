@@ -3,6 +3,7 @@ import 'package:si_hicoach_fe/domain/common/theme/checkbox.dart';
 import 'package:si_hicoach_fe/domain/common/theme/color.dart';
 import 'package:si_hicoach_fe/domain/common/theme/text.dart';
 import 'package:si_hicoach_fe/domain/splash/splash.dart';
+import 'package:si_hicoach_fe/domain/trainer/views/member/list/member_list.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
           textTheme: textStyle,
           colorScheme: colorScheme,
           checkboxTheme: checkboxThemes,
-          scaffoldBackgroundColor: const Color.fromRGBO(255, 255, 255, 1),
+          scaffoldBackgroundColor: Colors.white,
         ),
         home: const SplashPage(),
       ),
