@@ -21,6 +21,18 @@ class TrainerMainTodoItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ButtonStyle buttonStyle = ButtonStyle(
+      backgroundColor: MaterialStateProperty.all(
+        isCompleted ? Colors.grey.shade200 : colorScheme.primary.withAlpha(20),
+      ),
+      shape: MaterialStateProperty.all(
+        RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
+      ),
+      elevation: MaterialStateProperty.all(0),
+    );
+
     return Padding(
       padding: const EdgeInsets.only(
         left: defaultPadding,
@@ -35,36 +47,21 @@ class TrainerMainTodoItem extends StatelessWidget {
           children: <Widget>[
             Text(
               '$time시',
-              style: TextStyle(
-                color: colorScheme.primary,
-                fontSize: 16,
-              ),
+              style: TextStyle(color: colorScheme.primary, fontSize: 16),
             ),
             Expanded(
               flex: 1,
               child: Padding(
                 padding: const EdgeInsets.only(left: defaultPadding),
                 child: ElevatedButton(
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(
-                      isCompleted
-                          ? Colors.grey.shade200
-                          : colorScheme.primary.withAlpha(20),
-                    ),
-                    shape: MaterialStateProperty.all(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                    elevation: MaterialStateProperty.all(0),
-                  ),
+                  style: buttonStyle,
                   onPressed: () => Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (context) => const StudyDetailView(),
                     ),
                   ),
                   child: ListTile(
-                    leading: Text(
+                    title: Text(
                       '$name 회원님 $currentStudy/$totalStudy (완료)',
                       style: Theme.of(context).textTheme.headline4,
                     ),

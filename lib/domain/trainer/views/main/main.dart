@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/common/components/app_bar_with_logo.dart';
 import 'package:si_hicoach_fe/domain/common/components/divider.dart';
+import 'package:si_hicoach_fe/domain/common/components/title_with_description.dart';
 import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
-import 'package:si_hicoach_fe/domain/trainer/views/main/calendar.dart';
-import 'package:si_hicoach_fe/domain/trainer/views/main/hello.dart';
-import 'package:si_hicoach_fe/domain/trainer/views/main/todo_item.dart';
+import 'package:si_hicoach_fe/domain/common/utils/get_date_time.dart';
+import 'package:si_hicoach_fe/domain/trainer/views/main/horizontal_calendar/calendar.dart';
+import 'package:si_hicoach_fe/domain/trainer/views/main/todo_list/list_item.dart';
 
 class TrainerHomeView extends StatefulWidget {
   const TrainerHomeView({Key? key}) : super(key: key);
@@ -21,21 +22,24 @@ class _TrainerHomeViewState extends State<TrainerHomeView> {
       body: SafeArea(
         child: Column(
           children: <Widget>[
-            const MemberMainHello(),
-            const SizedBox(height: widePadding),
+            Padding(
+              padding: const EdgeInsets.all(defaultPadding),
+              child: TitleWithDescription(
+                title: '반갑습니다, 은석 코치님',
+                description: Utils.getCurrentDateTime('date'),
+              ),
+            ),
             const TrainerMainCalendar(),
             const CustomDivider(),
             Expanded(
-              child: ListView(
-                children: List.generate(
-                  24,
-                  (int index) => TrainerMainTodoItem(
-                    time: index,
-                    name: '한장현',
-                    isCompleted: true,
-                    currentStudy: 10,
-                    totalStudy: 10,
-                  ),
+              child: ListView.builder(
+                itemBuilder: (BuildContext context, int index) =>
+                    TrainerMainTodoItem(
+                  time: index,
+                  name: '한장현',
+                  isCompleted: true,
+                  currentStudy: 10,
+                  totalStudy: 10,
                 ),
               ),
             )
