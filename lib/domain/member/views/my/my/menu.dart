@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:si_hicoach_fe/domain/common/invite/invite.dart';
 import 'package:si_hicoach_fe/domain/member/views/my/my/account.dart';
-import 'package:si_hicoach_fe/domain/member/views/my/my/invite.dart';
 import 'package:si_hicoach_fe/domain/member/views/my/my/notification.dart';
 import 'package:si_hicoach_fe/domain/member/views/my/password/edit_password.dart';
 import 'package:si_hicoach_fe/domain/splash/splash.dart';
@@ -48,7 +48,7 @@ class MemberMypageMenuView extends StatelessWidget {
               onTap: () => {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => const MemberMypageInviteListView(),
+                    builder: (context) => const InviteView(),
                   ),
                 )
               },
