@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/common/components/app_bar.dart';
 
-class TrainerMypageInviteView extends StatelessWidget {
-  const TrainerMypageInviteView({Key? key}) : super(key: key);
+class InviteView extends StatelessWidget {
+  const InviteView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

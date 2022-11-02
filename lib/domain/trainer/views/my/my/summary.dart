@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:si_hicoach_fe/domain/common/components/title_with_description.dart';
 import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
 
 class TrainerMypageSummaryView extends StatelessWidget {
@@ -9,28 +10,18 @@ class TrainerMypageSummaryView extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.all(defaultPadding),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              Text(
-                '이은석 코치님',
-                style: Theme.of(context).textTheme.headline1,
-              ),
-              const SizedBox(height: defaultPadding),
-              Text(
-                '소속 : 오르다 PT 샵',
-                style: Theme.of(context).textTheme.headline4,
-              ),
-            ],
+        const Padding(
+          padding: EdgeInsets.all(defaultPadding),
+          child: TitleWithDescription(
+            title: '이은석 코치님',
+            description: '소속 : 오르다 PT 샵',
           ),
         ),
         Container(
           width: double.infinity,
-          color: Colors.grey.shade300,
-          child: Padding(
-            padding: const EdgeInsets.all(defaultPadding),
+          color: Colors.grey.shade100,
+          child: Container(
+            margin: const EdgeInsets.all(defaultPadding),
             child: Column(
               children: <Widget>[
                 Row(
@@ -46,7 +37,7 @@ class TrainerMypageSummaryView extends StatelessWidget {
                     ),
                   ],
                 ),
-                const SizedBox(height: defaultPadding),
+                const SizedBox(height: smallPadding),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[

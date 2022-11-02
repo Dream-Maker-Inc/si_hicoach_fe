@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/common/components/app_bar.dart';
+import 'package:si_hicoach_fe/domain/common/components/text_field.dart';
 import 'package:si_hicoach_fe/domain/common/components/title_with_description.dart';
 import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
 import 'package:si_hicoach_fe/domain/common/theme/color.dart';
@@ -27,48 +28,24 @@ class MypageEditPasswordView extends StatelessWidget {
         margin: const EdgeInsets.all(defaultPadding),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            const TitleWithDescription(
+          children: const <Widget>[
+            TitleWithDescription(
               title: '기존 비밀번호',
               description: '기존 비밀번호를 입력해 주세요.',
             ),
-            TextField(
-              obscureText: true,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderSide: BorderSide(color: colorScheme.primary),
-                ),
-                labelText: '비밀번호 입력',
-              ),
-            ),
-            const SizedBox(height: widePadding),
-            const TitleWithDescription(
+            CustomTextField(hintText: '비밀번호 입력', isPassword: true),
+            SizedBox(height: widePadding),
+            TitleWithDescription(
               title: '변경할 비밀번호',
               description: '변경할 비밀번호를 입력해 주세요.',
             ),
-            TextField(
-              obscureText: true,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderSide: BorderSide(color: colorScheme.primary),
-                ),
-                labelText: '비밀번호 입력',
-              ),
-            ),
-            const SizedBox(height: widePadding),
-            const TitleWithDescription(
+            CustomTextField(hintText: '비밀번호 입력', isPassword: true),
+            SizedBox(height: widePadding),
+            TitleWithDescription(
               title: '변경할 비밀번호 확인',
               description: '변경할 비밀번호를 한번 더 입력해 주세요.',
             ),
-            TextField(
-              obscureText: true,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderSide: BorderSide(color: colorScheme.primary),
-                ),
-                labelText: '비밀번호 입력',
-              ),
-            ),
+            CustomTextField(hintText: '비밀번호 입력', isPassword: true),
           ],
         ),
       ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/common/components/app_bar.dart';
+import 'package:si_hicoach_fe/domain/trainer/views/my/account/edit.dart';
 
 class TrainerMypageAccountView extends StatelessWidget {
   const TrainerMypageAccountView({Key? key}) : super(key: key);
@@ -11,7 +12,13 @@ class TrainerMypageAccountView extends StatelessWidget {
         titleText: '계정 정보',
         actionsWidget: <Widget>[
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (_) => const TrainerMypageEditView(),
+                ),
+              );
+            },
             icon: const Icon(Icons.edit_rounded),
           ),
         ],

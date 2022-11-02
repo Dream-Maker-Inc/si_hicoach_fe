@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/common/components/app_bar.dart';
+import 'package:si_hicoach_fe/domain/common/components/text_field.dart';
+import 'package:si_hicoach_fe/domain/common/components/title_with_description.dart';
 import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
 import 'package:si_hicoach_fe/domain/common/theme/color.dart';
 
@@ -26,21 +28,13 @@ class TrainerMypageEditView extends StatelessWidget {
         margin: const EdgeInsets.all(defaultPadding),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            Text(
-              '소속을 수정합니다.',
-              style: Theme.of(context).textTheme.headline6,
+          children: const <Widget>[
+            TitleWithDescription(
+              title: '소속 수정',
+              description: '변경된 소속을 입력해 주세요.',
             ),
-            const SizedBox(height: defaultPadding),
-            TextField(
-              obscureText: true,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderSide: BorderSide(color: colorScheme.primary),
-                ),
-                labelText: '소속 입력',
-              ),
-            ),
+            SizedBox(height: defaultPadding),
+            CustomTextField(hintText: '소속 입력'),
           ],
         ),
       ),
