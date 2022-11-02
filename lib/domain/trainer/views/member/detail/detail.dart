@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/common/components/alert.dart';
 import 'package:si_hicoach_fe/domain/common/components/app_bar.dart';
 import 'package:si_hicoach_fe/domain/common/components/divider.dart';
+import 'package:si_hicoach_fe/domain/common/components/title_with_description.dart';
 import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/detail/information/information.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/detail/study/studying_list.dart';
@@ -28,34 +29,12 @@ class TrainerMemberDetailView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget memberInformation() {
-      return Padding(
-        padding: const EdgeInsets.all(defaultPadding),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: const <Widget>[
-            Text(
-              '이은석 회원님',
-              style: TextStyle(fontSize: 30, fontWeight: FontWeight.w700),
-            ),
-            Text(
-              '30세 · 남성',
-              style: TextStyle(fontSize: 20, color: Colors.grey),
-            ),
-          ],
-        ),
-      );
-    }
-
     return Scaffold(
       appBar: CustomAppBarArrowBack(
         titleText: '회원 상세',
         actionsWidget: <Widget>[
           IconButton(
-            icon: const SizedBox(
-              width: 20,
-              child: Icon(Icons.delete_outline),
-            ),
+            icon: const SizedBox(width: 20, child: Icon(Icons.delete_outline)),
             onPressed: () => onMemberDeleteIconPressed(context),
           )
         ],
@@ -64,7 +43,13 @@ class TrainerMemberDetailView extends StatelessWidget {
         width: double.infinity,
         child: Column(
           children: <Widget>[
-            memberInformation(),
+            const Padding(
+              padding: EdgeInsets.all(defaultPadding),
+              child: TitleWithDescription(
+                title: '이은석 회원님',
+                description: '30세 · 남성',
+              ),
+            ),
             Expanded(
               child: DefaultTabController(
                 length: 2,
