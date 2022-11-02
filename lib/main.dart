@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/common/theme/checkbox.dart';
 import 'package:si_hicoach_fe/domain/common/theme/color.dart';
 import 'package:si_hicoach_fe/domain/common/theme/text.dart';
-import 'package:si_hicoach_fe/domain/trainer/views/member/detail/tickets/tickets.dart';
+import 'package:si_hicoach_fe/domain/member/views/my/my/inbody/inbody.dart';
 
 void main() {
   runApp(const MyApp());
@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
           checkboxTheme: checkboxThemes,
           scaffoldBackgroundColor: Colors.white,
         ),
-        home: const TrainerMemberDetailTicketsView(),
+        home: const InbodyView(),
       ),
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
     );
