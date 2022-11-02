@@ -15,36 +15,33 @@ class MemberMainGridView extends StatelessWidget {
         children: <Widget>[
           Text(
             '수업 일자 : 2022년 10월 10일',
-            style: Theme.of(context).textTheme.labelMedium,
+            style: Theme.of(context).textTheme.headline4,
           ),
           const SizedBox(height: defaultPadding),
           Expanded(
-            flex: 1,
-            child: GridView.count(
-              scrollDirection: Axis.vertical,
-              crossAxisSpacing: defaultPadding,
-              mainAxisSpacing: 20,
-              crossAxisCount: 2,
-              children: List.of(
-                [
-                  Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.grey.shade300),
-                      borderRadius: const BorderRadius.all(
-                        Radius.circular(smallPadding),
-                      ),
-                    ),
-                    padding: const EdgeInsets.all(defaultPadding),
-                    child: const StudyList(
-                      data: {
-                        'name': '벤치프레스',
-                        'weight': '1',
-                        'set': '2',
-                        'count': '3',
-                      },
-                    ),
-                  )
-                ],
+            child: GridView.builder(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                crossAxisSpacing: defaultPadding,
+                mainAxisSpacing: defaultPadding,
+                childAspectRatio: 0.985,
+              ),
+              itemBuilder: (_, __) => Container(
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.grey.shade300),
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(smallPadding),
+                  ),
+                ),
+                padding: const EdgeInsets.all(defaultPadding),
+                child: const StudyList(
+                  data: {
+                    'name': '벤치프레스',
+                    'weight': '1',
+                    'set': '2',
+                    'count': '3',
+                  },
+                ),
               ),
             ),
           ),

@@ -7,16 +7,14 @@ class MemberStudiesView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    onItemPressed() {
+      Navigator.of(context).push(
+        MaterialPageRoute(builder: (_) => const StudyDetailView()),
+      );
+    }
+
     return Scaffold(
-      appBar: CustomAppBarWithLogo(
-        titleText: '운동일지',
-        actionsWidget: <Widget>[
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.add_rounded),
-          ),
-        ],
-      ),
+      appBar: const CustomAppBarWithLogo(titleText: '운동일지'),
       body: SafeArea(
         child: ListView(
           children: ListTile.divideTiles(
@@ -24,17 +22,13 @@ class MemberStudiesView extends StatelessWidget {
             tiles: List.generate(
               10,
               (int index) => ListTile(
-                title: const Text('6회차 수업'),
+                title: Text(
+                  '$index회차 수업',
+                  style: const TextStyle(fontSize: 20),
+                ),
                 subtitle: const Text('2022년 10월 5일 오전 11시 ~ 오전 11시 50분'),
                 trailing: const Text('PT 수업'),
-                onTap: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (BuildContext context) =>
-                          const StudyDetailView(),
-                    ),
-                  );
-                },
+                onTap: onItemPressed,
               ),
             ),
           ).toList(),

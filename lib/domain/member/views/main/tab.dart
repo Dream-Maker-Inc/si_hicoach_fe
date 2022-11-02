@@ -22,7 +22,7 @@ class MemberMainTab extends StatelessWidget {
     PreferredSizeWidget memberMainAppBar() {
       return AppBar(
         automaticallyImplyLeading: false,
-        bottom: TabBar(
+        title: TabBar(
           tabs: <Widget>[for (var item in tabTitle) Tab(text: item)],
           labelColor: colorScheme.primary,
           unselectedLabelColor: Colors.black,

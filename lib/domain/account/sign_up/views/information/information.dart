@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/account/sign_up/views/finish/finish.dart';
+import 'package:si_hicoach_fe/domain/common/components/alert.dart';
 import 'package:si_hicoach_fe/domain/common/components/app_bar.dart';
 import 'package:si_hicoach_fe/domain/common/components/text_field.dart';
 import 'package:si_hicoach_fe/domain/common/components/title_with_description.dart';
@@ -20,7 +21,16 @@ class _SignUpInformationPageState extends State<SignUpInformationView> {
   final _passwordRepeatController = TextEditingController();
 
   void _handleIDValidationButtonClicked() {
-    print('_handleIDValidationButtonClicked');
+    showDialog<String>(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) => CustomAlertDialog(
+        title: '사용 가능',
+        content: '사용 가능한 아이디입니다.',
+        positiveText: '확인',
+        onPositivePressed: () => Navigator.of(context).pop(),
+      ),
+    );
   }
 
   void _handleSubmitButtonClicked() {

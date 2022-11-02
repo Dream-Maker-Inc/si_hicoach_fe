@@ -36,7 +36,7 @@ class MemberMypageMenuView extends StatelessWidget {
               onTap: () => {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => const MemberMypageNotificationView(),
+                    builder: (context) => const NotificationView(),
                   ),
                 )
               },

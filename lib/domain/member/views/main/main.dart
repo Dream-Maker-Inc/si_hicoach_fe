@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/common/components/app_bar_with_logo.dart';
-import 'package:si_hicoach_fe/domain/member/views/main/header.dart';
+import 'package:si_hicoach_fe/domain/common/components/title_with_description.dart';
+import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
 import 'package:si_hicoach_fe/domain/member/views/main/tab.dart';
 
 class MemberHomeView extends StatelessWidget {
@@ -15,7 +16,10 @@ class MemberHomeView extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: const <Widget>[
-            MemberMainHeader(name: '이은석', date: 'ㅁㄴㅇㄹ'),
+            Padding(
+              padding: EdgeInsets.all(defaultPadding),
+              child: TitleWithDescription(title: '이은석 회원님', description: '2022년 10월 10일'),
+            ),
             MemberMainTab(),
           ],
         ),

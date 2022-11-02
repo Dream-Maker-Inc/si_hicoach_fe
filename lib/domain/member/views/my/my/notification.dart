@@ -2,16 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/common/components/app_bar.dart';
 import 'package:si_hicoach_fe/domain/common/theme/color.dart';
 
-class MemberMypageNotificationView extends StatefulWidget {
-  const MemberMypageNotificationView({Key? key}) : super(key: key);
+class NotificationView extends StatefulWidget {
+  const NotificationView({Key? key}) : super(key: key);
 
   @override
-  State<MemberMypageNotificationView> createState() =>
-      _MemberMypageNotificationViewState();
+  State<NotificationView> createState() => _MemberMypageNotificationViewState();
 }
 
-class _MemberMypageNotificationViewState
-    extends State<MemberMypageNotificationView> {
+class _MemberMypageNotificationViewState extends State<NotificationView> {
   bool isSubmitNotificationSwitched = false;
   bool isChangeNotificationSwitched = false;
 
@@ -27,6 +25,12 @@ class _MemberMypageNotificationViewState
           tiles: List.of(
             <Widget>[
               ListTile(
+                onTap: () {
+                  setState(() {
+                    isSubmitNotificationSwitched =
+                        !isSubmitNotificationSwitched;
+                  });
+                },
                 title: const Text('수업 일지 등록 알림'),
                 trailing: Switch(
                   value: isSubmitNotificationSwitched,
@@ -38,6 +42,12 @@ class _MemberMypageNotificationViewState
                 ),
               ),
               ListTile(
+                onTap: () {
+                  setState(() {
+                    isChangeNotificationSwitched =
+                        !isChangeNotificationSwitched;
+                  });
+                },
                 title: const Text('수업 횟수 변경 알림'),
                 trailing: Switch(
                   value: isChangeNotificationSwitched,

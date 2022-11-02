@@ -11,7 +11,7 @@ class StudyList extends StatelessWidget {
       children: <Widget>[
         icon,
         const SizedBox(width: smallPadding),
-        Text(text, style: Theme.of(context).textTheme.labelMedium),
+        Text(text, style: const TextStyle(fontSize: 18)),
       ],
     );
   }
@@ -23,7 +23,7 @@ class StudyList extends StatelessWidget {
       children: <Widget>[
         Text(
           data['name']!,
-          style: Theme.of(context).textTheme.headline4,
+          style: Theme.of(context).textTheme.headline2,
         ),
         const SizedBox(height: smallPadding),
         listItem(

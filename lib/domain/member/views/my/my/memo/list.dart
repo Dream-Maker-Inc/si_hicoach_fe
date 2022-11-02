@@ -22,8 +22,7 @@ class MemberMypageMemoListView extends StatelessWidget {
               onTap: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (BuildContext context) =>
-                        const MemberMypageMemoDetailView(),
+                    builder: (BuildContext context) => const MemoDetailView(),
                   ),
                 );
               },

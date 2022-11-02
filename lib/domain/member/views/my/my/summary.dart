@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/common/components/divider.dart';
+import 'package:si_hicoach_fe/domain/common/components/title_with_description.dart';
 import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
 import 'package:si_hicoach_fe/domain/common/theme/button.dart';
 import 'package:si_hicoach_fe/domain/member/views/my/my/inbody/inbody.dart';
-import 'package:si_hicoach_fe/domain/member/views/my/my/list.dart';
+import 'package:si_hicoach_fe/domain/member/views/my/my/memo/list.dart';
 
 class MemberMypageSummaryView extends StatelessWidget {
   const MemberMypageSummaryView({Key? key}) : super(key: key);
@@ -13,28 +14,18 @@ class MemberMypageSummaryView extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.all(defaultPadding),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              Text(
-                '이은석 회원님',
-                style: Theme.of(context).textTheme.headline1,
-              ),
-              const SizedBox(height: defaultPadding),
-              Text(
-                '4회차 / 총 30회',
-                style: Theme.of(context).textTheme.headline4,
-              ),
-            ],
+        const Padding(
+          padding: EdgeInsets.all(defaultPadding),
+          child: TitleWithDescription(
+            title: '이은석 회원님',
+            description: '4회차 / 총 30회',
           ),
         ),
         Container(
           width: double.infinity,
-          color: Colors.grey.shade300,
-          child: Padding(
-            padding: const EdgeInsets.all(defaultPadding),
+          color: Colors.grey.shade100,
+          child: Container(
+            margin: const EdgeInsets.all(defaultPadding),
             child: Column(
               children: <Widget>[
                 Row(
@@ -50,7 +41,7 @@ class MemberMypageSummaryView extends StatelessWidget {
                     ),
                   ],
                 ),
-                const SizedBox(height: defaultPadding),
+                const SizedBox(height: smallPadding),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
@@ -91,8 +82,7 @@ class MemberMypageSummaryView extends StatelessWidget {
                   onPressed: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (BuildContext context) =>
-                            const InbodyView(),
+                        builder: (BuildContext context) => const InbodyView(),
                       ),
                     );
                   },
