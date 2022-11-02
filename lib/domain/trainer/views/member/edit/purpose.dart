@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/common/components/app_bar.dart';
 import 'package:si_hicoach_fe/domain/common/components/checkbox.dart';
+import 'package:si_hicoach_fe/domain/common/components/title_with_description.dart';
 import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
 import 'package:si_hicoach_fe/domain/common/theme/color.dart';
 
@@ -20,10 +21,7 @@ class _TrainerMemberEditViewState extends State<TrainerMemberEditView> {
         actionsWidget: <Widget>[
           IconButton(
             onPressed: () {},
-            icon: Icon(
-              Icons.check_rounded,
-              color: colorScheme.primary,
-            ),
+            icon: Icon(Icons.check_rounded, color: colorScheme.primary),
           ),
         ],
       ),
@@ -33,9 +31,9 @@ class _TrainerMemberEditViewState extends State<TrainerMemberEditView> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Text(
-              '운동 목표를 선택해 주세요.',
-              style: Theme.of(context).textTheme.headline1,
+            const TitleWithDescription(
+              title: '운동 목표를 선택해주세요.',
+              description: '복수 선택이 가능합니다.',
             ),
             const SizedBox(height: defaultPadding),
             Wrap(
