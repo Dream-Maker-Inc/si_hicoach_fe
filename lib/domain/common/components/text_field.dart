@@ -43,6 +43,7 @@ class CustomTextField extends StatelessWidget {
           labelText: hintText,
           hintText: hintText,
           enabled: enabled!,
+          counterText: '',
         ),
         keyboardType: keyboardType,
         validator: validator,

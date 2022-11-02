@@ -1,60 +1,40 @@
 import 'package:flutter/material.dart';
-import 'package:si_hicoach_fe/domain/common/components/alert.dart';
-import 'package:si_hicoach_fe/domain/common/components/app_bar.dart';
+import 'package:si_hicoach_fe/domain/common/components/text_field.dart';
 import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
-import 'package:si_hicoach_fe/domain/common/theme/color.dart';
 
-class TrainerMemberDetailTicketsEditView extends StatelessWidget {
-  const TrainerMemberDetailTicketsEditView({Key? key}) : super(key: key);
+class EditTicketDialog extends StatefulWidget {
+  const EditTicketDialog({Key? key}) : super(key: key);
+
+  @override
+  State<EditTicketDialog> createState() => _EditTicketDialogState();
+}
+
+class _EditTicketDialogState extends State<EditTicketDialog> {
+  final TextEditingController inputController = TextEditingController();
+
+  _validateInput(int value) {}
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: CustomAppBarArrowBack(
-        titleText: '수강권 편집',
-        actionsWidget: <Widget>[
-          IconButton(
-            onPressed: () {
-              showDialog<String>(
-                context: context,
-                barrierDismissible: false,
-                builder: (BuildContext context) => CustomAlertDialog(
-                  title: '수강권 편집',
-                  content: '수강권 편집이 완료되었습니다.',
-                  onPositivePressed: () => Navigator.of(context).pop(),
-                  positiveText: '확인',
-                ),
-              );
-            },
-            icon: Icon(Icons.check, color: colorScheme.primary),
+    return SizedBox(
+      width: double.infinity,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          const Text('추가할 PT 횟수를 입력하세요.', style: TextStyle(fontSize: 20)),
+          const SizedBox(height: defaultPadding),
+          Form(
+            child: CustomTextField(
+              keyboardType: TextInputType.number,
+              hintText: '추가할 PT 횟수',
+              maxLength: 3,
+              suffixText: '회',
+              controller: inputController,
+              validator: (value) => _validateInput(value),
+            ),
           ),
         ],
-      ),
-      body: Container(
-        width: double.infinity,
-        margin: const EdgeInsets.all(defaultPadding),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            const Text('PT 총 횟수'),
-            SizedBox(
-              width: 100,
-              child: TextField(
-                decoration: InputDecoration(
-                  border: const OutlineInputBorder(),
-                  suffix: Text(
-                    '회',
-                    style: TextStyle(color: colorScheme.primary),
-                  ),
-                  counterText: '',
-                  label: const Text('횟수'),
-                ),
-                keyboardType: TextInputType.number,
-                maxLength: 2,
-              ),
-            )
-          ],
-        ),
       ),
     );
   }
