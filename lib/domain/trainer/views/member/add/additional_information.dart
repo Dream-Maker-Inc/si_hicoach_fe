@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/common/components/app_bar.dart';
 import 'package:si_hicoach_fe/domain/common/components/checkbox.dart';
+import 'package:si_hicoach_fe/domain/common/components/text_field.dart';
 import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
 import 'package:si_hicoach_fe/domain/common/theme/button.dart';
 import 'package:si_hicoach_fe/domain/common/theme/color.dart';
@@ -26,7 +27,7 @@ class TrainerMemberAddAdditionalInformation extends StatelessWidget {
                 const SizedBox(height: widePadding),
                 Text(
                   '운동 목표',
-                  style: Theme.of(context).textTheme.headline1,
+                  style: Theme.of(context).textTheme.headline2,
                 ),
                 const SizedBox(height: smallPadding),
                 Wrap(
@@ -46,7 +47,7 @@ class TrainerMemberAddAdditionalInformation extends StatelessWidget {
                 const SizedBox(height: widePadding),
                 Text(
                   '메모',
-                  style: Theme.of(context).textTheme.headline1,
+                  style: Theme.of(context).textTheme.headline2,
                 ),
                 SizedBox(
                   width: double.infinity,
@@ -71,32 +72,40 @@ class TrainerMemberAddAdditionalInformation extends StatelessWidget {
                 const SizedBox(height: widePadding),
                 Text(
                   'PT 수강권',
-                  style: Theme.of(context).textTheme.headline1,
+                  style: Theme.of(context).textTheme.headline2,
                 ),
                 const SizedBox(height: smallPadding),
                 ListTile(
                   title: const Text('PT 총 횟수'),
-                  trailing: SizedBox(
-                    width: 100,
-                    child: TextField(
-                      keyboardType: TextInputType.number,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: colorScheme.primary,
-                            width: 4,
-                          ),
-                        ),
-                        hintText: '횟수',
+                  subtitle: Column(
+                    children: const <Widget>[
+                      SizedBox(height: smallPadding),
+                      CustomTextField(
+                        keyboardType: TextInputType.number,
+                        hintText: '총 횟수',
                         suffixText: '회',
+                        maxLength: 3,
                       ),
-                    ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: defaultPadding),
+                ListTile(
+                  title: const Text('PT 완료 횟수'),
+                  subtitle: Column(
+                    children: const <Widget>[
+                      SizedBox(height: smallPadding),
+                      CustomTextField(
+                        keyboardType: TextInputType.number,
+                        hintText: '완료 횟수',
+                        suffixText: '회',
+                        maxLength: 3,
+                      ),
+                    ],
                   ),
                 ),
                 const SizedBox(height: widePadding),
-                SizedBox(
-                  child: CustomElevatedButton(onPressed: () {}, text: '완료'),
-                )
+                CustomElevatedButton(onPressed: () {}, text: '완료'),
               ],
             ),
           ),
