@@ -3,15 +3,15 @@ import 'package:si_hicoach_fe/domain/account/find/views/id/find.dart';
 import 'package:si_hicoach_fe/domain/account/find/views/pw/find.dart';
 import 'package:si_hicoach_fe/domain/common/theme/color.dart';
 
-class MemberInformationFindView extends StatefulWidget {
-  const MemberInformationFindView({Key? key}) : super(key: key);
+class InformationFindView extends StatefulWidget {
+  const InformationFindView({Key? key}) : super(key: key);
 
   @override
-  State<MemberInformationFindView> createState() =>
-      _MemberInformationFindViewState();
+  State<InformationFindView> createState() =>
+      _InformationFindViewState();
 }
 
-class _MemberInformationFindViewState extends State<MemberInformationFindView> {
+class _InformationFindViewState extends State<InformationFindView> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
