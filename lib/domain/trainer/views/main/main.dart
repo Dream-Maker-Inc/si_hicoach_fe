@@ -15,8 +15,14 @@ class TrainerHomeView extends StatefulWidget {
 }
 
 class _TrainerHomeViewState extends State<TrainerHomeView> {
+  List<int> timeList = List.empty(growable: true);
+
   @override
   Widget build(BuildContext context) {
+    for (int i = 1; i <= 24; i++) {
+      timeList.add(i);
+    }
+
     return Scaffold(
       appBar: const CustomAppBarWithLogo(titleText: '메인'),
       body: SafeArea(
@@ -26,23 +32,25 @@ class _TrainerHomeViewState extends State<TrainerHomeView> {
               padding: const EdgeInsets.all(defaultPadding),
               child: TitleWithDescription(
                 title: '반갑습니다, 은석 코치님',
-                description: Utils.getCurrentDateTime('date'),
+                description: Utils.getCurrentDateTime('year_month_date'),
               ),
             ),
             const TrainerMainCalendar(),
             const CustomDivider(),
             Expanded(
               child: ListView.builder(
-                itemBuilder: (BuildContext context, int index) =>
-                    TrainerMainTodoItem(
-                  time: index,
-                  name: '한장현',
-                  isCompleted: true,
-                  currentStudy: 10,
-                  totalStudy: 10,
-                ),
+                itemCount: timeList.length,
+                itemBuilder: (_, int index) {
+                  return TrainerMainTodoItem(
+                    time: timeList.elementAt(index),
+                    name: '한장현',
+                    isCompleted: true,
+                    currentStudy: 10,
+                    totalStudy: 10,
+                  );
+                },
               ),
-            )
+            ),
           ],
         ),
       ),

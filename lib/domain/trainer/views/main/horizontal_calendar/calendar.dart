@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:si_hicoach_fe/domain/common/utils/get_date_time.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/main/horizontal_calendar/calendar_item.dart';
 
-class TrainerMainCalendar extends StatelessWidget {
+class TrainerMainCalendar extends StatefulWidget {
   const TrainerMainCalendar({Key? key}) : super(key: key);
+
+  @override
+  State<TrainerMainCalendar> createState() => _TrainerMainCalendarState();
+}
+
+class _TrainerMainCalendarState extends State<TrainerMainCalendar> {
+  int selectedDay = int.parse(Utils.getCurrentDateTime('date_number'));
 
   Widget leftShadow() {
     return Container(
@@ -39,28 +47,45 @@ class TrainerMainCalendar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<int> daysOfThisMonthList = [];
+
+    for (int i = 1; i <= Utils.getLastDayOfThisMonth(); i++) {
+      daysOfThisMonthList.add(i);
+    }
+
     return Stack(
       children: <Widget>[
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
-          child: Row(
-            children: const <Widget>[
-              TrainerMainCalendarItem(day: '월', date: '31'),
-              TrainerMainCalendarItem(day: '화', date: '1'),
-              TrainerMainCalendarItem(day: '수', date: '2'),
-              TrainerMainCalendarItem(day: '목', date: '3'),
-              TrainerMainCalendarItem(day: '금', date: '4'),
-              TrainerMainCalendarItem(day: '토', date: '5'),
-              TrainerMainCalendarItem(day: '일', date: '6'),
-              TrainerMainCalendarItem(day: '월', date: '7'),
-              TrainerMainCalendarItem(day: '화', date: '8'),
-              TrainerMainCalendarItem(day: '수', date: '9'),
-              TrainerMainCalendarItem(day: '목', date: '10'),
-              TrainerMainCalendarItem(day: '금', date: '11'),
-              TrainerMainCalendarItem(day: '토', date: '12'),
-              TrainerMainCalendarItem(day: '일', date: '13'),
-            ],
-          ),
+          child: Row(children: <Widget>[
+            Wrap(
+              children: daysOfThisMonthList.map((day) {
+                while (true) {
+                  for (int i = 0; i <= Utils.koreanDate.length; i++) {
+                    if (day == selectedDay) {
+                      return SizedBox(
+                        width: MediaQuery.of(context).size.width / 7,
+                        child: TrainerMainCalendarItem(
+                          dayText: Utils.getDayTextFromDayNumber(day),
+                          dayNumber: day,
+                          highlight: true,
+                        ),
+                      );
+                    } else {
+                      return SizedBox(
+                        width: MediaQuery.of(context).size.width / 7,
+                        child: TrainerMainCalendarItem(
+                          dayText: Utils.getDayTextFromDayNumber(day),
+                          dayNumber: day,
+                          highlight: false,
+                        ),
+                      );
+                    }
+                  }
+                }
+              }).toList(),
+            ),
+          ]),
         ),
         leftShadow(),
         rightShadow(),
