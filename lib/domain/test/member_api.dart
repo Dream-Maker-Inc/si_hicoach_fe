@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:si_hicoach_fe/domain/test/dto/get_members/GetMembersResponse.dart';
+import 'package:si_hicoach_fe/domain/test/dto/get_members/get_members_response.dart';
 
 class MemberApi {
   static Future<GetMembersResponse> getMembers() async {

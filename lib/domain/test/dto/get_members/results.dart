@@ -1,5 +1,5 @@
-import 'Name.dart';
-import 'Id.dart';
+import 'name.dart';
+import 'id.dart';
 
 /// gender : "female"
 /// name : {"title":"Ms","first":"Holly","last":"Bell"}
