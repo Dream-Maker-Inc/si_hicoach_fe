@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
 import 'package:si_hicoach_fe/domain/common/theme/color.dart';
 
-class TrainerMainCalendarItem extends StatelessWidget {
+class CalendarItem extends StatelessWidget {
   final String dayText;
   final int dayNumber;
   final bool highlight;
 
-  const TrainerMainCalendarItem({
+  const CalendarItem({
     Key? key,
     required this.dayText,
     required this.dayNumber,

@@ -8,7 +8,7 @@ class MemberMainTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<String> tabTitle = ['직전 완료 수업', '오늘 수업', '다음 예정 수업'];
-    List<Widget> tabBar = const <Widget>[
+    List<Widget> tabBar = <Widget>[
       MemberMainGridView(),
       MemberMainGridView(),
       MemberMainGridView(),

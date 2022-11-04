@@ -15,10 +15,10 @@ class _TrainerBaseViewState extends State<MemberBaseView> {
   int _currentTabIndex = 0;
 
   final List _pages = [
-    const MemberHomeView(),
-    const TrainerMemberListView(),
+    const MemberMainView(),
+    const MemberListView(),
     const MemberStudiesView(),
-    const MemberMypageView(),
+    const MypageView(),
   ];
 
   Widget _bottomNavigationBar() {

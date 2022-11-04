@@ -2,22 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/common/theme/color.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/edit/purpose.dart';
 
-class TrainerMemberDetailExercisePurpose extends StatefulWidget {
-  const TrainerMemberDetailExercisePurpose({Key? key}) : super(key: key);
+class ExercisePurpose extends StatefulWidget {
+  const ExercisePurpose({Key? key}) : super(key: key);
 
   @override
-  State<TrainerMemberDetailExercisePurpose> createState() =>
-      _TrainerMemberDetailExercisePurposeState();
+  State<ExercisePurpose> createState() => _ExercisePurposeState();
 }
 
-class _TrainerMemberDetailExercisePurposeState
-    extends State<TrainerMemberDetailExercisePurpose> {
+class _ExercisePurposeState extends State<ExercisePurpose> {
   List<String> purpose = ['다이어트', '체형교정', '근력증가', '건강관리', '기초체력향상', '스트레스해소'];
 
   onEditIconPressed() {
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (BuildContext context) => const TrainerMemberEditView(),
+        builder: (BuildContext context) => PurposeEditView(),
       ),
     );
   }
@@ -55,7 +53,7 @@ class _TrainerMemberDetailExercisePurposeState
           ],
         ),
         Wrap(
-          children: <Widget>[...purpose.map((text) => chip(text))],
+          children: List.from(purpose.map((text) => chip(text))),
         ),
       ],
     );

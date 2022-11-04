@@ -1,13 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/common/components/app_bar.dart';
-import 'package:si_hicoach_fe/domain/common/components/checkbox.dart';
+import 'package:si_hicoach_fe/domain/common/components/chip.dart';
 import 'package:si_hicoach_fe/domain/common/components/text_field.dart';
 import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
 import 'package:si_hicoach_fe/domain/common/theme/button.dart';
 import 'package:si_hicoach_fe/domain/common/theme/color.dart';
 
-class TrainerMemberAddAdditionalInformation extends StatelessWidget {
-  const TrainerMemberAddAdditionalInformation({Key? key}) : super(key: key);
+class AddAdditionalInformation extends StatelessWidget {
+  final List<CustomChipProps> list = [
+    CustomChipProps(1, '다이어트', true),
+    CustomChipProps(2, '산후조리', false),
+    CustomChipProps(3, '대회준비', true),
+  ];
+
+  AddAdditionalInformation({Key? key}) : super(key: key);
+
+  _handleChipClick(int id) {
+    print('chip click: $id');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,18 +41,13 @@ class TrainerMemberAddAdditionalInformation extends StatelessWidget {
                 ),
                 const SizedBox(height: smallPadding),
                 Wrap(
-                  children: const <Widget>[
-                    CustomCheckbox(label: '다이어트'),
-                    CustomCheckbox(label: '체형교정'),
-                    CustomCheckbox(label: '근력증가'),
-                    CustomCheckbox(label: '건강관리'),
-                    CustomCheckbox(label: '기초체력향상'),
-                    CustomCheckbox(label: '스트레스해소'),
-                    CustomCheckbox(label: '산후체형관리'),
-                    CustomCheckbox(label: '운동방법체득'),
-                    CustomCheckbox(label: '대회준비'),
-                    CustomCheckbox(label: '바이프로필'),
-                  ],
+                  children: List.from(list.map(
+                    (it) => CustomChip(
+                      label: it.label,
+                      isChecked: it.isChecked,
+                      onPressed: () => _handleChipClick(it.id),
+                    ),
+                  )),
                 ),
                 const SizedBox(height: widePadding),
                 Text(

@@ -4,8 +4,8 @@ import 'package:si_hicoach_fe/domain/trainer/views/member/detail/information/exe
 import 'package:si_hicoach_fe/domain/trainer/views/member/detail/information/memo.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/detail/information/study_information/study_information.dart';
 
-class TrainerMemberDetailInformation extends StatelessWidget {
-  const TrainerMemberDetailInformation({Key? key}) : super(key: key);
+class Information extends StatelessWidget {
+  const Information({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,11 +14,11 @@ class TrainerMemberDetailInformation extends StatelessWidget {
         padding: const EdgeInsets.all(defaultPadding),
         child: Column(
           children: const <Widget>[
-            TrainerMemberDetailStudyInformation(),
+            StudyInformation(),
             SizedBox(height: defaultPadding),
-            TrainerMemberDetailExercisePurpose(),
+            ExercisePurpose(),
             SizedBox(height: defaultPadding),
-            TrainerMemberDetailMemo(),
+            Memo(),
           ],
         ),
       ),

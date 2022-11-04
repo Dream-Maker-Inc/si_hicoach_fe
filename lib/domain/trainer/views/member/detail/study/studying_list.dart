@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/detail/study/studying_list_item.dart';
 
-class TrainerMemberDetailStudyingListView extends StatelessWidget {
-  const TrainerMemberDetailStudyingListView({Key? key}) : super(key: key);
+class StudyingListView extends StatelessWidget {
+  const StudyingListView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +13,7 @@ class TrainerMemberDetailStudyingListView extends StatelessWidget {
         context: context,
         tiles: List.generate(
           10,
-          (int index) => const TrainerMemberStudyingListItemView(),
+          (int index) => const StudyingListItemView(),
         ),
       ).toList(),
     );

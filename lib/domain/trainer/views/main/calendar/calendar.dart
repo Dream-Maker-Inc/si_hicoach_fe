@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/common/utils/get_date_time.dart';
-import 'package:si_hicoach_fe/domain/trainer/views/main/horizontal_calendar/calendar_item.dart';
+import 'package:si_hicoach_fe/domain/trainer/views/main/calendar/calendar_item.dart';
 
-class TrainerMainCalendar extends StatefulWidget {
-  const TrainerMainCalendar({Key? key}) : super(key: key);
+class Calendar extends StatefulWidget {
+  const Calendar({Key? key}) : super(key: key);
 
   @override
-  State<TrainerMainCalendar> createState() => _TrainerMainCalendarState();
+  State<Calendar> createState() => _CalendarState();
 }
 
-class _TrainerMainCalendarState extends State<TrainerMainCalendar> {
+class _CalendarState extends State<Calendar> {
   int selectedDay = int.parse(Utils.getCurrentDateTime('date_number'));
 
   Widget leftShadow() {
@@ -65,7 +65,7 @@ class _TrainerMainCalendarState extends State<TrainerMainCalendar> {
                     if (day == selectedDay) {
                       return SizedBox(
                         width: MediaQuery.of(context).size.width / 7,
-                        child: TrainerMainCalendarItem(
+                        child: CalendarItem(
                           dayText: Utils.getDayTextFromDayNumber(day),
                           dayNumber: day,
                           highlight: true,
@@ -74,7 +74,7 @@ class _TrainerMainCalendarState extends State<TrainerMainCalendar> {
                     } else {
                       return SizedBox(
                         width: MediaQuery.of(context).size.width / 7,
-                        child: TrainerMainCalendarItem(
+                        child: CalendarItem(
                           dayText: Utils.getDayTextFromDayNumber(day),
                           dayNumber: day,
                           highlight: false,

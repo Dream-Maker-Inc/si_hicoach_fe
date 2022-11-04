@@ -3,8 +3,8 @@ import 'package:si_hicoach_fe/domain/common/components/app_bar.dart';
 import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
 import 'package:si_hicoach_fe/domain/common/theme/color.dart';
 
-class TrainerMemberDetailEditMemoView extends StatelessWidget {
-  const TrainerMemberDetailEditMemoView({Key? key}) : super(key: key);
+class MemoEditView extends StatelessWidget {
+  const MemoEditView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

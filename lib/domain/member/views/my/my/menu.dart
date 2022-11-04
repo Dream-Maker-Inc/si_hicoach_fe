@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:si_hicoach_fe/domain/common/edit_password/edit_password.dart';
 import 'package:si_hicoach_fe/domain/common/invite/invite.dart';
 import 'package:si_hicoach_fe/domain/member/views/my/my/account.dart';
 import 'package:si_hicoach_fe/domain/member/views/my/my/notification.dart';
-import 'package:si_hicoach_fe/domain/member/views/my/password/edit_password.dart';
 import 'package:si_hicoach_fe/domain/splash/splash.dart';
 
-class MemberMypageMenuView extends StatelessWidget {
-  const MemberMypageMenuView({Key? key}) : super(key: key);
+class MenuView extends StatelessWidget {
+  const MenuView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class MemberMypageMenuView extends StatelessWidget {
               onTap: () => {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => const MemberMypageAccountView(),
+                    builder: (context) => const AccountView(),
                   ),
                 )
               },
@@ -60,7 +60,7 @@ class MemberMypageMenuView extends StatelessWidget {
               onTap: () => {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => const MemberMypageEditPasswordView(),
+                    builder: (context) => const EditPasswordView(),
                   ),
                 )
               },

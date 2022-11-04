@@ -5,8 +5,8 @@ import 'package:si_hicoach_fe/domain/common/components/title_with_description.da
 import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
 import 'package:si_hicoach_fe/domain/common/theme/color.dart';
 
-class TrainerMypageEditView extends StatelessWidget {
-  const TrainerMypageEditView({Key? key}) : super(key: key);
+class MypageEditView extends StatelessWidget {
+  const MypageEditView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

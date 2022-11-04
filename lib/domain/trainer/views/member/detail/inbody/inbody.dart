@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/common/components/app_bar.dart';
 import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
 
-class TrainerMemberDetailInbodyView extends StatelessWidget {
-  const TrainerMemberDetailInbodyView({Key? key}) : super(key: key);
+class InbodyView extends StatelessWidget {
+  const InbodyView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

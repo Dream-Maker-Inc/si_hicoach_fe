@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/common/components/app_bar.dart';
 import 'package:si_hicoach_fe/domain/member/views/my/my/memo/detail.dart';
 
-class MemberMypageMemoListView extends StatelessWidget {
-  const MemberMypageMemoListView({Key? key}) : super(key: key);
+class MemoListView extends StatelessWidget {
+  const MemoListView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -7,8 +7,8 @@ import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
 import 'package:si_hicoach_fe/domain/common/theme/button.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/add/additional_information.dart';
 
-class TrainerMemberAddView extends StatelessWidget {
-  const TrainerMemberAddView({Key? key}) : super(key: key);
+class AddView extends StatelessWidget {
+  const AddView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +59,7 @@ class TrainerMemberAddView extends StatelessWidget {
                       Navigator.of(context).push(
                         MaterialPageRoute(
                           builder: (BuildContext context) =>
-                              const TrainerMemberAddAdditionalInformation(),
+                              AddAdditionalInformation(),
                         ),
                       );
                     },

@@ -4,17 +4,17 @@ import 'package:si_hicoach_fe/domain/common/components/divider.dart';
 import 'package:si_hicoach_fe/domain/common/components/title_with_description.dart';
 import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
 import 'package:si_hicoach_fe/domain/common/utils/get_date_time.dart';
-import 'package:si_hicoach_fe/domain/trainer/views/main/horizontal_calendar/calendar.dart';
+import 'package:si_hicoach_fe/domain/trainer/views/main/calendar/calendar.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/main/todo_list/list_item.dart';
 
-class TrainerHomeView extends StatefulWidget {
-  const TrainerHomeView({Key? key}) : super(key: key);
+class TrainerMainView extends StatefulWidget {
+  const TrainerMainView({Key? key}) : super(key: key);
 
   @override
-  State<TrainerHomeView> createState() => _TrainerHomeViewState();
+  State<TrainerMainView> createState() => _TrainerMainViewState();
 }
 
-class _TrainerHomeViewState extends State<TrainerHomeView> {
+class _TrainerMainViewState extends State<TrainerMainView> {
   List<int> timeList = List.empty(growable: true);
 
   @override
@@ -35,7 +35,7 @@ class _TrainerHomeViewState extends State<TrainerHomeView> {
                 description: Utils.getCurrentDateTime('year_month_date'),
               ),
             ),
-            const TrainerMainCalendar(),
+            const Calendar(),
             const CustomDivider(),
             Expanded(
               child: ListView.builder(

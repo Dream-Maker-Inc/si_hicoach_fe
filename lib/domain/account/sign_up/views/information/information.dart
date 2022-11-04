@@ -20,6 +20,10 @@ class _SignUpInformationPageState extends State<SignUpInformationView> {
   final _passwordController = TextEditingController();
   final _passwordRepeatController = TextEditingController();
 
+  String email = '';
+  String password = '';
+  String passwordRepeat = '';
+
   void _handleIDValidationButtonClicked() {
     showDialog<String>(
       context: context,

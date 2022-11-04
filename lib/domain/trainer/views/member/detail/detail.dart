@@ -8,8 +8,8 @@ import 'package:si_hicoach_fe/domain/trainer/views/member/detail/information/inf
 import 'package:si_hicoach_fe/domain/trainer/views/member/detail/study/studying_list.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/detail/tab/header.dart';
 
-class TrainerMemberDetailView extends StatelessWidget {
-  const TrainerMemberDetailView({Key? key}) : super(key: key);
+class DetailView extends StatelessWidget {
+  const DetailView({Key? key}) : super(key: key);
 
   onMemberDeleteIconPressed(BuildContext context) {
     showDialog<String>(
@@ -56,7 +56,7 @@ class TrainerMemberDetailView extends StatelessWidget {
                 child: Scaffold(
                   appBar: AppBar(
                     automaticallyImplyLeading: false,
-                    title: const TrainerMemberDetailHeader(),
+                    title: const Header(),
                   ),
                   body: Column(
                     children: const <Widget>[
@@ -64,8 +64,8 @@ class TrainerMemberDetailView extends StatelessWidget {
                       Expanded(
                         child: TabBarView(
                           children: <Widget>[
-                            TrainerMemberDetailInformation(),
-                            TrainerMemberDetailStudyingListView(),
+                            Information(),
+                            StudyingListView(),
                           ],
                         ),
                       ),

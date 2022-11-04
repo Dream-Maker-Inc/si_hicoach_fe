@@ -4,8 +4,8 @@ import 'package:si_hicoach_fe/domain/common/components/title_with_description.da
 import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
 import 'package:si_hicoach_fe/domain/member/views/main/tab.dart';
 
-class MemberHomeView extends StatelessWidget {
-  const MemberHomeView({Key? key}) : super(key: key);
+class MemberMainView extends StatelessWidget {
+  const MemberMainView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,8 @@ class MemberHomeView extends StatelessWidget {
           children: const <Widget>[
             Padding(
               padding: EdgeInsets.all(defaultPadding),
-              child: TitleWithDescription(title: '이은석 회원님', description: '2022년 10월 10일'),
+              child: TitleWithDescription(
+                  title: '이은석 회원님', description: '2022년 10월 10일'),
             ),
             MemberMainTab(),
           ],

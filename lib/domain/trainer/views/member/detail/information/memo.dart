@@ -3,16 +3,15 @@ import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
 import 'package:si_hicoach_fe/domain/common/theme/color.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/edit/memo.dart';
 
-class TrainerMemberDetailMemo extends StatelessWidget {
-  const TrainerMemberDetailMemo({Key? key}) : super(key: key);
+class Memo extends StatelessWidget {
+  const Memo({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     onEditButtonPressed() {
       Navigator.of(context).push(
         MaterialPageRoute(
-          builder: (BuildContext context) =>
-              const TrainerMemberDetailEditMemoView(),
+          builder: (BuildContext context) => const MemoEditView(),
         ),
       );
     }

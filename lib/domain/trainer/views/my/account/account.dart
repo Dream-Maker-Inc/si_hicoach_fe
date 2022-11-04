@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/common/components/app_bar.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/my/account/edit.dart';
 
-class TrainerMypageAccountView extends StatelessWidget {
-  const TrainerMypageAccountView({Key? key}) : super(key: key);
+class AccountView extends StatelessWidget {
+  const AccountView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class TrainerMypageAccountView extends StatelessWidget {
             onPressed: () {
               Navigator.of(context).push(
                 MaterialPageRoute(
-                  builder: (_) => const TrainerMypageEditView(),
+                  builder: (_) => const MypageEditView(),
                 ),
               );
             },

@@ -5,7 +5,7 @@ import 'package:si_hicoach_fe/domain/common/components/alert.dart';
 import 'package:si_hicoach_fe/domain/common/components/text_field.dart';
 import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
 import 'package:si_hicoach_fe/domain/common/theme/button.dart';
-import 'package:si_hicoach_fe/domain/trainer/views/base.dart';
+import 'package:si_hicoach_fe/domain/member/views/base.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({Key? key}) : super(key: key);
@@ -45,7 +45,7 @@ class _LoginPageState extends State<LoginView> {
 
     if (isFormValid) {
       Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(builder: (context) => const TrainerBaseView()),
+        MaterialPageRoute(builder: (context) => const MemberBaseView()),
         (Route<dynamic> route) => false,
       );
     } else {
