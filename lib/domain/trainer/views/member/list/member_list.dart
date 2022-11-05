@@ -5,8 +5,8 @@ import 'package:si_hicoach_fe/domain/trainer/views/member/add/add.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/list/tab.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/list/title.dart';
 
-class TrainerMemberListView extends StatelessWidget {
-  const TrainerMemberListView({Key? key}) : super(key: key);
+class MemberListView extends StatelessWidget {
+  const MemberListView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,8 +18,7 @@ class TrainerMemberListView extends StatelessWidget {
             onPressed: () {
               Navigator.of(context).push(
                 MaterialPageRoute(
-                  builder: (BuildContext context) =>
-                      const TrainerMemberAddView(),
+                  builder: (BuildContext context) => const AddView(),
                 ),
               );
             },

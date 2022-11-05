@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
+import 'package:si_hicoach_fe/domain/common/inbody/inbody.dart';
 import 'package:si_hicoach_fe/domain/common/theme/button.dart';
-import 'package:si_hicoach_fe/domain/trainer/views/member/detail/inbody/inbody.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/detail/information/study_information/summary.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/detail/tickets/tickets.dart';
 
-class TrainerMemberDetailStudyInformation extends StatelessWidget {
-  const TrainerMemberDetailStudyInformation({Key? key}) : super(key: key);
+class StudyInformation extends StatelessWidget {
+  const StudyInformation({Key? key}) : super(key: key);
 
   onDetailTicketButtonPressed(BuildContext context) {
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (BuildContext context) =>
-            const TrainerMemberDetailTicketsView(),
+        builder: (BuildContext context) => const TicketsView(),
       ),
     );
   }
@@ -20,8 +19,7 @@ class TrainerMemberDetailStudyInformation extends StatelessWidget {
   onDetailInbodyButtonPressed(BuildContext context) {
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (BuildContext context) =>
-            const TrainerMemberDetailInbodyView(),
+        builder: (BuildContext context) => InbodyView(),
       ),
     );
   }
@@ -32,7 +30,7 @@ class TrainerMemberDetailStudyInformation extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Text('수업 정보', style: Theme.of(context).textTheme.headline2),
-        const TrainerMemberDetailInformationSummary(),
+        const Summary(),
         Row(
           children: <Widget>[
             Expanded(

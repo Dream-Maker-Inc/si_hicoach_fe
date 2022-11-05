@@ -5,8 +5,8 @@ import 'package:si_hicoach_fe/domain/common/components/title_with_description.da
 import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
 import 'package:si_hicoach_fe/domain/common/theme/color.dart';
 
-class MypageEditPasswordView extends StatelessWidget {
-  const MypageEditPasswordView({Key? key}) : super(key: key);
+class EditPasswordView extends StatelessWidget {
+  const EditPasswordView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

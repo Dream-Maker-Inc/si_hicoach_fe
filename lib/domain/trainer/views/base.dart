@@ -14,10 +14,10 @@ class _TrainerBaseViewState extends State<TrainerBaseView> {
   int _currentTabIndex = 0;
 
   final List _pages = [
-    const TrainerHomeView(),
-    const TrainerMemberListView(),
-    const TrainerMemberListView(),
-    const TrainerMypageView(),
+    const TrainerMainView(),
+    const MemberListView(),
+    const MemberListView(),
+    const MypageView(),
   ];
 
   final _bottomNavigationBarItems = const <BottomNavigationBarItem>[

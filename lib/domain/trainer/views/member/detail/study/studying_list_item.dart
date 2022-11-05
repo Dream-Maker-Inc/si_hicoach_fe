@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/common/study/detail/detail.dart';
 
-class TrainerMemberStudyingListItemView extends StatelessWidget {
-  const TrainerMemberStudyingListItemView({Key? key}) : super(key: key);
+class StudyingListItemView extends StatelessWidget {
+  const StudyingListItemView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

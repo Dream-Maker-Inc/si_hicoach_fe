@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/common/components/app_bar.dart';
 
-class MemberMypageAccountView extends StatelessWidget {
-  const MemberMypageAccountView({Key? key}) : super(key: key);
+class AccountView extends StatelessWidget {
+  const AccountView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
 
-class TrainerMemberDetailInformationSummary extends StatefulWidget {
-  const TrainerMemberDetailInformationSummary({Key? key}) : super(key: key);
+class Summary extends StatefulWidget {
+  const Summary({Key? key}) : super(key: key);
 
   @override
-  State<TrainerMemberDetailInformationSummary> createState() =>
-      _TrainerMemberDetailInformationSummaryState();
+  State<Summary> createState() => _SummaryState();
 }
 
-class _TrainerMemberDetailInformationSummaryState
-    extends State<TrainerMemberDetailInformationSummary> {
+class _SummaryState extends State<Summary> {
   TextStyle textStyle = const TextStyle(
     fontSize: 20,
     fontWeight: FontWeight.w500,

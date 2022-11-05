@@ -3,8 +3,8 @@ import 'package:si_hicoach_fe/domain/common/components/app_bar_with_logo.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/my/my/menu.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/my/my/summary.dart';
 
-class TrainerMypageView extends StatelessWidget {
-  const TrainerMypageView({Key? key}) : super(key: key);
+class MypageView extends StatelessWidget {
+  const MypageView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class TrainerMypageView extends StatelessWidget {
           child: Column(
             children: const <Widget>[
               TrainerMypageSummaryView(),
-              TrainerMypageMenuView(),
+              MypageMenuView(),
             ],
           ),
         ),

@@ -3,8 +3,8 @@ import 'package:si_hicoach_fe/domain/common/components/alert_widget.dart';
 import 'package:si_hicoach_fe/domain/common/components/app_bar.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/detail/tickets/edit.dart';
 
-class TrainerMemberDetailTicketsView extends StatelessWidget {
-  const TrainerMemberDetailTicketsView({Key? key}) : super(key: key);
+class TicketsView extends StatelessWidget {
+  const TicketsView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

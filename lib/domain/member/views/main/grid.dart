@@ -1,9 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
-import 'package:si_hicoach_fe/domain/member/views/main/list.dart';
+import 'package:si_hicoach_fe/domain/member/views/main/grid_item.dart';
+
+class StudyProps {
+  final String name;
+  final int weight;
+  final int set;
+  final int count;
+
+  StudyProps(this.name, this.weight, this.set, this.count);
+}
 
 class MemberMainGridView extends StatelessWidget {
-  const MemberMainGridView({Key? key}) : super(key: key);
+  MemberMainGridView({Key? key}) : super(key: key);
+
+  final List<StudyProps> list = [
+    StudyProps('벤치프레스', 1, 2, 3),
+    StudyProps('푸쉬업', 2, 3, 4),
+    StudyProps('윗몸', 3, 4, 5),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -19,28 +34,28 @@ class MemberMainGridView extends StatelessWidget {
           ),
           const SizedBox(height: defaultPadding),
           Expanded(
-            child: GridView.builder(
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                crossAxisSpacing: defaultPadding,
-                mainAxisSpacing: defaultPadding,
-                childAspectRatio: 0.985,
-              ),
-              itemBuilder: (_, __) => Container(
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.grey.shade300),
-                  borderRadius: const BorderRadius.all(
-                    Radius.circular(smallPadding),
+            child: GridView.count(
+              crossAxisSpacing: defaultPadding,
+              mainAxisSpacing: defaultPadding,
+              childAspectRatio: 0.8,
+              crossAxisCount: 2,
+              children: List.from(
+                list.map(
+                  (it) => Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.grey.shade300),
+                      borderRadius: const BorderRadius.all(
+                        Radius.circular(smallPadding),
+                      ),
+                    ),
+                    padding: const EdgeInsets.all(defaultPadding),
+                    child: GridItem(
+                      name: it.name,
+                      count: it.count,
+                      set: it.set,
+                      weight: it.weight,
+                    ),
                   ),
-                ),
-                padding: const EdgeInsets.all(defaultPadding),
-                child: const StudyList(
-                  data: {
-                    'name': '벤치프레스',
-                    'weight': '1',
-                    'set': '2',
-                    'count': '3',
-                  },
                 ),
               ),
             ),

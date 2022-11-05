@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/account/sign_up/views/agreement/agreement_list_item.dart';
-import 'package:si_hicoach_fe/domain/account/sign_up/views/type/type.dart';
+import 'package:si_hicoach_fe/domain/account/sign_up/views/verify/verify.dart';
 import 'package:si_hicoach_fe/domain/common/components/app_bar.dart';
-import 'package:si_hicoach_fe/domain/common/components/divider.dart';
 import 'package:si_hicoach_fe/domain/common/components/title_with_description.dart';
 import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
 import 'package:si_hicoach_fe/domain/common/theme/button.dart';
+
+class AgreementProps {
+  final String title;
+  final String content;
+  final bool isRequired;
+
+  AgreementProps(this.title, this.content, this.isRequired);
+}
 
 class SignUpAgreementView extends StatefulWidget {
   const SignUpAgreementView({Key? key}) : super(key: key);
@@ -17,6 +24,12 @@ class SignUpAgreementView extends StatefulWidget {
 class _SignUpAgreementPageState extends State<SignUpAgreementView> {
   bool _isAllChecked = false;
   bool _isCarouselExpanded = false;
+
+  List<AgreementProps> list = [
+    AgreementProps('서비스 이용약관', '서비스 이용약관 내용', true),
+    AgreementProps('개인정보 처리방침', '개인정보 처리방침 내용', false),
+    AgreementProps('서비스 이용약관', '서비스 이용약관 내용', true),
+  ];
 
   _handleCarouselExpanded(int index, bool isExpanded) {
     setState(() => _isCarouselExpanded = !_isCarouselExpanded);
@@ -35,7 +48,7 @@ class _SignUpAgreementPageState extends State<SignUpAgreementView> {
   void _handleSubmitButtonPressed(BuildContext context) {
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (context) => const SignUpTypeView(),
+        builder: (BuildContext context) => const SignUpVerifyView(),
       ),
     );
   }
@@ -104,19 +117,21 @@ class _SignUpAgreementPageState extends State<SignUpAgreementView> {
                             onTap: _handleCheckBoxTapped,
                           );
                         },
-                        body: Column(
-                          children: <Widget>[
-                            Divider(
-                              height: 1,
-                              thickness: 1,
-                              color: Theme.of(context).colorScheme.primary,
+                        body: ListView(
+                          scrollDirection: Axis.vertical,
+                          shrinkWrap: true,
+                          children: ListTile.divideTiles(
+                            context: context,
+                            tiles: List.of(
+                              list.map(
+                                (it) => AgreementListItem(
+                                  title: it.title,
+                                  content: it.content,
+                                  isRequired: it.isRequired,
+                                ),
+                              ),
                             ),
-                            const AgreementListItem(text: '[필수] 서비스 이용약관'),
-                            const CustomDivider(),
-                            const AgreementListItem(text: '[필수] 개인정보 처라방침'),
-                            const CustomDivider(),
-                            const AgreementListItem(text: '[선택] 광고마케팅'),
-                          ],
+                          ).toList(),
                         ),
                         isExpanded: _isCarouselExpanded,
                       )

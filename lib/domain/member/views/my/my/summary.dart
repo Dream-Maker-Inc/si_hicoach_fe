@@ -3,11 +3,11 @@ import 'package:si_hicoach_fe/domain/common/components/divider.dart';
 import 'package:si_hicoach_fe/domain/common/components/title_with_description.dart';
 import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
 import 'package:si_hicoach_fe/domain/common/theme/button.dart';
-import 'package:si_hicoach_fe/domain/member/views/my/my/inbody/inbody.dart';
+import 'package:si_hicoach_fe/domain/common/inbody/inbody.dart';
 import 'package:si_hicoach_fe/domain/member/views/my/my/memo/list.dart';
 
-class MemberMypageSummaryView extends StatelessWidget {
-  const MemberMypageSummaryView({Key? key}) : super(key: key);
+class SummaryView extends StatelessWidget {
+  const SummaryView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -68,8 +68,7 @@ class MemberMypageSummaryView extends StatelessWidget {
                   onPressed: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (BuildContext context) =>
-                            const MemberMypageMemoListView(),
+                        builder: (BuildContext context) => MemoListView(),
                       ),
                     );
                   },

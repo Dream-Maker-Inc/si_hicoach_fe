@@ -10,7 +10,7 @@ class StudyingListItemView extends StatelessWidget {
       onTap: () {
         Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (context) => const TrainerMemberDetailView(),
+            builder: (context) => const DetailView(),
           ),
         );
       },
@@ -32,7 +32,7 @@ class StudyingListItemView extends StatelessWidget {
               onPressed: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => const TrainerMemberDetailView(),
+                    builder: (context) => const DetailView(),
                   ),
                 );
               },

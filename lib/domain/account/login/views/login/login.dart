@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/account/find/views/tabs/tab.dart';
 import 'package:si_hicoach_fe/domain/account/sign_up/views/agreement/agreement.dart';
+import 'package:si_hicoach_fe/domain/common/components/alert.dart';
 import 'package:si_hicoach_fe/domain/common/components/text_field.dart';
 import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
 import 'package:si_hicoach_fe/domain/common/theme/button.dart';
@@ -25,41 +26,42 @@ class _LoginPageState extends State<LoginView> {
     super.dispose();
   }
 
+  Future<String?> _showErrorDialog() {
+    return showDialog<String>(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) => CustomAlertDialog(
+        title: '로그인 정보 확인',
+        content: '아이디 또는 비밀번호를 확인해 주세요.',
+        positiveText: '확인',
+        onPositivePressed: () => Navigator.of(context).pop(),
+      ),
+    );
+  }
+
   void _handleLoginButtonClicked() {
-    if (_formKey.currentState!.validate()) {
-      Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (context) => const TrainerBaseView(),
-        ),
+    bool isFormValid =
+        _emailController.text.isNotEmpty || _passwordController.text.isNotEmpty;
+
+    if (isFormValid) {
+      Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(builder: (context) => const TrainerBaseView()),
+        (Route<dynamic> route) => false,
       );
+    } else {
+      _showErrorDialog();
     }
   }
 
   _handleSignUpButtonClicked() {
     Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => const SignUpAgreementView(),
-      ),
+      MaterialPageRoute(builder: (context) => const SignUpAgreementView()),
     );
-  }
-
-  _validateEmail(String value) {
-    if (value.trim().isEmpty) {
-      return '아이디(이메일)을 입력해 주세요.';
-    }
-  }
-
-  _validatePassword(String value) {
-    if (value.trim().isEmpty) {
-      return '비밀번호를 입력해 주세요.';
-    }
   }
 
   _handleTextButtonPressed() {
     Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => const MemberInformationFindView(),
-      ),
+      MaterialPageRoute(builder: (context) => const InformationFindView()),
     );
   }
 
@@ -97,13 +99,13 @@ class _LoginPageState extends State<LoginView> {
                       CustomTextField(
                         keyboardType: TextInputType.emailAddress,
                         hintText: '아이디 (이메일)을 입력하세요.',
-                        validator: (value) => _validateEmail(value!),
+                        controller: _emailController,
                       ),
                       const SizedBox(height: defaultPadding),
                       CustomTextField(
                         isPassword: true,
                         hintText: '비밀번호를 입력하세요.',
-                        validator: (value) => _validatePassword(value!),
+                        controller: _passwordController,
                       ),
                       Align(
                         alignment: Alignment.topRight,
