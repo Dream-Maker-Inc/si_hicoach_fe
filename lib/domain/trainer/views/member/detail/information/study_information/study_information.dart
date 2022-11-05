@@ -19,7 +19,7 @@ class StudyInformation extends StatelessWidget {
   onDetailInbodyButtonPressed(BuildContext context) {
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (BuildContext context) => InbodyView(),
+        builder: (BuildContext context) => const InbodyView(),
       ),
     );
   }
