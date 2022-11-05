@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:si_hicoach_fe/domain/trainer/views/calendar/components/calendar.dart';
+import 'package:si_hicoach_fe/domain/common/study/edit/study.dart';
+import 'package:si_hicoach_fe/domain/trainer/views/calendar/monthly/calendar.dart';
+import 'package:si_hicoach_fe/domain/trainer/views/calendar/weekly/components/calendar.dart';
 
 const List<String> list = <String>['9월 1주차', '30월 1주차', '11월 1주차', '12월 1주차'];
 
@@ -53,11 +55,24 @@ class _TrainerWeeklyCalendarViewState extends State<TrainerWeeklyCalendarView> {
         title: appBarTitle(),
         actions: <Widget>[
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (BuildContext context) => const StudyEditView(),
+                ),
+              );
+            },
             icon: const Icon(Icons.add_rounded),
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (BuildContext context) =>
+                      const TrainerMonthlyCalendar(),
+                ),
+              );
+            },
             icon: const Icon(Icons.calendar_month_rounded),
           ),
         ],

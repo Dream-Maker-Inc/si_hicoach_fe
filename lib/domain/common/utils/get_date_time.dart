@@ -22,6 +22,9 @@ class Utils {
       case 'year_month_date':
         formatter = DateFormat('yyyy년 MM월 dd일');
         break;
+      case 'year_month':
+        formatter = DateFormat('yyyy년 MM월');
+        break;
       case 'time_minute_second':
         formatter = DateFormat('hh시 mm분 ss초');
         break;
