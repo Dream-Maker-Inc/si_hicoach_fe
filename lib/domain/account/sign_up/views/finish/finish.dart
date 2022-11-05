@@ -23,9 +23,12 @@ class SignUpFinishView extends StatelessWidget {
                   color: Theme.of(context).colorScheme.primary,
                   backgroundColor: const Color.fromRGBO(75, 128, 255, 0.4),
                 ),
-                const TitleWithDescription(
-                  title: '회원가입 완료',
-                  description: '하이코치 회원가입을 축하드립니다.',
+                const Padding(
+                  padding: EdgeInsets.all(defaultPadding),
+                  child: TitleWithDescription(
+                    title: '회원가입 완료',
+                    description: '하이코치 회원가입을 축하드립니다.',
+                  ),
                 ),
               ],
             ),

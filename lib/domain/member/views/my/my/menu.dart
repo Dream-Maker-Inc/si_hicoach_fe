@@ -66,18 +66,6 @@ class MenuView extends StatelessWidget {
               },
             ),
             ListTile(
-              leading: const Icon(Icons.person_remove_outlined),
-              title: const Text('트레이너 매칭 취소'),
-              trailing: const Icon(Icons.keyboard_arrow_right_rounded),
-              onTap: () => {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => const SplashPage(),
-                  ),
-                )
-              },
-            ),
-            ListTile(
               leading: const Icon(Icons.logout_rounded),
               title: const Text('로그아웃'),
               trailing: const Icon(Icons.keyboard_arrow_right_rounded),

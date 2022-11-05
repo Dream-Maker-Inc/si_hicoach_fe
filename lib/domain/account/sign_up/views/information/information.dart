@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/account/sign_up/views/finish/finish.dart';
-import 'package:si_hicoach_fe/domain/common/components/alert.dart';
 import 'package:si_hicoach_fe/domain/common/components/app_bar.dart';
 import 'package:si_hicoach_fe/domain/common/components/text_field.dart';
 import 'package:si_hicoach_fe/domain/common/components/title_with_description.dart';
@@ -15,42 +14,35 @@ class SignUpInformationView extends StatefulWidget {
 }
 
 class _SignUpInformationPageState extends State<SignUpInformationView> {
-  final _formKey = GlobalKey<FormState>();
-  final _idController = TextEditingController();
-  final _passwordController = TextEditingController();
-  final _passwordRepeatController = TextEditingController();
-
   String email = '';
   String password = '';
   String passwordRepeat = '';
 
-  void _handleIDValidationButtonClicked() {
-    showDialog<String>(
-      context: context,
-      barrierDismissible: false,
-      builder: (BuildContext context) => CustomAlertDialog(
-        title: '사용 가능',
-        content: '사용 가능한 아이디입니다.',
-        positiveText: '확인',
-        onPositivePressed: () => Navigator.of(context).pop(),
+  _handleIDInputChanged(String value) {
+    setState(() => email = value);
+    print('아이디 입력됨 : $email');
+  }
+
+  _handleIDValidationButtonClicked() {
+    print('아이디 중복 확인');
+  }
+
+  _handlePasswordInputChanged(String value) {
+    setState(() => password = value);
+    print('비밀번호 입력됨 : $value');
+  }
+
+  _handlePasswordRepeatInputChanged(String value) {
+    setState(() => passwordRepeat = value);
+    print('비밀번호 확인 입력됨 : $value');
+  }
+
+  _handleSubmitButtonClicked() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const SignUpFinishView(),
       ),
     );
-  }
-
-  void _handleSubmitButtonClicked() {
-    if (_formKey.currentState!.validate()) {
-      Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (context) => const SignUpFinishView(),
-        ),
-      );
-    }
-  }
-
-  _validatePasswordRepeat(String value) {
-    if (value.trim().isEmpty) {
-      return '비밀번호를 입력해 주세요.';
-    }
   }
 
   @override
@@ -68,52 +60,47 @@ class _SignUpInformationPageState extends State<SignUpInformationView> {
                   color: Theme.of(context).colorScheme.primary,
                   backgroundColor: const Color.fromRGBO(75, 128, 255, 0.4),
                 ),
-                Form(
-                  key: _formKey,
-                  child: Container(
-                    margin: const EdgeInsets.all(defaultPadding),
-                    child: Column(
-                      children: <Widget>[
-                        const TitleWithDescription(
-                          title: '아이디 (이메일)',
-                          description: '실제 사용하시는 이메일 주소를 정확히 입력해 주세요.',
-                        ),
-                        SizedBox(
-                          child: CustomTextField(
-                            hintText: '아이디 (이메일) 입력',
-                            keyboardType: TextInputType.emailAddress,
-                            suffix: TextButton(
-                              onPressed: _handleIDValidationButtonClicked,
-                              child: const Text('중복 확인'),
-                            ),
-                            controller: _idController,
+                Container(
+                  margin: const EdgeInsets.all(defaultPadding),
+                  child: Column(
+                    children: <Widget>[
+                      const TitleWithDescription(
+                        title: '아이디 (이메일)',
+                        description: '실제 사용하시는 이메일 주소를 정확히 입력해 주세요.',
+                      ),
+                      SizedBox(
+                        height: 60,
+                        child: CustomTextField(
+                          hintText: '아이디 (이메일) 입력',
+                          keyboardType: TextInputType.emailAddress,
+                          onChanged: _handleIDInputChanged,
+                          suffix: CustomElevatedButton(
+                            onPressed: _handleIDValidationButtonClicked,
+                            text: '중복 확인',
                           ),
                         ),
-                        const SizedBox(height: defaultPadding),
-                        const TitleWithDescription(
-                          title: '비밀번호',
-                          description:
-                              '영문 대문자와 특수문자가 포함된 8자 이상의 비밀번호를 설정해 주세요.',
-                        ),
-                        CustomTextField(
-                          hintText: '비밀번호 입력',
-                          isPassword: true,
-                          controller: _passwordController,
-                          validator: (value) => value!,
-                        ),
-                        const SizedBox(height: defaultPadding),
-                        const TitleWithDescription(
-                          title: '비밀번호 확인',
-                          description: '비밀번호를 다시 한 번 입력해 주세요.',
-                        ),
-                        CustomTextField(
-                          hintText: '비밀번호 입력',
-                          isPassword: true,
-                          controller: _passwordRepeatController,
-                          validator: (value) => _validatePasswordRepeat(value!),
-                        ),
-                      ],
-                    ),
+                      ),
+                      const SizedBox(height: defaultPadding),
+                      const TitleWithDescription(
+                        title: '비밀번호',
+                        description: '영문 대문자와 특수문자가 포함된 8자 이상의 비밀번호를 설정해 주세요.',
+                      ),
+                      CustomTextField(
+                        hintText: '비밀번호 입력',
+                        isPassword: true,
+                        onChanged: _handlePasswordInputChanged,
+                      ),
+                      const SizedBox(height: defaultPadding),
+                      const TitleWithDescription(
+                        title: '비밀번호 확인',
+                        description: '비밀번호를 다시 한 번 입력해 주세요.',
+                      ),
+                      CustomTextField(
+                        hintText: '비밀번호 입력',
+                        isPassword: true,
+                        onChanged: _handlePasswordRepeatInputChanged,
+                      ),
+                    ],
                   ),
                 ),
                 const Spacer(),

@@ -17,45 +17,29 @@ enum MemberType { trainer, ordinary }
 
 class _SignUpTypePageState extends State<SignUpTypeView> {
   MemberType _memberType = MemberType.trainer;
-  final _formKey = GlobalKey<FormState>();
-  final _nameController = TextEditingController();
-
-  @override
-  void dispose() {
-    _nameController.dispose();
-    super.dispose();
-  }
-
-  void _handleSubmitButtonPressed() {
-    if (_memberType == MemberType.trainer) {
-      if (_formKey.currentState!.validate()) {
-        Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (context) => const SignUpInformationView(),
-          ),
-        );
-      }
-    } else {
-      Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (context) => const SignUpInformationView(),
-        ),
-      );
-    }
-  }
 
   _handleMemberTypeChanged(MemberType? value) {
     setState(() => _memberType = value!);
   }
 
   _validateNameInput(String value) {
-    if (value.trim().isEmpty) {
-      return '소속 헬스장명을 입력해 주세요.';
-    }
+    print('이름 밸리데이션');
+  }
+
+  _handleCenterNameChanged(String value) {
+    print(value);
   }
 
   @override
   Widget build(BuildContext context) {
+    handleSubmitButtonPressed() {
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => const SignUpInformationView(),
+        ),
+      );
+    }
+
     return Scaffold(
       appBar: const CustomAppBarArrowBack(titleText: '회원가입'),
       body: CustomScrollView(
@@ -67,7 +51,7 @@ class _SignUpTypePageState extends State<SignUpTypeView> {
                 LinearProgressIndicator(
                   value: 0.6,
                   color: Theme.of(context).colorScheme.primary,
-                  backgroundColor: const Color.fromRGBO(70, 103, 240, 1),
+                  backgroundColor: const Color.fromRGBO(70, 103, 240, 0.4),
                 ),
                 Container(
                   margin: const EdgeInsets.all(defaultPadding),
@@ -95,13 +79,10 @@ class _SignUpTypePageState extends State<SignUpTypeView> {
                           title: '헬스장 정보',
                           description: '소속 헬스장명을 입력해 주세요.',
                         ),
-                        Form(
-                          key: _formKey,
-                          child: CustomTextField(
-                            hintText: '소속 헬스장명을 입력해 주세요.',
-                            validator: (value) => _validateNameInput(value!),
-                            controller: _nameController,
-                          ),
+                        CustomTextField(
+                          hintText: '소속 헬스장명을 입력해 주세요.',
+                          validator: (value) => _validateNameInput(value!),
+                          onChanged: _handleCenterNameChanged,
                         ),
                       ],
                     ],
@@ -112,7 +93,7 @@ class _SignUpTypePageState extends State<SignUpTypeView> {
                   width: double.infinity,
                   margin: const EdgeInsets.all(defaultPadding),
                   child: CustomElevatedButton(
-                    onPressed: _handleSubmitButtonPressed,
+                    onPressed: handleSubmitButtonPressed,
                     text: '다음',
                   ),
                 ),

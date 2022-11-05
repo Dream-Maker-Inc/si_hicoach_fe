@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
+import 'package:si_hicoach_fe/domain/common/inbody/inbody.dart';
 import 'package:si_hicoach_fe/domain/common/theme/button.dart';
-import 'package:si_hicoach_fe/domain/trainer/views/member/detail/inbody/inbody.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/detail/information/study_information/summary.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/detail/tickets/tickets.dart';
 
@@ -19,7 +19,7 @@ class StudyInformation extends StatelessWidget {
   onDetailInbodyButtonPressed(BuildContext context) {
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (BuildContext context) => const InbodyView(),
+        builder: (BuildContext context) => InbodyView(),
       ),
     );
   }

@@ -2,9 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/common/theme/color.dart';
 
 class AgreementListItem extends StatefulWidget {
-  final String text;
+  final String title;
+  final String? content;
+  final bool? isRequired;
 
-  const AgreementListItem({Key? key, required this.text}) : super(key: key);
+  const AgreementListItem({
+    Key? key,
+    required this.title,
+    this.content,
+    this.isRequired,
+  }) : super(key: key);
 
   @override
   State<AgreementListItem> createState() => _AgreementListItemState();
@@ -25,7 +32,7 @@ class _AgreementListItemState extends State<AgreementListItem> {
   Widget build(BuildContext context) {
     return ListTile(
       title: Text(
-        widget.text,
+        widget.title,
         style: TextStyle(
           color: _isAgreementChecked
               ? Theme.of(context).colorScheme.primary

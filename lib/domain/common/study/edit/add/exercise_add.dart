@@ -4,8 +4,30 @@ import 'package:si_hicoach_fe/domain/common/components/divider.dart';
 import 'package:si_hicoach_fe/domain/common/components/list_tile.dart';
 import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
 
+class ExerciseProps {
+  final String name;
+  final String category;
+
+  ExerciseProps(this.name, this.category);
+}
+
 class StudyEditExerciseAdd extends StatelessWidget {
-  const StudyEditExerciseAdd({Key? key}) : super(key: key);
+  StudyEditExerciseAdd({Key? key}) : super(key: key);
+
+  final List<ExerciseProps> list = [
+    ExerciseProps('벤치프레스', '하체'),
+    ExerciseProps('벤치프레스', '하체'),
+    ExerciseProps('벤치프레스', '하체'),
+    ExerciseProps('벤치프레스', '하체'),
+    ExerciseProps('벤치프레스', '하체'),
+    ExerciseProps('벤치프레스', '하체'),
+    ExerciseProps('벤치프레스', '하체'),
+    ExerciseProps('벤치프레스', '하체'),
+    ExerciseProps('벤치프레스', '하체'),
+    ExerciseProps('벤치프레스', '하체'),
+    ExerciseProps('벤치프레스', '하체'),
+    ExerciseProps('벤치프레스', '하체'),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -48,11 +70,12 @@ class StudyEditExerciseAdd extends StatelessWidget {
             Expanded(
               flex: 1,
               child: ListView(
-                children: List.generate(
-                  20,
-                  (int index) => const CustomListTileWithArrow(
-                    title: '벤치프레스',
-                    subtitle: '하체',
+                children: List.of(
+                  list.map(
+                    (it) => CustomListTileWithArrow(
+                      title: it.name,
+                      subtitle: it.category,
+                    ),
                   ),
                 ),
               ),

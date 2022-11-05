@@ -5,7 +5,22 @@ import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
 enum MoreSelections { edit, delete }
 
 class InbodyItem extends StatelessWidget {
-  const InbodyItem({Key? key}) : super(key: key);
+  final String imageUrl;
+  final String dateTime;
+
+  const InbodyItem({
+    Key? key,
+    required this.imageUrl,
+    required this.dateTime,
+  }) : super(key: key);
+
+  _onEditButtonTapped() {
+    print('수정 클릭됨');
+  }
+
+  _onDeleteButtonTapped() {
+    print('삭제 클릭됨');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,9 +32,7 @@ class InbodyItem extends StatelessWidget {
       child: Column(
         children: <Widget>[
           Expanded(
-            child: Image.network(
-              'https://www.gymgair.co.uk/wp-content/uploads/2019/11/270rs-English.jpg',
-            ),
+            child: Image.network(imageUrl),
           ),
           const CustomDivider(),
           Row(
@@ -28,15 +41,21 @@ class InbodyItem extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.all(smallPadding),
                 child: Text(
-                  '2022년 10월 11일',
+                  dateTime.toString(),
                   style: Theme.of(context).textTheme.labelMedium,
                 ),
               ),
               PopupMenuButton(
                 itemBuilder: (BuildContext context) =>
                     <PopupMenuEntry<MoreSelections>>[
-                  const PopupMenuItem<MoreSelections>(child: Text('수정')),
-                  const PopupMenuItem<MoreSelections>(child: Text('삭제')),
+                  PopupMenuItem<MoreSelections>(
+                    onTap: _onEditButtonTapped,
+                    child: const Text('수정'),
+                  ),
+                  PopupMenuItem<MoreSelections>(
+                    onTap: _onDeleteButtonTapped,
+                    child: const Text('삭제'),
+                  ),
                 ],
               ),
             ],

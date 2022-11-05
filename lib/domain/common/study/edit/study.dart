@@ -50,7 +50,7 @@ class StudyEditView extends StatelessWidget {
         IconButton(
           onPressed: () => Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (context) => const StudyEditExerciseAdd(),
+              builder: (context) => StudyEditExerciseAdd(),
             ),
           ),
           icon: const Icon(Icons.add_rounded),
