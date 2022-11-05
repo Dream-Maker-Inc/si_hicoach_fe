@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/common/components/app_bar.dart';
 import 'package:si_hicoach_fe/domain/common/utils/get_date_time.dart';
-import 'package:si_hicoach_fe/domain/trainer/views/calendar/monthly/header.dart';
-import 'package:si_hicoach_fe/domain/trainer/views/calendar/monthly/item.dart';
+import 'package:si_hicoach_fe/domain/common/calendar/monthly/header.dart';
+import 'package:si_hicoach_fe/domain/common/calendar/monthly/item.dart';
 
-class TrainerMonthlyCalendar extends StatelessWidget {
-  const TrainerMonthlyCalendar({super.key});
+class MonthlyCalendarView extends StatelessWidget {
+  const MonthlyCalendarView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class TrainerMonthlyCalendar extends StatelessWidget {
       ),
       body: Column(
         children: <Widget>[
-          CalendarHeader(),
+          MonthlyCalendarHeader(),
           Table(
             border: TableBorder.all(color: Colors.black12),
             defaultVerticalAlignment: TableCellVerticalAlignment.middle,

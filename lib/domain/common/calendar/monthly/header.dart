@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class CalendarHeader extends StatelessWidget {
-  CalendarHeader({super.key});
+class MonthlyCalendarHeader extends StatelessWidget {
+  MonthlyCalendarHeader({super.key});
 
-  final List<String> dayList = ['', '일', '월', '화', '수', '목', '금', '토'];
+  final List<String> dayList = ['일', '월', '화', '수', '목', '금', '토'];
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,6 @@ class CalendarHeader extends StatelessWidget {
 
     return Table(
       border: TableBorder.all(color: Colors.black12),
-      columnWidths: const <int, TableColumnWidth>{0: FixedColumnWidth(24)},
       defaultVerticalAlignment: TableCellVerticalAlignment.middle,
       children: <TableRow>[
         TableRow(

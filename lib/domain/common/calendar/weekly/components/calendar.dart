@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:si_hicoach_fe/domain/trainer/views/calendar/weekly/components/header.dart';
-import 'package:si_hicoach_fe/domain/trainer/views/calendar/weekly/components/item.dart';
+import 'package:si_hicoach_fe/domain/common/calendar/weekly/components/header.dart';
+import 'package:si_hicoach_fe/domain/common/calendar/weekly/components/item.dart';
 
 class WeeklyCalendar extends StatefulWidget {
   const WeeklyCalendar({super.key});
@@ -21,7 +21,7 @@ class _WeeklyCalendarState extends State<WeeklyCalendar> {
 
     return Column(
       children: <Widget>[
-        CalendarHeader(),
+        WeeklyCalendarHeader(),
         Expanded(
           child: CustomScrollView(
             slivers: [

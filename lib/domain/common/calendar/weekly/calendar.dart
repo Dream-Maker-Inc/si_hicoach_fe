@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/common/study/edit/study.dart';
-import 'package:si_hicoach_fe/domain/trainer/views/calendar/monthly/calendar.dart';
-import 'package:si_hicoach_fe/domain/trainer/views/calendar/weekly/components/calendar.dart';
+import 'package:si_hicoach_fe/domain/common/calendar/monthly/calendar.dart';
+import 'package:si_hicoach_fe/domain/common/calendar/weekly/components/calendar.dart';
 
 const List<String> list = <String>['9월 1주차', '30월 1주차', '11월 1주차', '12월 1주차'];
 
-class TrainerWeeklyCalendarView extends StatefulWidget {
-  const TrainerWeeklyCalendarView({super.key});
+class WeeklyCalendarView extends StatefulWidget {
+  const WeeklyCalendarView({super.key});
 
   @override
-  State<TrainerWeeklyCalendarView> createState() =>
-      _TrainerWeeklyCalendarViewState();
+  State<WeeklyCalendarView> createState() => _WeeklyCalendarViewState();
 }
 
-class _TrainerWeeklyCalendarViewState extends State<TrainerWeeklyCalendarView> {
+class _WeeklyCalendarViewState extends State<WeeklyCalendarView> {
   @override
   Widget build(BuildContext context) {
     String dropdownValue = list.first;
@@ -69,7 +68,7 @@ class _TrainerWeeklyCalendarViewState extends State<TrainerWeeklyCalendarView> {
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (BuildContext context) =>
-                      const TrainerMonthlyCalendar(),
+                      const MonthlyCalendarView(),
                 ),
               );
             },
