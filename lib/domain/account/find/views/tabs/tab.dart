@@ -7,8 +7,7 @@ class InformationFindView extends StatefulWidget {
   const InformationFindView({Key? key}) : super(key: key);
 
   @override
-  State<InformationFindView> createState() =>
-      _InformationFindViewState();
+  State<InformationFindView> createState() => _InformationFindViewState();
 }
 
 class _InformationFindViewState extends State<InformationFindView> {
@@ -40,8 +39,8 @@ class _InformationFindViewState extends State<InformationFindView> {
         ),
         body: const TabBarView(
           children: <Widget>[
-            MemberIDFindView(),
-            MemberPWFindView(),
+            IDFindView(),
+            PasswordFindView(),
           ],
         ),
       ),
