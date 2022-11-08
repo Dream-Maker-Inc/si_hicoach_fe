@@ -2,28 +2,28 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:http/http.dart' as http;
+import 'package:multiple_result/multiple_result.dart';
 import 'package:si_hicoach_fe/domain/account/sign_up/data/dto/SignupResponse.dart';
 
 class SignupApi {
   // 스테틱 메소드는 클래스를 생성하지 않고 불러 쓸 수 있음
-  static Future<SignupResponse> signup() async {
+  static Future<Result<Exception, SignupResponse>> signup() async {
 
     try {
       var url = Uri.https(
-          '8210-218-236-78-53.ngrok.io', '/api/v2/member/signUp');
+          '1c44-125-242-48-109.jp.ngrok.io', '/api/v2/member/signUp');
       var response = await http.get(url);
 
       switch (response.statusCode) {
         case HttpStatus.ok:
           var json = utf8.decode(response.bodyBytes);
           Map<String, dynamic> map = jsonDecode(json);
-          return SignupResponse.fromJson(map);
+          return Success(SignupResponse.fromJson(map));
         default:
-          throw Exception(response.reasonPhrase);
+          return Error(Exception(response.reasonPhrase));
       }
-    } on SocketException catch (_) {
-      // make it explicit that a SocketException will be thrown if the network connection fails
-      rethrow;
+    } catch (e) {
+      return Error(Exception(e));
     }
   }
 }
