@@ -10,7 +10,7 @@ var checkboxThemes = CheckboxThemeData(
   // side: BorderSide(
   //   color: colorScheme.primary,
   //
-    // 채크하기 전 체크박스 테두리
-    // style: BorderStyle.solid,
+  // 채크하기 전 체크박스 테두리
+  // style: BorderStyle.solid,
   // ),
 );

@@ -18,14 +18,12 @@ class AgreementListItem extends StatefulWidget {
 }
 
 class _AgreementListItemState extends State<AgreementListItem> {
-  bool _isAgreementChecked = false;
-
-  _handleCheckBoxChanged(value) {
-    setState(() => _isAgreementChecked = value!);
+  void _handleCheckBoxChanged(bool? value) {
+    print('checkbox changed : $value');
   }
 
   _handleTapAgreementDetail() {
-    setState(() => _isAgreementChecked = !_isAgreementChecked);
+    print('detail');
   }
 
   @override
@@ -34,18 +32,15 @@ class _AgreementListItemState extends State<AgreementListItem> {
       title: Text(
         widget.title,
         style: TextStyle(
-          color: _isAgreementChecked
-              ? Theme.of(context).colorScheme.primary
-              : Theme.of(context).colorScheme.tertiary,
+          color: Theme.of(context).colorScheme.primary,
           fontSize: 16,
         ),
       ),
       leading: Checkbox(
-        value: _isAgreementChecked,
-        onChanged: (value) => _handleCheckBoxChanged(value),
+        value: true,
+        onChanged: _handleCheckBoxChanged,
         activeColor: Colors.transparent,
         checkColor: colorScheme.primary,
-        fillColor: MaterialStateProperty.all(Colors.transparent),
       ),
       trailing: const IconButton(
         onPressed: _handleDropdownPressed,

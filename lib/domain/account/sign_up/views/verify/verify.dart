@@ -7,16 +7,16 @@ import 'package:si_hicoach_fe/domain/common/theme/button.dart';
 class SignUpVerifyView extends StatelessWidget {
   const SignUpVerifyView({super.key});
 
-  _handleNextButtonPressed(BuildContext context) {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (BuildContext context) => const SignUpTypeView(),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
+    handleNextButtonPressed() {
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (BuildContext context) => const SignUpTypeView(),
+        ),
+      );
+    }
+
     return Scaffold(
       appBar: const CustomAppBarArrowBack(titleText: '회원가입'),
       body: SafeArea(
@@ -33,8 +33,9 @@ class SignUpVerifyView extends StatelessWidget {
               width: double.infinity,
               margin: const EdgeInsets.all(defaultPadding),
               child: CustomElevatedButton(
-                  text: '다음',
-                  onPressed: () => _handleNextButtonPressed(context)),
+                text: '다음',
+                onPressed: handleNextButtonPressed,
+              ),
             ),
           ],
         ),

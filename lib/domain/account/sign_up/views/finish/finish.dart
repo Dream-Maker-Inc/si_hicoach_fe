@@ -10,6 +10,15 @@ class SignUpFinishView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    handleSubmitButtonPressed() {
+      Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(
+          builder: (context) => const LoginView(),
+        ),
+        (Route<dynamic> route) => false,
+      );
+    }
+
     return Scaffold(
       appBar: const CustomAppBarArrowBack(titleText: '회원가입'),
       body: SafeArea(
@@ -38,10 +47,7 @@ class SignUpFinishView extends StatelessWidget {
                 width: double.infinity,
                 margin: const EdgeInsets.all(defaultPadding),
                 child: CustomElevatedButton(
-                  onPressed: () => Navigator.of(context).pushAndRemoveUntil(
-                    MaterialPageRoute(builder: (context) => const LoginView()),
-                    (Route<dynamic> route) => false,
-                  ),
+                  onPressed: handleSubmitButtonPressed,
                   text: '완료',
                 ),
               ),

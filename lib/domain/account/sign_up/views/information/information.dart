@@ -6,21 +6,11 @@ import 'package:si_hicoach_fe/domain/common/components/title_with_description.da
 import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
 import 'package:si_hicoach_fe/domain/common/theme/button.dart';
 
-class SignUpInformationView extends StatefulWidget {
+class SignUpInformationView extends StatelessWidget {
   const SignUpInformationView({Key? key}) : super(key: key);
 
-  @override
-  State<SignUpInformationView> createState() => _SignUpInformationPageState();
-}
-
-class _SignUpInformationPageState extends State<SignUpInformationView> {
-  String email = '';
-  String password = '';
-  String passwordRepeat = '';
-
   _handleIDInputChanged(String value) {
-    setState(() => email = value);
-    print('아이디 입력됨 : $email');
+    print('아이디 입력됨 : $value');
   }
 
   _handleIDValidationButtonClicked() {
@@ -28,25 +18,23 @@ class _SignUpInformationPageState extends State<SignUpInformationView> {
   }
 
   _handlePasswordInputChanged(String value) {
-    setState(() => password = value);
     print('비밀번호 입력됨 : $value');
   }
 
   _handlePasswordRepeatInputChanged(String value) {
-    setState(() => passwordRepeat = value);
     print('비밀번호 확인 입력됨 : $value');
-  }
-
-  _handleSubmitButtonClicked() {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => const SignUpFinishView(),
-      ),
-    );
   }
 
   @override
   Widget build(BuildContext context) {
+    handleSubmitButtonClicked() {
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => const SignUpFinishView(),
+        ),
+      );
+    }
+
     return Scaffold(
       appBar: const CustomAppBarArrowBack(titleText: '회원가입'),
       body: CustomScrollView(
@@ -108,7 +96,7 @@ class _SignUpInformationPageState extends State<SignUpInformationView> {
                   width: double.infinity,
                   margin: const EdgeInsets.all(defaultPadding),
                   child: CustomElevatedButton(
-                    onPressed: _handleSubmitButtonClicked,
+                    onPressed: handleSubmitButtonClicked,
                     text: '다음',
                   ),
                 )

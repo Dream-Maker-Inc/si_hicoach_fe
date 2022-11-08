@@ -22,9 +22,6 @@ class SignUpAgreementView extends StatefulWidget {
 }
 
 class _SignUpAgreementPageState extends State<SignUpAgreementView> {
-  bool _isAllChecked = false;
-  bool _isCarouselExpanded = false;
-
   List<AgreementProps> list = [
     AgreementProps('서비스 이용약관', '서비스 이용약관 내용', true),
     AgreementProps('개인정보 처리방침', '개인정보 처리방침 내용', false),
@@ -32,29 +29,27 @@ class _SignUpAgreementPageState extends State<SignUpAgreementView> {
   ];
 
   _handleCarouselExpanded(int index, bool isExpanded) {
-    setState(() => _isCarouselExpanded = !_isCarouselExpanded);
+    print('carousel expand');
   }
 
-  _handleCheckBoxChanged(bool value) {
-    setState(() => _isAllChecked = value);
+  _handleCheckBoxChanged(bool? value) {
+    print('checkbox change');
   }
 
   _handleCheckBoxTapped() {
-    setState(() {
-      _isAllChecked = !_isAllChecked;
-    });
-  }
-
-  void _handleSubmitButtonPressed(BuildContext context) {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (BuildContext context) => const SignUpVerifyView(),
-      ),
-    );
+    print('checkbox tap');
   }
 
   @override
   Widget build(BuildContext context) {
+    handleSubmitButtonPressed() {
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (BuildContext context) => const SignUpVerifyView(),
+        ),
+      );
+    }
+
     return Scaffold(
       appBar: const CustomAppBarArrowBack(titleText: '회원가입'),
       body: SafeArea(
@@ -101,16 +96,13 @@ class _SignUpAgreementPageState extends State<SignUpAgreementView> {
                             title: Text(
                               '모든 약관에 동의합니다.',
                               style: TextStyle(
-                                color: _isAllChecked
-                                    ? Theme.of(context).colorScheme.primary
-                                    : Theme.of(context).colorScheme.onSurface,
+                                color: Theme.of(context).colorScheme.primary,
                                 fontSize: 18,
                               ),
                             ),
                             leading: Checkbox(
-                              value: _isAllChecked,
-                              onChanged: (value) =>
-                                  _handleCheckBoxChanged(value!),
+                              value: true,
+                              onChanged: _handleCheckBoxChanged,
                               activeColor:
                                   Theme.of(context).colorScheme.primary,
                             ),
@@ -133,7 +125,7 @@ class _SignUpAgreementPageState extends State<SignUpAgreementView> {
                             ),
                           ).toList(),
                         ),
-                        isExpanded: _isCarouselExpanded,
+                        isExpanded: true,
                       )
                     ].toList(),
                   ),
@@ -145,7 +137,7 @@ class _SignUpAgreementPageState extends State<SignUpAgreementView> {
               width: double.infinity,
               margin: const EdgeInsets.all(defaultPadding),
               child: CustomElevatedButton(
-                onPressed: () => _handleSubmitButtonPressed(context),
+                onPressed: handleSubmitButtonPressed,
                 text: '다음',
               ),
             )

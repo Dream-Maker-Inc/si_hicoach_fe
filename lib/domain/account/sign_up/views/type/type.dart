@@ -22,12 +22,8 @@ class _SignUpTypePageState extends State<SignUpTypeView> {
     setState(() => _memberType = value!);
   }
 
-  _validateNameInput(String value) {
-    print('이름 밸리데이션');
-  }
-
   _handleCenterNameChanged(String value) {
-    print(value);
+    print('center name : $value');
   }
 
   @override
@@ -81,7 +77,6 @@ class _SignUpTypePageState extends State<SignUpTypeView> {
                         ),
                         CustomTextField(
                           hintText: '소속 헬스장명을 입력해 주세요.',
-                          validator: (value) => _validateNameInput(value!),
                           onChanged: _handleCenterNameChanged,
                         ),
                       ],
