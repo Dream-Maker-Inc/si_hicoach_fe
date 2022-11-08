@@ -25,7 +25,7 @@ TextStyle titleLarge = const TextStyle(
 );
 
 TextStyle titleMedium = const TextStyle(
-  fontSize: 14,
+  fontSize: 16,
   fontWeight: FontWeight.w700,
   color: Colors.black87,
 );
