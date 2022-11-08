@@ -1,68 +1,34 @@
 import 'package:flutter/material.dart';
-import 'package:si_hicoach_fe/domain/common/components/alert.dart';
 import 'package:si_hicoach_fe/domain/common/components/app_bar.dart';
 import 'package:si_hicoach_fe/domain/common/components/divider.dart';
 import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
 import 'package:si_hicoach_fe/domain/common/study/edit/components/exercise.dart';
 import 'package:si_hicoach_fe/domain/common/study/edit/components/time.dart';
-import 'package:si_hicoach_fe/domain/common/study/edit/add/exercise_add.dart';
 import 'package:si_hicoach_fe/domain/common/study/edit/components/memo.dart';
-import 'package:si_hicoach_fe/domain/common/theme/color.dart';
+
+class StudyProps {
+  final String name;
+  final int weight;
+  final int count;
+  final int set;
+
+  StudyProps(this.name, this.weight, this.count, this.set);
+}
 
 class StudyEditView extends StatelessWidget {
-  const StudyEditView({Key? key}) : super(key: key);
+  StudyEditView({Key? key}) : super(key: key);
 
-  List<Widget> appBarActionsWidget(BuildContext context) {
-    return <Widget>[
-      IconButton(
-        icon: const Icon(Icons.check),
-        onPressed: () {
-          showDialog<String>(
-            context: context,
-            barrierDismissible: false,
-            builder: (BuildContext context) => CustomAlertDialog(
-              title: '작성 완료',
-              content: '운동 일지가 정상 등록되었습니다.',
-              positiveText: '확인',
-              onPositivePressed: () => Navigator.of(context).pop(),
-            ),
-          );
-        },
-      ),
-    ];
-  }
+  final List<StudyProps> list = [
+    StudyProps('벤치프레스', 10, 20, 30),
+    StudyProps('푸쉬업', 20, 30, 40),
+    StudyProps('윗몸', 30, 40, 50),
+    StudyProps('벤치프레스', 10, 20, 30),
+  ];
 
-  Widget exerciseContainerTitle(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: <Widget>[
-        const SizedBox(
-          width: 100,
-          child: Text(
-            '운동 일지',
-            style: TextStyle(
-              fontWeight: FontWeight.w700,
-              fontSize: 26,
-            ),
-          ),
-        ),
-        IconButton(
-          onPressed: () => Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (context) => StudyEditExerciseAdd(),
-            ),
-          ),
-          icon: const Icon(Icons.add_rounded),
-          color: colorScheme.primary,
-          style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all(
-              colorScheme.secondary,
-            ),
-          ),
-        ),
-      ],
-    );
+  final String memo = '메모!';
+
+  handleSubmitButtonPressed() {
+    print('submit');
   }
 
   @override
@@ -70,26 +36,27 @@ class StudyEditView extends StatelessWidget {
     return Scaffold(
       appBar: CustomAppBarArrowBack(
         titleText: '운동 일지 작성',
-        actionsWidget: appBarActionsWidget(context),
+        actionsWidget: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.check),
+            onPressed: handleSubmitButtonPressed,
+          )
+        ],
       ),
       body: SafeArea(
         child: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
           child: Padding(
             padding: const EdgeInsets.all(defaultPadding),
             child: Column(
               children: <Widget>[
-                const StudyEditTime(),
+                const EditTime(time: 11, currentStudy: 4, totalStudy: 10),
                 const SizedBox(height: widePadding),
-                Column(
-                  children: <Widget>[
-                    exerciseContainerTitle(context),
-                    const StudyEditExercise(),
-                    const SizedBox(height: defaultPadding),
-                    const CustomDivider(),
-                  ],
-                ),
+                EditExercise(list: list),
+                const SizedBox(height: defaultPadding),
+                const CustomDivider(),
                 const SizedBox(height: widePadding),
-                const StudyEditMemo(),
+                EditMemo(memo: memo),
               ],
             ),
           ),

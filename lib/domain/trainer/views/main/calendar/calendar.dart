@@ -15,7 +15,7 @@ class _CalendarState extends State<Calendar> {
   Widget leftShadow() {
     return Container(
       width: 100,
-      height: 100,
+      height: 80,
       decoration: const BoxDecoration(
         gradient: LinearGradient(
           colors: [
@@ -32,7 +32,7 @@ class _CalendarState extends State<Calendar> {
       alignment: Alignment.topRight,
       child: Container(
         width: 100,
-        height: 100,
+        height: 80,
         decoration: const BoxDecoration(
           gradient: LinearGradient(
             colors: [

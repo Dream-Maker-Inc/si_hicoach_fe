@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
 import 'package:si_hicoach_fe/domain/common/study/detail/detail.dart';
 import 'package:si_hicoach_fe/domain/common/theme/color.dart';
+import 'package:si_hicoach_fe/domain/common/theme/typography.dart';
 
 class TrainerMainTodoItem extends StatelessWidget {
   final int time;
@@ -33,12 +34,6 @@ class TrainerMainTodoItem extends StatelessWidget {
       elevation: MaterialStateProperty.all(0),
     );
 
-    TextStyle? textStyle = isCompleted
-        ? Theme.of(context).textTheme.headline4
-        : Theme.of(context).textTheme.headline4!.copyWith(
-              color: colorScheme.primary,
-            );
-
     return Padding(
       padding: const EdgeInsets.only(
         left: defaultPadding,
@@ -46,41 +41,47 @@ class TrainerMainTodoItem extends StatelessWidget {
         top: smallPadding,
         bottom: smallPadding,
       ),
-      child: SizedBox(
-        width: double.infinity,
-        height: 60,
-        child: Row(
-          children: <Widget>[
-            Text(
+      child: Row(
+        children: <Widget>[
+          Expanded(
+            flex: 1,
+            child: Text(
               '$time시',
-              style: TextStyle(color: colorScheme.primary, fontSize: 16),
+              style: bodyLarge,
+              textAlign: TextAlign.right,
             ),
-            Expanded(
-              flex: 1,
-              child: Padding(
-                padding: const EdgeInsets.only(left: defaultPadding),
-                child: ElevatedButton(
-                  style: buttonStyle,
-                  onPressed: () => Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => const StudyDetailView(),
+          ),
+          Expanded(
+            flex: 6,
+            child: Padding(
+              padding: const EdgeInsets.only(left: defaultPadding),
+              child: ElevatedButton(
+                style: buttonStyle,
+                onPressed: () => Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const StudyDetailView(),
+                  ),
+                ),
+                child: ListTile(
+                  title: Text(
+                    '$name 회원님',
+                    style: titleMedium.copyWith(
+                      color: Colors.grey.shade700,
                     ),
                   ),
-                  child: ListTile(
-                    title: Text(
-                      '$name 회원님 $currentStudy/$totalStudy (완료)',
-                      style: textStyle,
-                    ),
-                    trailing: const Icon(
-                      Icons.keyboard_arrow_right,
-                      color: Colors.grey,
-                    ),
+                  subtitle: Text(
+                    '$currentStudy회 진행 · 총 $totalStudy회',
+                    style: bodySmall,
+                  ),
+                  trailing: const Icon(
+                    Icons.keyboard_arrow_right,
+                    color: Colors.grey,
                   ),
                 ),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

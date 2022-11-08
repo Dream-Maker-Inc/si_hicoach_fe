@@ -29,6 +29,10 @@ class StudyEditExerciseAdd extends StatelessWidget {
     ExerciseProps('벤치프레스', '하체'),
   ];
 
+  handleSearchButtonPressed() {
+    print('search');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,7 +59,7 @@ class StudyEditExerciseAdd extends StatelessWidget {
                         ),
                       ),
                       IconButton(
-                        onPressed: () {},
+                        onPressed: handleSearchButtonPressed,
                         icon: const Icon(
                           Icons.search_rounded,
                           color: Colors.grey,
