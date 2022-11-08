@@ -1,22 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/account/login/views/login/login.dart';
+import 'package:si_hicoach_fe/domain/account/sign_up/views/finish/finish_vm.dart';
 import 'package:si_hicoach_fe/domain/common/components/app_bar.dart';
 import 'package:si_hicoach_fe/domain/common/components/title_with_description.dart';
 import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
 import 'package:si_hicoach_fe/domain/common/theme/button.dart';
+import 'package:provider/provider.dart';
 
 class SignUpFinishView extends StatelessWidget {
-  const SignUpFinishView({Key? key}) : super(key: key);
+  late SignupFinishViewModel vm;
 
   @override
   Widget build(BuildContext context) {
+    vm = Provider.of<SignupFinishViewModel>(context);
+
     handleSubmitButtonPressed() {
-      Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(
-          builder: (context) => const LoginView(),
-        ),
-        (Route<dynamic> route) => false,
-      );
+      vm.signup();
+
+      // Navigator.of(context).pushAndRemoveUntil(
+      //   MaterialPageRoute(
+      //     builder: (context) => const LoginView(),
+      //   ),
+      //   (Route<dynamic> route) => false,
+      // );
     }
 
     return Scaffold(
