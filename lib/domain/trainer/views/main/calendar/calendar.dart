@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/common/utils/get_date_time.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/main/calendar/calendar_item.dart';
+import 'package:si_hicoach_fe/domain/trainer/views/main/calendar/left_shadow.dart';
+import 'package:si_hicoach_fe/domain/trainer/views/main/calendar/right_shadow.dart';
 
 class Calendar extends StatefulWidget {
   const Calendar({Key? key}) : super(key: key);
@@ -11,39 +13,6 @@ class Calendar extends StatefulWidget {
 
 class _CalendarState extends State<Calendar> {
   int selectedDay = int.parse(Utils.getCurrentDateTime('date_number'));
-
-  Widget leftShadow() {
-    return Container(
-      width: 100,
-      height: 80,
-      decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          colors: [
-            Colors.white,
-            Color.fromRGBO(255, 255, 255, 0),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget rightShadow() {
-    return Align(
-      alignment: Alignment.topRight,
-      child: Container(
-        width: 100,
-        height: 80,
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              Color.fromRGBO(255, 255, 255, 0),
-              Colors.white,
-            ],
-          ),
-        ),
-      ),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,36 +28,38 @@ class _CalendarState extends State<Calendar> {
           scrollDirection: Axis.horizontal,
           child: Row(children: <Widget>[
             Wrap(
-              children: daysOfThisMonthList.map((day) {
-                while (true) {
-                  for (int i = 0; i <= Utils.koreanDate.length; i++) {
-                    if (day == selectedDay) {
-                      return SizedBox(
-                        width: MediaQuery.of(context).size.width / 7,
-                        child: CalendarItem(
-                          dayText: Utils.getDayTextFromDayNumber(day),
-                          dayNumber: day,
-                          highlight: true,
-                        ),
-                      );
-                    } else {
-                      return SizedBox(
-                        width: MediaQuery.of(context).size.width / 7,
-                        child: CalendarItem(
-                          dayText: Utils.getDayTextFromDayNumber(day),
-                          dayNumber: day,
-                          highlight: false,
-                        ),
-                      );
+              children: daysOfThisMonthList.map(
+                (it) {
+                  while (true) {
+                    for (int i = 0; i <= Utils.koreanDate.length; i++) {
+                      if (it == selectedDay) {
+                        return SizedBox(
+                          width: MediaQuery.of(context).size.width / 7,
+                          child: CalendarItem(
+                            dayText: Utils.getDayTextFromDayNumber(it),
+                            dayNumber: it,
+                            highlight: true,
+                          ),
+                        );
+                      } else {
+                        return SizedBox(
+                          width: MediaQuery.of(context).size.width / 7,
+                          child: CalendarItem(
+                            dayText: Utils.getDayTextFromDayNumber(it),
+                            dayNumber: it,
+                            highlight: false,
+                          ),
+                        );
+                      }
                     }
                   }
-                }
-              }).toList(),
+                },
+              ).toList(),
             ),
           ]),
         ),
-        leftShadow(),
-        rightShadow(),
+        const LeftShadow(),
+        const RightShadow(),
       ],
     );
   }

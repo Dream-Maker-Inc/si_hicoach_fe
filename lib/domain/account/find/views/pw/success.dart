@@ -42,14 +42,9 @@ class PasswordFindSuccessView extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      '비밀번호 재설정',
-                      style: Theme.of(context).textTheme.headline1,
-                    ),
-                    const SizedBox(height: defaultPadding),
-                    Text(
-                      '본인 인증이 완료되었습니다.\n새로운 비밀번호를 등록해 주세요.',
-                      style: Theme.of(context).textTheme.headline4,
+                    const TitleWithDescription(
+                      title: '비밀번호 재설정',
+                      description: '본인 인증이 완료되었습니다.\n새로운 비밀번호를 등록해 주세요.',
                     ),
                     const SizedBox(height: widePadding),
                     SizedBox(

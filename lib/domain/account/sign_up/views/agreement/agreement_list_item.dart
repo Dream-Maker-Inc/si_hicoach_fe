@@ -32,7 +32,7 @@ class _AgreementListItemState extends State<AgreementListItem> {
       title: Text(
         widget.title,
         style: TextStyle(
-          color: Theme.of(context).colorScheme.primary,
+          color: colorScheme.primary,
           fontSize: 16,
         ),
       ),

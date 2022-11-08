@@ -34,6 +34,14 @@ class TrainerMainTodoItem extends StatelessWidget {
       elevation: MaterialStateProperty.all(0),
     );
 
+    handleItemPressed() {
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => const StudyDetailView(),
+        ),
+      );
+    }
+
     return Padding(
       padding: const EdgeInsets.only(
         left: defaultPadding,
@@ -57,11 +65,7 @@ class TrainerMainTodoItem extends StatelessWidget {
               padding: const EdgeInsets.only(left: defaultPadding),
               child: ElevatedButton(
                 style: buttonStyle,
-                onPressed: () => Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => const StudyDetailView(),
-                  ),
-                ),
+                onPressed: handleItemPressed,
                 child: ListTile(
                   title: Text(
                     '$name 회원님',
@@ -71,7 +75,9 @@ class TrainerMainTodoItem extends StatelessWidget {
                   ),
                   subtitle: Text(
                     '$currentStudy회 진행 · 총 $totalStudy회',
-                    style: bodySmall,
+                    style: bodySmall.copyWith(
+                      color: Colors.grey.shade500,
+                    ),
                   ),
                   trailing: const Icon(
                     Icons.keyboard_arrow_right,

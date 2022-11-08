@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:si_hicoach_fe/domain/common/theme/color.dart';
+import 'package:si_hicoach_fe/domain/common/theme/typography.dart';
 
 class WeeklyCalendarItem extends StatelessWidget {
   final String? name;
@@ -7,7 +9,7 @@ class WeeklyCalendarItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     BoxDecoration itemBackground = BoxDecoration(
-      color: Theme.of(context).colorScheme.primary,
+      color: colorScheme.primary,
       borderRadius: BorderRadius.circular(4),
     );
 
@@ -22,7 +24,9 @@ class WeeklyCalendarItem extends StatelessWidget {
                 child: Center(
                   child: Text(
                     name!,
-                    style: const TextStyle(color: Colors.white),
+                    style: bodySmall.copyWith(
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               ),

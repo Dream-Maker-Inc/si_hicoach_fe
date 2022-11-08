@@ -9,13 +9,23 @@ import 'package:si_hicoach_fe/domain/trainer/views/member/add/additional_informa
 class AddView extends StatelessWidget {
   const AddView({Key? key}) : super(key: key);
 
-  _handleIDValidationButtonClicked(BuildContext context) {
-    print('검증');
-  }
-
   @override
   Widget build(BuildContext context) {
-    final idController = TextEditingController();
+    handleIDValidationButtonClicked() {
+      print('검증');
+    }
+
+    handleIDInputChanged(String value) {
+      print('ID : $value');
+    }
+
+    handleSubmitButtonPressed() {
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (BuildContext context) => AddAdditionalInformation(),
+        ),
+      );
+    }
 
     return Scaffold(
       appBar: const CustomAppBarArrowBack(titleText: '회원 추가'),
@@ -27,7 +37,8 @@ class AddView extends StatelessWidget {
             children: <Widget>[
               const TitleWithDescription(
                 title: '회원 아이디 검색',
-                description: '추가하실 회원의 아이디를 검색해 주세요.',
+                description:
+                    '추가하실 회원의 아이디를 검색해 주세요.\n\n하이코치를 통해 다른 트레이너와 매칭된 경우에는 여러 트레이너에게 중복으로 매칭할 수 없어요.',
               ),
               SizedBox(
                 height: 60,
@@ -35,25 +46,19 @@ class AddView extends StatelessWidget {
                   hintText: '아이디 (이메일) 입력',
                   keyboardType: TextInputType.emailAddress,
                   suffix: CustomElevatedButton(
-                    onPressed: () => _handleIDValidationButtonClicked(context),
+                    onPressed: handleIDValidationButtonClicked,
                     text: '검증',
                   ),
-                  controller: idController,
+                  onChanged: handleIDInputChanged,
                 ),
               ),
               const Spacer(),
               SizedBox(
                 width: double.infinity,
                 child: CustomElevatedButton(
-                    onPressed: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (BuildContext context) =>
-                              AddAdditionalInformation(),
-                        ),
-                      );
-                    },
-                    text: '다음'),
+                  onPressed: handleSubmitButtonPressed,
+                  text: '다음',
+                ),
               ),
             ],
           ),

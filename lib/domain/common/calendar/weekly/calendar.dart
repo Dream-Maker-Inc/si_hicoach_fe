@@ -2,8 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/common/study/edit/study.dart';
 import 'package:si_hicoach_fe/domain/common/calendar/monthly/calendar.dart';
 import 'package:si_hicoach_fe/domain/common/calendar/weekly/components/calendar.dart';
+import 'package:si_hicoach_fe/domain/common/theme/typography.dart';
 
-const List<String> list = <String>['9월 1주차', '30월 1주차', '11월 1주차', '12월 1주차'];
+const List<String> list = <String>[
+  '9월 1주차',
+  '9월 2주차',
+  '9월 3주차',
+  '9월 4주차',
+  '9월 5주차'
+];
 
 class WeeklyCalendarView extends StatefulWidget {
   const WeeklyCalendarView({super.key});
@@ -22,11 +29,7 @@ class _WeeklyCalendarViewState extends State<WeeklyCalendarView> {
         value: dropdownValue,
         icon: const Icon(Icons.keyboard_arrow_down_rounded),
         elevation: 16,
-        style: const TextStyle(
-          fontSize: 26,
-          fontWeight: FontWeight.w700,
-          color: Colors.black,
-        ),
+        style: titleMedium.copyWith(fontWeight: FontWeight.w400),
         underline: Container(height: 2, color: Colors.transparent),
         onChanged: (String? value) {
           setState(() => dropdownValue = value!);
@@ -76,7 +79,7 @@ class _WeeklyCalendarViewState extends State<WeeklyCalendarView> {
           ),
         ],
       ),
-      body: const WeeklyCalendar(),
+      body: WeeklyCalendar(),
     );
   }
 }

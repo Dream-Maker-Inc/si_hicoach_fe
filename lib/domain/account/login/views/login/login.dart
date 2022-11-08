@@ -4,6 +4,7 @@ import 'package:si_hicoach_fe/domain/account/sign_up/views/agreement/agreement.d
 import 'package:si_hicoach_fe/domain/common/components/text_field.dart';
 import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
 import 'package:si_hicoach_fe/domain/common/theme/button.dart';
+import 'package:si_hicoach_fe/domain/common/theme/typography.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/base.dart';
 
 class LoginView extends StatelessWidget {
@@ -51,7 +52,9 @@ class LoginView extends StatelessWidget {
                 ),
                 child: Text(
                   '퍼스널 트레이닝을 더 가치있게',
-                  style: Theme.of(context).textTheme.headline4,
+                  style: bodySmall.copyWith(
+                    color: Colors.grey.shade500,
+                  ),
                   textAlign: TextAlign.center,
                 ),
               ),
@@ -79,11 +82,10 @@ class LoginView extends StatelessWidget {
                       alignment: Alignment.topRight,
                       child: TextButton(
                         onPressed: handleTextButtonPressed,
-                        child: const Text(
-                          '회원정보 찾기',
-                          style: TextStyle(
-                            color: Colors.grey,
-                            decoration: TextDecoration.underline,
+                        child: Text(
+                          '계정을 잊으셨나요?',
+                          style: bodySmall.copyWith(
+                            color: Colors.grey.shade500,
                           ),
                         ),
                       ),
@@ -103,7 +105,9 @@ class LoginView extends StatelessWidget {
                 margin: const EdgeInsets.only(top: 90),
                 child: Text(
                   '아직 회원이 아니세요?',
-                  style: Theme.of(context).textTheme.headline4,
+                  style: bodySmall.copyWith(
+                    color: Colors.grey.shade500,
+                  ),
                 ),
               ),
               Container(

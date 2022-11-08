@@ -17,16 +17,11 @@ class TitleWithDescription extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
-        Text(
-          title,
-          style: titleLarge.copyWith(
-            color: Colors.grey.shade700,
-          ),
-        ),
+        Text(title, style: customTitleStyle),
         const SizedBox(height: smallPadding),
         Text(
           description,
-          style: bodySmall.copyWith(
+          style: bodyMedium.copyWith(
             color: Colors.grey.shade500,
           ),
         ),

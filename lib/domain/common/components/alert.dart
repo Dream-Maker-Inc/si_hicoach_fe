@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
 import 'package:si_hicoach_fe/domain/common/theme/color.dart';
+import 'package:si_hicoach_fe/domain/common/theme/typography.dart';
 
 class CustomAlertDialog extends StatefulWidget {
   final String title;
@@ -29,14 +31,13 @@ class _CustomAlertDialogState extends State<CustomAlertDialog> {
     return AlertDialog(
       title: Text(
         widget.title,
-        style: TextStyle(
-          fontSize: 26,
+        style: titleLarge.copyWith(
           color: colorScheme.primary,
         ),
       ),
       content: Text(
         widget.content,
-        style: Theme.of(context).textTheme.button,
+        style: bodyMedium,
       ),
       actions: <Widget>[
         if (widget.negativeText?.isNotEmpty ?? false) ...[
@@ -44,16 +45,29 @@ class _CustomAlertDialogState extends State<CustomAlertDialog> {
             onPressed: () => widget.onNegativePressed,
             child: Text(
               widget.negativeText!,
-              style: Theme.of(context).textTheme.button,
+              style: bodySmall,
             ),
           ),
         ],
         TextButton(
           style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all(colorScheme.secondary),
+            backgroundColor: MaterialStateProperty.all(
+              colorScheme.secondary,
+            ),
+            padding: MaterialStateProperty.all(
+              const EdgeInsets.only(
+                left: defaultPadding,
+                right: defaultPadding,
+              ),
+            ),
           ),
           onPressed: widget.onPositivePressed,
-          child: Text(widget.positiveText),
+          child: Text(
+            widget.positiveText,
+            style: bodySmall.copyWith(
+              color: colorScheme.primary,
+            ),
+          ),
         ),
       ],
     );
