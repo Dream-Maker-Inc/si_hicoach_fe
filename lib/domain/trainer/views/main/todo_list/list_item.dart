@@ -33,6 +33,12 @@ class TrainerMainTodoItem extends StatelessWidget {
       elevation: MaterialStateProperty.all(0),
     );
 
+    TextStyle? textStyle = isCompleted
+        ? Theme.of(context).textTheme.headline4
+        : Theme.of(context).textTheme.headline4!.copyWith(
+              color: colorScheme.primary,
+            );
+
     return Padding(
       padding: const EdgeInsets.only(
         left: defaultPadding,
@@ -63,7 +69,7 @@ class TrainerMainTodoItem extends StatelessWidget {
                   child: ListTile(
                     title: Text(
                       '$name 회원님 $currentStudy/$totalStudy (완료)',
-                      style: Theme.of(context).textTheme.headline4,
+                      style: textStyle,
                     ),
                     trailing: const Icon(
                       Icons.keyboard_arrow_right,

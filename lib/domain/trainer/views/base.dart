@@ -15,7 +15,7 @@ class _TrainerBaseViewState extends State<TrainerBaseView> {
   int _currentTabIndex = 0;
 
   final List _pages = [
-    const TrainerMainView(),
+    TrainerMainView(),
     const WeeklyCalendarView(),
     const MemberListView(),
     const MypageView(),

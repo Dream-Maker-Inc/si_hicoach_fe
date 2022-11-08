@@ -7,15 +7,35 @@ import 'package:si_hicoach_fe/domain/common/utils/get_date_time.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/main/calendar/calendar.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/main/todo_list/list_item.dart';
 
-class TrainerMainView extends StatefulWidget {
-  const TrainerMainView({Key? key}) : super(key: key);
+class MainProps {
+  final int time;
+  final String name;
+  final bool isCompleted;
+  final int currentStudy;
+  final int totalStudy;
 
-  @override
-  State<TrainerMainView> createState() => _TrainerMainViewState();
+  MainProps(
+    this.time,
+    this.name,
+    this.isCompleted,
+    this.currentStudy,
+    this.totalStudy,
+  );
 }
 
-class _TrainerMainViewState extends State<TrainerMainView> {
+class TrainerMainView extends StatelessWidget {
+  TrainerMainView({Key? key}) : super(key: key);
+
   List<int> timeList = List.empty(growable: true);
+  final List<MainProps> list = [
+    MainProps(9, '한장현', true, 10, 20),
+    MainProps(10, '홍길동', true, 10, 20),
+    MainProps(11, '이은석', true, 10, 20),
+    MainProps(12, '김종완', false, 10, 20),
+    MainProps(13, '한장현', false, 10, 20),
+    MainProps(14, '홍길동', false, 10, 20),
+    MainProps(15, '이은석', false, 10, 20),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -38,19 +58,19 @@ class _TrainerMainViewState extends State<TrainerMainView> {
             const Calendar(),
             const CustomDivider(),
             Expanded(
-              child: ListView.builder(
-                itemCount: timeList.length,
-                itemBuilder: (_, int index) {
-                  return TrainerMainTodoItem(
-                    time: timeList.elementAt(index),
-                    name: '한장현',
-                    isCompleted: true,
-                    currentStudy: 10,
-                    totalStudy: 10,
-                  );
-                },
+                child: ListView(
+              children: List.of(
+                list.map(
+                  (it) => TrainerMainTodoItem(
+                    time: it.time,
+                    name: it.name,
+                    isCompleted: it.isCompleted,
+                    currentStudy: it.currentStudy,
+                    totalStudy: it.totalStudy,
+                  ),
+                ),
               ),
-            ),
+            )),
           ],
         ),
       ),
