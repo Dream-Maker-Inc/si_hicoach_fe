@@ -10,6 +10,10 @@ class MypageEditView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    handleInputChanged(String value) {
+      print(value);
+    }
+
     return Scaffold(
       appBar: CustomAppBarArrowBack(
         titleText: '소속 수정',
@@ -28,13 +32,16 @@ class MypageEditView extends StatelessWidget {
         margin: const EdgeInsets.all(defaultPadding),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: const <Widget>[
-            TitleWithDescription(
+          children: <Widget>[
+            const TitleWithDescription(
               title: '소속 수정',
               description: '변경된 소속을 입력해 주세요.',
             ),
-            SizedBox(height: defaultPadding),
-            CustomTextField(hintText: '소속 입력'),
+            const SizedBox(height: defaultPadding),
+            CustomTextField(
+              hintText: '소속 입력',
+              onChanged: handleInputChanged,
+            ),
           ],
         ),
       ),

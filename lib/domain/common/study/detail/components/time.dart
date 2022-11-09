@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
 import 'package:si_hicoach_fe/domain/common/theme/color.dart';
+import 'package:si_hicoach_fe/domain/common/theme/typography.dart';
 
-class StudyDetailTime extends StatelessWidget {
-  const StudyDetailTime({Key? key}) : super(key: key);
+class DetailTime extends StatelessWidget {
+  const DetailTime({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +14,9 @@ class StudyDetailTime extends StatelessWidget {
           width: double.infinity,
           child: Text(
             '수업 시간',
-            style: Theme.of(context).textTheme.headline1,
+            style: titleLarge.copyWith(
+              color: Colors.grey.shade700,
+            ),
           ),
         ),
         const SizedBox(height: smallPadding),
@@ -33,35 +36,37 @@ class StudyDetailTime extends StatelessWidget {
                 ),
                 child: Text(
                   '오전 11:00',
-                  style: Theme.of(context).textTheme.overline,
+                  style: bodySmall.copyWith(
+                    color: colorScheme.primary,
+                  ),
                 ),
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.only(
+            Padding(
+              padding: const EdgeInsets.only(
                 left: smallPadding,
                 right: defaultPadding,
               ),
-              child: Text('부터', style: TextStyle(fontSize: 20)),
+              child: Text('부터', style: bodySmall),
             ),
             Container(
               decoration: BoxDecoration(
                 borderRadius: const BorderRadius.all(Radius.circular(8)),
                 color: colorScheme.shadow,
               ),
-              child: const Padding(
-                padding: EdgeInsets.only(
+              child: Padding(
+                padding: const EdgeInsets.only(
                   left: smallPadding,
                   right: smallPadding,
                   top: 6,
                   bottom: 6,
                 ),
-                child: Text('오전 11:50', style: TextStyle(fontSize: 20)),
+                child: Text('오전 11:50', style: bodySmall),
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.only(left: defaultPadding),
-              child: Text('까지', style: TextStyle(fontSize: 20)),
+            Padding(
+              padding: const EdgeInsets.only(left: defaultPadding),
+              child: Text('까지', style: bodySmall),
             ),
           ],
         ),

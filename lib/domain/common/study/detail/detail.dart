@@ -3,44 +3,60 @@ import 'package:si_hicoach_fe/domain/common/components/alert.dart';
 import 'package:si_hicoach_fe/domain/common/components/app_bar.dart';
 import 'package:si_hicoach_fe/domain/common/components/divider.dart';
 import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
-import 'package:si_hicoach_fe/domain/common/study/detail/exercise.dart';
-import 'package:si_hicoach_fe/domain/common/study/detail/memo.dart';
-import 'package:si_hicoach_fe/domain/common/study/detail/time.dart';
+import 'package:si_hicoach_fe/domain/common/study/detail/components/exercise.dart';
+import 'package:si_hicoach_fe/domain/common/study/detail/components/memo.dart';
+import 'package:si_hicoach_fe/domain/common/study/detail/components/time.dart';
 import 'package:si_hicoach_fe/domain/common/study/edit/study.dart';
+import 'package:si_hicoach_fe/domain/common/theme/typography.dart';
+import 'package:si_hicoach_fe/domain/trainer/views/member/detail/detail.dart';
 
 class StudyDetailView extends StatelessWidget {
   const StudyDetailView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    handleEditButtonPressed() {
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => StudyEditView(),
+        ),
+      );
+    }
+
+    handleDeleteButtonPressed() {
+      showDialog<String>(
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext context) => CustomAlertDialog(
+          title: '일지 삭제',
+          content: '운동 일지를 삭제하시겠습니까?',
+          positiveText: '삭제',
+          onPositivePressed: () => Navigator.of(context).pop(),
+          negativeText: '취소',
+          onNegativePressed: () => Navigator.pop(context, true),
+        ),
+      );
+    }
+
+    handleMemberDetailButtonPressed() {
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => const DetailView(),
+        ),
+      );
+    }
+
     return Scaffold(
       appBar: CustomAppBarArrowBack(
         titleText: '운동 일지 상세',
         actionsWidget: <Widget>[
           IconButton(
             icon: const Icon(Icons.edit),
-            onPressed: () => Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) => const StudyEditView(),
-              ),
-            ),
+            onPressed: handleEditButtonPressed,
           ),
           IconButton(
             icon: const Icon(Icons.delete_forever),
-            onPressed: () {
-              showDialog<String>(
-                context: context,
-                barrierDismissible: false,
-                builder: (BuildContext context) => CustomAlertDialog(
-                  title: '일지 삭제',
-                  content: '운동 일지를 삭제하시겠습니까?',
-                  positiveText: '삭제',
-                  onPositivePressed: () => Navigator.of(context).pop(),
-                  negativeText: '취소',
-                  onNegativePressed: () => Navigator.pop(context, true),
-                ),
-              );
-            },
+            onPressed: handleDeleteButtonPressed,
           ),
         ],
       ),
@@ -53,11 +69,13 @@ class StudyDetailView extends StatelessWidget {
                 children: <Widget>[
                   Text(
                     '이은석 회원님',
-                    style: Theme.of(context).textTheme.headline1,
+                    style: titleLarge.copyWith(
+                      color: Colors.grey.shade700,
+                    ),
                   ),
                   IconButton(
                     icon: const Icon(Icons.open_in_new_rounded),
-                    onPressed: () {},
+                    onPressed: handleMemberDetailButtonPressed,
                     color: Colors.grey,
                   ),
                 ],
@@ -66,11 +84,13 @@ class StudyDetailView extends StatelessWidget {
                 width: double.infinity,
                 child: Text(
                   '2022년 9월 30일',
-                  style: Theme.of(context).textTheme.caption,
+                  style: bodySmall.copyWith(
+                    color: Colors.grey.shade500,
+                  ),
                 ),
               ),
               const SizedBox(height: widePadding),
-              const StudyDetailTime(),
+              const DetailTime(),
               const SizedBox(height: widePadding),
               Column(
                 children: <Widget>[
@@ -78,10 +98,12 @@ class StudyDetailView extends StatelessWidget {
                     width: double.infinity,
                     child: Text(
                       '운동 일지',
-                      style: Theme.of(context).textTheme.headline1,
+                      style: titleLarge.copyWith(
+                        color: Colors.grey.shade700,
+                      ),
                     ),
                   ),
-                  const StudyDetailExercise(
+                  const DetailExercise(
                     title: '푸시업',
                     weight: 12,
                     count: 34,
@@ -92,7 +114,7 @@ class StudyDetailView extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: widePadding),
-              const StudyDetailMemo(),
+              const DetailMemo(),
             ],
           ),
         ),

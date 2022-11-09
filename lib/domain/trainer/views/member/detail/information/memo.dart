@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:si_hicoach_fe/domain/common/components/title_with_description.dart';
 import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
 import 'package:si_hicoach_fe/domain/common/theme/color.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/edit/memo.dart';
@@ -8,7 +9,7 @@ class Memo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    onEditButtonPressed() {
+    onEditIconPressed() {
       Navigator.of(context).push(
         MaterialPageRoute(
           builder: (BuildContext context) => const MemoEditView(),
@@ -21,11 +22,21 @@ class Memo extends StatelessWidget {
       children: <Widget>[
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Text('메모', style: Theme.of(context).textTheme.headline2),
+            const Expanded(
+              flex: 1,
+              child: TitleWithDescription(
+                title: '메모',
+                description: '회원님에 대해 기억해야 할 사항을 자유롭게 기록하세요.',
+              ),
+            ),
             IconButton(
-              onPressed: onEditButtonPressed,
-              icon: const Icon(Icons.edit_sharp, color: Colors.grey),
+              onPressed: onEditIconPressed,
+              icon: const Icon(
+                Icons.edit_sharp,
+                color: Colors.grey,
+              ),
             ),
           ],
         ),

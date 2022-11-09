@@ -6,6 +6,10 @@ import 'package:si_hicoach_fe/domain/trainer/views/my/my/summary.dart';
 class MypageView extends StatelessWidget {
   const MypageView({Key? key}) : super(key: key);
 
+  final String name = '이은석';
+  final int currentStudy = 80;
+  final int pastStudy = 200;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,9 +18,13 @@ class MypageView extends StatelessWidget {
         child: SizedBox(
           width: double.infinity,
           child: Column(
-            children: const <Widget>[
-              TrainerMypageSummaryView(),
-              MypageMenuView(),
+            children: <Widget>[
+              TrainerMypageSummaryView(
+                name: name,
+                currentStudy: currentStudy,
+                pastStudy: pastStudy,
+              ),
+              const MypageMenuView(),
             ],
           ),
         ),

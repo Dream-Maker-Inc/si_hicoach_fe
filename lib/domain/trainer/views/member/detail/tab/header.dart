@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/common/theme/color.dart';
+import 'package:si_hicoach_fe/domain/common/theme/typography.dart';
 
 class Header extends StatelessWidget {
   const Header({Key? key}) : super(key: key);
@@ -13,13 +14,10 @@ class Header extends StatelessWidget {
       ],
       labelColor: colorScheme.primary,
       unselectedLabelColor: Colors.black,
-      labelStyle: const TextStyle(
-        fontWeight: FontWeight.w600,
-        fontSize: 20,
-      ),
-      unselectedLabelStyle: const TextStyle(
+      labelStyle: labelLarge,
+      unselectedLabelStyle: labelLarge.copyWith(
+        color: Colors.black87,
         fontWeight: FontWeight.w400,
-        fontSize: 20,
       ),
     );
   }

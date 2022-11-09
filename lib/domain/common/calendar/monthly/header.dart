@@ -1,9 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:si_hicoach_fe/domain/common/theme/typography.dart';
 
 class MonthlyCalendarHeader extends StatelessWidget {
   MonthlyCalendarHeader({super.key});
 
   final List<String> dayList = ['일', '월', '화', '수', '목', '금', '토'];
+
+  TableBorder tableBorder = const TableBorder(
+    horizontalInside: BorderSide(
+      width: 1,
+      color: Colors.black12,
+      style: BorderStyle.solid,
+    ),
+    verticalInside: BorderSide(
+      width: 1,
+      color: Colors.black12,
+      style: BorderStyle.solid,
+    ),
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -14,9 +28,8 @@ class MonthlyCalendarHeader extends StatelessWidget {
         child: Center(
           child: Text(
             text,
-            style: const TextStyle(
-              fontSize: 18,
-              color: Colors.black45,
+            style: bodySmall.copyWith(
+              color: Colors.grey.shade500,
             ),
           ),
         ),
@@ -24,7 +37,7 @@ class MonthlyCalendarHeader extends StatelessWidget {
     }
 
     return Table(
-      border: TableBorder.all(color: Colors.black12),
+      border: tableBorder,
       defaultVerticalAlignment: TableCellVerticalAlignment.middle,
       children: <TableRow>[
         TableRow(

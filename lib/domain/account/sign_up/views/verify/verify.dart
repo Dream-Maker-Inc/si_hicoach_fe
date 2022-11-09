@@ -3,6 +3,7 @@ import 'package:si_hicoach_fe/domain/account/sign_up/views/type/type.dart';
 import 'package:si_hicoach_fe/domain/common/components/app_bar.dart';
 import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
 import 'package:si_hicoach_fe/domain/common/theme/button.dart';
+import 'package:si_hicoach_fe/domain/common/theme/color.dart';
 
 class SignUpVerifyView extends StatelessWidget {
   const SignUpVerifyView({super.key});
@@ -25,8 +26,8 @@ class SignUpVerifyView extends StatelessWidget {
           children: <Widget>[
             LinearProgressIndicator(
               value: 0.4,
-              color: Theme.of(context).colorScheme.primary,
-              backgroundColor: const Color.fromRGBO(75, 128, 255, 0.4),
+              color: colorScheme.primary,
+              backgroundColor: colorScheme.primary.withAlpha(40),
             ),
             const Spacer(),
             Container(

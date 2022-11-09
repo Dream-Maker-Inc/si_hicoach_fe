@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/common/components/divider.dart';
-import 'package:si_hicoach_fe/domain/common/theme/color.dart';
+import 'package:si_hicoach_fe/domain/common/theme/typography.dart';
 
-class StudyDetailExercise extends StatelessWidget {
+class DetailExercise extends StatelessWidget {
   final String title;
   final int weight;
   final int count;
   final int set;
 
-  const StudyDetailExercise({
+  const DetailExercise({
     Key? key,
     required this.title,
     required this.weight,
@@ -28,11 +28,13 @@ class StudyDetailExercise extends StatelessWidget {
           children: <Widget>[
             Text(
               title,
-              style: TextStyle(fontSize: 20, color: colorScheme.primary),
+              style: bodyLarge.copyWith(
+                color: Colors.grey.shade700,
+              ),
             ),
             Text(
               "${weight}KG · $count회 · $set세트",
-              style: const TextStyle(fontSize: 20),
+              style: bodyLarge.copyWith(color: Colors.grey.shade700),
             ),
           ],
         ),

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:si_hicoach_fe/domain/trainer/views/member/list/member_list.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/studying/studying_list_item.dart';
 
 class StudyingListView extends StatelessWidget {
-  const StudyingListView({Key? key}) : super(key: key);
+  const StudyingListView({Key? key, required this.list}) : super(key: key);
+  final List<MemberProps> list;
 
   @override
   Widget build(BuildContext context) {
@@ -11,9 +13,15 @@ class StudyingListView extends StatelessWidget {
       shrinkWrap: true,
       children: ListTile.divideTiles(
         context: context,
-        tiles: List.generate(
-          10,
-          (int index) => const StudyingListItemView(),
+        tiles: List.from(
+          list.map(
+            (it) => StudyingListItemView(
+              name: it.name,
+              currentStudy: it.currentStudy,
+              regDate: it.regDate,
+              totalStudy: it.totalStudy,
+            ),
+          ),
         ),
       ).toList(),
     );

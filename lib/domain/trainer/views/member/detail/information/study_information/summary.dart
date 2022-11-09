@@ -1,27 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
+import 'package:si_hicoach_fe/domain/common/theme/typography.dart';
+import 'package:si_hicoach_fe/domain/common/utils/get_date_time.dart';
 
-class Summary extends StatefulWidget {
-  const Summary({Key? key}) : super(key: key);
-
-  @override
-  State<Summary> createState() => _SummaryState();
-}
-
-class _SummaryState extends State<Summary> {
-  TextStyle textStyle = const TextStyle(
-    fontSize: 20,
-    fontWeight: FontWeight.w500,
-  );
+class Summary extends StatelessWidget {
+  Summary({Key? key}) : super(key: key);
+  final String regDate = Utils.getCurrentDateTime('year_month_date');
+  final int currentStudy = 2;
+  final int totalStudy = 26;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      margin: const EdgeInsets.only(
-        top: defaultPadding,
-        bottom: defaultPadding,
-      ),
       decoration: BoxDecoration(
         color: Colors.grey.shade200,
         borderRadius: BorderRadius.circular(10),
@@ -33,24 +24,24 @@ class _SummaryState extends State<Summary> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                Text('수업 등록 일자', style: textStyle),
-                Text('2021년 12월 11일', style: textStyle),
+                Text('수업 등록 일자', style: bodyMedium),
+                Text(regDate, style: bodyMedium),
               ],
             ),
             const SizedBox(height: 4),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                Text('진행한 수업 횟수', style: textStyle),
-                Text('2회', style: textStyle),
+                Text('진행한 수업 횟수', style: bodyMedium),
+                Text('$currentStudy회', style: bodyMedium),
               ],
             ),
             const SizedBox(height: 4),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                Text('잔여 수업 횟수', style: textStyle),
-                Text('26회', style: textStyle),
+                Text('잔여 수업 횟수', style: bodyMedium),
+                Text('$totalStudy회', style: bodyMedium),
               ],
             ),
           ],

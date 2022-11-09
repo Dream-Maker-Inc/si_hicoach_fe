@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
 import 'package:si_hicoach_fe/domain/common/theme/color.dart';
+import 'package:si_hicoach_fe/domain/common/theme/typography.dart';
 
 class CalendarItem extends StatelessWidget {
   final String dayText;
@@ -25,16 +26,13 @@ class CalendarItem extends StatelessWidget {
       color: Colors.transparent,
     );
 
-    TextStyle highlightedTextStyle = const TextStyle(
-      fontSize: 26,
-      fontWeight: FontWeight.normal,
+    TextStyle highlightedTextStyle = titleLarge.copyWith(
       color: Colors.white,
+      fontWeight: FontWeight.w400,
     );
 
-    TextStyle noHighlightedTextStyle = const TextStyle(
-      fontSize: 26,
-      fontWeight: FontWeight.normal,
-      color: Colors.black,
+    TextStyle noHighlightedTextStyle = titleLarge.copyWith(
+      fontWeight: FontWeight.w400,
     );
 
     return Container(
@@ -43,7 +41,12 @@ class CalendarItem extends StatelessWidget {
         width: MediaQuery.of(context).size.width / 7,
         child: Column(
           children: <Widget>[
-            Text(dayText, style: Theme.of(context).textTheme.caption),
+            Text(
+              dayText,
+              style: bodySmall.copyWith(
+                color: Colors.grey.shade500,
+              ),
+            ),
             const SizedBox(height: smallPadding),
             InkWell(
               onTap: () {},

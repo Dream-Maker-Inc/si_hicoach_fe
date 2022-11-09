@@ -1,41 +1,53 @@
 import 'package:flutter/material.dart';
+import 'package:si_hicoach_fe/domain/common/theme/typography.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/detail/detail.dart';
 
 class StudyingListItemView extends StatelessWidget {
-  const StudyingListItemView({Key? key}) : super(key: key);
+  const StudyingListItemView({
+    Key? key,
+    required this.name,
+    required this.regDate,
+    required this.currentStudy,
+    required this.totalStudy,
+  }) : super(key: key);
+
+  final String name;
+  final String regDate;
+  final int currentStudy;
+  final int totalStudy;
 
   @override
   Widget build(BuildContext context) {
+    handleDetailButtonPressed() {
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => const DetailView(),
+        ),
+      );
+    }
+
     return ListTile(
-      onTap: () {
-        Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (context) => const DetailView(),
-          ),
-        );
-      },
-      title: const Text(
-        '이은석 회원님',
-        style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
-      ),
-      subtitle: const Text(
-        '등록일자 : 2021년 12월 11일',
-        style: TextStyle(fontSize: 14, color: Colors.grey),
+      onTap: handleDetailButtonPressed,
+      title: Text('$name 회원님'),
+      subtitle: Text(
+        '등록일자 : $regDate',
+        style: bodySmall.copyWith(
+          color: Colors.grey.shade500,
+        ),
       ),
       trailing: SizedBox(
         width: 150,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: <Widget>[
-            const Text('5회차 (15회)', style: TextStyle(color: Colors.grey)),
+            Text(
+              '$currentStudy회차 ($totalStudy회)',
+              style: bodySmall.copyWith(
+                color: Colors.grey.shade500,
+              ),
+            ),
             IconButton(
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => const DetailView(),
-                  ),
-                );
-              },
+              onPressed: handleDetailButtonPressed,
               icon: const Icon(
                 Icons.keyboard_arrow_right,
                 color: Colors.grey,

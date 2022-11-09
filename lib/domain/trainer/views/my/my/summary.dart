@@ -1,19 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/common/components/title_with_description.dart';
 import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
+import 'package:si_hicoach_fe/domain/common/theme/typography.dart';
 
 class TrainerMypageSummaryView extends StatelessWidget {
-  const TrainerMypageSummaryView({Key? key}) : super(key: key);
+  const TrainerMypageSummaryView({
+    Key? key,
+    required this.name,
+    required this.currentStudy,
+    required this.pastStudy,
+  }) : super(key: key);
+
+  final String name;
+  final int currentStudy;
+  final int pastStudy;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
-        const Padding(
-          padding: EdgeInsets.all(defaultPadding),
+        Padding(
+          padding: const EdgeInsets.all(defaultPadding),
           child: TitleWithDescription(
-            title: '이은석 코치님',
+            title: '$name 코치님',
             description: '소속 : 오르다 PT 샵',
           ),
         ),
@@ -27,28 +37,16 @@ class TrainerMypageSummaryView extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    Text(
-                      '저번 달 완료 수업 (총합)',
-                      style: Theme.of(context).textTheme.headline4,
-                    ),
-                    Text(
-                      '80개',
-                      style: Theme.of(context).textTheme.headline4,
-                    ),
+                    Text('저번 달 완료 수업 (총합)', style: bodyMedium),
+                    Text('$currentStudy개', style: bodyMedium),
                   ],
                 ),
                 const SizedBox(height: smallPadding),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    Text(
-                      '저번 달 완료 수업 (총합)',
-                      style: Theme.of(context).textTheme.headline4,
-                    ),
-                    Text(
-                      '80개',
-                      style: Theme.of(context).textTheme.headline4,
-                    ),
+                    Text('저번 달 완료 수업 (총합)', style: bodyMedium),
+                    Text('$pastStudy개', style: bodyMedium),
                   ],
                 ),
               ],

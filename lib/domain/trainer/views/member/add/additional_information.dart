@@ -2,15 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/common/components/app_bar.dart';
 import 'package:si_hicoach_fe/domain/common/components/chip.dart';
 import 'package:si_hicoach_fe/domain/common/components/text_field.dart';
+import 'package:si_hicoach_fe/domain/common/components/title_with_description.dart';
 import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
 import 'package:si_hicoach_fe/domain/common/theme/button.dart';
 import 'package:si_hicoach_fe/domain/common/theme/color.dart';
 
 class AddAdditionalInformation extends StatelessWidget {
   final List<CustomChipProps> list = [
-    CustomChipProps(1, '다이어트', true),
+    CustomChipProps(1, '다이어트', false),
     CustomChipProps(2, '산후조리', false),
-    CustomChipProps(3, '대회준비', true),
+    CustomChipProps(3, '대회준비', false),
   ];
 
   AddAdditionalInformation({Key? key}) : super(key: key);
@@ -30,16 +31,15 @@ class AddAdditionalInformation extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
-                Text(
-                  '홍길동 회원님에 대한\n추가 정보를 입력해 주세요.',
-                  style: Theme.of(context).textTheme.headline1,
+                const TitleWithDescription(
+                  title: '추가 정보 입력',
+                  description: '홍길동 회원님에 대한 추가 정보를 입력해 주세요.',
                 ),
                 const SizedBox(height: widePadding),
-                Text(
-                  '운동 목표',
-                  style: Theme.of(context).textTheme.headline2,
+                const TitleWithDescription(
+                  title: '운동 목표 (선택)',
+                  description: '회원님의 운동 목표를 복수 선택해 주세요.',
                 ),
-                const SizedBox(height: smallPadding),
                 Wrap(
                   children: List.from(list.map(
                     (it) => CustomChip(
@@ -50,64 +50,52 @@ class AddAdditionalInformation extends StatelessWidget {
                   )),
                 ),
                 const SizedBox(height: widePadding),
-                Text(
-                  '메모',
-                  style: Theme.of(context).textTheme.headline2,
+                const TitleWithDescription(
+                  title: '메모 (선택)',
+                  description: '회원님에 대해 기억해야 할 사항을 자유롭게 기록하세요.',
                 ),
                 SizedBox(
                   width: double.infinity,
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: defaultPadding),
-                    child: TextField(
-                      maxLength: 1000,
-                      minLines: 5,
-                      maxLines: 100,
-                      decoration: InputDecoration(
-                        hintText: '예정/오늘 수업에 대한 정보를 기록해주세요.',
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: colorScheme.primary,
-                            width: 4,
-                          ),
+                  child: TextField(
+                    maxLength: 1000,
+                    minLines: 5,
+                    maxLines: 100,
+                    decoration: InputDecoration(
+                      hintText: '회원님에 대해 기억해야 할 사항을 자유롭게 기록하세요.',
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: colorScheme.primary,
+                          width: 4,
                         ),
                       ),
+                      counterText: '',
                     ),
                   ),
                 ),
                 const SizedBox(height: widePadding),
-                Text(
-                  'PT 수강권',
-                  style: Theme.of(context).textTheme.headline2,
+                const TitleWithDescription(
+                  title: '총 수강 횟수 (필수)',
+                  description:
+                      '앱으로 관리하실 회원님의 수강권의 총 횟수를 입력해 주세요.\n이 횟수를 기반으로 잔여 횟수가 차감됩니다.\n\n총 횟수는 언제든지 추가할 수 있어요.',
                 ),
                 const SizedBox(height: smallPadding),
-                ListTile(
-                  title: const Text('PT 총 횟수'),
-                  subtitle: Column(
-                    children: const <Widget>[
-                      SizedBox(height: smallPadding),
-                      CustomTextField(
-                        keyboardType: TextInputType.number,
-                        hintText: '총 횟수',
-                        suffixText: '회',
-                        maxLength: 3,
-                      ),
-                    ],
-                  ),
+                const CustomTextField(
+                  keyboardType: TextInputType.number,
+                  hintText: '총 횟수',
+                  suffixText: '회',
+                  maxLength: 3,
                 ),
-                const SizedBox(height: defaultPadding),
-                ListTile(
-                  title: const Text('PT 완료 횟수'),
-                  subtitle: Column(
-                    children: const <Widget>[
-                      SizedBox(height: smallPadding),
-                      CustomTextField(
-                        keyboardType: TextInputType.number,
-                        hintText: '완료 횟수',
-                        suffixText: '회',
-                        maxLength: 3,
-                      ),
-                    ],
-                  ),
+                const SizedBox(height: widePadding),
+                const TitleWithDescription(
+                  title: '완료 수강 횟수 (선택)',
+                  description:
+                      '회원을 등록하기 전 이미 진행한 수업이 있다면, 완료 수업 횟수를 입력해 주세요.\n입력 시 완료 수강 횟수는 총 횟수에서 자동으로 차감됩니다.',
+                ),
+                const CustomTextField(
+                  keyboardType: TextInputType.number,
+                  hintText: '완료 횟수',
+                  suffixText: '회',
+                  maxLength: 3,
                 ),
                 const SizedBox(height: widePadding),
                 CustomElevatedButton(onPressed: () {}, text: '완료'),
