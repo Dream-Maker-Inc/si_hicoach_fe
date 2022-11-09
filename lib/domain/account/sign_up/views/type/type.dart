@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/account/sign_up/views/information/information.dart';
+import 'package:si_hicoach_fe/domain/account/sign_up/views/signup_vm.dart';
 import 'package:si_hicoach_fe/domain/common/components/app_bar.dart';
 import 'package:si_hicoach_fe/domain/common/components/text_field.dart';
 import 'package:si_hicoach_fe/domain/common/components/title_with_description.dart';
@@ -8,7 +9,7 @@ import 'package:si_hicoach_fe/domain/common/theme/button.dart';
 import 'package:si_hicoach_fe/domain/common/theme/color.dart';
 
 class SignUpTypeView extends StatefulWidget {
-  const SignUpTypeView({Key? key}) : super(key: key);
+  SignUpTypeView({super.key});
 
   @override
   State<SignUpTypeView> createState() => _SignUpTypePageState();
@@ -32,7 +33,7 @@ class _SignUpTypePageState extends State<SignUpTypeView> {
     handleSubmitButtonPressed() {
       Navigator.of(context).push(
         MaterialPageRoute(
-          builder: (context) => const SignUpInformationView(),
+          builder: (context) => SignUpInformationView(),
         ),
       );
     }

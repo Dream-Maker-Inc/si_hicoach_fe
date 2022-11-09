@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:si_hicoach_fe/domain/account/sign_up/views/signup_vm.dart';
 import 'package:si_hicoach_fe/domain/account/sign_up/views/type/type.dart';
 import 'package:si_hicoach_fe/domain/common/components/app_bar.dart';
 import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
@@ -6,14 +7,14 @@ import 'package:si_hicoach_fe/domain/common/theme/button.dart';
 import 'package:si_hicoach_fe/domain/common/theme/color.dart';
 
 class SignUpVerifyView extends StatelessWidget {
-  const SignUpVerifyView({super.key});
+  SignUpVerifyView({super.key,});
 
   @override
   Widget build(BuildContext context) {
     handleNextButtonPressed() {
       Navigator.of(context).push(
         MaterialPageRoute(
-          builder: (BuildContext context) => const SignUpTypeView(),
+          builder: (BuildContext context) => SignUpTypeView(),
         ),
       );
     }

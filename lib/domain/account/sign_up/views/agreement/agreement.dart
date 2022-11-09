@@ -1,56 +1,55 @@
 import 'package:flutter/material.dart';
-import 'package:si_hicoach_fe/domain/account/sign_up/views/agreement/agreement_list_item.dart';
+import 'package:provider/provider.dart';
+import 'package:si_hicoach_fe/domain/account/sign_up/views/agreement/agreement_vm.dart';
+import 'package:si_hicoach_fe/domain/account/sign_up/views/agreement/list_item/list_item.dart';
+import 'package:si_hicoach_fe/domain/account/sign_up/views/signup_vm.dart';
 import 'package:si_hicoach_fe/domain/account/sign_up/views/verify/verify.dart';
 import 'package:si_hicoach_fe/domain/common/components/app_bar.dart';
 import 'package:si_hicoach_fe/domain/common/components/title_with_description.dart';
 import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
 import 'package:si_hicoach_fe/domain/common/theme/button.dart';
 import 'package:si_hicoach_fe/domain/common/theme/color.dart';
-
-class AgreementProps {
-  final String title;
-  final String content;
-  final bool isRequired;
-
-  AgreementProps(this.title, this.content, this.isRequired);
-}
+import 'package:get/get.dart';
 
 class SignUpAgreementView extends StatefulWidget {
   const SignUpAgreementView({Key? key}) : super(key: key);
 
   @override
-  State<SignUpAgreementView> createState() => _SignUpAgreementPageState();
+  State<SignUpAgreementView> createState() => _SignUpAgreementViewState();
 }
 
-class _SignUpAgreementPageState extends State<SignUpAgreementView> {
-  List<AgreementProps> list = [
-    AgreementProps('서비스 이용약관', '서비스 이용약관 내용', true),
-    AgreementProps('개인정보 처리방침', '개인정보 처리방침 내용', false),
-    AgreementProps('서비스 이용약관', '서비스 이용약관 내용', true),
-    AgreementProps('서비스 이용약관', '서비스 이용약관 내용', true),
-  ];
+class _SignUpAgreementViewState extends State<SignUpAgreementView> {
+  // final _signupViewModel = Get.find<SignupViewModel>();
+  late AgreementViewModel _vm;
 
-  _handleCarouselExpanded(int index, bool isExpanded) {
-    print('carousel expand');
+  _handleItemClick(int id) {
+    print('clicked :$id');
   }
 
-  _handleCheckBoxChanged(bool? value) {
-    print('checkbox change');
+  _handleItemCheck(int id) {
+    _vm.toggleTermChecked(id);
   }
 
-  _handleCheckBoxTapped() {
-    print('checkbox tap');
+  _handleSubmitButtonPressed() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (BuildContext context) => SignUpVerifyView(),
+      ),
+    );
+  }
+
+
+  @override
+  void initState() {
+    super.initState();
+
+    Get.delete<AgreementViewModel>();
+    _vm = Get.put(AgreementViewModel());
   }
 
   @override
   Widget build(BuildContext context) {
-    handleSubmitButtonPressed() {
-      Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (BuildContext context) => const SignUpVerifyView(),
-        ),
-      );
-    }
+    WidgetsBinding.instance.addPostFrameCallback((_) => _vm.fetchTerms());
 
     return Scaffold(
       appBar: const CustomAppBarArrowBack(titleText: '회원가입'),
@@ -78,33 +77,17 @@ class _SignUpAgreementPageState extends State<SignUpAgreementView> {
                   ),
                 ),
                 Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      width: 1,
-                      color: colorScheme.primary,
-                    ),
-                  ),
-                  margin: const EdgeInsets.only(
-                    left: defaultPadding,
-                    right: defaultPadding,
-                  ),
-                  child: ListView(
-                    scrollDirection: Axis.vertical,
-                    shrinkWrap: true,
-                    children: ListTile.divideTiles(
-                      context: context,
-                      tiles: List.of(
-                        list.map(
-                          (it) => AgreementListItem(
-                            title: it.title,
-                            content: it.content,
-                            isRequired: it.isRequired,
-                          ),
-                        ),
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        width: 1,
+                        color: colorScheme.primary,
                       ),
-                    ).toList(),
-                  ),
-                ),
+                    ),
+                    margin: const EdgeInsets.only(
+                      left: defaultPadding,
+                      right: defaultPadding,
+                    ),
+                    child: _buildListView())
               ],
             ),
             const Spacer(),
@@ -112,12 +95,33 @@ class _SignUpAgreementPageState extends State<SignUpAgreementView> {
               width: double.infinity,
               margin: const EdgeInsets.all(defaultPadding),
               child: CustomElevatedButton(
-                onPressed: handleSubmitButtonPressed,
+                onPressed: _handleSubmitButtonPressed,
                 text: '다음',
               ),
             )
           ],
         ),
+      ),
+    );
+  }
+
+  _buildListView() {
+    return GetX<AgreementViewModel>(
+      builder: (vm) => ListView(
+        scrollDirection: Axis.vertical,
+        shrinkWrap: true,
+        children: ListTile.divideTiles(
+          context: context,
+          tiles: List.of(
+            vm.termListItemModels.map(
+              (it) => TermListItem(
+                model: it,
+                onClick: _handleItemClick,
+                onChecked: _handleItemCheck,
+              ),
+            ),
+          ),
+        ).toList(),
       ),
     );
   }

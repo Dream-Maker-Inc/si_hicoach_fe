@@ -6,6 +6,7 @@ import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
 import 'package:si_hicoach_fe/domain/common/theme/button.dart';
 import 'package:si_hicoach_fe/domain/common/theme/typography.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/base.dart';
+import 'package:si_hicoach_fe/pages/account/signup/signup_page.dart';
 
 class LoginView extends StatelessWidget {
   const LoginView({Key? key}) : super(key: key);
@@ -28,7 +29,7 @@ class LoginView extends StatelessWidget {
 
     handleSignUpButtonClicked() {
       Navigator.of(context).push(
-        MaterialPageRoute(builder: (context) => const SignUpAgreementView()),
+        MaterialPageRoute(builder: (context) => const SignupPage()),
       );
     }
 

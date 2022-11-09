@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:si_hicoach_fe/domain/common/theme/checkbox.dart';
-import 'package:si_hicoach_fe/domain/common/theme/color.dart';
-import 'package:si_hicoach_fe/domain/common/theme/text.dart';
+import 'package:si_hicoach_fe/common/themes/custom_theme.dart';
 import 'package:si_hicoach_fe/domain/splash/splash.dart';
 
 void main() {
@@ -15,14 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       child: MaterialApp(
-        theme: ThemeData(
-          useMaterial3: true,
-          brightness: Brightness.light,
-          textTheme: textStyle,
-          colorScheme: colorScheme,
-          checkboxTheme: checkboxThemes,
-          scaffoldBackgroundColor: Colors.white,
-        ),
+        theme: customTheme,
         home: const SplashPage(),
       ),
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
