@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/account/find/views/id/find.dart';
 import 'package:si_hicoach_fe/domain/account/find/views/pw/find.dart';
-import 'package:si_hicoach_fe/domain/common/theme/color.dart';
-import 'package:si_hicoach_fe/domain/common/theme/typography.dart';
+import 'package:si_hicoach_fe/common/theme/color.dart';
+import 'package:si_hicoach_fe/common/theme/typography.dart';
 
 class InformationFindView extends StatefulWidget {
   const InformationFindView({Key? key}) : super(key: key);
@@ -25,8 +25,8 @@ class _InformationFindViewState extends State<InformationFindView> {
               Tab(text: '아이디 찾기'),
               Tab(text: '비밀번호 찾기'),
             ],
-            indicatorColor: colorScheme.primary,
-            labelColor: colorScheme.primary,
+            indicatorColor: primaryColor,
+            labelColor: primaryColor,
             unselectedLabelColor: Colors.black,
             labelStyle: labelLarge,
             unselectedLabelStyle: labelLarge.copyWith(

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:si_hicoach_fe/domain/common/components/app_bar_with_logo.dart';
-import 'package:si_hicoach_fe/domain/common/components/divider.dart';
-import 'package:si_hicoach_fe/domain/common/components/title_with_description.dart';
-import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
-import 'package:si_hicoach_fe/domain/common/utils/get_date_time.dart';
+import 'package:si_hicoach_fe/common/components/app_bar_with_logo.dart';
+import 'package:si_hicoach_fe/common/components/divider.dart';
+import 'package:si_hicoach_fe/common/components/title_with_description.dart';
+import 'package:si_hicoach_fe/common/constants/constants.dart';
+import 'package:si_hicoach_fe/common/utils/get_date_time.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/main/calendar/calendar.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/main/todo_list/list_item.dart';
 

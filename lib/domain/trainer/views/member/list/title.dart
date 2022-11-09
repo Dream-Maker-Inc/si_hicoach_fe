@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:si_hicoach_fe/domain/common/components/title_with_description.dart';
-import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
+import 'package:si_hicoach_fe/common/components/title_with_description.dart';
+import 'package:si_hicoach_fe/common/constants/constants.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/list/member_list.dart';
 
 class MemberListTitle extends StatelessWidget {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:si_hicoach_fe/domain/common/components/divider.dart';
-import 'package:si_hicoach_fe/domain/common/theme/color.dart';
-import 'package:si_hicoach_fe/domain/common/theme/typography.dart';
+import 'package:si_hicoach_fe/common/components/divider.dart';
+import 'package:si_hicoach_fe/common/theme/color.dart';
+import 'package:si_hicoach_fe/common/theme/typography.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/list/member_list.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/studying/studying_list.dart';
 
@@ -24,7 +24,7 @@ class MemberListTab extends StatelessWidget {
                   Tab(text: '수강 중'),
                   Tab(text: '수강 완료'),
                 ],
-                labelColor: colorScheme.primary,
+                labelColor: primaryColor,
                 unselectedLabelColor: Colors.black87,
                 labelStyle: labelLarge,
                 unselectedLabelStyle: labelLarge.copyWith(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:si_hicoach_fe/domain/common/components/divider.dart';
-import 'package:si_hicoach_fe/domain/common/theme/color.dart';
-import 'package:si_hicoach_fe/domain/common/theme/typography.dart';
+import 'package:si_hicoach_fe/common/components/divider.dart';
+import 'package:si_hicoach_fe/common/theme/color.dart';
+import 'package:si_hicoach_fe/common/theme/typography.dart';
 import 'package:si_hicoach_fe/domain/member/views/main/grid.dart';
 
 class MemberMainTab extends StatelessWidget {
@@ -23,7 +23,7 @@ class MemberMainTab extends StatelessWidget {
           tabs: <Widget>[
             for (var item in tabTitle) Tab(text: item, height: 54)
           ],
-          labelColor: colorScheme.primary,
+          labelColor: primaryColor,
           unselectedLabelColor: Colors.black,
           labelStyle: labelLarge,
           unselectedLabelStyle: labelLarge.copyWith(

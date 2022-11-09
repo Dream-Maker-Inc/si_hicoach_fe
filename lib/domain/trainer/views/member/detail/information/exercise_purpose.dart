@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:si_hicoach_fe/domain/common/components/chip.dart';
-import 'package:si_hicoach_fe/domain/common/components/title_with_description.dart';
+import 'package:si_hicoach_fe/common/components/chip.dart';
+import 'package:si_hicoach_fe/common/components/title_with_description.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/edit/purpose.dart';
 
 class ExercisePurpose extends StatefulWidget {

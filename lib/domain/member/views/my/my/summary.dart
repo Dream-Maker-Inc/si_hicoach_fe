@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:si_hicoach_fe/domain/common/components/divider.dart';
-import 'package:si_hicoach_fe/domain/common/components/title_with_description.dart';
-import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
-import 'package:si_hicoach_fe/domain/common/theme/button.dart';
-import 'package:si_hicoach_fe/domain/common/inbody/inbody.dart';
-import 'package:si_hicoach_fe/domain/common/theme/typography.dart';
+import 'package:si_hicoach_fe/common/components/divider.dart';
+import 'package:si_hicoach_fe/common/components/title_with_description.dart';
+import 'package:si_hicoach_fe/common/constants/constants.dart';
+import 'package:si_hicoach_fe/common/theme/button.dart';
+import 'package:si_hicoach_fe/common/inbody/inbody.dart';
+import 'package:si_hicoach_fe/common/theme/typography.dart';
 import 'package:si_hicoach_fe/domain/member/views/my/my/memo.dart';
 
 class SummaryView extends StatelessWidget {

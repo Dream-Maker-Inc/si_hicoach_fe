@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:si_hicoach_fe/domain/common/components/app_bar.dart';
-import 'package:si_hicoach_fe/domain/common/components/chip.dart';
-import 'package:si_hicoach_fe/domain/common/components/title_with_description.dart';
-import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
-import 'package:si_hicoach_fe/domain/common/theme/color.dart';
+import 'package:si_hicoach_fe/common/components/app_bar.dart';
+import 'package:si_hicoach_fe/common/components/chip.dart';
+import 'package:si_hicoach_fe/common/components/title_with_description.dart';
+import 'package:si_hicoach_fe/common/constants/constants.dart';
+import 'package:si_hicoach_fe/common/theme/color.dart';
 
 class PurposeEditView extends StatelessWidget {
   PurposeEditView({Key? key}) : super(key: key);
@@ -26,7 +26,10 @@ class PurposeEditView extends StatelessWidget {
         actionsWidget: <Widget>[
           IconButton(
             onPressed: () {},
-            icon: Icon(Icons.check_rounded, color: colorScheme.primary),
+            icon: Icon(
+              Icons.check_rounded,
+              color: primaryColor,
+            ),
           ),
         ],
       ),

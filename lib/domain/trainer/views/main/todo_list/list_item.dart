@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
-import 'package:si_hicoach_fe/domain/common/study/detail/detail.dart';
-import 'package:si_hicoach_fe/domain/common/theme/color.dart';
-import 'package:si_hicoach_fe/domain/common/theme/typography.dart';
+import 'package:si_hicoach_fe/common/constants/constants.dart';
+import 'package:si_hicoach_fe/common/study/detail/detail.dart';
+import 'package:si_hicoach_fe/common/theme/color.dart';
+import 'package:si_hicoach_fe/common/theme/typography.dart';
 
 class TrainerMainTodoItem extends StatelessWidget {
   final int time;
@@ -24,7 +24,7 @@ class TrainerMainTodoItem extends StatelessWidget {
   Widget build(BuildContext context) {
     ButtonStyle buttonStyle = ButtonStyle(
       backgroundColor: MaterialStateProperty.all(
-        isCompleted ? Colors.grey.shade200 : colorScheme.primary.withAlpha(20),
+        isCompleted ? Colors.grey.shade200 : primaryColor.withAlpha(20),
       ),
       shape: MaterialStateProperty.all(
         RoundedRectangleBorder(

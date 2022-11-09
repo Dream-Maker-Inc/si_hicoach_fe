@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:si_hicoach_fe/domain/common/calendar/weekly/calendar.dart';
-import 'package:si_hicoach_fe/domain/common/components/divider.dart';
+import 'package:si_hicoach_fe/common/calendar/weekly/calendar.dart';
+import 'package:si_hicoach_fe/common/components/divider.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/main/main.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/list/member_list.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/my/my/my.dart';

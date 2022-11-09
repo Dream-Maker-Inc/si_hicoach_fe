@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
-import 'package:si_hicoach_fe/domain/common/theme/color.dart';
-import 'package:si_hicoach_fe/domain/common/theme/typography.dart';
+import 'package:si_hicoach_fe/common/constants/constants.dart';
+import 'package:si_hicoach_fe/common/theme/color.dart';
+import 'package:si_hicoach_fe/common/theme/typography.dart';
 
 class CalendarItem extends StatelessWidget {
   final String dayText;
@@ -19,7 +19,7 @@ class CalendarItem extends StatelessWidget {
   Widget build(BuildContext context) {
     BoxDecoration highlightedDate = BoxDecoration(
       borderRadius: BorderRadius.circular(20),
-      color: colorScheme.primary,
+      color: primaryColor,
     );
 
     BoxDecoration noHighlightedDate = const BoxDecoration(

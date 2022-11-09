@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:si_hicoach_fe/domain/common/components/app_bar.dart';
-import 'package:si_hicoach_fe/domain/common/components/chip.dart';
-import 'package:si_hicoach_fe/domain/common/components/text_field.dart';
-import 'package:si_hicoach_fe/domain/common/components/title_with_description.dart';
-import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
-import 'package:si_hicoach_fe/domain/common/theme/button.dart';
-import 'package:si_hicoach_fe/domain/common/theme/color.dart';
+import 'package:si_hicoach_fe/common/components/app_bar.dart';
+import 'package:si_hicoach_fe/common/components/chip.dart';
+import 'package:si_hicoach_fe/common/components/text_field.dart';
+import 'package:si_hicoach_fe/common/components/title_with_description.dart';
+import 'package:si_hicoach_fe/common/constants/constants.dart';
+import 'package:si_hicoach_fe/common/theme/button.dart';
+import 'package:si_hicoach_fe/common/theme/color.dart';
 
 class AddAdditionalInformation extends StatelessWidget {
   final List<CustomChipProps> list = [
@@ -64,7 +64,7 @@ class AddAdditionalInformation extends StatelessWidget {
                       hintText: '회원님에 대해 기억해야 할 사항을 자유롭게 기록하세요.',
                       border: OutlineInputBorder(
                         borderSide: BorderSide(
-                          color: colorScheme.primary,
+                          color: primaryColor,
                           width: 4,
                         ),
                       ),

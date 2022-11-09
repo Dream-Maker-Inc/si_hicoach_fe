@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:si_hicoach_fe/domain/common/study/detail/detail.dart';
+import 'package:si_hicoach_fe/common/study/detail/detail.dart';
 
 class StudyingListItemView extends StatelessWidget {
   const StudyingListItemView({Key? key}) : super(key: key);

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:si_hicoach_fe/domain/common/components/app_bar.dart';
+import 'package:si_hicoach_fe/common/components/app_bar.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/my/account/edit.dart';
 
 class AccountView extends StatelessWidget {

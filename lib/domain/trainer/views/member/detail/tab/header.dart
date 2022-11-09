@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:si_hicoach_fe/domain/common/theme/color.dart';
-import 'package:si_hicoach_fe/domain/common/theme/typography.dart';
+import 'package:si_hicoach_fe/common/theme/color.dart';
+import 'package:si_hicoach_fe/common/theme/typography.dart';
 
 class Header extends StatelessWidget {
   const Header({Key? key}) : super(key: key);
@@ -12,7 +12,7 @@ class Header extends StatelessWidget {
         Tab(text: '회원 정보', height: 54),
         Tab(text: '운동 일지'),
       ],
-      labelColor: colorScheme.primary,
+      labelColor: primaryColor,
       unselectedLabelColor: Colors.black,
       labelStyle: labelLarge,
       unselectedLabelStyle: labelLarge.copyWith(

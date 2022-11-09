@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:si_hicoach_fe/domain/common/components/text_field.dart';
-import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
-import 'package:si_hicoach_fe/domain/common/theme/typography.dart';
+import 'package:si_hicoach_fe/common/components/text_field.dart';
+import 'package:si_hicoach_fe/common/constants/constants.dart';
+import 'package:si_hicoach_fe/common/theme/typography.dart';
 
 class EditTicketDialog extends StatelessWidget {
   const EditTicketDialog({Key? key}) : super(key: key);

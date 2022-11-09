@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:si_hicoach_fe/domain/common/components/app_bar.dart';
-import 'package:si_hicoach_fe/domain/common/components/text_field.dart';
-import 'package:si_hicoach_fe/domain/common/components/title_with_description.dart';
-import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
-import 'package:si_hicoach_fe/domain/common/theme/button.dart';
+import 'package:si_hicoach_fe/common/components/app_bar.dart';
+import 'package:si_hicoach_fe/common/components/text_field.dart';
+import 'package:si_hicoach_fe/common/components/title_with_description.dart';
+import 'package:si_hicoach_fe/common/constants/constants.dart';
+import 'package:si_hicoach_fe/common/theme/button.dart';
 import 'package:si_hicoach_fe/pages/account/signup/signup_page.dart';
-import 'package:si_hicoach_fe/domain/common/theme/color.dart';
+import 'package:si_hicoach_fe/common/theme/color.dart';
 
 class SignUpInformationView extends StatelessWidget {
   const SignUpInformationView({Key? key}) : super(key: key);
@@ -46,8 +46,8 @@ class SignUpInformationView extends StatelessWidget {
               children: <Widget>[
                 LinearProgressIndicator(
                   value: 0.8,
-                  color: colorScheme.primary,
-                  backgroundColor: colorScheme.primary.withAlpha(40),
+                  color: primaryColor,
+                  backgroundColor: primaryColor.withAlpha(40),
                 ),
                 Container(
                   margin: const EdgeInsets.all(defaultPadding),

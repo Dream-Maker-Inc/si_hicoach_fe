@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:si_hicoach_fe/domain/common/components/app_bar.dart';
-import 'package:si_hicoach_fe/domain/common/components/text_field.dart';
-import 'package:si_hicoach_fe/domain/common/components/title_with_description.dart';
-import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
-import 'package:si_hicoach_fe/domain/common/theme/color.dart';
+import 'package:si_hicoach_fe/common/components/app_bar.dart';
+import 'package:si_hicoach_fe/common/components/text_field.dart';
+import 'package:si_hicoach_fe/common/components/title_with_description.dart';
+import 'package:si_hicoach_fe/common/constants/constants.dart';
+import 'package:si_hicoach_fe/common/theme/color.dart';
 
 class MypageEditView extends StatelessWidget {
   const MypageEditView({Key? key}) : super(key: key);
@@ -22,7 +22,7 @@ class MypageEditView extends StatelessWidget {
             onPressed: () {},
             icon: Icon(
               Icons.check_rounded,
-              color: colorScheme.primary,
+              color: primaryColor,
             ),
           ),
         ],

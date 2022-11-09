@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:si_hicoach_fe/domain/common/theme/color.dart';
+import 'package:si_hicoach_fe/common/theme/color.dart';
 
 class AgreementListItem extends StatefulWidget {
   final String title;
@@ -32,7 +32,7 @@ class _AgreementListItemState extends State<AgreementListItem> {
       title: Text(
         widget.title,
         style: TextStyle(
-          color: colorScheme.primary,
+          color: primaryColor,
           fontSize: 16,
         ),
       ),
@@ -40,7 +40,7 @@ class _AgreementListItemState extends State<AgreementListItem> {
         value: true,
         onChanged: _handleCheckBoxChanged,
         activeColor: Colors.transparent,
-        checkColor: colorScheme.primary,
+        checkColor: primaryColor,
       ),
       trailing: const IconButton(
         onPressed: _handleDropdownPressed,

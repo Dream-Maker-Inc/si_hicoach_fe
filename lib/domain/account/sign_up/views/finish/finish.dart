@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/account/sign_up/views/finish/finish_vm.dart';
-import 'package:si_hicoach_fe/domain/common/components/app_bar.dart';
-import 'package:si_hicoach_fe/domain/common/components/title_with_description.dart';
-import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
-import 'package:si_hicoach_fe/domain/common/theme/button.dart';
+import 'package:si_hicoach_fe/common/components/app_bar.dart';
+import 'package:si_hicoach_fe/common/components/title_with_description.dart';
+import 'package:si_hicoach_fe/common/constants/constants.dart';
+import 'package:si_hicoach_fe/common/theme/button.dart';
 import 'package:provider/provider.dart';
-import 'package:si_hicoach_fe/domain/common/theme/color.dart';
+import 'package:si_hicoach_fe/common/theme/color.dart';
 
 class SignUpFinishView extends StatelessWidget {
   late SignupFinishViewModel vm;
@@ -35,8 +35,8 @@ class SignUpFinishView extends StatelessWidget {
               children: <Widget>[
                 LinearProgressIndicator(
                   value: 1,
-                  color: colorScheme.primary,
-                  backgroundColor: colorScheme.primary.withAlpha(40),
+                  color: primaryColor,
+                  backgroundColor: primaryColor.withAlpha(40),
                 ),
                 const Padding(
                   padding: EdgeInsets.all(defaultPadding),

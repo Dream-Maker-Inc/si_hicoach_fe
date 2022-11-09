@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/account/login/views/login/login.dart';
-import 'package:si_hicoach_fe/domain/common/components/app_bar.dart';
-import 'package:si_hicoach_fe/domain/common/components/title_with_description.dart';
-import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
-import 'package:si_hicoach_fe/domain/common/theme/button.dart';
-import 'package:si_hicoach_fe/domain/common/theme/color.dart';
+import 'package:si_hicoach_fe/common/components/app_bar.dart';
+import 'package:si_hicoach_fe/common/components/title_with_description.dart';
+import 'package:si_hicoach_fe/common/constants/constants.dart';
+import 'package:si_hicoach_fe/common/theme/button.dart';
+import 'package:si_hicoach_fe/common/theme/color.dart';
 
 class IDFindSuccessView extends StatelessWidget {
   const IDFindSuccessView({Key? key}) : super(key: key);
@@ -35,7 +35,7 @@ class IDFindSuccessView extends StatelessWidget {
               padding: const EdgeInsets.all(30),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
-                color: colorScheme.onTertiary,
+                color: Colors.grey.shade100,
               ),
               child: Center(child: Text(id)),
             ),

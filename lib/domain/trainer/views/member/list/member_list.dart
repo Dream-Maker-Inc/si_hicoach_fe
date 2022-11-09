@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:si_hicoach_fe/domain/common/components/app_bar_with_logo.dart';
-import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
-import 'package:si_hicoach_fe/domain/common/utils/get_date_time.dart';
+import 'package:si_hicoach_fe/common/components/app_bar_with_logo.dart';
+import 'package:si_hicoach_fe/common/constants/constants.dart';
+import 'package:si_hicoach_fe/common/utils/get_date_time.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/add/add.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/list/tab.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/list/title.dart';

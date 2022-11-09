@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
-import 'package:si_hicoach_fe/domain/common/theme/typography.dart';
-import 'package:si_hicoach_fe/domain/common/utils/get_date_time.dart';
+import 'package:si_hicoach_fe/common/constants/constants.dart';
+import 'package:si_hicoach_fe/common/theme/typography.dart';
+import 'package:si_hicoach_fe/common/utils/get_date_time.dart';
 
 class Summary extends StatelessWidget {
   Summary({Key? key}) : super(key: key);

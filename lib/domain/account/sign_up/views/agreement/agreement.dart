@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/account/sign_up/views/agreement/agreement_list_item.dart';
 import 'package:si_hicoach_fe/domain/account/sign_up/views/verify/verify.dart';
-import 'package:si_hicoach_fe/domain/common/components/app_bar.dart';
-import 'package:si_hicoach_fe/domain/common/components/title_with_description.dart';
-import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
-import 'package:si_hicoach_fe/domain/common/theme/button.dart';
-import 'package:si_hicoach_fe/domain/common/theme/color.dart';
+import 'package:si_hicoach_fe/common/components/app_bar.dart';
+import 'package:si_hicoach_fe/common/components/title_with_description.dart';
+import 'package:si_hicoach_fe/common/constants/constants.dart';
+import 'package:si_hicoach_fe/common/theme/button.dart';
+import 'package:si_hicoach_fe/common/theme/color.dart';
 
 class AgreementProps {
   final String title;
@@ -62,8 +62,8 @@ class _SignUpAgreementPageState extends State<SignUpAgreementView> {
               children: <Widget>[
                 LinearProgressIndicator(
                   value: 0.2,
-                  color: colorScheme.primary,
-                  backgroundColor: colorScheme.primary.withAlpha(40),
+                  color: primaryColor,
+                  backgroundColor: primaryColor.withAlpha(40),
                 ),
                 Container(
                   margin: const EdgeInsets.all(defaultPadding),
@@ -81,7 +81,7 @@ class _SignUpAgreementPageState extends State<SignUpAgreementView> {
                   decoration: BoxDecoration(
                     border: Border.all(
                       width: 1,
-                      color: colorScheme.primary,
+                      color: primaryColor,
                     ),
                   ),
                   margin: const EdgeInsets.only(

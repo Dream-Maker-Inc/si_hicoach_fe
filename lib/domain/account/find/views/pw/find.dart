@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/account/find/views/pw/success.dart';
-import 'package:si_hicoach_fe/domain/common/components/text_field.dart';
-import 'package:si_hicoach_fe/domain/common/components/title_with_description.dart';
-import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
-import 'package:si_hicoach_fe/domain/common/theme/button.dart';
+import 'package:si_hicoach_fe/common/components/text_field.dart';
+import 'package:si_hicoach_fe/common/components/title_with_description.dart';
+import 'package:si_hicoach_fe/common/constants/constants.dart';
+import 'package:si_hicoach_fe/common/theme/button.dart';
 
 class PasswordFindView extends StatelessWidget {
   const PasswordFindView({Key? key}) : super(key: key);

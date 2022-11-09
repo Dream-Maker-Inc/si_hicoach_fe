@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:si_hicoach_fe/domain/common/components/alert.dart';
-import 'package:si_hicoach_fe/domain/common/components/app_bar.dart';
-import 'package:si_hicoach_fe/domain/common/components/divider.dart';
-import 'package:si_hicoach_fe/domain/common/components/title_with_description.dart';
-import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
+import 'package:si_hicoach_fe/common/components/alert.dart';
+import 'package:si_hicoach_fe/common/components/app_bar.dart';
+import 'package:si_hicoach_fe/common/components/divider.dart';
+import 'package:si_hicoach_fe/common/components/title_with_description.dart';
+import 'package:si_hicoach_fe/common/constants/constants.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/detail/information/information.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/detail/study/studying_list.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/detail/tab/header.dart';

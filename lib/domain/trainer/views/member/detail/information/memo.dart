@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:si_hicoach_fe/domain/common/components/title_with_description.dart';
-import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
-import 'package:si_hicoach_fe/domain/common/theme/color.dart';
+import 'package:si_hicoach_fe/common/components/title_with_description.dart';
+import 'package:si_hicoach_fe/common/constants/constants.dart';
+import 'package:si_hicoach_fe/common/theme/color.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/edit/memo.dart';
 
 class Memo extends StatelessWidget {
@@ -53,7 +53,7 @@ class Memo extends StatelessWidget {
                 hintText: 'MEMOMEMOMEMOMEMOMEMOMEMOMEMOMEMOMEMOMEMOMEMOMEMO',
                 border: OutlineInputBorder(
                   borderSide: BorderSide(
-                    color: colorScheme.primary,
+                    color: primaryColor,
                     width: 4,
                   ),
                 ),

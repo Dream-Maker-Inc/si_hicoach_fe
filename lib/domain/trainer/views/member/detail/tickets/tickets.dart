@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:si_hicoach_fe/domain/common/components/alert_widget.dart';
-import 'package:si_hicoach_fe/domain/common/components/app_bar.dart';
-import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
-import 'package:si_hicoach_fe/domain/common/theme/color.dart';
-import 'package:si_hicoach_fe/domain/common/theme/typography.dart';
+import 'package:si_hicoach_fe/common/components/alert_widget.dart';
+import 'package:si_hicoach_fe/common/components/app_bar.dart';
+import 'package:si_hicoach_fe/common/constants/constants.dart';
+import 'package:si_hicoach_fe/common/theme/color.dart';
+import 'package:si_hicoach_fe/common/theme/typography.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/detail/tickets/add_dialog.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/detail/tickets/remove_dialog.dart';
 
@@ -66,7 +66,7 @@ class TicketsView extends StatelessWidget {
                 Container(
                   margin: const EdgeInsets.all(smallPadding),
                   decoration: BoxDecoration(
-                    color: colorScheme.primary.withAlpha(20),
+                    color: primaryColor.withAlpha(20),
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: Row(
@@ -89,7 +89,7 @@ class TicketsView extends StatelessWidget {
                         onPressed: handleAddButtonPressed,
                         icon: Icon(
                           Icons.add_rounded,
-                          color: colorScheme.primary,
+                          color: primaryColor,
                         ),
                       ),
                     ],

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:si_hicoach_fe/domain/common/components/app_bar.dart';
-import 'package:si_hicoach_fe/domain/common/theme/color.dart';
+import 'package:si_hicoach_fe/common/components/app_bar.dart';
+import 'package:si_hicoach_fe/common/theme/color.dart';
 
 class NotificationView extends StatefulWidget {
   const NotificationView({Key? key}) : super(key: key);
@@ -37,8 +37,8 @@ class _MemberMypageNotificationViewState extends State<NotificationView> {
                   onChanged: (value) {
                     setState(() => isSubmitNotificationSwitched = value);
                   },
-                  activeTrackColor: colorScheme.secondary,
-                  activeColor: colorScheme.primary,
+                  activeTrackColor: secondaryColor,
+                  activeColor: primaryColor,
                 ),
               ),
               ListTile(
@@ -54,8 +54,8 @@ class _MemberMypageNotificationViewState extends State<NotificationView> {
                   onChanged: (value) {
                     setState(() => isChangeNotificationSwitched = value);
                   },
-                  activeTrackColor: colorScheme.secondary,
-                  activeColor: colorScheme.primary,
+                  activeTrackColor: secondaryColor,
+                  activeColor: primaryColor,
                 ),
               ),
             ],

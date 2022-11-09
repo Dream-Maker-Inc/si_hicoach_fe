@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:si_hicoach_fe/domain/common/utils/get_date_time.dart';
+import 'package:si_hicoach_fe/common/utils/get_date_time.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/main/calendar/calendar_item.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/main/calendar/left_shadow.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/main/calendar/right_shadow.dart';

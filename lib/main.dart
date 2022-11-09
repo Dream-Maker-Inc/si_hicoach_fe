@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:si_hicoach_fe/domain/common/theme/checkbox.dart';
-import 'package:si_hicoach_fe/domain/common/theme/color.dart';
-import 'package:si_hicoach_fe/domain/common/theme/text.dart';
+import 'package:si_hicoach_fe/common/theme/checkbox.dart';
+import 'package:si_hicoach_fe/common/theme/color.dart';
 import 'package:si_hicoach_fe/domain/splash/splash.dart';
 
 void main() {
@@ -17,8 +16,6 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         theme: ThemeData(
           useMaterial3: true,
-          brightness: Brightness.light,
-          textTheme: textStyle,
           colorScheme: colorScheme,
           checkboxTheme: checkboxThemes,
           scaffoldBackgroundColor: Colors.white,
