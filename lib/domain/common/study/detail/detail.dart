@@ -11,7 +11,12 @@ import 'package:si_hicoach_fe/domain/common/theme/typography.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/detail/detail.dart';
 
 class StudyDetailView extends StatelessWidget {
-  const StudyDetailView({Key? key}) : super(key: key);
+  const StudyDetailView({
+    Key? key,
+    this.isMemberDetailEnabled = true,
+  }) : super(key: key);
+
+  final bool? isMemberDetailEnabled;
 
   @override
   Widget build(BuildContext context) {
@@ -73,11 +78,13 @@ class StudyDetailView extends StatelessWidget {
                       color: Colors.grey.shade700,
                     ),
                   ),
-                  IconButton(
-                    icon: const Icon(Icons.open_in_new_rounded),
-                    onPressed: handleMemberDetailButtonPressed,
-                    color: Colors.grey,
-                  ),
+                  if (isMemberDetailEnabled == true) ...[
+                    IconButton(
+                      icon: const Icon(Icons.open_in_new_rounded),
+                      onPressed: handleMemberDetailButtonPressed,
+                      color: Colors.grey,
+                    ),
+                  ],
                 ],
               ),
               SizedBox(

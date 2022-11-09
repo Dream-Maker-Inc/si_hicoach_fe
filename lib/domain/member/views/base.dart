@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/common/calendar/monthly/calendar.dart';
+import 'package:si_hicoach_fe/domain/common/components/divider.dart';
 import 'package:si_hicoach_fe/domain/member/views/main/main.dart';
 import 'package:si_hicoach_fe/domain/member/views/my/my/my.dart';
 import 'package:si_hicoach_fe/domain/member/views/studies/studies.dart';
@@ -16,7 +17,7 @@ class _TrainerBaseViewState extends State<MemberBaseView> {
 
   final List _pages = [
     const MemberMainView(),
-    const MonthlyCalendarView(),
+    const MonthlyCalendarView(isBackButtonEnabled: false),
     MemberStudiesView(),
     const MypageView(),
   ];
@@ -47,7 +48,13 @@ class _TrainerBaseViewState extends State<MemberBaseView> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: _pages[_currentTabIndex],
-      bottomNavigationBar: _bottomNavigationBar(),
+      bottomNavigationBar: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          const CustomDivider(),
+          _bottomNavigationBar(),
+        ],
+      ),
     );
   }
 }

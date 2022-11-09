@@ -5,6 +5,7 @@ import 'package:si_hicoach_fe/domain/common/components/text_field.dart';
 import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
 import 'package:si_hicoach_fe/domain/common/theme/button.dart';
 import 'package:si_hicoach_fe/domain/common/theme/typography.dart';
+import 'package:si_hicoach_fe/domain/member/views/base.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/base.dart';
 
 class LoginView extends StatelessWidget {
@@ -22,7 +23,7 @@ class LoginView extends StatelessWidget {
   Widget build(BuildContext context) {
     handleLoginButtonClicked() {
       Navigator.of(context).push(
-        MaterialPageRoute(builder: (context) => const TrainerBaseView()),
+        MaterialPageRoute(builder: (context) => const MemberBaseView()),
       );
     }
 

@@ -6,17 +6,10 @@ class MonthlyCalendarHeader extends StatelessWidget {
 
   final List<String> dayList = ['일', '월', '화', '수', '목', '금', '토'];
 
-  TableBorder tableBorder = const TableBorder(
-    horizontalInside: BorderSide(
-      width: 1,
-      color: Colors.black12,
-      style: BorderStyle.solid,
-    ),
-    verticalInside: BorderSide(
-      width: 1,
-      color: Colors.black12,
-      style: BorderStyle.solid,
-    ),
+  TableBorder tableBorder = TableBorder.all(
+    width: 1,
+    color: Colors.black12,
+    style: BorderStyle.solid,
   );
 
   @override
