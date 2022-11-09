@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
+import 'package:si_hicoach_fe/domain/common/theme/typography.dart';
 
 class GridItem extends StatelessWidget {
   final String name;
@@ -15,43 +16,66 @@ class GridItem extends StatelessWidget {
     required this.count,
   }) : super(key: key);
 
-  Widget listItem(BuildContext context, Widget icon, String text) {
-    return Row(
-      children: <Widget>[
-        icon,
-        const SizedBox(width: smallPadding),
-        Text(text, style: const TextStyle(fontSize: 18)),
-      ],
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        Text(
-          name,
-          style: Theme.of(context).textTheme.headline2,
-        ),
-        const SizedBox(height: widePadding),
-        listItem(
-          context,
-          const Icon(Icons.fitness_center_rounded),
-          "${weight}KG",
-        ),
+        Text(name, style: bodyLarge),
         const SizedBox(height: smallPadding),
-        listItem(
-          context,
-          const Icon(Icons.repeat_rounded),
-          "${set}SET",
-        ),
-        const SizedBox(height: smallPadding),
-        listItem(
-          context,
-          const Icon(Icons.timer_outlined),
-          "$count회",
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            Row(
+              children: <Widget>[
+                Icon(
+                  Icons.fitness_center_rounded,
+                  size: 16,
+                  color: Colors.grey.shade500,
+                ),
+                const SizedBox(width: smallPadding),
+                Text(
+                  '${weight}KG',
+                  style: bodyMedium.copyWith(
+                    color: Colors.grey.shade500,
+                  ),
+                ),
+              ],
+            ),
+            Row(
+              children: <Widget>[
+                Icon(
+                  Icons.repeat_rounded,
+                  size: 16,
+                  color: Colors.grey.shade500,
+                ),
+                const SizedBox(width: smallPadding),
+                Text(
+                  '${set}SET',
+                  style: bodyMedium.copyWith(
+                    color: Colors.grey.shade500,
+                  ),
+                ),
+              ],
+            ),
+            Row(
+              children: <Widget>[
+                Icon(
+                  Icons.timer_outlined,
+                  size: 16,
+                  color: Colors.grey.shade500,
+                ),
+                const SizedBox(width: smallPadding),
+                Text(
+                  '$count회',
+                  style: bodyMedium.copyWith(
+                    color: Colors.grey.shade500,
+                  ),
+                ),
+              ],
+            ),
+          ],
         ),
       ],
     );

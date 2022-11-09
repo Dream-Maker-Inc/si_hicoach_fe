@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
+import 'package:si_hicoach_fe/domain/common/theme/typography.dart';
 import 'package:si_hicoach_fe/domain/member/views/main/grid_item.dart';
 
 class StudyProps {
@@ -18,30 +19,36 @@ class MemberMainGridView extends StatelessWidget {
     StudyProps('벤치프레스', 1, 2, 3),
     StudyProps('푸쉬업', 2, 3, 4),
     StudyProps('윗몸', 3, 4, 5),
+    StudyProps('벤치프레스', 1, 2, 3),
+    StudyProps('푸쉬업', 2, 3, 4),
+    StudyProps('윗몸', 3, 4, 5),
   ];
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      margin: const EdgeInsets.all(defaultPadding),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          Text(
-            '수업 일자 : 2022년 10월 10일',
-            style: Theme.of(context).textTheme.headline4,
-          ),
-          const SizedBox(height: defaultPadding),
-          Expanded(
-            child: GridView.count(
-              crossAxisSpacing: defaultPadding,
-              mainAxisSpacing: defaultPadding,
-              childAspectRatio: 0.8,
-              crossAxisCount: 2,
+    return SingleChildScrollView(
+      child: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.only(
+          top: defaultPadding,
+          left: defaultPadding,
+          right: defaultPadding,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            Text(
+              '수업 일자 : 2022년 10월 10일',
+              style: bodyMedium.copyWith(
+                color: Colors.grey.shade500,
+              ),
+            ),
+            const SizedBox(height: smallPadding),
+            Column(
               children: List.from(
                 list.map(
                   (it) => Container(
+                    margin: const EdgeInsets.only(bottom: defaultPadding),
                     decoration: BoxDecoration(
                       border: Border.all(color: Colors.grey.shade300),
                       borderRadius: const BorderRadius.all(
@@ -59,8 +66,8 @@ class MemberMainGridView extends StatelessWidget {
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

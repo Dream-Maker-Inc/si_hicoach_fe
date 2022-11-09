@@ -11,9 +11,9 @@ class MypageView extends StatelessWidget {
     return Scaffold(
       appBar: const CustomAppBarWithLogo(titleText: '마이페이지'),
       body: SafeArea(
-        child: SizedBox(
-          width: double.infinity,
+        child: SingleChildScrollView(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: const <Widget>[
               SummaryView(),
               MenuView(),
