@@ -1,32 +1,55 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/common/theme/color.dart';
+import 'package:si_hicoach_fe/domain/common/theme/typography.dart';
 
-class StudyEditTime extends StatelessWidget {
-  const StudyEditTime({Key? key}) : super(key: key);
+class EditTime extends StatelessWidget {
+  const EditTime({
+    Key? key,
+    required this.time,
+    required this.currentStudy,
+    required this.totalStudy,
+  }) : super(key: key);
+
+  final int time;
+  final int currentStudy;
+  final int totalStudy;
 
   @override
   Widget build(BuildContext context) {
+    handleTimePickerTapped() {
+      return showTimePicker(
+        context: context,
+        initialTime: TimeOfDay.now(),
+        initialEntryMode: TimePickerEntryMode.dialOnly,
+        cancelText: '취소',
+        confirmText: '적용',
+        errorInvalidText: '시간을 다시 선택해 주세요.',
+        hourLabelText: '시',
+        minuteLabelText: '분',
+        helpText: '회원의 수업 시간을 지정해 주세요.',
+      );
+    }
+
     return Column(
       children: <Widget>[
         SizedBox(
           width: double.infinity,
           child: Row(
-            children: const <Widget>[
+            crossAxisAlignment: CrossAxisAlignment.baseline,
+            textBaseline: TextBaseline.alphabetic,
+            children: <Widget>[
               Text(
                 '수업 시간',
-                style: TextStyle(
-                  fontWeight: FontWeight.w700,
-                  fontSize: 26,
+                style: titleLarge.copyWith(
+                  color: Colors.grey.shade700,
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(left: 10),
+                padding: const EdgeInsets.only(left: 10),
                 child: Text(
-                  '4회차 (10회)',
-                  style: TextStyle(
-                    fontWeight: FontWeight.w400,
-                    fontSize: 16,
-                    color: Colors.grey,
+                  '$currentStudy회차 ($totalStudy회)',
+                  style: bodySmall.copyWith(
+                    color: Colors.grey.shade500,
                   ),
                 ),
               ),
@@ -42,19 +65,7 @@ class StudyEditTime extends StatelessWidget {
                 color: Color.fromRGBO(70, 103, 240, 0.1),
               ),
               child: InkWell(
-                onTap: () => {
-                  showTimePicker(
-                    context: context,
-                    initialTime: TimeOfDay.now(),
-                    initialEntryMode: TimePickerEntryMode.dialOnly,
-                    cancelText: '취소',
-                    confirmText: '적용',
-                    errorInvalidText: '시간을 다시 선택해 주세요.',
-                    hourLabelText: '시',
-                    minuteLabelText: '분',
-                    helpText: '회원의 수업 시간을 지정해 주세요.',
-                  ),
-                },
+                onTap: handleTimePickerTapped,
                 child: Padding(
                   padding: const EdgeInsets.only(
                     left: 10,
@@ -63,63 +74,36 @@ class StudyEditTime extends StatelessWidget {
                     bottom: 6,
                   ),
                   child: Text(
-                    '오전 11:00',
-                    style: TextStyle(
+                    '$time:00',
+                    style: bodySmall.copyWith(
                       color: colorScheme.primary,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 20,
                     ),
                   ),
                 ),
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.only(left: 10, right: 20),
-              child: Text(
-                '부터',
-                style: TextStyle(fontSize: 20),
-              ),
+            Padding(
+              padding: const EdgeInsets.only(left: 10, right: 20),
+              child: Text('부터', style: bodySmall),
             ),
             Container(
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(8)),
-                color: Color.fromRGBO(70, 103, 240, 0.1),
+              decoration: BoxDecoration(
+                borderRadius: const BorderRadius.all(Radius.circular(8)),
+                color: Colors.grey.shade100,
               ),
-              child: InkWell(
-                onTap: () => {
-                  showTimePicker(
-                    context: context,
-                    initialTime: TimeOfDay.now(),
-                    initialEntryMode: TimePickerEntryMode.dialOnly,
-                    cancelText: '취소',
-                    confirmText: '적용',
-                    errorInvalidText: '시간을 다시 선택해 주세요.',
-                    hourLabelText: '시',
-                    minuteLabelText: '분',
-                    helpText: '회원의 수업 시간을 지정해 주세요.',
-                  ),
-                },
-                child: Padding(
-                  padding: const EdgeInsets.only(
-                    left: 10,
-                    right: 10,
-                    top: 6,
-                    bottom: 6,
-                  ),
-                  child: Text(
-                    '오전 11:50',
-                    style: TextStyle(
-                      color: colorScheme.primary,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 20,
-                    ),
-                  ),
+              child: Padding(
+                padding: const EdgeInsets.only(
+                  left: 10,
+                  right: 10,
+                  top: 6,
+                  bottom: 6,
                 ),
+                child: Text('$time:50', style: bodySmall),
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.only(left: 10),
-              child: Text('까지', style: TextStyle(fontSize: 20)),
+            Padding(
+              padding: const EdgeInsets.only(left: 10),
+              child: Text('까지', style: bodySmall),
             ),
           ],
         ),

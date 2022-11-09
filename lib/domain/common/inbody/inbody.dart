@@ -81,7 +81,10 @@ class _InbodyViewState extends State<InbodyView> {
         padding: const EdgeInsets.all(defaultPadding),
         children: List.from(
           list.map(
-            (it) => InbodyItem(imageUrl: it.imageUrl, dateTime: it.dateTime),
+            (it) => InbodyItem(
+              imageUrl: it.imageUrl,
+              dateTime: it.dateTime,
+            ),
           ),
         ),
       ),

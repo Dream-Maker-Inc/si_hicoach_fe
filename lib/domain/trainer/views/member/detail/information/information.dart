@@ -15,9 +15,9 @@ class Information extends StatelessWidget {
         child: Column(
           children: const <Widget>[
             StudyInformation(),
-            SizedBox(height: defaultPadding),
+            SizedBox(height: widePadding),
             ExercisePurpose(),
-            SizedBox(height: defaultPadding),
+            SizedBox(height: widePadding),
             Memo(),
           ],
         ),

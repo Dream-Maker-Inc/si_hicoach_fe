@@ -1,24 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/common/calendar/weekly/components/header.dart';
 import 'package:si_hicoach_fe/domain/common/calendar/weekly/components/item.dart';
+import 'package:si_hicoach_fe/domain/common/theme/typography.dart';
 
-class WeeklyCalendar extends StatefulWidget {
-  const WeeklyCalendar({super.key});
+class WeeklyCalendar extends StatelessWidget {
+  WeeklyCalendar({super.key});
 
-  @override
-  State<WeeklyCalendar> createState() => _WeeklyCalendarState();
-}
-
-class _WeeklyCalendarState extends State<WeeklyCalendar> {
-  final List<String> dayList = ['', '일', '월', '화', '수', '목', '금', '토'];
+  TableBorder tableBorder = const TableBorder(
+    horizontalInside: BorderSide(
+      width: 1,
+      color: Colors.black12,
+      style: BorderStyle.solid,
+    ),
+    verticalInside: BorderSide(
+      width: 1,
+      color: Colors.black12,
+      style: BorderStyle.solid,
+    ),
+  );
 
   @override
   Widget build(BuildContext context) {
-    TextStyle timeTextStyle = const TextStyle(
-      fontSize: 18,
-      color: Colors.black45,
-    );
-
     return Column(
       children: <Widget>[
         WeeklyCalendarHeader(),
@@ -28,7 +30,7 @@ class _WeeklyCalendarState extends State<WeeklyCalendar> {
               SliverFillRemaining(
                 hasScrollBody: false,
                 child: Table(
-                  border: TableBorder.all(color: Colors.black12),
+                  border: tableBorder,
                   columnWidths: const <int, TableColumnWidth>{
                     0: FixedColumnWidth(24)
                   },
@@ -44,7 +46,9 @@ class _WeeklyCalendarState extends State<WeeklyCalendar> {
                             padding: const EdgeInsets.only(right: 4),
                             child: Text(
                               index.toString(),
-                              style: timeTextStyle,
+                              style: bodySmall.copyWith(
+                                color: Colors.grey.shade500,
+                              ),
                               textAlign: TextAlign.right,
                             ),
                           ),

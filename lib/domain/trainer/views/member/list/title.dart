@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:si_hicoach_fe/domain/common/components/title_with_description.dart';
 import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
+import 'package:si_hicoach_fe/domain/trainer/views/member/list/member_list.dart';
 
 class MemberListTitle extends StatelessWidget {
-  const MemberListTitle({Key? key}) : super(key: key);
+  const MemberListTitle({Key? key, required this.list}) : super(key: key);
+  final List<MemberProps> list;
 
   @override
   Widget build(BuildContext context) {
@@ -12,26 +15,9 @@ class MemberListTitle extends StatelessWidget {
         right: defaultPadding,
         top: defaultPadding,
       ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.baseline,
-        textBaseline: TextBaseline.alphabetic,
-        children: const <Widget>[
-          Text(
-            '회원 목록',
-            style: TextStyle(fontSize: 30, fontWeight: FontWeight.w700),
-          ),
-          Padding(
-            padding: EdgeInsets.only(left: smallPadding),
-            child: Text(
-              '총 23명',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.w400,
-                color: Colors.grey,
-              ),
-            ),
-          ),
-        ],
+      child: TitleWithDescription(
+        title: '회원 목록',
+        description: '총 ${list.length}명',
       ),
     );
   }

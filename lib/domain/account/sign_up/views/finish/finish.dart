@@ -4,6 +4,7 @@ import 'package:si_hicoach_fe/domain/common/components/app_bar.dart';
 import 'package:si_hicoach_fe/domain/common/components/title_with_description.dart';
 import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
 import 'package:si_hicoach_fe/domain/common/theme/button.dart';
+import 'package:si_hicoach_fe/domain/common/theme/color.dart';
 
 class SignUpFinishView extends StatelessWidget {
   const SignUpFinishView({Key? key}) : super(key: key);
@@ -29,8 +30,8 @@ class SignUpFinishView extends StatelessWidget {
               children: <Widget>[
                 LinearProgressIndicator(
                   value: 1,
-                  color: Theme.of(context).colorScheme.primary,
-                  backgroundColor: const Color.fromRGBO(75, 128, 255, 0.4),
+                  color: colorScheme.primary,
+                  backgroundColor: colorScheme.primary.withAlpha(40),
                 ),
                 const Padding(
                   padding: EdgeInsets.all(defaultPadding),

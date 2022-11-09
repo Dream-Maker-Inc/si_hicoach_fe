@@ -21,7 +21,10 @@ class CustomListTileWithArrow extends StatelessWidget {
           onTap: () => Navigator.pop(context),
           title: Text(title),
           subtitle: Text(subtitle),
-          trailing: const Icon(Icons.keyboard_arrow_right, color: Colors.grey),
+          trailing: const Icon(
+            Icons.keyboard_arrow_right,
+            color: Colors.grey,
+          ),
         ),
         const CustomDivider(),
       ],

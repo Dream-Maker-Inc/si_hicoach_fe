@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:si_hicoach_fe/domain/common/theme/color.dart';
+import 'package:si_hicoach_fe/domain/common/components/chip.dart';
+import 'package:si_hicoach_fe/domain/common/components/title_with_description.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/edit/purpose.dart';
 
 class ExercisePurpose extends StatefulWidget {
@@ -20,23 +21,6 @@ class _ExercisePurposeState extends State<ExercisePurpose> {
     );
   }
 
-  Widget chip(String text) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-        color: colorScheme.secondary,
-      ),
-      margin: const EdgeInsets.all(4),
-      child: Padding(
-        padding: const EdgeInsets.only(top: 8, bottom: 8, left: 12, right: 12),
-        child: Text(
-          text,
-          style: TextStyle(color: colorScheme.primary, fontSize: 20),
-        ),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -44,16 +28,34 @@ class _ExercisePurposeState extends State<ExercisePurpose> {
       children: <Widget>[
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Text('운동 목표', style: Theme.of(context).textTheme.headline2),
+            const Expanded(
+              flex: 1,
+              child: TitleWithDescription(
+                title: '운동 목표',
+                description: '회원 등록 시 선택하신 운동 목표입니다.',
+              ),
+            ),
             IconButton(
               onPressed: onEditIconPressed,
-              icon: const Icon(Icons.edit_sharp, color: Colors.grey),
+              icon: const Icon(
+                Icons.edit_sharp,
+                color: Colors.grey,
+              ),
             ),
           ],
         ),
         Wrap(
-          children: List.from(purpose.map((text) => chip(text))),
+          children: List.from(
+            purpose.map(
+              (text) => CustomChip(
+                label: text,
+                isChecked: false,
+                onPressed: () {},
+              ),
+            ),
+          ),
         ),
       ],
     );

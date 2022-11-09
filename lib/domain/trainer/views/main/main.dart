@@ -26,7 +26,7 @@ class MainProps {
 class TrainerMainView extends StatelessWidget {
   TrainerMainView({Key? key}) : super(key: key);
 
-  List<int> timeList = List.empty(growable: true);
+  final List<int> timeList = List.empty(growable: true);
   final List<MainProps> list = [
     MainProps(9, '한장현', true, 10, 20),
     MainProps(10, '홍길동', true, 10, 20),

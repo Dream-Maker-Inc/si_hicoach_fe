@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/common/calendar/weekly/calendar.dart';
+import 'package:si_hicoach_fe/domain/common/components/divider.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/main/main.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/list/member_list.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/my/my/my.dart';
@@ -17,7 +18,7 @@ class _TrainerBaseViewState extends State<TrainerBaseView> {
   final List _pages = [
     TrainerMainView(),
     const WeeklyCalendarView(),
-    const MemberListView(),
+    MemberListView(),
     const MypageView(),
   ];
 
@@ -55,7 +56,13 @@ class _TrainerBaseViewState extends State<TrainerBaseView> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: _pages[_currentTabIndex],
-      bottomNavigationBar: _bottomNavigationBar(),
+      bottomNavigationBar: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          const CustomDivider(),
+          _bottomNavigationBar(),
+        ],
+      ),
     );
   }
 }

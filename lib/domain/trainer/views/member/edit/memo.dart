@@ -25,13 +25,13 @@ class MemoEditView extends StatelessWidget {
         width: double.infinity,
         height: 100,
         margin: const EdgeInsets.all(defaultPadding),
-        child: TextField(
+        child: TextFormField(
           maxLength: 1000,
           minLines: 5,
           maxLines: 100,
           decoration: InputDecoration(
             counterText: '',
-            hintText: '예정/오늘 수업에 대한 정보를 기록해주세요.',
+            hintText: '회원님에 대해 기억해야 할 사항을 자유롭게 기록하세요.',
             border: OutlineInputBorder(
               borderSide: BorderSide(
                 color: colorScheme.primary,
@@ -39,6 +39,7 @@ class MemoEditView extends StatelessWidget {
               ),
             ),
           ),
+          initialValue: '회원님에 대해 기억해야 할 사항을 자유롭게 기록하세요.',
         ),
       ),
     );

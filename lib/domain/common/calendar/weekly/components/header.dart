@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:si_hicoach_fe/domain/common/theme/typography.dart';
 
 class WeeklyCalendarHeader extends StatelessWidget {
   WeeklyCalendarHeader({super.key});
@@ -14,9 +15,8 @@ class WeeklyCalendarHeader extends StatelessWidget {
         child: Center(
           child: Text(
             text,
-            style: const TextStyle(
-              fontSize: 18,
-              color: Colors.black45,
+            style: bodySmall.copyWith(
+              color: Colors.grey.shade500,
             ),
           ),
         ),
@@ -25,7 +25,9 @@ class WeeklyCalendarHeader extends StatelessWidget {
 
     return Table(
       border: TableBorder.all(color: Colors.black12),
-      columnWidths: const <int, TableColumnWidth>{0: FixedColumnWidth(24)},
+      columnWidths: const <int, TableColumnWidth>{
+        0: FixedColumnWidth(24),
+      },
       defaultVerticalAlignment: TableCellVerticalAlignment.middle,
       children: <TableRow>[
         TableRow(

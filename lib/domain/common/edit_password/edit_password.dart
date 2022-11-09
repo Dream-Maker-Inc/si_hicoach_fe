@@ -10,12 +10,28 @@ class EditPasswordView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    handleSubmitButtonPressed() {
+      print('submit');
+    }
+
+    handleExistingPasswordInputChanged(String value) {
+      print('기존 : $value');
+    }
+
+    handleNewPasswordInputChanged(String value) {
+      print('신규 : $value');
+    }
+
+    handleNewPasswordRepeatInputChanged(String value) {
+      print('신규 확인 : $value');
+    }
+
     return Scaffold(
       appBar: CustomAppBarArrowBack(
         titleText: '비밀번호 변경',
         actionsWidget: <Widget>[
           IconButton(
-            onPressed: () {},
+            onPressed: handleSubmitButtonPressed,
             icon: Icon(
               Icons.check_rounded,
               color: colorScheme.primary,
@@ -23,31 +39,50 @@ class EditPasswordView extends StatelessWidget {
           ),
         ],
       ),
-      body: Container(
-        width: double.infinity,
-        margin: const EdgeInsets.all(defaultPadding),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: const <Widget>[
-            TitleWithDescription(
-              title: '기존 비밀번호',
-              description: '기존 비밀번호를 입력해 주세요.',
+      body: CustomScrollView(
+        slivers: [
+          SliverFillRemaining(
+            hasScrollBody: false,
+            child: Container(
+              width: double.infinity,
+              margin: const EdgeInsets.all(defaultPadding),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: <Widget>[
+                  const TitleWithDescription(
+                    title: '기존 비밀번호',
+                    description: '기존 비밀번호를 입력해 주세요.',
+                  ),
+                  CustomTextField(
+                    hintText: '비밀번호 입력',
+                    isPassword: true,
+                    onChanged: handleExistingPasswordInputChanged,
+                  ),
+                  const SizedBox(height: widePadding),
+                  const TitleWithDescription(
+                    title: '변경할 비밀번호',
+                    description: '변경할 비밀번호를 입력해 주세요.',
+                  ),
+                  CustomTextField(
+                    hintText: '비밀번호 입력',
+                    isPassword: true,
+                    onChanged: handleNewPasswordInputChanged,
+                  ),
+                  const SizedBox(height: widePadding),
+                  const TitleWithDescription(
+                    title: '변경할 비밀번호 확인',
+                    description: '변경할 비밀번호를 한번 더 입력해 주세요.',
+                  ),
+                  CustomTextField(
+                    hintText: '비밀번호 입력',
+                    isPassword: true,
+                    onChanged: handleNewPasswordRepeatInputChanged,
+                  ),
+                ],
+              ),
             ),
-            CustomTextField(hintText: '비밀번호 입력', isPassword: true),
-            SizedBox(height: widePadding),
-            TitleWithDescription(
-              title: '변경할 비밀번호',
-              description: '변경할 비밀번호를 입력해 주세요.',
-            ),
-            CustomTextField(hintText: '비밀번호 입력', isPassword: true),
-            SizedBox(height: widePadding),
-            TitleWithDescription(
-              title: '변경할 비밀번호 확인',
-              description: '변경할 비밀번호를 한번 더 입력해 주세요.',
-            ),
-            CustomTextField(hintText: '비밀번호 입력', isPassword: true),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

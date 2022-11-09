@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/account/find/views/id/find.dart';
 import 'package:si_hicoach_fe/domain/account/find/views/pw/find.dart';
 import 'package:si_hicoach_fe/domain/common/theme/color.dart';
+import 'package:si_hicoach_fe/domain/common/theme/typography.dart';
 
 class InformationFindView extends StatefulWidget {
   const InformationFindView({Key? key}) : super(key: key);
@@ -27,13 +28,9 @@ class _InformationFindViewState extends State<InformationFindView> {
             indicatorColor: colorScheme.primary,
             labelColor: colorScheme.primary,
             unselectedLabelColor: Colors.black,
-            labelStyle: const TextStyle(
-              fontWeight: FontWeight.w600,
-              fontSize: 20,
-            ),
-            unselectedLabelStyle: const TextStyle(
+            labelStyle: labelLarge,
+            unselectedLabelStyle: labelLarge.copyWith(
               fontWeight: FontWeight.w400,
-              fontSize: 20,
             ),
           ),
         ),

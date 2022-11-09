@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/common/constants/constants.dart';
+import 'package:si_hicoach_fe/domain/common/theme/typography.dart';
 
 class TitleWithDescription extends StatelessWidget {
   final String title;
@@ -16,9 +17,14 @@ class TitleWithDescription extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
-        Text(title, style: Theme.of(context).textTheme.headline6),
+        Text(title, style: customTitleStyle),
         const SizedBox(height: smallPadding),
-        Text(description, style: Theme.of(context).textTheme.labelMedium),
+        Text(
+          description,
+          style: bodyMedium.copyWith(
+            color: Colors.grey.shade500,
+          ),
+        ),
         const SizedBox(height: smallPadding),
       ],
     );

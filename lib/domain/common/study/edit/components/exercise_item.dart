@@ -1,73 +1,74 @@
 import 'package:flutter/material.dart';
+import 'package:si_hicoach_fe/domain/common/components/divider.dart';
+import 'package:si_hicoach_fe/domain/common/study/edit/components/text_field.dart';
 import 'package:si_hicoach_fe/domain/common/theme/color.dart';
+import 'package:si_hicoach_fe/domain/common/theme/typography.dart';
 
 class StudyEditExerciseItem extends StatelessWidget {
-  const StudyEditExerciseItem({Key? key}) : super(key: key);
+  const StudyEditExerciseItem({
+    Key? key,
+    required this.name,
+    required this.weight,
+    required this.count,
+    required this.set,
+  }) : super(key: key);
+
+  final String name;
+  final int weight;
+  final int count;
+  final int set;
+
+  _handleWeightInputChanged(String value) {
+    print('weight: $value');
+  }
+
+  _handleCountInputChanged(String value) {
+    print('count: $value');
+  }
+
+  _handleSetInputChanged(String value) {
+    print('set: $value');
+  }
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        const SizedBox(height: 16),
-        Divider(thickness: 1, height: 1, color: colorScheme.onTertiary),
-        const SizedBox(height: 16),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        const Padding(
+          padding: EdgeInsets.only(top: 16, bottom: 16),
+          child: CustomDivider(),
+        ),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            const Text('벤치프레스', style: TextStyle(fontSize: 20)),
+            Text(name, style: bodyMedium),
+            const SizedBox(height: 10),
             Row(
               children: <Widget>[
-                SizedBox(
-                  width: 70,
-                  height: 40,
-                  child: TextField(
-                    decoration: InputDecoration(
-                      border: const OutlineInputBorder(),
-                      suffix: Text(
-                        'KG',
-                        style: TextStyle(color: colorScheme.primary),
+                Expanded(
+                  child: Row(
+                    children: <Widget>[
+                      ExerciseTextField(
+                        suffixText: 'KG',
+                        labelText: '무게',
+                        initialValue: weight,
+                        onChanged: _handleWeightInputChanged,
                       ),
-                      counterText: '',
-                      label: const Text('무게'),
-                    ),
-                    keyboardType: TextInputType.number,
-                    maxLength: 3,
-                  ),
-                ),
-                const SizedBox(width: 10),
-                SizedBox(
-                  width: 70,
-                  height: 40,
-                  child: TextField(
-                    decoration: InputDecoration(
-                      border: const OutlineInputBorder(),
-                      suffix: Text(
-                        '회',
-                        style: TextStyle(color: colorScheme.primary),
+                      const SizedBox(width: 10),
+                      ExerciseTextField(
+                        suffixText: '회',
+                        labelText: '횟수',
+                        initialValue: count,
+                        onChanged: _handleCountInputChanged,
                       ),
-                      counterText: '',
-                      label: const Text('횟수'),
-                    ),
-                    keyboardType: TextInputType.number,
-                    maxLength: 2,
-                  ),
-                ),
-                const SizedBox(width: 10),
-                SizedBox(
-                  width: 70,
-                  height: 40,
-                  child: TextField(
-                    decoration: InputDecoration(
-                      border: const OutlineInputBorder(),
-                      suffix: Text(
-                        'set',
-                        style: TextStyle(color: colorScheme.primary),
+                      const SizedBox(width: 10),
+                      ExerciseTextField(
+                        suffixText: 'SET',
+                        labelText: '세트',
+                        initialValue: set,
+                        onChanged: _handleSetInputChanged,
                       ),
-                      counterText: '',
-                      label: const Text('세트'),
-                    ),
-                    keyboardType: TextInputType.number,
-                    maxLength: 2,
+                    ],
                   ),
                 ),
                 IconButton(
