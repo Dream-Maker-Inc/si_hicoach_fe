@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:si_hicoach_fe/domain/account/sign_up/views/information/information.dart';
 
 import 'package:si_hicoach_fe/common/components/app_bar.dart';
@@ -52,12 +53,34 @@ class _SignUpTypePageState extends State<SignUpTypeView> {
                   backgroundColor: primaryColor.withAlpha(40),
                 ),
                 Container(
+                  width: double.infinity,
                   margin: const EdgeInsets.all(defaultPadding),
                   child: Column(
                     children: <Widget>[
                       const TitleWithDescription(
                         title: '회원 분류',
                         description: '회원의 종류를 선택해 주세요.',
+                      ),
+                      SizedBox(
+                        width: double.infinity,
+                        child: ToggleButtons(
+                          color: Colors.grey,
+                          isSelected: const [true, false],
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(4),
+                          ),
+                          // constraints: BoxConstraints.expand(
+                          //   width: constraints.maxWidth / 2,
+                          // ),
+                          selectedBorderColor: primaryColor,
+                          selectedColor: primaryColor,
+                          onPressed: (int selectedValue) {},
+                          fillColor: primaryColor.withAlpha(50),
+                          children: const [
+                            Text('트레이너'),
+                            Text('일반 회원'),
+                          ],
+                        ),
                       ),
                       RadioListTile<MemberType>(
                         title: const Text('헬스 트레이너'),
