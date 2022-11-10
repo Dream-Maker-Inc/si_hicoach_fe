@@ -102,7 +102,7 @@ class _SignUpAgreementViewState extends State<SignUpAgreementView> {
   }
 
   _buildSubmitButton() {
-    return GetX<AgreementViewModel>(
+    return GetBuilder<AgreementViewModel>(
         builder: (vm) => CustomElevatedButton(
               onPressed:
                   vm.isCheckedRequiredTerms ? _handleSubmitButtonPressed : null,

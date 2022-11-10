@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 
 BaseOptions options =
-    BaseOptions(baseUrl: 'http://f756-218-236-78-53.ngrok.io');
+    BaseOptions(baseUrl: 'http://197c-218-236-78-53.ngrok.io');
 
 class DioHelper {
   DioHelper._privateConstructor();
