@@ -55,50 +55,6 @@ class _SignUpAgreementViewState extends State<SignUpAgreementView> {
     return Scaffold(
       appBar: const CustomAppBarArrowBack(titleText: '회원가입'),
       body: SafeArea(
-<<<<<<< HEAD
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            LinearProgressIndicator(
-              value: 0.2,
-              color: primaryColor,
-              backgroundColor: primaryColor.withAlpha(40),
-            ),
-            Container(
-              margin: const EdgeInsets.all(defaultPadding),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: const <Widget>[
-                  TitleWithDescription(
-                    title: '약관 동의',
-                    description: '앱 사용을 위해 필수 이용 약관에 동의해 주세요.',
-                  ),
-                ],
-              ),
-            ),
-            Expanded(
-              flex: 1,
-              child: Container(
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    width: 1,
-                    color: primaryColor,
-                  ),
-                ),
-                margin: const EdgeInsets.only(
-                  left: defaultPadding,
-                  right: defaultPadding,
-                ),
-                child: _buildListView(),
-              ),
-            ),
-            Container(
-              margin: const EdgeInsets.all(defaultPadding),
-              width: double.infinity,
-              child: _buildSubmitButton(),
-            ),
-          ],
-=======
         child: GetX<AgreementViewModel>(
           builder: (vm) => Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -175,52 +131,8 @@ class _SignUpAgreementViewState extends State<SignUpAgreementView> {
               ),
             ],
           ),
->>>>>>> 5c61ff26de03431b096b3a67526f94005fc53f01
         ),
       ),
     );
   }
-<<<<<<< HEAD
-
-  _buildSubmitButton() {
-    return GetX<AgreementViewModel>(
-        builder: (vm) => CustomElevatedButton(
-              onPressed:
-                  vm.isCheckedRequiredTerms ? _handleSubmitButtonPressed : null,
-              text: '다음',
-            ));
-  }
-
-  _buildListView() {
-    return GetX<AgreementViewModel>(
-      builder: (vm) => Column(
-        children: <Widget>[
-          CheckAllItem(
-            isChecked: vm.isAgreedAll,
-            onPressed: _handleAgreedAllClick,
-          ),
-          Expanded(
-            child: ListView(
-              scrollDirection: Axis.vertical,
-              shrinkWrap: true,
-              children: ListTile.divideTiles(
-                context: context,
-                tiles: List.of(
-                  vm.termListItemModels.map(
-                    (it) => TermListItem(
-                      model: it,
-                      onClick: _handleItemClick,
-                      onChecked: _handleItemCheck,
-                    ),
-                  ),
-                ),
-              ).toList(),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-=======
->>>>>>> 5c61ff26de03431b096b3a67526f94005fc53f01
 }
