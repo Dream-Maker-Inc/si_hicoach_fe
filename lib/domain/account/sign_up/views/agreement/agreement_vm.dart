@@ -45,6 +45,8 @@ class AgreementViewModel extends GetxController {
   }
 
   setAgreedAll() {
+    if (isAgreedAll) return agreedTermIds.value = [];
+
     final termIds = terms.map((it) => it.id).toList();
     agreedTermIds.value = termIds;
   }
