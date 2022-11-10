@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:si_hicoach_fe/domain/account/sign_up/views/agreement/agreement_vm.dart';
 import 'package:si_hicoach_fe/domain/account/sign_up/views/agreement/list_item/list_item.dart';
-import 'package:si_hicoach_fe/domain/account/sign_up/views/signup_vm.dart';
 import 'package:si_hicoach_fe/domain/account/sign_up/views/verify/verify.dart';
 import 'package:si_hicoach_fe/domain/common/components/app_bar.dart';
 import 'package:si_hicoach_fe/domain/common/components/title_with_description.dart';
@@ -19,11 +17,14 @@ class SignUpAgreementView extends StatefulWidget {
 }
 
 class _SignUpAgreementViewState extends State<SignUpAgreementView> {
-  // final _signupViewModel = Get.find<SignupViewModel>();
   late AgreementViewModel _vm;
 
+  _handleAgreedAllClick() {
+    _vm.setAgreedAll();
+  }
+
   _handleItemClick(int id) {
-    print('clicked :$id');
+    print('ItemClick: ${id}');
   }
 
   _handleItemCheck(int id) {
@@ -37,7 +38,6 @@ class _SignUpAgreementViewState extends State<SignUpAgreementView> {
       ),
     );
   }
-
 
   @override
   void initState() {
@@ -94,15 +94,21 @@ class _SignUpAgreementViewState extends State<SignUpAgreementView> {
             Container(
               width: double.infinity,
               margin: const EdgeInsets.all(defaultPadding),
-              child: CustomElevatedButton(
-                onPressed: _handleSubmitButtonPressed,
-                text: '다음',
-              ),
+              child: _buildSubmitButton()
             )
           ],
         ),
       ),
     );
+  }
+
+  _buildSubmitButton() {
+    return GetX<AgreementViewModel>(
+        builder: (vm) => CustomElevatedButton(
+              onPressed:
+                  vm.isCheckedRequiredTerms ? _handleSubmitButtonPressed : null,
+              text: '다음',
+            ));
   }
 
   _buildListView() {

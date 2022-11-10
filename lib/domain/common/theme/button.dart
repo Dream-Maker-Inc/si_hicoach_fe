@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/common/theme/color.dart';
 
 class CustomElevatedButton extends StatelessWidget {
-  final Function() onPressed;
+  final Function()? onPressed;
   final String text;
 
   const CustomElevatedButton({
     Key? key,
-    required this.onPressed,
     required this.text,
+    this.onPressed,
   }) : super(key: key);
 
   @override

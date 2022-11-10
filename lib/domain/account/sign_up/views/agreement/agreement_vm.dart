@@ -15,10 +15,20 @@ class AgreementViewModel extends GetxController {
   RxList<TermListItemModel> termListItemModels = RxList();
   RxList<int> agreedTermIds = RxList();
 
+  List<TermModel> get requiredTerms =>
+      terms.where((it) => it.isRequired).toList();
+
+  bool get isAgreedAll => termListItemModels.every((it) => it.isChecked);
+
+  bool get isCheckedRequiredTerms {
+    return requiredTerms
+        .every((it) => agreedTermIds.any((agreed) => agreed == it.id));
+  }
+
   fetchTerms() async {
     final models = terms
         .map((it) => TermListItemModel(
-        id: it.id, title: it.labeledTitle, isChecked: false))
+            id: it.id, title: it.labeledTitle, isChecked: false))
         .toList();
 
     final sorted = _sortedByRequiredAfterIdDesc(models);
@@ -36,6 +46,11 @@ class AgreementViewModel extends GetxController {
     agreedTermIds.value = result;
   }
 
+  setAgreedAll() {
+    final termIds = terms.map((it) => it.id).toList();
+    agreedTermIds.value = termIds;
+  }
+
   @override
   void onInit() {
     super.onInit();
@@ -46,20 +61,20 @@ class AgreementViewModel extends GetxController {
   List<TermListItemModel> _sortedByRequiredAfterIdDesc(
       List<TermListItemModel> termListItemModels) {
     return termListItemModels.fold<List<List<TermListItemModel>>>([[], []],
-            (prev, it) {
-          final term = terms.firstWhere((term) => term.id == it.id);
+        (prev, it) {
+      final term = terms.firstWhere((term) => term.id == it.id);
 
-          if (term.isRequired) {
-            final list = [...prev[0], it].sorted((a, b) => b.id.compareTo(a.id));
+      if (term.isRequired) {
+        final list = [...prev[0], it].sorted((a, b) => b.id.compareTo(a.id));
 
-            prev[0] = list;
-          } else {
-            final list = [...prev[1], it].sorted((a, b) => b.id.compareTo(a.id));
+        prev[0] = list;
+      } else {
+        final list = [...prev[1], it].sorted((a, b) => b.id.compareTo(a.id));
 
-            prev[1] = list;
-          }
-          return prev;
-        }).fold<List<TermListItemModel>>(
+        prev[1] = list;
+      }
+      return prev;
+    }).fold<List<TermListItemModel>>(
         [], (prev, it) => [...prev, ...it]).toList();
   }
 
