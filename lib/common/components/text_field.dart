@@ -12,6 +12,7 @@ class CustomTextField extends StatelessWidget {
   final FormFieldValidator? validator;
   final TextEditingController? controller;
   final ValueChanged<String>? onChanged;
+  final String? value;
 
   const CustomTextField({
     Key? key,
@@ -25,6 +26,7 @@ class CustomTextField extends StatelessWidget {
     this.controller,
     this.suffix,
     this.onChanged,
+    this.value = ''
   }) : super(key: key);
 
   @override
@@ -49,6 +51,7 @@ class CustomTextField extends StatelessWidget {
         validator: validator,
         controller: controller,
         onChanged: onChanged,
+        initialValue: value,
       ),
     );
   }

@@ -1,0 +1,1 @@
+enum MemberTypes { trainer, normal }
