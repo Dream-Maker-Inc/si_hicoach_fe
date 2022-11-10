@@ -117,7 +117,8 @@ class _SignUpAgreementViewState extends State<SignUpAgreementView> {
     return GetX<AgreementViewModel>(
       builder: (vm) => Column(
         children: <Widget>[
-          CheckAllItem(onPressed: _handleAgreedAllClick),
+          CheckAllItem(
+              isChecked: vm.isAgreedAll, onPressed: _handleAgreedAllClick),
           SizedBox(
             height: MediaQuery.of(context).size.height / 2.5,
             child: ListView(
