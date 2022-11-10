@@ -55,90 +55,83 @@ class _SignUpAgreementViewState extends State<SignUpAgreementView> {
     return Scaffold(
       appBar: const CustomAppBarArrowBack(titleText: '회원가입'),
       body: SafeArea(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            Column(
-              children: <Widget>[
-                LinearProgressIndicator(
-                  value: 0.2,
-                  color: primaryColor,
-                  backgroundColor: primaryColor.withAlpha(40),
-                ),
-                Container(
-                  margin: const EdgeInsets.all(defaultPadding),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: const <Widget>[
-                      TitleWithDescription(
-                        title: '약관 동의',
-                        description: '앱 사용을 위해 필수 이용 약관에 동의해 주세요.',
+        child: GetX<AgreementViewModel>(
+          builder: (vm) => Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Column(
+                children: <Widget>[
+                  LinearProgressIndicator(
+                    value: 0.2,
+                    color: primaryColor,
+                    backgroundColor: primaryColor.withAlpha(40),
+                  ),
+                  Container(
+                    margin: const EdgeInsets.all(defaultPadding),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: const <Widget>[
+                        TitleWithDescription(
+                          title: '약관 동의',
+                          description: '앱 사용을 위해 필수 이용 약관에 동의해 주세요.',
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        width: 1,
+                        color: primaryColor,
                       ),
-                    ],
-                  ),
-                ),
-                Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      width: 1,
-                      color: primaryColor,
+                    ),
+                    margin: const EdgeInsets.only(
+                      left: defaultPadding,
+                      right: defaultPadding,
+                    ),
+                    child: Column(
+                      children: <Widget>[
+                        CheckAllItem(
+                            isChecked: vm.isAgreedAll,
+                            onPressed: _handleAgreedAllClick),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height / 2.5,
+                          child: ListView(
+                            scrollDirection: Axis.vertical,
+                            shrinkWrap: true,
+                            children: ListTile.divideTiles(
+                              context: context,
+                              tiles: List.of(
+                                vm.termListItemModels.map(
+                                  (it) => TermListItem(
+                                    model: it,
+                                    onClick: _handleItemClick,
+                                    onChecked: _handleItemCheck,
+                                  ),
+                                ),
+                              ),
+                            ).toList(),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                  margin: const EdgeInsets.only(
-                    left: defaultPadding,
-                    right: defaultPadding,
-                  ),
-                  child: _buildListView(),
+                ],
+              ),
+              const Spacer(),
+              Container(
+                width: double.infinity,
+                margin: const EdgeInsets.all(defaultPadding),
+                child: CustomElevatedButton(
+                  onPressed: vm.isCheckedRequiredTerms
+                      ? _handleSubmitButtonPressed
+                      : null,
+                  text: '다음',
                 ),
-              ],
-            ),
-            const Spacer(),
-            Container(
-              width: double.infinity,
-              margin: const EdgeInsets.all(defaultPadding),
-              child: _buildSubmitButton(),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  _buildSubmitButton() {
-    return GetX<AgreementViewModel>(
-        builder: (vm) => CustomElevatedButton(
-              onPressed:
-                  vm.isCheckedRequiredTerms ? _handleSubmitButtonPressed : null,
-              text: '다음',
-            ));
-  }
-
-  _buildListView() {
-    return GetX<AgreementViewModel>(
-      builder: (vm) => Column(
-        children: <Widget>[
-          CheckAllItem(
-              isChecked: vm.isAgreedAll, onPressed: _handleAgreedAllClick),
-          SizedBox(
-            height: MediaQuery.of(context).size.height / 2.5,
-            child: ListView(
-              scrollDirection: Axis.vertical,
-              shrinkWrap: true,
-              children: ListTile.divideTiles(
-                context: context,
-                tiles: List.of(
-                  vm.termListItemModels.map(
-                    (it) => TermListItem(
-                      model: it,
-                      onClick: _handleItemClick,
-                      onChecked: _handleItemCheck,
-                    ),
-                  ),
-                ),
-              ).toList(),
-            ),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
