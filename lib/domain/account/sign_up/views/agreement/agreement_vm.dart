@@ -1,16 +1,12 @@
 import 'package:collection/collection.dart';
 import 'package:get/get.dart';
+import 'package:si_hicoach_fe/domain/account/sign_up/views/agreement/data/agreements_api.dart';
+import 'package:si_hicoach_fe/domain/account/sign_up/views/agreement/data/dto/get_terms_response.dart';
 import 'package:si_hicoach_fe/domain/account/sign_up/views/agreement/list_item/list_item.dart';
 import 'package:si_hicoach_fe/domain/account/sign_up/views/agreement/list_item/model.dart';
 
 class AgreementViewModel extends GetxController {
-  final terms = [
-    TermModel(1, '서비스 이용약관', '서비스 이용약관 내용', true),
-    TermModel(2, '개인정보 처리방침', '개인정보 처리방침 내용', false),
-    TermModel(3, '서비스 이용약관', '서비스 이용약관 내용', false),
-    TermModel(4, '서비스 이용약관2', '서비스 이용약관 내용2', true),
-    TermModel(5, '서비스 이용약관3', '서비스 이용약관 내용3', true),
-  ];
+  List<TermModel> terms = [];
 
   RxList<TermListItemModel> termListItemModels = RxList();
   RxList<int> agreedTermIds = RxList();
@@ -21,19 +17,21 @@ class AgreementViewModel extends GetxController {
   bool get isAgreedAll => termListItemModels.every((it) => it.isChecked);
 
   bool get isCheckedRequiredTerms {
+    if (terms.isEmpty) return false;
+
     return requiredTerms
         .every((it) => agreedTermIds.any((agreed) => agreed == it.id));
   }
 
   fetchTerms() async {
-    final models = terms
-        .map((it) => TermListItemModel(
-            id: it.id, title: it.labeledTitle, isChecked: false))
-        .toList();
+    final result = await TermsApi.getAgreements();
 
-    final sorted = _sortedByRequiredAfterIdDesc(models);
+    result.when(
+      (e) => print(e),
+      (res) => _handleFetchTermsResponse(res),
+    );
 
-    termListItemModels.value = sorted;
+    update();
   }
 
   toggleTermChecked(int id) {
@@ -47,6 +45,8 @@ class AgreementViewModel extends GetxController {
   }
 
   setAgreedAll() {
+    if (isAgreedAll) return agreedTermIds.value = [];
+
     final termIds = terms.map((it) => it.id).toList();
     agreedTermIds.value = termIds;
   }
@@ -87,6 +87,22 @@ class AgreementViewModel extends GetxController {
         isChecked: isAnyEqualsAgreedTermIds(it.id)));
 
     final sorted = _sortedByRequiredAfterIdDesc(newModels.toList());
+
+    termListItemModels.value = sorted;
+  }
+
+  _handleFetchTermsResponse(GetTermsResponse res) {
+    terms = res.data
+            ?.map((it) => TermModel(it.id, it.title, it.content, it.isRequired))
+            .toList() ??
+        [];
+
+    final models = terms
+        .map((it) => TermListItemModel(
+            id: it.id, title: it.labeledTitle, isChecked: false))
+        .toList();
+
+    final sorted = _sortedByRequiredAfterIdDesc(models);
 
     termListItemModels.value = sorted;
   }
