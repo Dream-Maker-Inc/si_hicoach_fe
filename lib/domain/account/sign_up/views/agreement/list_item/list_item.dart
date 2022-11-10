@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:si_hicoach_fe/domain/common/theme/color.dart';
+import 'package:si_hicoach_fe/common/theme/color.dart';
 
 class TermListItemModel {
   final int id;
@@ -42,7 +42,7 @@ class _TermListItemState extends State<TermListItem> {
 
   @override
   Widget build(BuildContext context) {
-    var colorState = model.isChecked ? colorScheme.primary : Colors.grey;
+    var colorState = model.isChecked ? primaryColor : Colors.grey;
 
     return ListTile(
       title: Text(
