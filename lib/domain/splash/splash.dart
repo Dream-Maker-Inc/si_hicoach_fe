@@ -11,10 +11,9 @@ class SplashPage extends StatelessWidget {
   Widget build(BuildContext context) {
     Timer(
       const Duration(milliseconds: 2500),
-      () => Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (context) => const LoginView(),
-        ),
+      () => Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(builder: (context) => const LoginView()),
+        (Route<dynamic> route) => false,
       ),
     );
 
