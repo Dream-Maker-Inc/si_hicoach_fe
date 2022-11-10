@@ -34,7 +34,9 @@ class CheckAllItem extends StatelessWidget {
         value: isChecked,
         activeColor: Colors.transparent,
         checkColor: primaryColor,
-        onChanged: (_) {},
+        onChanged: (_) {
+          _handleTapCheckAll();
+        },
       ),
       onTap: _handleTapCheckAll,
     );
