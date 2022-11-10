@@ -8,6 +8,7 @@ import 'package:si_hicoach_fe/common/exceptions/status_code.dart';
 import 'package:si_hicoach_fe/domain/account/sign_up/data/dto/request_signup_dto.dart';
 import 'package:si_hicoach_fe/domain/account/sign_up/data/dto/signup_response.dart';
 import 'package:dio/dio.dart';
+import 'package:si_hicoach_fe/domain/account/sign_up/data/dto/validate_email_response.dart';
 
 class SignupApi {
   static Future<Result<Exception, SignupResponse>> signup(
@@ -24,8 +25,25 @@ class SignupApi {
       }
 
       return Success(SignupResponse.fromJson(response.data));
-    } on DioError catch (e) {
+    } catch (e) {
       return Error(Exception(e));
+    }
+  }
+
+  static Future<Result<Exception, ValidateEmailResponse>> validateEmail(
+      String email) async {
+    try {
+      Dio dio = DioHelper().dio;
+      String path = '/api/v2/member/email/validate';
+
+      var response = await dio.post(path, data: {"email": email});
+
+      if (response.data?['statusCode'] ==
+          StatusCode.alreadyUsedEmail.code) {
+        return Error(AlreadyUsedEmailException());
+      }
+
+      return Success(ValidateEmailResponse.fromJson(response.data));
     } catch (e) {
       return Error(Exception(e));
     }

@@ -9,10 +9,9 @@ class CustomTextField extends StatelessWidget {
   final int? maxLength;
   final bool? enabled;
   final bool? isPassword;
-  final FormFieldValidator? validator;
-  final TextEditingController? controller;
   final ValueChanged<String>? onChanged;
   final String? value;
+  final String? errorText;
 
   const CustomTextField({
     Key? key,
@@ -21,12 +20,11 @@ class CustomTextField extends StatelessWidget {
     this.isPassword = false,
     this.suffixText,
     this.maxLength,
-    this.validator,
     this.enabled = true,
-    this.controller,
     this.suffix,
     this.onChanged,
-    this.value = ''
+    this.value = '',
+    this.errorText
   }) : super(key: key);
 
   @override
@@ -46,10 +44,9 @@ class CustomTextField extends StatelessWidget {
           hintText: hintText,
           enabled: enabled!,
           counterText: '',
+          errorText: errorText
         ),
         keyboardType: keyboardType,
-        validator: validator,
-        controller: controller,
         onChanged: onChanged,
         initialValue: value,
       ),

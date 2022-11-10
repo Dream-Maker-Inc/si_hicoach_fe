@@ -5,14 +5,15 @@ class SignupResponse {
     required this.statusCode,
     required this.message,
   });
+
   late final dynamic ref;
   late final Data? data;
   late final String statusCode;
   late final String message;
 
-  SignupResponse.fromJson(Map<String, dynamic> json){
+  SignupResponse.fromJson(Map<String, dynamic> json) {
     ref = null;
-    data = json['data'] != null ? Data.fromJson(json['data']): null;
+    data = json['data'] != null ? Data.fromJson(json['data']) : null;
     statusCode = json['statusCode'].toString();
     message = json['message'];
   }
@@ -32,18 +33,21 @@ class Data {
     required this.member,
     required this.agreedTerms,
   });
+
   late final Member member;
   late final List<AgreedTerms> agreedTerms;
 
-  Data.fromJson(Map<String, dynamic> json){
+  Data.fromJson(Map<String, dynamic> json) {
     member = Member.fromJson(json['member']);
-    agreedTerms = List.from(json['agreedTerms']).map((e)=>AgreedTerms.fromJson(e)).toList();
+    agreedTerms = List.from(json['agreedTerms'])
+        .map((e) => AgreedTerms.fromJson(e))
+        .toList();
   }
 
   Map<String, dynamic> toJson() {
     final _data = <String, dynamic>{};
     _data['member'] = member.toJson();
-    _data['agreedTerms'] = agreedTerms.map((e)=>e.toJson()).toList();
+    _data['agreedTerms'] = agreedTerms.map((e) => e.toJson()).toList();
     return _data;
   }
 }
@@ -62,6 +66,7 @@ class Member {
     required this.updatedAt,
     required this.id,
   });
+
   late final String email;
   late final String name;
   late final String gender;
@@ -74,7 +79,7 @@ class Member {
   late final String updatedAt;
   late final int id;
 
-  Member.fromJson(Map<String, dynamic> json){
+  Member.fromJson(Map<String, dynamic> json) {
     email = json['email'];
     name = json['name'];
     gender = json['gender'];
@@ -109,9 +114,10 @@ class Password {
   Password({
     required this.value,
   });
+
   late final String value;
 
-  Password.fromJson(Map<String, dynamic> json){
+  Password.fromJson(Map<String, dynamic> json) {
     value = json['value'];
   }
 
@@ -126,9 +132,10 @@ class TrainerInfo {
   TrainerInfo({
     this.companyName,
   });
+
   late final Null companyName;
 
-  TrainerInfo.fromJson(Map<String, dynamic> json){
+  TrainerInfo.fromJson(Map<String, dynamic> json) {
     companyName = null;
   }
 
@@ -148,6 +155,7 @@ class AgreedTerms {
     required this.updatedAt,
     required this.id,
   });
+
   late final int memberId;
   late final int serviceTermId;
   late final Null deletedAt;
@@ -155,7 +163,7 @@ class AgreedTerms {
   late final String updatedAt;
   late final int id;
 
-  AgreedTerms.fromJson(Map<String, dynamic> json){
+  AgreedTerms.fromJson(Map<String, dynamic> json) {
     memberId = json['memberId'];
     serviceTermId = json['serviceTermId'];
     deletedAt = null;
