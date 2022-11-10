@@ -2,8 +2,10 @@ import 'package:get/get.dart';
 import 'package:si_hicoach_fe/common/exceptions/signup_exceptions.dart';
 import 'package:si_hicoach_fe/common/policies/my_regex.dart';
 import 'package:si_hicoach_fe/domain/account/sign_up/data/signup_api.dart';
+import 'package:si_hicoach_fe/domain/account/sign_up/views/signup_vm.dart';
 
 class SignupInformationViewModel extends GetxController {
+  final SignupViewModel _signupVm = Get.find<SignupViewModel>();
 
   // email
   RxString email = RxString('');
@@ -67,6 +69,13 @@ class SignupInformationViewModel extends GetxController {
         isMatchedPassword;
 
     return !isValidAll;
+  }
+
+  submit() {
+    _signupVm.email = email.value;
+    _signupVm.password = password.value;
+
+    _signupVm.signup();
   }
 
   @override

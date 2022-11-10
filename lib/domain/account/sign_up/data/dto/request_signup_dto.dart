@@ -7,10 +7,7 @@ class RequestSignUpDto {
   RequestSignUpDto({required this.member, required this.termIds});
 
   Map<String, dynamic> toMap() {
-    return {
-      'member': member.toMap(),
-      'termIds': termIds
-    };
+    return {'member': member.toMap(), 'termIds': termIds};
   }
 }
 
@@ -22,7 +19,7 @@ class SignupMember {
   DateTime birthDay;
   String phone;
 
-  SignupTrainerInfo trainerInfo;
+  SignupTrainerInfo? trainerInfo;
 
   SignupMember(
       {required this.email,
@@ -31,7 +28,7 @@ class SignupMember {
       required this.gender,
       required this.birthDay,
       required this.phone,
-      required this.trainerInfo});
+      this.trainerInfo});
 
   Map<String, dynamic> toMap() {
     return {
@@ -41,7 +38,7 @@ class SignupMember {
       'gender': gender.name,
       'birthDay': birthDay.toIso8601String(),
       'phone': phone,
-      'trainerInfo': trainerInfo.toMap()
+      'trainerInfo': trainerInfo?.toMap()
     };
   }
 }

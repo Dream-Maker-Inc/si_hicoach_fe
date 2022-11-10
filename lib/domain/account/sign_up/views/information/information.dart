@@ -8,7 +8,7 @@ import 'package:si_hicoach_fe/common/theme/button.dart';
 import 'package:si_hicoach_fe/common/theme/color.dart';
 import 'package:get/get.dart';
 import 'package:si_hicoach_fe/domain/account/sign_up/views/information/information_vm.dart';
-import 'package:si_hicoach_fe/common/policies/my_regex.dart';
+import 'package:si_hicoach_fe/domain/account/sign_up/views/signup_vm.dart';
 
 class SignUpInformationView extends StatefulWidget {
   const SignUpInformationView({Key? key}) : super(key: key);
@@ -18,6 +18,7 @@ class SignUpInformationView extends StatefulWidget {
 }
 
 class _SignUpInformationViewState extends State<SignUpInformationView> {
+  final SignupViewModel _signupVm = Get.find<SignupViewModel>();
   late SignupInformationViewModel _vm;
 
   _handleIDInputChanged(String value) {
@@ -36,12 +37,16 @@ class _SignUpInformationViewState extends State<SignUpInformationView> {
     _vm.pwRepeat.value = value;
   }
 
-  handleSubmitButtonClicked() {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => SignUpFinishView(),
-      ),
-    );
+  _handleSubmitButtonClicked() {
+    _vm.submit();
+  }
+
+  _navigateNextPage() {
+    Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(
+          builder: (context) => const SignUpFinishView(),
+        ),
+        (Route<dynamic> route) => false);
   }
 
   @override
@@ -50,6 +55,14 @@ class _SignUpInformationViewState extends State<SignUpInformationView> {
 
     Get.delete<SignupInformationViewModel>();
     _vm = Get.put(SignupInformationViewModel());
+
+    _signupVm.signupSuccess.listen((isSuccess) {
+      if (isSuccess) _navigateNextPage();
+    });
+
+    _signupVm.signupError.listen((e) {
+      print("Todo: show exception dialog :$e");
+    });
   }
 
   @override
@@ -134,7 +147,7 @@ class _SignUpInformationViewState extends State<SignUpInformationView> {
                     margin: const EdgeInsets.all(defaultPadding),
                     child: CustomElevatedButton(
                       onPressed:
-                          !buttonDisabled ? handleSubmitButtonClicked : null,
+                          !buttonDisabled ? _handleSubmitButtonClicked : null,
                       text: '다음',
                     ),
                   )

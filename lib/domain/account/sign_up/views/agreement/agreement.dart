@@ -7,6 +7,7 @@ import 'package:si_hicoach_fe/common/theme/color.dart';
 import 'package:si_hicoach_fe/domain/account/sign_up/views/agreement/agreement_vm.dart';
 import 'package:si_hicoach_fe/domain/account/sign_up/views/agreement/list_item/check_all_item.dart';
 import 'package:si_hicoach_fe/domain/account/sign_up/views/agreement/list_item/list_item.dart';
+import 'package:si_hicoach_fe/domain/account/sign_up/views/signup_vm.dart';
 import 'package:si_hicoach_fe/domain/account/sign_up/views/verify/verify.dart';
 import 'package:get/get.dart';
 
@@ -33,6 +34,8 @@ class _SignUpAgreementViewState extends State<SignUpAgreementView> {
   }
 
   _handleSubmitButtonPressed() {
+    _vm.save();
+
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (BuildContext context) => SignUpVerifyView(),

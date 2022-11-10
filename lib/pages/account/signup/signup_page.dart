@@ -3,12 +3,24 @@ import 'package:si_hicoach_fe/domain/account/sign_up/views/agreement/agreement.d
 import 'package:si_hicoach_fe/domain/account/sign_up/views/signup_vm.dart';
 import 'package:get/get.dart';
 
-class SignupPage extends StatelessWidget {
+class SignupPage extends StatefulWidget {
   const SignupPage({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  State<SignupPage> createState() => _SignupPageState();
+}
+
+class _SignupPageState extends State<SignupPage> {
+  @override
+  void initState() {
+    super.initState();
+
+    Get.delete<SignupViewModel>();
     Get.put(SignupViewModel());
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return const SignUpAgreementView();
   }
 }

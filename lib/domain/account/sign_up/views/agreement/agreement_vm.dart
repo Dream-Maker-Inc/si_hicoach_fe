@@ -4,8 +4,11 @@ import 'package:si_hicoach_fe/domain/account/sign_up/views/agreement/data/agreem
 import 'package:si_hicoach_fe/domain/account/sign_up/views/agreement/data/dto/get_terms_response.dart';
 import 'package:si_hicoach_fe/domain/account/sign_up/views/agreement/list_item/list_item.dart';
 import 'package:si_hicoach_fe/domain/account/sign_up/views/agreement/list_item/model.dart';
+import 'package:si_hicoach_fe/domain/account/sign_up/views/signup_vm.dart';
 
 class AgreementViewModel extends GetxController {
+  SignupViewModel _signupVm = Get.find<SignupViewModel>();
+
   List<TermModel> terms = [];
 
   RxList<TermListItemModel> termListItemModels = RxList();
@@ -49,6 +52,10 @@ class AgreementViewModel extends GetxController {
 
     final termIds = terms.map((it) => it.id).toList();
     agreedTermIds.value = termIds;
+  }
+
+  save() {
+    _signupVm.agreedTermIds = agreedTermIds;
   }
 
   @override

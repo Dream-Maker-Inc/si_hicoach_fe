@@ -29,9 +29,11 @@ class _SignUpTypePageState extends State<SignUpTypeView> {
   }
 
   _handleSubmitButtonPressed() {
+    _vm.save();
+
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (context) => SignUpInformationView(),
+        builder: (context) => const SignUpInformationView(),
       ),
     );
   }
