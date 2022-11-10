@@ -5,6 +5,7 @@ import 'package:si_hicoach_fe/common/constants/constants.dart';
 import 'package:si_hicoach_fe/common/theme/button.dart';
 import 'package:si_hicoach_fe/common/theme/color.dart';
 import 'package:si_hicoach_fe/domain/account/sign_up/views/agreement/agreement_vm.dart';
+import 'package:si_hicoach_fe/domain/account/sign_up/views/agreement/list_item/check_all_item.dart';
 import 'package:si_hicoach_fe/domain/account/sign_up/views/agreement/list_item/list_item.dart';
 import 'package:si_hicoach_fe/domain/account/sign_up/views/verify/verify.dart';
 import 'package:get/get.dart';
@@ -77,24 +78,26 @@ class _SignUpAgreementViewState extends State<SignUpAgreementView> {
                   ),
                 ),
                 Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        width: 1,
-                        color: primaryColor,
-                      ),
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      width: 1,
+                      color: primaryColor,
                     ),
-                    margin: const EdgeInsets.only(
-                      left: defaultPadding,
-                      right: defaultPadding,
-                    ),
-                    child: _buildListView())
+                  ),
+                  margin: const EdgeInsets.only(
+                    left: defaultPadding,
+                    right: defaultPadding,
+                  ),
+                  child: _buildListView(),
+                ),
               ],
             ),
             const Spacer(),
             Container(
-                width: double.infinity,
-                margin: const EdgeInsets.all(defaultPadding),
-                child: _buildSubmitButton())
+              width: double.infinity,
+              margin: const EdgeInsets.all(defaultPadding),
+              child: _buildSubmitButton(),
+            ),
           ],
         ),
       ),
@@ -112,21 +115,29 @@ class _SignUpAgreementViewState extends State<SignUpAgreementView> {
 
   _buildListView() {
     return GetX<AgreementViewModel>(
-      builder: (vm) => ListView(
-        scrollDirection: Axis.vertical,
-        shrinkWrap: true,
-        children: ListTile.divideTiles(
-          context: context,
-          tiles: List.of(
-            vm.termListItemModels.map(
-              (it) => TermListItem(
-                model: it,
-                onClick: _handleItemClick,
-                onChecked: _handleItemCheck,
-              ),
+      builder: (vm) => Column(
+        children: <Widget>[
+          CheckAllItem(onPressed: _handleAgreedAllClick),
+          SizedBox(
+            height: MediaQuery.of(context).size.height / 2.5,
+            child: ListView(
+              scrollDirection: Axis.vertical,
+              shrinkWrap: true,
+              children: ListTile.divideTiles(
+                context: context,
+                tiles: List.of(
+                  vm.termListItemModels.map(
+                    (it) => TermListItem(
+                      model: it,
+                      onClick: _handleItemClick,
+                      onChecked: _handleItemCheck,
+                    ),
+                  ),
+                ),
+              ).toList(),
             ),
           ),
-        ).toList(),
+        ],
       ),
     );
   }
