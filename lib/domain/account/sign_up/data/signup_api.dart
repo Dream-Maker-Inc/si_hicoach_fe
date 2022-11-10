@@ -1,27 +1,31 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:http/http.dart' as http;
 import 'package:multiple_result/multiple_result.dart';
-import 'package:si_hicoach_fe/domain/account/sign_up/data/dto/SignupResponse.dart';
+import 'package:si_hicoach_fe/common/dio/dio_helper.dart';
+import 'package:si_hicoach_fe/common/exceptions/signup_exceptions.dart';
+import 'package:si_hicoach_fe/common/exceptions/status_code.dart';
+import 'package:si_hicoach_fe/domain/account/sign_up/data/dto/request_signup_dto.dart';
+import 'package:si_hicoach_fe/domain/account/sign_up/data/dto/signup_response.dart';
+import 'package:dio/dio.dart';
 
 class SignupApi {
-  // 스테틱 메소드는 클래스를 생성하지 않고 불러 쓸 수 있음
-  static Future<Result<Exception, SignupResponse>> signup() async {
-
+  static Future<Result<Exception, SignupResponse>> signup(
+      RequestSignUpDto dto) async {
     try {
-      var url = Uri.https(
-          '1c44-125-242-48-109.jp.ngrok.io', '/api/v2/member/signUp');
-      var response = await http.get(url);
+      Dio dio = DioHelper().dio;
+      String path = '/api/v2/member/signUp';
 
-      switch (response.statusCode) {
-        case HttpStatus.ok:
-          var json = utf8.decode(response.bodyBytes);
-          Map<String, dynamic> map = jsonDecode(json);
-          return Success(SignupResponse.fromJson(map));
-        default:
-          return Error(Exception(response.reasonPhrase));
+      var response = await dio.post(path, data: dto.toMap());
+
+      if (response.data?['statusCode'] ==
+          StatusCode.missingRequiredTerms.code) {
+        return Error(MissingRequiredTermException());
       }
+
+      return Success(SignupResponse.fromJson(response.data));
+    } on DioError catch (e) {
+      return Error(Exception(e));
     } catch (e) {
       return Error(Exception(e));
     }

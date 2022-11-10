@@ -1,21 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:si_hicoach_fe/domain/account/sign_up/views/finish/finish_vm.dart';
+import 'package:si_hicoach_fe/common/exceptions/signup_exceptions.dart';
+import 'package:si_hicoach_fe/domain/account/sign_up/views/signup_vm.dart';
 import 'package:si_hicoach_fe/common/components/app_bar.dart';
 import 'package:si_hicoach_fe/common/components/title_with_description.dart';
 import 'package:si_hicoach_fe/common/constants/constants.dart';
 import 'package:si_hicoach_fe/common/theme/button.dart';
-import 'package:provider/provider.dart';
 import 'package:si_hicoach_fe/common/theme/color.dart';
+import 'package:get/get.dart';
 
 class SignUpFinishView extends StatelessWidget {
-  late SignupFinishViewModel vm;
+  final _vm = Get.find<SignupViewModel>();
+
+  SignUpFinishView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    vm = Provider.of<SignupFinishViewModel>(context);
+    _vm.signupError.listen((e) {
+      print('SignUpFinishView listen : $e');
+    });
+
+    if(_vm.signupError is MissingRequiredTermException) {
+      print("catch MissingRequiredTermException");
+    }
 
     handleSubmitButtonPressed() {
-      vm.signup();
+      // vm.signup();
+      _vm.signup();
 
       // Navigator.of(context).pushAndRemoveUntil(
       //   MaterialPageRoute(
