@@ -1,17 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/common/theme/color.dart';
 
-class ItemModel {
-  final Function() onPressed;
-
-  ItemModel({required this.onPressed});
-}
-
 class CheckAllItem extends StatefulWidget {
   final void Function() onPressed;
+  final bool isChecked;
 
   const CheckAllItem({
     Key? key,
+    required this.isChecked,
     required this.onPressed,
   }) : super(key: key);
 
@@ -20,10 +16,14 @@ class CheckAllItem extends StatefulWidget {
 }
 
 class _CheckAllItemState extends State<CheckAllItem> {
-  _handleTapCheckAll() {}
+  _handleTapCheckAll() {
+    widget.onPressed();
+  }
 
   @override
   Widget build(BuildContext context) {
+    final isChecked = widget.isChecked;
+
     return ListTile(
       shape: Border(
         bottom: BorderSide(
@@ -33,15 +33,15 @@ class _CheckAllItemState extends State<CheckAllItem> {
       title: Text(
         '모든 약관에 동의합니다.',
         style: TextStyle(
-          color: primaryColor,
+          color: isChecked ? primaryColor : Colors.grey,
           fontSize: 16,
         ),
       ),
       leading: Checkbox(
-        value: true,
+        value: isChecked,
         activeColor: Colors.transparent,
         checkColor: primaryColor,
-        onChanged: (bool? value) {},
+        onChanged: (_) {},
       ),
       onTap: _handleTapCheckAll,
     );
