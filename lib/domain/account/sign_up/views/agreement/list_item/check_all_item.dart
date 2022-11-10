@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/common/theme/color.dart';
 
-class CheckAllItem extends StatefulWidget {
+class CheckAllItem extends StatelessWidget {
   final void Function() onPressed;
   final bool isChecked;
 
@@ -11,19 +11,12 @@ class CheckAllItem extends StatefulWidget {
     required this.onPressed,
   }) : super(key: key);
 
-  @override
-  State<CheckAllItem> createState() => _CheckAllItemState();
-}
-
-class _CheckAllItemState extends State<CheckAllItem> {
   _handleTapCheckAll() {
-    widget.onPressed();
+    onPressed();
   }
 
   @override
   Widget build(BuildContext context) {
-    final isChecked = widget.isChecked;
-
     return ListTile(
       shape: Border(
         bottom: BorderSide(
