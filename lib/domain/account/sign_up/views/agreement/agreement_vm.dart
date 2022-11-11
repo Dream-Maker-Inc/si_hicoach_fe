@@ -7,7 +7,7 @@ import 'package:si_hicoach_fe/domain/account/sign_up/views/agreement/list_item/m
 import 'package:si_hicoach_fe/domain/account/sign_up/views/signup_vm.dart';
 
 class AgreementViewModel extends GetxController {
-  SignupViewModel _signupVm = Get.find<SignupViewModel>();
+  final SignupViewModel _signupVm = Get.find<SignupViewModel>();
 
   List<TermModel> terms = [];
 
