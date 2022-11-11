@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:si_hicoach_fe/common/components/dialog.dart';
+import 'package:si_hicoach_fe/common/exceptions/common_exceptions.dart';
 import 'package:si_hicoach_fe/domain/account/find/views/tabs/tab.dart';
 import 'package:si_hicoach_fe/common/components/text_field.dart';
 import 'package:si_hicoach_fe/common/constants/constants.dart';
@@ -17,65 +19,7 @@ class LoginView extends StatefulWidget {
   State<LoginView> createState() => _LoginViewState();
 }
 
-class _LoginViewState extends State<LoginView> {
-  late LoginViewModel _vm;
-
-  _handleEmailInputChanged(String value) {
-    _vm.email.value = value;
-  }
-
-  _handlePasswordInputChanged(String value) {
-    _vm.password.value = value;
-  }
-
-  _handleLoginButtonClicked(BuildContext ctx) {
-    _vm.submit();
-  }
-
-  _handleSignUpButtonClicked(BuildContext ctx) {
-    Navigator.of(ctx).push(
-      MaterialPageRoute(builder: (context) => const SignupPage()),
-    );
-  }
-
-  _handleTextButtonPressed(BuildContext ctx) {
-    Navigator.of(ctx).push(
-      MaterialPageRoute(builder: (context) => const InformationFindView()),
-    );
-  }
-
-  _navigateMainPage(bool isTrainer) {
-    if (isTrainer) {
-      return Navigator.of(context).push(
-        MaterialPageRoute(builder: (context) => const TrainerBaseView()),
-      );
-    }
-
-    Navigator.of(context).push(
-      MaterialPageRoute(builder: (context) => const MemberBaseView()),
-    );
-  }
-
-  @override
-  void initState() {
-    super.initState();
-
-    Get.delete<LoginViewModel>();
-    _vm = Get.put(LoginViewModel());
-
-    _vm.loginSuccess.listen((isSuccess) {
-      if (!isSuccess) return;
-      if (_vm.isRoleTrainer.value == null) return;
-
-      _navigateMainPage(_vm.isRoleTrainer.value!);
-      _vm.clear();
-    });
-
-    _vm.loginError.listen((e) {
-      print("Todo: show exception dialog :$e");
-    });
-  }
-
+class _LoginViewState extends _LoginViewStateDetail {
   @override
   Widget build(BuildContext context) {
     return Scaffold(body: SafeArea(child: Obx(() {
@@ -174,4 +118,85 @@ class _LoginViewState extends State<LoginView> {
       );
     })));
   }
+}
+
+class _LoginViewStateDetail extends State<LoginView> {
+  late LoginViewModel _vm;
+
+  _handleEmailInputChanged(String value) {
+    _vm.email.value = value;
+  }
+
+  _handlePasswordInputChanged(String value) {
+    _vm.password.value = value;
+  }
+
+  _handleLoginButtonClicked(BuildContext ctx) {
+    _vm.submit();
+  }
+
+  _handleSignUpButtonClicked(BuildContext ctx) {
+    Navigator.of(ctx).push(
+      MaterialPageRoute(builder: (context) => const SignupPage()),
+    );
+  }
+
+  _handleTextButtonPressed(BuildContext ctx) {
+    Navigator.of(ctx).push(
+      MaterialPageRoute(builder: (context) => const InformationFindView()),
+    );
+  }
+
+  _navigateMainPage(bool isTrainer) {
+    if (isTrainer) {
+      return Navigator.of(context).push(
+        MaterialPageRoute(builder: (context) => const TrainerBaseView()),
+      );
+    }
+
+    Navigator.of(context).push(
+      MaterialPageRoute(builder: (context) => const MemberBaseView()),
+    );
+  }
+
+
+  @override
+  void initState() {
+    super.initState();
+
+    Get.delete<LoginViewModel>();
+    _vm = Get.put(LoginViewModel());
+
+    _vm.loginSuccess.listen((isSuccess) {
+      if (!isSuccess) return;
+      if (_vm.isRoleTrainer.value == null) return;
+
+      _navigateMainPage(_vm.isRoleTrainer.value!);
+      _vm.clear();
+    });
+
+    _vm.loginError.listen((e) {
+      if(e == null) return;
+
+      showSimpleDialog(
+          context: context, title: "로그인 실패", content: _getErrorMessage(e));
+
+      _vm.clear();
+
+      print("Todo: show exception dialog :$e");
+    });
+  }
+
+  String _getErrorMessage(Exception? e) {
+    if (e is NotExistException) return "아이디가 존재하지 않습니다.";
+    if (e is UnauthorizedException) return "아이디 혹은 비밀번호가 맞지 않습니다.";
+
+    return "알 수 없는 에러";
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    throw UnimplementedError();
+  }
+
 }
