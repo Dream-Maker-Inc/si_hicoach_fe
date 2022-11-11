@@ -86,7 +86,7 @@ class _SignUpTypePageState extends State<SignUpTypeView> {
                                     MyToggleButtons(
                                       onPressed: _handleMemberTypeChanged,
                                       borderRadius: BorderRadius.circular(4),
-                                      height: 40,
+                                      height: 48,
                                       isSelected: isTrainerPair,
                                       color: Colors.grey.shade600,
                                       children: const [

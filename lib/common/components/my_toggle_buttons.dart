@@ -17,7 +17,7 @@ class MyToggleButtons extends StatelessWidget {
       this.selectedBorderColor,
       this.color,
       this.width = double.infinity,
-      this.height = 40,
+      this.height = 48,
       required this.children,
       required this.isSelected});
 
