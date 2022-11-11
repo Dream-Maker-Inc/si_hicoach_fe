@@ -17,53 +17,7 @@ class SignUpInformationView extends StatefulWidget {
   State<SignUpInformationView> createState() => _SignUpInformationViewState();
 }
 
-class _SignUpInformationViewState extends State<SignUpInformationView> {
-  final SignupViewModel _signupVm = Get.find<SignupViewModel>();
-  late SignupInformationViewModel _vm;
-
-  _handleIDInputChanged(String value) {
-    _vm.email.value = value;
-  }
-
-  _handleIDValidationButtonClicked(String value) {
-    _vm.validateEmail(value);
-  }
-
-  _handlePasswordInputChanged(String value) {
-    _vm.password.value = value;
-  }
-
-  _handlePasswordRepeatInputChanged(String value) {
-    _vm.pwRepeat.value = value;
-  }
-
-  _handleSubmitButtonClicked() {
-    _vm.submit();
-  }
-
-  _navigateNextPage() {
-    Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(
-          builder: (context) => const SignUpFinishView(),
-        ),
-        (Route<dynamic> route) => false);
-  }
-
-  @override
-  void initState() {
-    super.initState();
-
-    Get.delete<SignupInformationViewModel>();
-    _vm = Get.put(SignupInformationViewModel());
-
-    _signupVm.signupSuccess.listen((isSuccess) {
-      if (isSuccess) _navigateNextPage();
-    });
-
-    _signupVm.signupError.listen((e) {
-      print("Todo: show exception dialog :$e");
-    });
-  }
+class _SignUpInformationViewState extends _Detail {
 
   @override
   Widget build(BuildContext context) {
@@ -168,4 +122,59 @@ class _SignUpInformationViewState extends State<SignUpInformationView> {
       text: '중복 확인',
     );
   }
+}
+
+class _Detail extends State<SignUpInformationView> {
+  final SignupViewModel _signupVm = Get.find<SignupViewModel>();
+  late SignupInformationViewModel _vm;
+
+  _handleIDInputChanged(String value) {
+    _vm.email.value = value;
+  }
+
+  _handleIDValidationButtonClicked(String value) {
+    _vm.validateEmail(value);
+  }
+
+  _handlePasswordInputChanged(String value) {
+    _vm.password.value = value;
+  }
+
+  _handlePasswordRepeatInputChanged(String value) {
+    _vm.pwRepeat.value = value;
+  }
+
+  _handleSubmitButtonClicked() {
+    _vm.submit();
+  }
+
+  _navigateNextPage() {
+    Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(
+          builder: (context) => const SignUpFinishView(),
+        ),
+            (Route<dynamic> route) => false);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    Get.delete<SignupInformationViewModel>();
+    _vm = Get.put(SignupInformationViewModel());
+
+    _signupVm.signupSuccess.listen((isSuccess) {
+      if (isSuccess) _navigateNextPage();
+    });
+
+    _signupVm.signupError.listen((e) {
+      print("Todo: show exception dialog :$e");
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    throw UnimplementedError();
+  }
+
 }

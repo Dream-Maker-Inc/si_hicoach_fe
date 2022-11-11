@@ -19,7 +19,7 @@ class LoginView extends StatefulWidget {
   State<LoginView> createState() => _LoginViewState();
 }
 
-class _LoginViewState extends _LoginViewStateDetail {
+class _LoginViewState extends _Detail {
   @override
   Widget build(BuildContext context) {
     return Scaffold(body: SafeArea(child: Obx(() {
@@ -120,7 +120,7 @@ class _LoginViewState extends _LoginViewStateDetail {
   }
 }
 
-class _LoginViewStateDetail extends State<LoginView> {
+class _Detail extends State<LoginView> {
   late LoginViewModel _vm;
 
   _handleEmailInputChanged(String value) {
@@ -196,7 +196,7 @@ class _LoginViewStateDetail extends State<LoginView> {
 
   @override
   Widget build(BuildContext context) {
-    throw UnimplementedError();
+    return const SizedBox.shrink();
   }
 
 }

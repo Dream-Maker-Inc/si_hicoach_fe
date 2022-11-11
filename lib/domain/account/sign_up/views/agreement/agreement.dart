@@ -7,7 +7,6 @@ import 'package:si_hicoach_fe/common/theme/color.dart';
 import 'package:si_hicoach_fe/domain/account/sign_up/views/agreement/agreement_vm.dart';
 import 'package:si_hicoach_fe/domain/account/sign_up/views/agreement/list_item/check_all_item.dart';
 import 'package:si_hicoach_fe/domain/account/sign_up/views/agreement/list_item/list_item.dart';
-import 'package:si_hicoach_fe/domain/account/sign_up/views/signup_vm.dart';
 import 'package:si_hicoach_fe/domain/account/sign_up/views/verify/verify.dart';
 import 'package:get/get.dart';
 
@@ -18,42 +17,10 @@ class SignUpAgreementView extends StatefulWidget {
   State<SignUpAgreementView> createState() => _SignUpAgreementViewState();
 }
 
-class _SignUpAgreementViewState extends State<SignUpAgreementView> {
-  late AgreementViewModel _vm;
-
-  _handleAgreedAllClick() {
-    _vm.setAgreedAll();
-  }
-
-  _handleItemClick(int id) {
-    print('ItemClick: ${id}');
-  }
-
-  _handleItemCheck(int id) {
-    _vm.toggleTermChecked(id);
-  }
-
-  _handleSubmitButtonPressed() {
-    _vm.save();
-
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (BuildContext context) => SignUpVerifyView(),
-      ),
-    );
-  }
-
-  @override
-  void initState() {
-    super.initState();
-
-    Get.delete<AgreementViewModel>();
-    _vm = Get.put(AgreementViewModel());
-  }
-
+class _SignUpAgreementViewState extends _Detail {
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback((_) => _vm.fetchTerms());
+    super.build(context);
 
     return Scaffold(
       appBar: const CustomAppBarArrowBack(titleText: '회원가입'),
@@ -138,4 +105,45 @@ class _SignUpAgreementViewState extends State<SignUpAgreementView> {
       ),
     );
   }
+}
+
+class _Detail extends State<SignUpAgreementView> {
+  late AgreementViewModel _vm;
+
+  _handleAgreedAllClick() {
+    _vm.setAgreedAll();
+  }
+
+  _handleItemClick(int id) {
+    print('ItemClick: ${id}');
+  }
+
+  _handleItemCheck(int id) {
+    _vm.toggleTermChecked(id);
+  }
+
+  _handleSubmitButtonPressed() {
+    _vm.save();
+
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (BuildContext context) => SignUpVerifyView(),
+      ),
+    );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    Get.delete<AgreementViewModel>();
+    _vm = Get.put(AgreementViewModel());
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((_) => _vm.fetchTerms());
+    return const SizedBox.shrink();
+  }
+
 }

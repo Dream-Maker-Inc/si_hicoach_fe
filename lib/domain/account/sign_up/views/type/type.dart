@@ -19,35 +19,7 @@ class SignUpTypeView extends StatefulWidget {
   State<SignUpTypeView> createState() => _SignUpTypePageState();
 }
 
-class _SignUpTypePageState extends State<SignUpTypeView> {
-  late SignupTypeViewModel _vm;
-
-  _handleMemberTypeChanged(int index) {
-    _vm.handleMemberTypeChange(index);
-  }
-
-  _handleCenterNameChanged(String value) {
-    _vm.companyName.value = value;
-  }
-
-  _handleSubmitButtonPressed() {
-    _vm.save();
-
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => const SignUpInformationView(),
-      ),
-    );
-  }
-
-  @override
-  void initState() {
-    super.initState();
-
-    Get.delete<SignupTypeViewModel>();
-    _vm = Get.put(SignupTypeViewModel());
-  }
-
+class _SignUpTypePageState extends _Detail {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -133,5 +105,40 @@ class _SignUpTypePageState extends State<SignUpTypeView> {
         value: companyName,
       ),
     ];
+  }
+}
+
+class _Detail extends State<SignUpTypeView> {
+  late SignupTypeViewModel _vm;
+
+  _handleMemberTypeChanged(int index) {
+    _vm.handleMemberTypeChange(index);
+  }
+
+  _handleCenterNameChanged(String value) {
+    _vm.companyName.value = value;
+  }
+
+  _handleSubmitButtonPressed() {
+    _vm.save();
+
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const SignUpInformationView(),
+      ),
+    );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    Get.delete<SignupTypeViewModel>();
+    _vm = Get.put(SignupTypeViewModel());
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return const SizedBox.shrink();
   }
 }
