@@ -6,27 +6,16 @@ import 'package:si_hicoach_fe/common/constants/constants.dart';
 import 'package:si_hicoach_fe/common/theme/button.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/add/additional_information.dart';
 
-class AddView extends StatelessWidget {
+class AddView extends StatefulWidget{
   const AddView({Key? key}) : super(key: key);
 
   @override
+  State<AddView> createState() => _AddViewState();
+}
+
+class _AddViewState extends _Detail {
+  @override
   Widget build(BuildContext context) {
-    handleIDValidationButtonClicked() {
-      print('검증');
-    }
-
-    handleIDInputChanged(String value) {
-      print('ID : $value');
-    }
-
-    handleSubmitButtonPressed() {
-      Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (BuildContext context) => AddAdditionalInformation(),
-        ),
-      );
-    }
-
     return Scaffold(
       appBar: const CustomAppBarArrowBack(titleText: '회원 추가'),
       body: SafeArea(
@@ -65,5 +54,28 @@ class AddView extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class _Detail extends State<AddView> {
+  handleIDValidationButtonClicked() {
+    print('검증');
+  }
+
+  handleIDInputChanged(String value) {
+    print('ID : $value');
+  }
+
+  handleSubmitButtonPressed() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (BuildContext context) => AddAdditionalInformation(),
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return const SizedBox.shrink();
   }
 }
