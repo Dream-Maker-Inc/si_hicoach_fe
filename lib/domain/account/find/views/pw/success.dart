@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:si_hicoach_fe/domain/account/login/views/login/login.dart';
+import 'package:si_hicoach_fe/domain/account/login/views/login.dart';
 import 'package:si_hicoach_fe/common/components/app_bar.dart';
 import 'package:si_hicoach_fe/common/components/text_field.dart';
 import 'package:si_hicoach_fe/common/components/title_with_description.dart';

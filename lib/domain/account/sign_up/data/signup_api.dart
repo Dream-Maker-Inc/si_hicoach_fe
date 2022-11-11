@@ -15,7 +15,7 @@ class SignupApi {
       Dio dio = DioHelper().dio;
       String path = '/api/v2/member/signUp';
 
-      var response = await dio.post(path, data: dto.toMap());
+      final response = await dio.post(path, data: dto.toMap());
 
       if (response.data?['statusCode'] ==
           StatusCode.missingRequiredTerms.code) {
@@ -24,28 +24,6 @@ class SignupApi {
 
       return Success(SignupResponse.fromJson(response.data));
     });
-    //
-    // try {
-    //   Dio dio = DioHelper().dio;
-    //   String path = '/api/v2/member/signUp';
-    //
-    //   var response = await dio.post(path, data: dto.toMap());
-    //
-    //   if (response.data?['statusCode'] ==
-    //       StatusCode.missingRequiredTerms.code) {
-    //     return Error(MissingRequiredTermException());
-    //   }
-    //
-    //   return Success(SignupResponse.fromJson(response.data));
-    // } on DioError catch (e) {
-    //   print("##############################");
-    //   print(e.message);
-    //   print(e.response?.data);
-    //   print("##############################");
-    //   return Error(Exception(e));
-    // } catch (e) {
-    //   return Error(Exception(e));
-    // }
   }
 
   static Future<Result<Exception, ValidateEmailResponse>> validateEmail(
