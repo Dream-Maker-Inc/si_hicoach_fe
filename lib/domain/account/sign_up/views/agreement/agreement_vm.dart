@@ -1,7 +1,7 @@
 import 'package:collection/collection.dart';
 import 'package:get/get.dart';
-import 'package:si_hicoach_fe/domain/account/sign_up/views/agreement/data/agreements_api.dart';
-import 'package:si_hicoach_fe/domain/account/sign_up/views/agreement/data/dto/get_terms_response.dart';
+import 'package:si_hicoach_fe/infrastructure/terms/dto/get_terms_response.dart';
+import 'package:si_hicoach_fe/infrastructure/terms/terms_api.dart';
 import 'package:si_hicoach_fe/domain/account/sign_up/views/agreement/list_item/list_item.dart';
 import 'package:si_hicoach_fe/domain/account/sign_up/views/agreement/list_item/model.dart';
 import 'package:si_hicoach_fe/domain/account/sign_up/views/signup_vm.dart';

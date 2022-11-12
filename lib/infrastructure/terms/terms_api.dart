@@ -1,7 +1,7 @@
 import 'package:multiple_result/multiple_result.dart';
 import 'package:si_hicoach_fe/common/dio/dio_helper.dart';
 import 'package:dio/dio.dart';
-import 'package:si_hicoach_fe/domain/account/sign_up/views/agreement/data/dto/get_terms_response.dart';
+import 'package:si_hicoach_fe/infrastructure/terms/dto/get_terms_response.dart';
 
 class TermsApi {
   static Future<Result<Exception, GetTermsResponse>> getAgreements() async {

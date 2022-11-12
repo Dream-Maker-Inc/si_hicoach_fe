@@ -3,8 +3,8 @@ import 'package:si_hicoach_fe/common/dio/dio_helper.dart';
 import 'package:si_hicoach_fe/common/dio/http_utils.dart';
 import 'package:si_hicoach_fe/common/exceptions/common_exceptions.dart';
 import 'package:si_hicoach_fe/common/exceptions/status_code.dart';
-import 'package:si_hicoach_fe/domain/account/login/data/dto/login_response.dart';
-import 'package:si_hicoach_fe/domain/account/login/data/dto/request_login_dto.dart';
+import 'package:si_hicoach_fe/infrastructure/login/dto/login_response.dart';
+import 'package:si_hicoach_fe/infrastructure/login/dto/request_login_dto.dart';
 import 'package:dio/dio.dart';
 import 'package:si_hicoach_fe/domain/member/data/dto/get_my_info_response.dart';
 
