@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:si_hicoach_fe/common/shared_preferences/key.dart';
+import 'package:si_hicoach_fe/domain/account/sign_up/views/type/data/models/member_types.dart';
 import 'package:si_hicoach_fe/infrastructure/login/dto/login_response.dart';
 import 'package:si_hicoach_fe/infrastructure/login/dto/request_login_dto.dart';
 import 'package:si_hicoach_fe/infrastructure/login/login_api.dart';
@@ -23,7 +24,7 @@ class LoginViewModel extends GetxController {
     final result = await LoginApi.login(dto);
 
     result.when((e) => loginError.value = e,
-        (response) => _handleLoginSuccess(response));
+        (response) async => await _handleLoginSuccess(response));
   }
 
   clear() {
@@ -36,8 +37,6 @@ class LoginViewModel extends GetxController {
     final accessToken = res.data?.accessToken ?? '';
     await _saveAccessTokenToDevice(accessToken);
     await _getMyInfo();
-
-    loginSuccess.value = true;
   }
 
   _saveAccessTokenToDevice(accessToken) async {
@@ -49,12 +48,24 @@ class LoginViewModel extends GetxController {
     final result = await MemberApi.getMyInfo();
 
     result.when((e) => loginError.value = e,
-        (response) => _handleGetMyInfoSuccess(response));
+        (response) async => await _handleGetMyInfoSuccess(response));
   }
 
-  _handleGetMyInfoSuccess(GetMyInfoResponse res) {
+  _handleGetMyInfoSuccess(GetMyInfoResponse res) async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setInt(SharedPrefsKeys.id.key, res.data?.member.id ?? 0);
+
     final trainerInfo = res.data?.member.trainerInfo;
 
     isRoleTrainer.value = (trainerInfo != null);
+  }
+
+  @override
+  void onInit() {
+    super.onInit();
+
+    ever(isRoleTrainer, (_) {
+      loginSuccess.value = true;
+    });
   }
 }

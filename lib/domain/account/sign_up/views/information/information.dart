@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:si_hicoach_fe/common/components/dialog.dart';
 import 'package:si_hicoach_fe/domain/account/sign_up/views/finish/finish.dart';
 import 'package:si_hicoach_fe/common/components/app_bar.dart';
 import 'package:si_hicoach_fe/common/components/text_field.dart';
@@ -168,7 +169,7 @@ class _Detail extends State<SignUpInformationView> {
     });
 
     _signupVm.signupError.listen((e) {
-      print("Todo: show exception dialog :$e");
+      showSimpleDialog(context: context, title: "error", content: e.toString());
     });
   }
 

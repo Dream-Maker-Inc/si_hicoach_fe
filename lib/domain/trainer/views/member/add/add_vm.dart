@@ -1,68 +1,111 @@
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:si_hicoach_fe/common/exceptions/common_exceptions.dart';
+import 'package:si_hicoach_fe/common/shared_preferences/key.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/add/data/dto/get_member_of_trainer_response.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/add/data/member_api.dart';
+import 'package:si_hicoach_fe/infrastructure/matching/matching_api.dart';
 
 class TrainerMemberAddViewModel extends GetxController {
+  final Rxn<GetMemberOfTrainerResponse> _getMemberResponse = Rxn();
+
+  Data? get data => _getMemberResponse.value?.data;
+
+  bool get isExistMatching => data?.matching != null;
+
+  bool get isExistPastMatching => data?.matching?.isPast ?? false;
+
+  bool get isExistMember => data?.member != null;
+
+  int get matchingId => data?.matching?.id ?? 0;
+
+  String get memberName => data?.member.name ?? '';
+
+  //
+  int userId = 0;
+
+  bool get targetIsSameUser => (userId == data?.member.id);
+
+  //
   RxString email = RxString('');
 
-  final RxnBool _isExistMember = RxnBool(null);
-  RxBool isExistMatching = RxBool(false);
+  //
+  String? get validationErrorText {
+    if (data == null) return null;
 
-  String memberName = '';
+    if (!isExistMember) return "회원 정보가 없습니다.";
 
-  bool get isExistMember =>
-      !(_isExistMember.value == null || _isExistMember.value == false);
+    return null;
+  }
 
-  String? get validationErrorText =>
-      (_isExistMember.value != null && _isExistMember.value == false)
-          ? "회원 정보가 없습니다."
-          : null;
+  String? get validationSuccessText {
+    if (isExistPastMatching) return "($memberName님)\n과거 매칭 내역이 있는 회원입니다.";
+    if (isExistMatching) return "($memberName님)\n이미 매칭된 회원입니다.";
+    if (isExistMember) return "$memberName님 확인되었습니다.";
 
-  String? get validationSuccessText =>
-      _isExistMember.value == true ? "$memberName님 확인되었습니다." : null;
+    return null;
+  }
 
+  //
+  String get buttonText => isExistMatching ? "매칭 복구" : "다음";
+  bool get submitButtonDisabled => !isExistMember || (isExistMatching && !isExistPastMatching);
+
+  //
   Rx<bool> getMemberSuccess = Rx(false);
-  Rx<Exception?> getMemberError = Rx(null);
+  Rx<bool> recoverMatchingSuccess = Rx(false);
+  Rx<Exception?> apiError = Rx(null);
+
+  String get recoverSuccessMessage => "$memberName님과 다시 매칭 되었습니다.";
 
   getMember() async {
     final result = await TrainerMemberApi.getMemberOfTrainer(email.value);
 
-    result.when((e) => _handleGetMemberError(e),
-        (response) => _handleGetMemberSuccess(response));
+    result.when((e) => (apiError.value = e),
+        (response) => (_getMemberResponse.value = response));
   }
 
-  _handleGetMemberError(Exception? e) {
-    if (e is NotExistException) return _isExistMember.value = false;
+  recoverMatching(int matchingId) async {
+    final result = await MatchingApi.recover(matchingId);
 
-    getMemberError.value = e;
+    result.when((e) => (apiError.value = e),
+        (response) => (recoverMatchingSuccess.value = true));
   }
 
-  _handleGetMemberSuccess(GetMemberOfTrainerResponse res) {
-    final data = res.data;
-
-    isExistMatching.value = data?.matching != null;
-    _isExistMember.value = data?.member != null;
-    memberName = data?.member.name ?? '';
-    getMemberSuccess.value = true;
-  }
-
+  //
   clear() {
-    _isExistMember.value = null;
-    isExistMatching.value = false;
+    _getMemberResponse.value = null;
     getMemberSuccess.value = false;
-    getMemberError.value = null;
+    recoverMatchingSuccess.value = false;
+    apiError.value = null;
   }
 
   @override
-  void onInit() {
+  Future<void> onInit() async {
     super.onInit();
 
+    await _initUserId();
+
     ever(email, _handleEmailChange);
+    ever(_getMemberResponse, (res) {
+      if (res != null) _handleGetMemberSuccess(res);
+    });
+  }
+
+  _initUserId() async {
+    final prefs = await SharedPreferences.getInstance();
+    userId = prefs.getInt(SharedPrefsKeys.id.key) ?? 0;
   }
 
   _handleEmailChange(String email) {
-    _isExistMember.value = null;
-    isExistMatching.value = false;
+    _getMemberResponse.value = null;
+  }
+
+  _handleGetMemberSuccess(GetMemberOfTrainerResponse res) async {
+    if (targetIsSameUser) {
+      apiError.value = SameUserException();
+      return;
+    }
+
+    getMemberSuccess.value = true;
   }
 }

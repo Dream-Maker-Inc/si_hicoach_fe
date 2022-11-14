@@ -4,6 +4,7 @@ import 'package:si_hicoach_fe/common/components/dialog.dart';
 import 'package:si_hicoach_fe/common/components/text_field.dart';
 import 'package:si_hicoach_fe/common/components/title_with_description.dart';
 import 'package:si_hicoach_fe/common/constants/constants.dart';
+import 'package:si_hicoach_fe/common/exceptions/common_exceptions.dart';
 import 'package:si_hicoach_fe/common/theme/button.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/add/add_vm.dart';
 import 'package:get/get.dart';
@@ -24,15 +25,12 @@ class _AddViewState extends _Detail {
       body: SafeArea(
         child: Obx(() {
           final email = _vm.email.value;
-          final isExistMember = _vm.isExistMember;
-          final isExistMatching = _vm.isExistMatching.value; // 매칭이 있으면 true
           final validationErrorText = _vm.validationErrorText;
 
-          final idValidateButtonPressed =
-              !isExistMember ? handleIDValidationButtonClicked : null;
+          final submitButtonText = _vm.buttonText;
 
           final submitButtonPressed =
-              isExistMember ? handleSubmitButtonPressed : null;
+              !_vm.submitButtonDisabled ? handleSubmitButtonPressed : null;
 
           return Container(
             width: double.infinity,
@@ -50,7 +48,7 @@ class _AddViewState extends _Detail {
                     hintText: '아이디 (이메일) 입력',
                     keyboardType: TextInputType.emailAddress,
                     suffix: CustomElevatedButton(
-                      onPressed: idValidateButtonPressed,
+                      onPressed: handleIDValidationButtonClicked,
                       text: '검증',
                     ),
                     value: email,
@@ -63,7 +61,7 @@ class _AddViewState extends _Detail {
                   width: double.infinity,
                   child: CustomElevatedButton(
                     onPressed: submitButtonPressed,
-                    text: '다음',
+                    text: submitButtonText,
                   ),
                 ),
               ],
@@ -87,6 +85,10 @@ class _Detail extends State<AddView> {
   }
 
   handleSubmitButtonPressed() {
+    if (_vm.isExistMatching) {
+      return _vm.recoverMatching(_vm.matchingId);
+    }
+
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (BuildContext context) => AddAdditionalInformation(),
@@ -102,7 +104,7 @@ class _Detail extends State<AddView> {
     _vm = Get.put(TrainerMemberAddViewModel());
 
     _vm.getMemberSuccess.listen((isSuccess) {
-      if(isSuccess == false) return;
+      if (isSuccess == false) return;
 
       showSimpleDialog(
           context: context,
@@ -112,11 +114,38 @@ class _Detail extends State<AddView> {
       _vm.getMemberSuccess.value = false;
     });
 
-    _vm.getMemberError.listen((e) {
+    _vm.recoverMatchingSuccess.listen((isSuccess) {
+      if (isSuccess == false) return;
+
+      showSimpleDialog(
+          context: context,
+          title: '매칭 복구',
+          content: _vm.recoverSuccessMessage,
+          onConfirm: () {
+            Navigator.pop(context);
+            Navigator.pop(context);
+          });
+
+      _vm.recoverMatchingSuccess.value = false;
+    });
+
+    _vm.apiError.listen((e) {
       if (e == null) return;
 
-      showSimpleDialog(context: context, title: 'error', content: e.toString());
       _vm.clear();
+
+      if (e is NotExistException) {
+        showSimpleDialog(
+            context: context, title: '알림', content: "해당 이메일의 회원이 존재하지 않습니다.");
+        return;
+      }
+      if (e is SameUserException) {
+        showSimpleDialog(
+            context: context, title: '알림', content: "회원 본인을 검색 하셨습니다.");
+        return;
+      }
+
+      showSimpleDialog(context: context, title: 'error', content: e.toString());
     });
   }
 

@@ -1,97 +1,60 @@
+import 'package:json_annotation/json_annotation.dart';
+part 'get_member_of_trainer_response.g.dart';
+
+@JsonSerializable()
 class GetMemberOfTrainerResponse {
-  GetMemberOfTrainerResponse({
+  GetMemberOfTrainerResponse(
     this.ref,
-    required this.data,
-    required this.statusCode,
-    required this.message,
-  });
+    this.data,
+    this.statusCode,
+    this.message,
+  );
 
-  late final dynamic ref;
-  late final Data? data;
-  late final String statusCode;
-  late final String message;
+  dynamic ref;
+  Data? data;
+  String statusCode;
+  String message;
 
-  GetMemberOfTrainerResponse.fromJson(Map<String, dynamic> json) {
-    ref = null;
-    data = json['data'] != null ? Data.fromJson(json['data']) : null;
-    statusCode = json['statusCode'];
-    message = json['message'];
-  }
+  factory GetMemberOfTrainerResponse.fromJson(Map<String, dynamic> json) =>
+      _$GetMemberOfTrainerResponseFromJson(json);
 
-  Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['ref'] = ref;
-    _data['data'] = data?.toJson();
-    _data['statusCode'] = statusCode;
-    _data['message'] = message;
-    return _data;
-  }
+  Map<String, dynamic> toJson() => _$GetMemberOfTrainerResponseToJson(this);
 }
 
+@JsonSerializable()
 class Data {
-  Data({
-    required this.member,
-    required this.matching,
-  });
+  Data(this.member, this.matching);
 
-  late final Member member;
-  late final Matching? matching;
+  Member member;
+  Matching? matching;
 
-  Data.fromJson(Map<String, dynamic> json) {
-    final matchingJson = json['matching'];
+  factory Data.fromJson(Map<String, dynamic> json) => _$DataFromJson(json);
 
-    member = Member.fromJson(json['member']);
-    matching = matchingJson != null ? Matching.fromJson(matchingJson) : null;
-  }
-
-  Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['member'] = member.toJson();
-    _data['matching'] = matching?.toJson();
-    return _data;
-  }
+  Map<String, dynamic> toJson() => _$DataToJson(this);
 }
 
+@JsonSerializable()
 class Member {
-  Member({
-    required this.id,
-    required this.email,
-    required this.name,
-  });
+  Member(this.id, this.email, this.name);
 
-  late final int id;
-  late final String email;
-  late final String name;
+  int id;
+  String email;
+  String name;
 
-  Member.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    email = json['email'];
-    name = json['name'];
-  }
+  factory Member.fromJson(Map<String, dynamic> json) => _$MemberFromJson(json);
 
-  Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['email'] = email;
-    _data['name'] = name;
-    return _data;
-  }
+  Map<String, dynamic> toJson() => _$MemberToJson(this);
 }
 
+@JsonSerializable()
 class Matching {
-  Matching({
-    required this.id,
-  });
+  Matching(this.id, this.isPast);
 
-  late final int id;
+  int id;
+  bool isPast;
 
-  Matching.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-  }
+  factory Matching.fromJson(Map<String, dynamic> json) =>
+      _$MatchingFromJson(json);
 
-  Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    return _data;
-  }
+  Map<String, dynamic> toJson() => _$MatchingToJson(this);
 }
