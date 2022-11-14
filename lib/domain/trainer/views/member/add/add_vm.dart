@@ -2,8 +2,8 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:si_hicoach_fe/common/exceptions/common_exceptions.dart';
 import 'package:si_hicoach_fe/common/shared_preferences/key.dart';
-import 'package:si_hicoach_fe/domain/trainer/views/member/add/data/dto/get_member_of_trainer_response.dart';
-import 'package:si_hicoach_fe/domain/trainer/views/member/add/data/member_api.dart';
+import 'package:si_hicoach_fe/infrastructure/member/trainer/dto/get_member_of_trainer_response.dart';
+import 'package:si_hicoach_fe/infrastructure/member/trainer/trainer_member_api.dart';
 import 'package:si_hicoach_fe/infrastructure/matching/matching_api.dart';
 
 class TrainerMemberAddViewModel extends GetxController {

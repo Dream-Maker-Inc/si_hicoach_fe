@@ -4,7 +4,7 @@ import 'package:si_hicoach_fe/common/dio/http_utils.dart';
 import 'package:dio/dio.dart';
 import 'package:si_hicoach_fe/common/exceptions/common_exceptions.dart';
 import 'package:si_hicoach_fe/common/exceptions/status_code.dart';
-import 'package:si_hicoach_fe/domain/trainer/views/member/add/data/dto/get_member_of_trainer_response.dart';
+import 'package:si_hicoach_fe/infrastructure/member/trainer/dto/get_member_of_trainer_response.dart';
 
 class TrainerMemberApi {
   static Future<Result<Exception, GetMemberOfTrainerResponse>>
