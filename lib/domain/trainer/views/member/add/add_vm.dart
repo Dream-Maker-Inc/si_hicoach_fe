@@ -2,9 +2,9 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:si_hicoach_fe/common/exceptions/common_exceptions.dart';
 import 'package:si_hicoach_fe/common/shared_preferences/key.dart';
+import 'package:si_hicoach_fe/infrastructure/matching/matching_api.dart';
 import 'package:si_hicoach_fe/infrastructure/member/trainer/dto/get_member_of_trainer_response.dart';
 import 'package:si_hicoach_fe/infrastructure/member/trainer/trainer_member_api.dart';
-import 'package:si_hicoach_fe/infrastructure/matching/matching_api.dart';
 
 class TrainerMemberAddViewModel extends GetxController {
   final Rxn<GetMemberOfTrainerResponse> _getMemberResponse = Rxn();
@@ -18,6 +18,8 @@ class TrainerMemberAddViewModel extends GetxController {
   bool get isExistMember => data?.member != null;
 
   int get matchingId => data?.matching?.id ?? 0;
+
+  int get memberId => data?.member.id ?? 0;
 
   String get memberName => data?.member.name ?? '';
 
@@ -48,7 +50,9 @@ class TrainerMemberAddViewModel extends GetxController {
 
   //
   String get buttonText => isExistMatching ? "매칭 복구" : "다음";
-  bool get submitButtonDisabled => !isExistMember || (isExistMatching && !isExistPastMatching);
+
+  bool get submitButtonDisabled =>
+      !isExistMember || (isExistMatching && !isExistPastMatching);
 
   //
   Rx<bool> getMemberSuccess = Rx(false);

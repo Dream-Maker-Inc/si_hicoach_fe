@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:si_hicoach_fe/common/components/app_bar.dart';
 import 'package:si_hicoach_fe/common/components/dialog.dart';
 import 'package:si_hicoach_fe/common/components/text_field.dart';
@@ -7,7 +8,6 @@ import 'package:si_hicoach_fe/common/constants/constants.dart';
 import 'package:si_hicoach_fe/common/exceptions/common_exceptions.dart';
 import 'package:si_hicoach_fe/common/theme/button.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/add/add_vm.dart';
-import 'package:get/get.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/add/additional_information.dart';
 
 class AddView extends StatefulWidget {
@@ -91,7 +91,9 @@ class _Detail extends State<AddView> {
 
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (BuildContext context) => AddAdditionalInformation(),
+        builder: (BuildContext context) => AddAdditionalInformation(
+          memberId: _vm.memberId,
+        ),
       ),
     );
   }

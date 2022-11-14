@@ -5,7 +5,7 @@ import 'package:si_hicoach_fe/common/theme/color.dart';
 class CustomChipProps {
   final int id;
   final String label;
-  final bool isChecked;
+  bool isChecked;
 
   CustomChipProps(this.id, this.label, this.isChecked);
 }
@@ -25,7 +25,7 @@ class CustomChip extends StatelessWidget {
   ButtonStyle _buildButtonStyle() {
     return ButtonStyle(
       backgroundColor: MaterialStateProperty.all(
-        isChecked ? primaryColor : secondaryColor,
+        isChecked ? primaryColor : colorScheme.onPrimary,
       ),
     );
   }

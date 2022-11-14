@@ -3,5 +3,8 @@ class BaseDto {
   String updatedAt;
   String? deletedAt;
 
-  BaseDto(this.createdAt, this.updatedAt, this.deletedAt);
+  BaseDto(
+      {required this.createdAt,
+      required this.updatedAt,
+      required this.deletedAt});
 }
