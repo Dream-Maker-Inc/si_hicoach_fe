@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:si_hicoach_fe/common/components/divider.dart';
 import 'package:si_hicoach_fe/common/theme/color.dart';
 import 'package:si_hicoach_fe/common/theme/typography.dart';
-import 'package:si_hicoach_fe/domain/trainer/views/member/list/member_list.dart';
+import 'package:si_hicoach_fe/domain/trainer/views/member/list/member_list_vm.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/studying/studying_list.dart';
 
-class MemberListTab extends StatelessWidget {
-  const MemberListTab({Key? key, required this.list}) : super(key: key);
-  final List<MemberProps> list;
+class MemberListTabs extends StatelessWidget {
+  MemberListTabs({Key? key}) : super(key: key);
+
+  final MemberListViewModel _vm = Get.find<MemberListViewModel>();
+
+  _handleTabChange(int index) {
+    _vm.tabIndex.value = index;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +36,7 @@ class MemberListTab extends StatelessWidget {
                 unselectedLabelStyle: labelLarge.copyWith(
                   fontWeight: FontWeight.w400,
                 ),
+                onTap: _handleTabChange,
               ),
               bottom: const PreferredSize(
                 preferredSize: Size.fromHeight(1),
@@ -37,14 +44,21 @@ class MemberListTab extends StatelessWidget {
               ),
             ),
           ),
-          body: TabBarView(
-            children: [
-              StudyingListView(list: list),
-              StudyingListView(list: list),
-            ],
-          ),
+          body: _buildTabBarView(),
         ),
       ),
     );
+  }
+
+  _buildTabBarView() {
+    return Obx(() {
+      final inClassMembers = _vm.inClassMembers;
+      final finishedMembers = _vm.finishedMembers;
+
+      return TabBarView(children: [
+        StudyingListView(list: inClassMembers),
+        StudyingListView(list: finishedMembers),
+      ]);
+    });
   }
 }

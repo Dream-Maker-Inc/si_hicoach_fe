@@ -1,41 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:si_hicoach_fe/common/components/app_bar_with_logo.dart';
-import 'package:si_hicoach_fe/common/constants/constants.dart';
-import 'package:si_hicoach_fe/common/utils/get_date_time.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/add/add.dart';
-import 'package:si_hicoach_fe/domain/trainer/views/member/list/tab.dart';
+import 'package:si_hicoach_fe/domain/trainer/views/member/list/member_list_vm.dart';
+import 'package:si_hicoach_fe/domain/trainer/views/member/list/tabs.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/list/title.dart';
 
-class MemberProps {
-  final String name;
-  final String regDate;
-  final int currentStudy;
-  final int totalStudy;
-
-  MemberProps(this.name, this.regDate, this.currentStudy, this.totalStudy);
-}
-
-class MemberListView extends StatelessWidget {
-  MemberListView({Key? key}) : super(key: key);
-  final List<MemberProps> list = [
-    MemberProps('김종국', Utils.getCurrentDateTime('year_month_date'), 10, 20),
-    MemberProps('박명수', Utils.getCurrentDateTime('year_month_date'), 20, 21),
-    MemberProps('전소민', Utils.getCurrentDateTime('year_month_date'), 30, 22),
-    MemberProps('홍길동', Utils.getCurrentDateTime('year_month_date'), 40, 23),
-    MemberProps('서현진', Utils.getCurrentDateTime('year_month_date'), 50, 24),
-    MemberProps('강하늘', Utils.getCurrentDateTime('year_month_date'), 60, 25),
-    MemberProps('송강호', Utils.getCurrentDateTime('year_month_date'), 80, 26),
-  ];
+class MemberListView extends StatefulWidget {
+  const MemberListView({Key? key}) : super(key: key);
 
   @override
+  State<MemberListView> createState() => _MemberListViewState();
+}
+
+class _MemberListViewState extends _Detail {
+  @override
   Widget build(BuildContext context) {
-    handleAddButtonPressed() {
-      Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (BuildContext context) => const AddView(),
-        ),
-      );
-    }
+    super.build(context);
 
     return Scaffold(
       appBar: CustomAppBarWithLogo(
@@ -47,14 +28,60 @@ class MemberListView extends StatelessWidget {
           ),
         ],
       ),
-      body: SafeArea(
-        child: Column(
+      body: SafeArea(child: Obx(() {
+        final totalCount = _vm.totalMemberCount;
+
+        return Column(
           children: <Widget>[
-            MemberListTitle(list: list),
-            MemberListTab(list: list),
+            MemberListTitle(totalCount: totalCount),
+            MemberListTabs(),
           ],
-        ),
+        );
+      })),
+    );
+  }
+}
+
+class _Detail extends State<MemberListView> {
+  late MemberListViewModel _vm;
+
+  handleAddButtonPressed() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (BuildContext context) => const AddView(),
       ),
     );
   }
+
+  @override
+  void initState() {
+    super.initState();
+
+    Get.delete<MemberListViewModel>();
+    _vm = Get.put(MemberListViewModel());
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // WidgetsBinding.instance.addPostFrameCallback((_) {
+    //   _vm.fetchPageData();
+    // });
+
+    return const SizedBox.shrink();
+  }
+}
+
+class MemberProps {
+  final int id;
+  final String name;
+  final String matchedDate;
+  final int latestStudyRound;
+  final int totalStudyCount;
+
+  MemberProps(
+      {required this.id,
+      required this.name,
+      required this.matchedDate,
+      required this.latestStudyRound,
+      required this.totalStudyCount});
 }

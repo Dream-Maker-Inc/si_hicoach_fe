@@ -1,16 +1,15 @@
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:si_hicoach_fe/common/shared_preferences/key.dart';
-import 'package:si_hicoach_fe/domain/account/sign_up/views/type/data/models/member_types.dart';
+import 'package:si_hicoach_fe/domain/member/data/dto/get_my_info_response.dart';
+import 'package:si_hicoach_fe/domain/member/data/member_api.dart';
 import 'package:si_hicoach_fe/infrastructure/login/dto/login_response.dart';
 import 'package:si_hicoach_fe/infrastructure/login/dto/request_login_dto.dart';
 import 'package:si_hicoach_fe/infrastructure/login/login_api.dart';
-import 'package:si_hicoach_fe/domain/member/data/dto/get_my_info_response.dart';
-import 'package:si_hicoach_fe/domain/member/data/member_api.dart';
 
 class LoginViewModel extends GetxController {
-  RxString email = RxString('');
-  RxString password = RxString('');
+  RxString email = RxString('admin@gmail.com');
+  RxString password = RxString('asdasd123!!');
 
   bool get buttonDisabled => email.isEmpty || password.isEmpty;
 

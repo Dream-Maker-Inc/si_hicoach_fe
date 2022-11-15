@@ -17,9 +17,9 @@ class StudyingListView extends StatelessWidget {
           list.map(
             (it) => StudyingListItemView(
               name: it.name,
-              currentStudy: it.currentStudy,
-              regDate: it.regDate,
-              totalStudy: it.totalStudy,
+              currentStudy: it.latestStudyRound,
+              regDate: it.matchedDate,
+              totalStudy: it.totalStudyCount,
             ),
           ),
         ),
