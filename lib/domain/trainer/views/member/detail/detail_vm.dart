@@ -1,11 +1,19 @@
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:si_hicoach_fe/common/shared_preferences/key.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/detail/models/exercise_goal_model.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/detail/models/latest_study_model.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/detail/models/member_model.dart';
 import 'package:si_hicoach_fe/infrastructure/page/trainer/member/dto/get_member_page_response.dart';
 import 'package:si_hicoach_fe/infrastructure/page/trainer/member/trainer_member_page_api.dart';
+import 'package:si_hicoach_fe/infrastructure/study/dto/get_member_studies_response.dart';
+import 'package:si_hicoach_fe/infrastructure/study/study_api.dart';
 
 class MemberDetailViewModel extends GetxController {
+  int trainerId = 0;
+  int memberId = 0;
+
+  //
   RxInt tabIndex = RxInt(0);
 
   MemberModel get member {
@@ -52,24 +60,39 @@ class MemberDetailViewModel extends GetxController {
       fetchMemberPageResponse.value?.data.latestStudy;
 
   fetchMemberInfo() async {
-    int memberId = 3;
-
     final result = await TrainerMemberPageApi.getData(memberId);
 
     result.when((e) => (apiError.value = e),
         (response) => (fetchMemberPageResponse.value = response));
   }
 
+  // fetch studies
+  final Rxn<GetMemberStudiesResponse> fetchMemberStudiesResponse = Rxn();
+
+  List<Items> get memberStudies =>
+      fetchMemberStudiesResponse.value?.data.items ?? [];
+
+  fetchMemberStudies() async {
+    final result = await StudyApi.getMemberStudies(
+        trainerId: trainerId, memberId: memberId);
+
+    result.when((e) => (apiError.value = e),
+        (response) => (fetchMemberStudiesResponse.value = response));
+  }
+
   //
-  @override
   @override
   Future<void> onInit() async {
     super.onInit();
 
+    await _initUserId();
+
     ever(tabIndex, _handleTabIndexChange);
-    ever(fetchMemberPageResponse, (res) {
-      if (res != null) _handleFetchMemberPageSuccess(res);
-    });
+  }
+
+  _initUserId() async {
+    final prefs = await SharedPreferences.getInstance();
+    trainerId = prefs.getInt(SharedPrefsKeys.id.key) ?? 0;
   }
 
   _handleTabIndexChange(int index) {
@@ -77,8 +100,8 @@ class MemberDetailViewModel extends GetxController {
       fetchMemberInfo();
     }
 
-    if (index == 1) {}
+    if (index == 1) {
+      fetchMemberStudies();
+    }
   }
-
-  _handleFetchMemberPageSuccess(GetMemberPageResponse res) {}
 }

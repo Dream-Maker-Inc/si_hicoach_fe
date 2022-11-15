@@ -16,6 +16,7 @@ class StudyingListView extends StatelessWidget {
         tiles: List.from(
           list.map(
             (it) => StudyingListItemView(
+              id: it.id,
               name: it.name,
               currentStudy: it.latestStudyRound,
               regDate: it.matchedDate,

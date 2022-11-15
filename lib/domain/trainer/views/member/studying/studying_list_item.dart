@@ -5,12 +5,14 @@ import 'package:si_hicoach_fe/domain/trainer/views/member/detail/detail.dart';
 class StudyingListItemView extends StatelessWidget {
   const StudyingListItemView({
     Key? key,
+    required this.id,
     required this.name,
     required this.regDate,
     required this.currentStudy,
     required this.totalStudy,
   }) : super(key: key);
 
+  final int id;
   final String name;
   final String regDate;
   final int currentStudy;
@@ -21,7 +23,7 @@ class StudyingListItemView extends StatelessWidget {
     handleDetailButtonPressed() {
       Navigator.of(context).push(
         MaterialPageRoute(
-          builder: (context) => const DetailView(),
+          builder: (context) => DetailView(memberId: id),
         ),
       );
     }

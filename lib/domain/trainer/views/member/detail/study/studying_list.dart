@@ -1,8 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:si_hicoach_fe/common/utils/date_format.dart';
+import 'package:si_hicoach_fe/domain/trainer/views/member/detail/detail_vm.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/detail/study/studying_list_item.dart';
 
 class StudyingListView extends StatelessWidget {
-  const StudyingListView({Key? key}) : super(key: key);
+  StudyingListView({super.key});
+
+  final MemberDetailViewModel _vm = Get.find<MemberDetailViewModel>();
+
+  List<StudyingListItemModel> get models => _vm.memberStudies
+      .map((it) => StudyingListItemModel(
+          title: '${it.round}회차', subtitle: it.startedDate.toKoreanFormat))
+      .toList();
 
   @override
   Widget build(BuildContext context) {
@@ -11,10 +21,9 @@ class StudyingListView extends StatelessWidget {
       shrinkWrap: true,
       children: ListTile.divideTiles(
         context: context,
-        tiles: List.generate(
-          10,
-          (int index) => const StudyingListItemView(),
-        ),
+        tiles: models.map((it) => StudyingListItemView(
+              model: it,
+            )),
       ).toList(),
     );
   }

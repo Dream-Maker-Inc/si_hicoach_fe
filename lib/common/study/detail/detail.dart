@@ -46,7 +46,7 @@ class StudyDetailView extends StatelessWidget {
     handleMemberDetailButtonPressed() {
       Navigator.of(context).push(
         MaterialPageRoute(
-          builder: (context) => const DetailView(),
+          builder: (context) => DetailView(memberId: 3),
         ),
       );
     }

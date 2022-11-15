@@ -17,8 +17,6 @@ class ExercisePurpose extends StatefulWidget {
 class _ExercisePurposeState extends State<ExercisePurpose> {
   final MemberDetailViewModel _vm = Get.find<MemberDetailViewModel>();
 
-  List<String> purpose = ['다이어트', '체형교정', '근력증가', '건강관리', '기초체력향상', '스트레스해소'];
-
   onEditIconPressed(BuildContext ctx) {
     Navigator.of(ctx).push(
       MaterialPageRoute(

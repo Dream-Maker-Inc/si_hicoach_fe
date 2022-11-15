@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors_in_immutables
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:si_hicoach_fe/common/components/alert.dart';
@@ -11,7 +13,9 @@ import 'package:si_hicoach_fe/domain/trainer/views/member/detail/study/studying_
 import 'package:si_hicoach_fe/domain/trainer/views/member/detail/tab/header.dart';
 
 class DetailView extends StatefulWidget {
-  const DetailView({super.key});
+  DetailView({super.key, required this.memberId});
+
+  final int memberId;
 
   @override
   State<DetailView> createState() => _DetailViewState();
@@ -103,7 +107,14 @@ class _Detail extends State<DetailView> {
     Get.delete<MemberDetailViewModel>();
     _vm = Get.put(MemberDetailViewModel());
 
+    _vm.memberId = widget.memberId;
+
     _vm.fetchMemberPageResponse.listen((it) {
+      if (it == null) return;
+      setState(() {});
+    });
+
+    _vm.fetchMemberStudiesResponse.listen((it) {
       if (it == null) return;
       setState(() {});
     });

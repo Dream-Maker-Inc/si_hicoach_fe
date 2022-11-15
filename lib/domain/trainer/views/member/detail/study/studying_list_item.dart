@@ -1,8 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/common/study/detail/detail.dart';
 
+class StudyingListItemModel {
+  String title;
+  String subtitle;
+
+  StudyingListItemModel({required this.title, required this.subtitle});
+}
+
 class StudyingListItemView extends StatelessWidget {
-  const StudyingListItemView({Key? key}) : super(key: key);
+  const StudyingListItemView({super.key, required this.model});
+
+  final StudyingListItemModel model;
 
   @override
   Widget build(BuildContext context) {
@@ -16,8 +25,8 @@ class StudyingListItemView extends StatelessWidget {
           ),
         );
       },
-      title: const Text('9회차'),
-      subtitle: const Text('2022년 8월 23일'),
+      title: Text(model.title),
+      subtitle: Text(model.subtitle),
       trailing: const Icon(Icons.keyboard_arrow_right),
     );
   }
