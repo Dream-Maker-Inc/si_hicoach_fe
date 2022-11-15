@@ -1,20 +1,26 @@
 // ignore_for_file: prefer_const_constructors_in_immutables
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:si_hicoach_fe/common/components/title_with_description.dart';
 import 'package:si_hicoach_fe/common/constants/constants.dart';
 import 'package:si_hicoach_fe/common/inbody/inbody.dart';
 import 'package:si_hicoach_fe/common/theme/button.dart';
+import 'package:si_hicoach_fe/domain/trainer/views/member/detail/detail_vm.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/detail/information/study_information/summary.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/detail/tickets/tickets.dart';
 
 class StudyInformation extends StatelessWidget {
   StudyInformation({super.key});
 
+  final MemberDetailViewModel _vm = Get.find<MemberDetailViewModel>();
+
   onDetailTicketButtonPressed(BuildContext ctx) {
+    final matchingId = _vm.matchingId;
+
     Navigator.of(ctx).push(
       MaterialPageRoute(
-        builder: (BuildContext context) => const TicketsView(),
+        builder: (BuildContext context) => TicketsView(matchingId: matchingId),
       ),
     );
   }

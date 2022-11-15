@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:si_hicoach_fe/common/theme/color.dart';
 
 class CustomTextField extends StatelessWidget {
@@ -12,20 +13,22 @@ class CustomTextField extends StatelessWidget {
   final ValueChanged<String>? onChanged;
   final String? value;
   final String? errorText;
+  List<TextInputFormatter>? inputFormatters;
 
-  const CustomTextField({
-    Key? key,
-    this.keyboardType,
-    this.hintText,
-    this.isPassword = false,
-    this.suffixText,
-    this.maxLength,
-    this.enabled = true,
-    this.suffix,
-    this.onChanged,
-    this.value = '',
-    this.errorText
-  }) : super(key: key);
+  CustomTextField(
+      {Key? key,
+      this.keyboardType,
+      this.hintText,
+      this.isPassword = false,
+      this.suffixText,
+      this.maxLength,
+      this.enabled = true,
+      this.suffix,
+      this.onChanged,
+      this.value = '',
+      this.errorText,
+      this.inputFormatters})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -35,20 +38,20 @@ class CustomTextField extends StatelessWidget {
         obscureText: isPassword! ? true : false,
         maxLength: maxLength,
         decoration: InputDecoration(
-          border: OutlineInputBorder(
-            borderSide: BorderSide(color: primaryColor),
-          ),
-          suffix: suffix,
-          suffixText: suffixText,
-          labelText: hintText,
-          hintText: hintText,
-          enabled: enabled!,
-          counterText: '',
-          errorText: errorText
-        ),
+            border: OutlineInputBorder(
+              borderSide: BorderSide(color: primaryColor),
+            ),
+            suffix: suffix,
+            suffixText: suffixText,
+            labelText: hintText,
+            hintText: hintText,
+            enabled: enabled!,
+            counterText: '',
+            errorText: errorText),
         keyboardType: keyboardType,
         onChanged: onChanged,
         initialValue: value,
+        inputFormatters: inputFormatters,
       ),
     );
   }

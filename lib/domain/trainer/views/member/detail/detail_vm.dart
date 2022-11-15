@@ -18,7 +18,7 @@ class MemberDetailViewModel extends GetxController {
 
   MemberModel get member {
     final birthDay =
-        DateTime.parse(_member?.birthDay ?? DateTime.now().toIso8601String());
+    DateTime.parse(_member?.birthDay ?? DateTime.now().toIso8601String());
 
     return MemberModel(
         id: _member?.id ?? 0,
@@ -42,9 +42,11 @@ class MemberDetailViewModel extends GetxController {
       _matching?.goals
           .map((it) => ExerciseGoalModel(id: it.id, title: it.title))
           .toList() ??
-      [];
+          [];
 
   String get memo => _matching?.memo ?? "";
+
+  int get matchingId => _matching?.id ?? 0;
 
   //
   Rx<Exception?> apiError = Rx(null);
@@ -63,7 +65,7 @@ class MemberDetailViewModel extends GetxController {
     final result = await TrainerMemberPageApi.getData(memberId);
 
     result.when((e) => (apiError.value = e),
-        (response) => (fetchMemberPageResponse.value = response));
+            (response) => (fetchMemberPageResponse.value = response));
   }
 
   // fetch studies
@@ -77,7 +79,7 @@ class MemberDetailViewModel extends GetxController {
         trainerId: trainerId, memberId: memberId);
 
     result.when((e) => (apiError.value = e),
-        (response) => (fetchMemberStudiesResponse.value = response));
+            (response) => (fetchMemberStudiesResponse.value = response));
   }
 
   //
