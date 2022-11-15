@@ -9,6 +9,7 @@ import 'package:si_hicoach_fe/common/constants/constants.dart';
 import 'package:si_hicoach_fe/common/theme/color.dart';
 import 'package:si_hicoach_fe/common/theme/typography.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/detail/tickets/add_dialog.dart';
+import 'package:si_hicoach_fe/common/getx/my_getx_state.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/detail/tickets/remove_dialog.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/detail/tickets/tickets_vm.dart';
 
@@ -30,7 +31,7 @@ class _TicketsViewState extends _Detail {
         title: 'PT 횟수 추가',
         content: EditTicketDialog(),
         positiveText: '추가하기',
-        onPositivePressed: () => _vm.increaseTickets(),
+        onPositivePressed: () => vm.increaseTickets(),
         negativeText: '취소',
         onNegativePressed: () => Navigator.pop(context),
       ),
@@ -49,7 +50,7 @@ class _TicketsViewState extends _Detail {
           title: 'PT 횟수 차감',
           content: RemoveTicketDialog(),
           positiveText: '차감하기',
-          onPositivePressed: () => _vm.decreaseTickets(),
+          onPositivePressed: () => vm.decreaseTickets(),
           negativeText: '취소',
           onNegativePressed: () => Navigator.pop(context),
         ),
@@ -61,9 +62,9 @@ class _TicketsViewState extends _Detail {
       body: SizedBox(
         width: double.infinity,
         child: Obx(() {
-          final finishedStudyCount = _vm.finishedStudyCount.value;
-          final remainingTicketCount = _vm.remainingTicketCount.value;
-          final totalTicketCount = _vm.totalTicketCount;
+          final finishedStudyCount = vm.finishedStudyCount.value;
+          final remainingTicketCount = vm.remainingTicketCount.value;
+          final totalTicketCount = vm.totalTicketCount;
 
           return Column(
             children: <Widget>[
@@ -130,19 +131,14 @@ class _TicketsViewState extends _Detail {
   }
 }
 
-class _Detail extends State<TicketsView> {
-  late TicketsViewModel _vm;
-
+class _Detail extends MyGetXState<TicketsView, TicketsViewModel> {
   @override
   void initState() {
     super.initState();
 
-    Get.delete<TicketsViewModel>();
-    _vm = Get.put(TicketsViewModel());
+    vm.matchingId = widget.matchingId;
 
-    _vm.matchingId = widget.matchingId;
-
-    _vm.increaseTicketsSuccess.listen((isSuccess) {
+    vm.increaseTicketsSuccess.listen((isSuccess) {
       if (isSuccess == false) return;
 
       showSimpleDialog(
@@ -154,10 +150,10 @@ class _Detail extends State<TicketsView> {
             Navigator.pop(context);
           });
 
-      _vm.increaseTicketsSuccess.value = false;
+      vm.increaseTicketsSuccess.value = false;
     });
 
-    _vm.decreaseTicketsSuccess.listen((isSuccess) {
+    vm.decreaseTicketsSuccess.listen((isSuccess) {
       if (isSuccess == false) return;
 
       showSimpleDialog(
@@ -169,10 +165,10 @@ class _Detail extends State<TicketsView> {
             Navigator.pop(context);
           });
 
-      _vm.decreaseTicketsSuccess.value = false;
+      vm.decreaseTicketsSuccess.value = false;
     });
 
-    _vm.apiError.listen((e) {
+    vm.apiError.listen((e) {
       showSimpleDialog(context: context, title: "에러", content: e.toString());
     });
   }
@@ -180,8 +176,11 @@ class _Detail extends State<TicketsView> {
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance
-        .addPostFrameCallback((_) => {_vm.fetchTicketsInfo()});
+        .addPostFrameCallback((_) => {vm.fetchTicketsInfo()});
 
-    return const SizedBox.shrink();
+    return widget;
   }
+
+  @override
+  TicketsViewModel createViewModel() => TicketsViewModel();
 }
