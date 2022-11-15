@@ -63,9 +63,9 @@ class _Detail extends State<MemberListView> {
 
   @override
   Widget build(BuildContext context) {
-    // WidgetsBinding.instance.addPostFrameCallback((_) {
-    //   _vm.fetchPageData();
-    // });
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _vm.fetchInClassMembers();
+    });
 
     return const SizedBox.shrink();
   }

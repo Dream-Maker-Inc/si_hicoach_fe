@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:si_hicoach_fe/common/theme/color.dart';
 import 'package:si_hicoach_fe/common/theme/typography.dart';
+import '../detail_vm.dart';
 
 class Header extends StatelessWidget {
-  const Header({Key? key}) : super(key: key);
+  Header({Key? key}) : super(key: key);
+
+  final MemberDetailViewModel _vm = Get.find<MemberDetailViewModel>();
+
+  _handleTabChange(int index) {
+    _vm.tabIndex.value = index;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +27,7 @@ class Header extends StatelessWidget {
         color: Colors.black87,
         fontWeight: FontWeight.w400,
       ),
+      onTap: _handleTabChange,
     );
   }
 }

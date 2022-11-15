@@ -1,5 +1,4 @@
-
-import 'package:si_hicoach_fe/infrastructure/signup/models/gender_types.dart';
+import 'package:si_hicoach_fe/domain/member/models/gender_types.dart';
 
 class RequestSignUpDto {
   SignupMember member;
@@ -36,7 +35,7 @@ class SignupMember {
       'email': email,
       'password': password,
       'name': name,
-      'gender': gender.name,
+      'gender': gender.value,
       'birthDay': birthDay.toIso8601String(),
       'phone': phone,
       'trainerInfo': trainerInfo?.toMap()

@@ -1,15 +1,84 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:si_hicoach_fe/common/components/alert.dart';
 import 'package:si_hicoach_fe/common/components/app_bar.dart';
 import 'package:si_hicoach_fe/common/components/divider.dart';
 import 'package:si_hicoach_fe/common/components/title_with_description.dart';
 import 'package:si_hicoach_fe/common/constants/constants.dart';
+import 'package:si_hicoach_fe/domain/trainer/views/member/detail/detail_vm.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/detail/information/information.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/detail/study/studying_list.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/detail/tab/header.dart';
 
-class DetailView extends StatelessWidget {
-  const DetailView({Key? key}) : super(key: key);
+class DetailView extends StatefulWidget {
+  const DetailView({super.key});
+
+  @override
+  State<DetailView> createState() => _DetailViewState();
+}
+
+class _DetailViewState extends _Detail {
+  @override
+  Widget build(BuildContext context) {
+    super.build(context);
+
+    final member = _vm.member;
+    //
+
+    return Scaffold(
+      appBar: CustomAppBarArrowBack(
+        titleText: '회원 상세',
+        actionsWidget: <Widget>[
+          IconButton(
+            icon: const SizedBox(width: 20, child: Icon(Icons.delete_outline)),
+            onPressed: () => onMemberDeleteIconPressed(context),
+          )
+        ],
+      ),
+      body: SizedBox(
+        width: double.infinity,
+        child: Column(
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.all(defaultPadding),
+              child: TitleWithDescription(
+                title: '${member.name}님',
+                description: '${member.age}세 · ${member.gender}',
+              ),
+            ),
+            Expanded(
+              child: DefaultTabController(
+                length: 2,
+                child: Scaffold(
+                  appBar: AppBar(
+                    automaticallyImplyLeading: false,
+                    title: Header(),
+                  ),
+                  body: Column(
+                    children: <Widget>[
+                      const CustomDivider(),
+                      Expanded(
+                        child: TabBarView(
+                          children: <Widget>[
+                            Information(),
+                            StudyingListView(),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _Detail extends State<DetailView> {
+  late MemberDetailViewModel _vm;
 
   onMemberDeleteIconPressed(BuildContext context) {
     showDialog<String>(
@@ -28,55 +97,23 @@ class DetailView extends StatelessWidget {
   }
 
   @override
+  void initState() {
+    super.initState();
+
+    Get.delete<MemberDetailViewModel>();
+    _vm = Get.put(MemberDetailViewModel());
+
+    _vm.fetchMemberPageResponse.listen((it) {
+      if (it == null) return;
+      setState(() {});
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: CustomAppBarArrowBack(
-        titleText: '회원 상세',
-        actionsWidget: <Widget>[
-          IconButton(
-            icon: const SizedBox(width: 20, child: Icon(Icons.delete_outline)),
-            onPressed: () => onMemberDeleteIconPressed(context),
-          )
-        ],
-      ),
-      body: SizedBox(
-        width: double.infinity,
-        child: Column(
-          children: <Widget>[
-            const Padding(
-              padding: EdgeInsets.all(defaultPadding),
-              child: TitleWithDescription(
-                title: '이은석 회원님',
-                description: '30세 · 남성',
-              ),
-            ),
-            Expanded(
-              child: DefaultTabController(
-                length: 2,
-                child: Scaffold(
-                  appBar: AppBar(
-                    automaticallyImplyLeading: false,
-                    title: const Header(),
-                  ),
-                  body: Column(
-                    children: const <Widget>[
-                      CustomDivider(),
-                      Expanded(
-                        child: TabBarView(
-                          children: <Widget>[
-                            Information(),
-                            StudyingListView(),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
+    WidgetsBinding.instance
+        .addPostFrameCallback((_) => {_vm.fetchMemberInfo()});
+
+    return const SizedBox.shrink();
   }
 }

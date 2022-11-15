@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:si_hicoach_fe/domain/account/sign_up/views/type/data/models/member_types.dart';
 import 'package:si_hicoach_fe/infrastructure/signup/dto/request_signup_dto.dart';
-import 'package:si_hicoach_fe/infrastructure/signup/models/gender_types.dart';
+import 'package:si_hicoach_fe/domain/member/models/gender_types.dart';
 import 'package:si_hicoach_fe/infrastructure/signup/signup_api.dart';
 
 class SignupViewModel extends GetxController {
@@ -44,7 +44,7 @@ class SignupViewModel extends GetxController {
     final dto = _createDto();
     final result = await SignupApi.signup(dto);
 
-    result.when((e) => signupError.value = e,
-        (response) => signupSuccess.value = true);
+    result.when(
+        (e) => signupError.value = e, (response) => signupSuccess.value = true);
   }
 }

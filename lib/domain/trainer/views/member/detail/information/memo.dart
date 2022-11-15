@@ -1,21 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:si_hicoach_fe/common/components/title_with_description.dart';
 import 'package:si_hicoach_fe/common/constants/constants.dart';
 import 'package:si_hicoach_fe/common/theme/color.dart';
+import 'package:si_hicoach_fe/domain/trainer/views/member/detail/detail_vm.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/edit/memo.dart';
 
 class Memo extends StatelessWidget {
-  const Memo({Key? key}) : super(key: key);
+  Memo({Key? key}) : super(key: key);
+
+  final MemberDetailViewModel _vm = Get.find<MemberDetailViewModel>();
+
+  onEditIconPressed(BuildContext ctx) {
+    Navigator.of(ctx).push(
+      MaterialPageRoute(
+        builder: (BuildContext context) => const MemoEditView(),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
-    onEditIconPressed() {
-      Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (BuildContext context) => const MemoEditView(),
-        ),
-      );
-    }
+    String memo = _vm.memo;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -32,7 +38,7 @@ class Memo extends StatelessWidget {
               ),
             ),
             IconButton(
-              onPressed: onEditIconPressed,
+              onPressed: () => onEditIconPressed(context),
               icon: const Icon(
                 Icons.edit_sharp,
                 color: Colors.grey,
@@ -50,7 +56,7 @@ class Memo extends StatelessWidget {
               maxLines: 100,
               enabled: false,
               decoration: InputDecoration(
-                hintText: 'MEMOMEMOMEMOMEMOMEMOMEMOMEMOMEMOMEMOMEMOMEMOMEMO',
+                hintText: memo,
                 border: OutlineInputBorder(
                   borderSide: BorderSide(
                     color: primaryColor,
