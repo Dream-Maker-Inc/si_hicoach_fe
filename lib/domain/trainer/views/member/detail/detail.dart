@@ -93,7 +93,7 @@ class _Detail extends State<DetailView> {
         content:
             '회원 매칭을 취소하시면\n\n - 해당 회원의 예약 수업 정보 모두 삭제\n - 회원 리스트에서 해당 회원 조회 불가\n\n처리됩니다.',
         positiveText: '매칭 취소하기',
-        onPositivePressed: () => Navigator.of(context).pop(),
+        onPositivePressed: () => _vm.removeMatching(),
         negativeText: '뒤로',
         onNegativePressed: () => Navigator.of(context).pop(),
       ),
@@ -117,6 +117,20 @@ class _Detail extends State<DetailView> {
     _vm.fetchMemberStudiesResponse.listen((it) {
       if (it == null) return;
       setState(() {});
+    });
+
+    _vm.removeMatchingSuccess.listen((b) {
+      if (!b) return;
+
+      Get.defaultDialog(
+          title: "매칭 취소",
+          content: Text("${_vm.member.name} 회원님과 매칭이 종료되었습니다."),
+          textConfirm: "확인",
+          onConfirm: () {
+            Get.back();
+            Get.back();
+            Get.back();
+          });
     });
   }
 

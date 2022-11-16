@@ -4,6 +4,7 @@ import 'package:si_hicoach_fe/common/shared_preferences/key.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/detail/models/exercise_goal_model.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/detail/models/latest_study_model.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/detail/models/member_model.dart';
+import 'package:si_hicoach_fe/infrastructure/matching/matching_api.dart';
 import 'package:si_hicoach_fe/infrastructure/page/trainer/member/dto/get_member_page_response.dart';
 import 'package:si_hicoach_fe/infrastructure/page/trainer/member/trainer_member_page_api.dart';
 import 'package:si_hicoach_fe/infrastructure/study/dto/get_member_studies_response.dart';
@@ -18,7 +19,7 @@ class MemberDetailViewModel extends GetxController {
 
   MemberModel get member {
     final birthDay =
-    DateTime.parse(_member?.birthDay ?? DateTime.now().toIso8601String());
+        DateTime.parse(_member?.birthDay ?? DateTime.now().toIso8601String());
 
     return MemberModel(
         id: _member?.id ?? 0,
@@ -42,7 +43,7 @@ class MemberDetailViewModel extends GetxController {
       _matching?.goals
           .map((it) => ExerciseGoalModel(id: it.id, title: it.title))
           .toList() ??
-          [];
+      [];
 
   String get memo => _matching?.memo ?? "";
 
@@ -65,7 +66,7 @@ class MemberDetailViewModel extends GetxController {
     final result = await TrainerMemberPageApi.getData(memberId);
 
     result.when((e) => (apiError.value = e),
-            (response) => (fetchMemberPageResponse.value = response));
+        (response) => (fetchMemberPageResponse.value = response));
   }
 
   // fetch studies
@@ -79,7 +80,17 @@ class MemberDetailViewModel extends GetxController {
         trainerId: trainerId, memberId: memberId);
 
     result.when((e) => (apiError.value = e),
-            (response) => (fetchMemberStudiesResponse.value = response));
+        (response) => (fetchMemberStudiesResponse.value = response));
+  }
+
+  // remove matching
+  final RxBool removeMatchingSuccess = RxBool(false);
+
+  removeMatching() async {
+    final result = await MatchingApi.remove(matchingId);
+
+    result.when((e) => (apiError.value = e),
+        (response) => (removeMatchingSuccess.value = response));
   }
 
   //

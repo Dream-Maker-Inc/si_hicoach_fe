@@ -56,4 +56,15 @@ class MatchingApi {
       return const Success(true);
     });
   }
+
+  static Future<Result<Exception, bool>> remove(int matchingId) async {
+    return safeApiCall<bool>(() async {
+      Dio dio = DioHelper().dio;
+      String path = '/api/v2/trainer/matching/$matchingId';
+
+      await dio.delete(path);
+
+      return const Success(true);
+    });
+  }
 }
