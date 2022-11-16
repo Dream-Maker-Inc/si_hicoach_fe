@@ -14,7 +14,8 @@ class Memo extends StatelessWidget {
   onEditIconPressed(BuildContext ctx) {
     Navigator.of(ctx).push(
       MaterialPageRoute(
-        builder: (BuildContext context) => const MemoEditView(),
+        builder: (BuildContext context) =>
+            MemoEditView(matchingId: _vm.matchingId),
       ),
     );
   }
