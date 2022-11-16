@@ -1,9 +1,15 @@
+import 'package:dio/dio.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
 import 'package:si_hicoach_fe/common/components/app_bar.dart';
 import 'package:si_hicoach_fe/common/constants/constants.dart';
+import 'package:si_hicoach_fe/common/dio/dio_helper.dart';
+import 'package:si_hicoach_fe/common/file_picker/file_picker_extension.dart';
 import 'package:si_hicoach_fe/common/utils/get_date_time.dart';
 import 'package:si_hicoach_fe/common/inbody/item.dart';
+import 'package:si_hicoach_fe/infrastructure/study/dto/update_inBody_dto.dart';
+import 'package:si_hicoach_fe/infrastructure/study/study_api.dart';
 
 class InbodyProps {
   final String imageUrl;
@@ -63,13 +69,30 @@ class _InbodyViewState extends State<InbodyView> {
     ),
   ];
 
+  // TODO: 코드 정리
   void _pickImage() async {
-    (await FilePicker.platform.pickFiles(
+    final result = await FilePicker.platform.pickFiles(
       type: FileType.image,
       allowMultiple: false,
       onFileLoading: (FilePickerStatus status) => print('loading : $status'),
-    ))
-        ?.files;
+    );
+
+    if (result == null) return;
+
+    ///
+    final multipartFiles =
+        await Future.wait(result.files.map((it) => it.toMultipartFile));
+
+    ///
+
+    ///
+    final dto = UpdateInBodyDto(multipartFiles);
+
+    final rrr = await StudyApi.updateInBody(1, dto);
+
+    Logger().d(rrr);
+
+    ///
   }
 
   @override

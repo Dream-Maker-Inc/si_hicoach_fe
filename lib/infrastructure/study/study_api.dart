@@ -6,6 +6,7 @@ import 'package:si_hicoach_fe/infrastructure/matching/dto/create_matching_dto.da
 import 'package:si_hicoach_fe/infrastructure/matching/dto/create_matching_response.dart';
 import 'package:si_hicoach_fe/infrastructure/matching/dto/recover_matching_response.dart';
 import 'package:si_hicoach_fe/infrastructure/study/dto/get_member_studies_response.dart';
+import 'package:si_hicoach_fe/infrastructure/study/dto/update_inBody_dto.dart';
 
 class StudyApi {
   static Future<Result<Exception, GetMemberStudiesResponse>> getMemberStudies(
@@ -18,6 +19,20 @@ class StudyApi {
           queryParameters: {'trainerId': trainerId, 'memberId': memberId});
 
       return Success(GetMemberStudiesResponse.fromJson(response.data));
+    });
+  }
+
+  static Future<Result<Exception, bool>> updateInBody(int studyId,
+      UpdateInBodyDto dto) async {
+    return safeApiCall<bool>(() async {
+      Dio dio = DioHelper().dio;
+
+      // TODO: 인바디 API Path 로 수정
+      String path = '/api/test';
+
+      await dio.post(path, data: dto.toFormData());
+
+      return const Success(true);
     });
   }
 }
