@@ -1,3 +1,4 @@
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/common/components/app_bar.dart';
 import 'package:si_hicoach_fe/common/constants/constants.dart';
@@ -21,46 +22,55 @@ class InbodyView extends StatefulWidget {
 class _InbodyViewState extends State<InbodyView> {
   List<InbodyProps> list = [
     InbodyProps(
-      'https://via.placeholder.com/150',
+      'https://placeimg.com/640/480/any',
       Utils.getCurrentDateTime('year_month_date'),
     ),
     InbodyProps(
-      'https://via.placeholder.com/150',
+      'https://placeimg.com/640/480/any',
       Utils.getCurrentDateTime('year_month_date'),
     ),
     InbodyProps(
-      'https://via.placeholder.com/150',
+      'https://placeimg.com/640/480/any',
       Utils.getCurrentDateTime('year_month_date'),
     ),
     InbodyProps(
-      'https://via.placeholder.com/150',
+      'https://placeimg.com/640/480/any',
       Utils.getCurrentDateTime('year_month_date'),
     ),
     InbodyProps(
-      'https://via.placeholder.com/150',
+      'https://placeimg.com/640/480/any',
       Utils.getCurrentDateTime('year_month_date'),
     ),
     InbodyProps(
-      'https://via.placeholder.com/150',
+      'https://placeimg.com/640/480/any',
       Utils.getCurrentDateTime('year_month_date'),
     ),
     InbodyProps(
-      'https://via.placeholder.com/150',
+      'https://placeimg.com/640/480/any',
       Utils.getCurrentDateTime('year_month_date'),
     ),
     InbodyProps(
-      'https://via.placeholder.com/150',
+      'https://placeimg.com/640/480/any',
       Utils.getCurrentDateTime('year_month_date'),
     ),
     InbodyProps(
-      'https://via.placeholder.com/150',
+      'https://placeimg.com/640/480/any',
       Utils.getCurrentDateTime('year_month_date'),
     ),
     InbodyProps(
-      'https://via.placeholder.com/150',
+      'https://placeimg.com/640/480/any',
       Utils.getCurrentDateTime('year_month_date'),
     ),
   ];
+
+  void _pickImage() async {
+    (await FilePicker.platform.pickFiles(
+      type: FileType.image,
+      allowMultiple: false,
+      onFileLoading: (FilePickerStatus status) => print('loading : $status'),
+    ))
+        ?.files;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -69,7 +79,7 @@ class _InbodyViewState extends State<InbodyView> {
         titleText: '인바디 데이터',
         actionsWidget: <Widget>[
           IconButton(
-            onPressed: () {},
+            onPressed: _pickImage,
             icon: const Icon(Icons.add_rounded),
           ),
         ],
