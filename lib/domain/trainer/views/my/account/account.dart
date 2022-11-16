@@ -16,7 +16,7 @@ class _AccountViewState extends _Detail {
   handleEditClick() {
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (_) => const MypageEditView(),
+        builder: (_) => MypageEditView(companyName: vm.companyName),
       ),
     );
   }

@@ -47,10 +47,4 @@ class _FetchController extends GetxController {
     result.when((e) => (apiError.value = e),
         (res) => (_fetchMyInfoResponse.value = res));
   }
-
-  //
-  @override
-  Future<void> onInit() async {
-    super.onInit();
-  }
 }

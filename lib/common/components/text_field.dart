@@ -13,9 +13,10 @@ class CustomTextField extends StatelessWidget {
   final ValueChanged<String>? onChanged;
   final String? value;
   final String? errorText;
-  List<TextInputFormatter>? inputFormatters;
+  final List<TextInputFormatter>? inputFormatters;
+  final TextEditingController? controller;
 
-  CustomTextField(
+  const CustomTextField(
       {Key? key,
       this.keyboardType,
       this.hintText,
@@ -25,9 +26,10 @@ class CustomTextField extends StatelessWidget {
       this.enabled = true,
       this.suffix,
       this.onChanged,
-      this.value = '',
+      this.value,
       this.errorText,
-      this.inputFormatters})
+      this.inputFormatters,
+      this.controller})
       : super(key: key);
 
   @override
@@ -35,6 +37,7 @@ class CustomTextField extends StatelessWidget {
     return SizedBox(
       width: double.infinity,
       child: TextFormField(
+        controller: controller,
         obscureText: isPassword! ? true : false,
         maxLength: maxLength,
         decoration: InputDecoration(
