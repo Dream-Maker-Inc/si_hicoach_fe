@@ -2,8 +2,10 @@ import 'package:dio/dio.dart';
 import 'package:multiple_result/multiple_result.dart';
 import 'package:si_hicoach_fe/common/dio/dio_helper.dart';
 import 'package:si_hicoach_fe/common/dio/http_utils.dart';
+import 'package:si_hicoach_fe/common/exceptions/common_exceptions.dart';
 import 'package:si_hicoach_fe/infrastructure/member/member/dto/get_my_info_response.dart';
 import 'package:si_hicoach_fe/infrastructure/member/member/dto/update_my_info_dto.dart';
+import 'package:si_hicoach_fe/infrastructure/member/member/dto/update_password_dto.dart';
 
 class MemberApi {
   static Future<Result<Exception, GetMyInfoResponse>> findMe() async {
@@ -26,6 +28,20 @@ class MemberApi {
       await dio.patch(path, data: dto.toMap());
 
       return const Success(true);
+    });
+  }
+
+  static Future<Result<Exception, bool>> updatePassword(int memberId,
+      UpdatePasswordDto dto) async {
+    return safeApiCall<bool>(() async {
+      Dio dio = DioHelper().dio;
+      String path = '/api/v2/member/$memberId/password';
+
+      await dio.patch(path, data: dto.toMap());
+
+      return const Success(true);
+    }, handleError: (DioError e) {
+      return Error(UnauthorizedException());
     });
   }
 }
