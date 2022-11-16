@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/common/components/divider.dart';
-import 'package:si_hicoach_fe/common/edit_password/edit_password.dart';
+import 'package:si_hicoach_fe/domain/common/edit_password/edit_password.dart';
 import 'package:si_hicoach_fe/common/invite/invite.dart';
 import 'package:si_hicoach_fe/domain/splash/splash.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/my/account/account.dart';
