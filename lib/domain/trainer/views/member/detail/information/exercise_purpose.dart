@@ -18,9 +18,11 @@ class _ExercisePurposeState extends State<ExercisePurpose> {
   final MemberDetailViewModel _vm = Get.find<MemberDetailViewModel>();
 
   onEditIconPressed(BuildContext ctx) {
-    Navigator.of(ctx).push(
+    Navigator.push(
+      ctx,
       MaterialPageRoute(
-        builder: (BuildContext context) => PurposeEditView(),
+        builder: (BuildContext context) =>
+            PurposeEditView(matchingId: _vm.matchingId),
       ),
     );
   }

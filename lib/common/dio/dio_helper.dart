@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:si_hicoach_fe/common/shared_preferences/key.dart';
 
-String url = 'http://966b-218-236-78-53.ngrok.io';
+String url = 'http://6946-218-236-78-53.ngrok.io';
 // String url = 'https://hicoch.ureca.im';
 
 BaseOptions _options = BaseOptions(baseUrl: url);
