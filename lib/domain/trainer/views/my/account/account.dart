@@ -14,11 +14,12 @@ class AccountView extends StatefulWidget {
 
 class _AccountViewState extends _Detail {
   handleEditClick() {
-    Navigator.of(context).push(
+    Navigator.push(
+      context,
       MaterialPageRoute(
         builder: (_) => MypageEditView(companyName: vm.companyName),
       ),
-    );
+    ).then((value) => setState(() {}));
   }
 
   @override
