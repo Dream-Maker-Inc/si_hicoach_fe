@@ -7,11 +7,13 @@ class TrainerMypageSummaryView extends StatelessWidget {
   const TrainerMypageSummaryView({
     Key? key,
     required this.name,
+    required this.companyName,
     required this.currentStudy,
     required this.pastStudy,
   }) : super(key: key);
 
   final String name;
+  final String companyName;
   final int currentStudy;
   final int pastStudy;
 
@@ -24,7 +26,7 @@ class TrainerMypageSummaryView extends StatelessWidget {
           padding: const EdgeInsets.all(defaultPadding),
           child: TitleWithDescription(
             title: '$name 코치님',
-            description: '소속 : 오르다 PT 샵',
+            description: '소속 : $companyName',
           ),
         ),
         Container(
@@ -37,7 +39,7 @@ class TrainerMypageSummaryView extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    Text('저번 달 완료 수업 (총합)', style: bodyMedium),
+                    Text('이번 달 완료 수업 (총합)', style: bodyMedium),
                     Text('$currentStudy개', style: bodyMedium),
                   ],
                 ),
