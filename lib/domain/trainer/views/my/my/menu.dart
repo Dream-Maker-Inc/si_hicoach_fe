@@ -32,7 +32,7 @@ class MypageMenuView extends StatelessWidget {
           onTap: () => {
             Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (context) => const InviteView(),
+                builder: (context) => InviteView(),
               ),
             )
           },
