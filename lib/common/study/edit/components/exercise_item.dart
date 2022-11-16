@@ -41,7 +41,19 @@ class StudyEditExerciseItem extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Text(name, style: bodyMedium),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Text(name,
+                    style: bodyMedium.copyWith(color: Colors.grey.shade600)),
+                IconButton(
+                  onPressed: () {},
+                  icon: const Icon(Icons.close),
+                  color: primaryColor,
+                  iconSize: 16,
+                ),
+              ],
+            ),
             const SizedBox(height: 10),
             Row(
               children: <Widget>[
@@ -70,11 +82,6 @@ class StudyEditExerciseItem extends StatelessWidget {
                       ),
                     ],
                   ),
-                ),
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.close),
-                  color: primaryColor,
                 ),
               ],
             ),
