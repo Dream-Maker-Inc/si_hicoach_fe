@@ -5,8 +5,7 @@ import 'package:get/get.dart';
 import 'package:si_hicoach_fe/common/components/alert.dart';
 import 'package:si_hicoach_fe/common/components/app_bar.dart';
 import 'package:si_hicoach_fe/common/components/divider.dart';
-import 'package:si_hicoach_fe/common/components/title_with_description.dart';
-import 'package:si_hicoach_fe/common/constants/constants.dart';
+import 'package:si_hicoach_fe/common/study/edit/study.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/detail/detail_vm.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/detail/information/information.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/detail/study/studying_list.dart';
@@ -31,25 +30,18 @@ class _DetailViewState extends _Detail {
 
     return Scaffold(
       appBar: CustomAppBarArrowBack(
-        titleText: '회원 상세',
+        titleText: '${member.name} 님',
         actionsWidget: <Widget>[
           IconButton(
             icon: const SizedBox(width: 20, child: Icon(Icons.delete_outline)),
             onPressed: () => onMemberDeleteIconPressed(context),
-          )
+          ),
         ],
       ),
       body: SizedBox(
         width: double.infinity,
         child: Column(
           children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(defaultPadding),
-              child: TitleWithDescription(
-                title: '${member.name}님',
-                description: '${member.age}세 · ${member.gender}',
-              ),
-            ),
             Expanded(
               child: DefaultTabController(
                 length: 2,
@@ -83,6 +75,15 @@ class _DetailViewState extends _Detail {
 
 class _Detail extends State<DetailView> {
   late MemberDetailViewModel _vm;
+
+  onStudyAddIconPressed(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (BuildContext context) => StudyEditView(),
+      ),
+    );
+  }
 
   onMemberDeleteIconPressed(BuildContext context) {
     showDialog<String>(
