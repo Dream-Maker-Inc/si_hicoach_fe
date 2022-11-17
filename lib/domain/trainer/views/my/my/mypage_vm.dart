@@ -37,7 +37,7 @@ class _FetchController extends GetxController {
     final result = await TrainerMyPageApi.getData();
 
     result.when((e) => (apiError.value = e),
-            (res) => (fetchMyPageResponse.value = res));
+        (res) => (fetchMyPageResponse.value = res));
   }
 
   //
@@ -45,7 +45,7 @@ class _FetchController extends GetxController {
   Future<void> onInit() async {
     super.onInit();
 
-    _initUserId();
+    await _initUserId();
   }
 
   _initUserId() async {

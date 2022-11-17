@@ -17,5 +17,6 @@ ColorScheme colorScheme = ColorScheme(
   surfaceTint: Colors.white,
 );
 
+Color dangerColor = Colors.red.shade600;
 Color primaryColor = const Color(0xff4667f0);
 Color secondaryColor = const Color(0x104667f0);

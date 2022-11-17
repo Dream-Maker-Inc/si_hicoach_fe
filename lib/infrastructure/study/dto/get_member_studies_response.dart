@@ -35,15 +35,15 @@ class Data {
 
 @JsonSerializable()
 class Items {
-  Items({
-    required this.id,
-    required this.round,
-    required this.startedAt,
-    required this.endedAt,
-    required this.myExercises,
-    required this.memo,
-    required this.isFinished,
-  });
+  Items(
+      {required this.id,
+      required this.round,
+      required this.startedAt,
+      required this.endedAt,
+      required this.myExercises,
+      required this.memo,
+      required this.isFinished,
+      this.inBody});
 
   late final int id;
   late final int round;
@@ -52,6 +52,7 @@ class Items {
   late final List<MyExercises> myExercises;
   late final String memo;
   late final bool isFinished;
+  late final InBody? inBody;
 
   DateTime get startedDate => DateTime.parse(startedAt);
 
@@ -96,4 +97,21 @@ class Exercise {
       _$ExerciseFromJson(json);
 
   Map<String, dynamic> toJson() => _$ExerciseToJson(this);
+}
+
+@JsonSerializable()
+class InBody {
+  InBody({
+    required this.imageKey,
+    required this.imageUrl,
+    required this.createdAt,
+  });
+
+  late final String imageKey;
+  late final String imageUrl;
+  late final String createdAt;
+
+  factory InBody.fromJson(Map<String, dynamic> json) => _$InBodyFromJson(json);
+
+  Map<String, dynamic> toJson() => _$InBodyToJson(this);
 }

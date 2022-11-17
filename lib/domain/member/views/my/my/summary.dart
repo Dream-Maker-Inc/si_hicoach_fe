@@ -70,7 +70,8 @@ class SummaryView extends StatelessWidget {
                   onPressed: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (BuildContext context) => const InbodyView(),
+                        builder: (BuildContext context) =>
+                            InbodyView(memberId: 1, matchingId: 1),
                       ),
                     );
                   },

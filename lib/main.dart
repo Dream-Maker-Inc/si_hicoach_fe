@@ -21,6 +21,7 @@ class MyApp extends StatelessWidget {
           checkboxTheme: checkboxThemes,
           scaffoldBackgroundColor: Colors.white,
         ),
+        themeMode: ThemeMode.light,
         home: const SplashPage(),
       ),
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
