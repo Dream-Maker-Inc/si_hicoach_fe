@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/common/components/divider.dart';
 import 'package:si_hicoach_fe/common/constants/constants.dart';
+import 'package:si_hicoach_fe/common/inbody/detail.dart';
 import 'package:si_hicoach_fe/common/theme/color.dart';
 import 'package:si_hicoach_fe/common/theme/typography.dart';
 
@@ -24,6 +25,16 @@ class InbodyItem extends StatelessWidget {
     print('삭제 클릭됨');
   }
 
+  _handleImagePressed(BuildContext context, String image) {
+    print('image : $image');
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (BuildContext context) => InbodyDetailView(image: image),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -37,7 +48,10 @@ class InbodyItem extends StatelessWidget {
           Column(
             children: <Widget>[
               Expanded(
-                child: Image.network(imageUrl),
+                child: GestureDetector(
+                  child: Image.network(imageUrl),
+                  onTap: () => _handleImagePressed(context, imageUrl),
+                ),
               ),
               const CustomDivider(),
               Row(
