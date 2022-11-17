@@ -3,8 +3,8 @@ import 'package:si_hicoach_fe/common/components/divider.dart';
 import 'package:si_hicoach_fe/common/components/title_with_description.dart';
 import 'package:si_hicoach_fe/common/constants/constants.dart';
 import 'package:si_hicoach_fe/common/theme/button.dart';
-import 'package:si_hicoach_fe/common/inbody/inbody.dart';
 import 'package:si_hicoach_fe/common/theme/typography.dart';
+import 'package:si_hicoach_fe/domain/common/inbody/inbody.dart';
 import 'package:si_hicoach_fe/domain/member/views/my/my/memo.dart';
 
 class SummaryView extends StatelessWidget {
@@ -71,7 +71,7 @@ class SummaryView extends StatelessWidget {
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (BuildContext context) =>
-                            InbodyView(memberId: 1, matchingId: 1),
+                            const InbodyView(memberId: 1, matchingId: 1),
                       ),
                     );
                   },

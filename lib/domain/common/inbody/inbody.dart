@@ -6,8 +6,8 @@ import 'package:si_hicoach_fe/common/constants/constants.dart';
 import 'package:si_hicoach_fe/common/exceptions/common_exceptions.dart';
 import 'package:si_hicoach_fe/common/file_picker/file_picker_func.dart';
 import 'package:si_hicoach_fe/common/getx/my_getx_state.dart';
-import 'package:si_hicoach_fe/common/inbody/inbody_vm.dart';
-import 'package:si_hicoach_fe/common/inbody/item.dart';
+import 'package:si_hicoach_fe/domain/common/inbody/inbody_vm.dart';
+import 'package:si_hicoach_fe/domain/common/inbody/item.dart';
 
 class InbodyView extends StatefulWidget {
   final int memberId;

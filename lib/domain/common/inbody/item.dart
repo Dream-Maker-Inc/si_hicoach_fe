@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:logger/logger.dart';
-import 'package:si_hicoach_fe/common/components/dialog.dart';
 import 'package:si_hicoach_fe/common/components/divider.dart';
 import 'package:si_hicoach_fe/common/constants/constants.dart';
 import 'package:si_hicoach_fe/common/file_picker/file_picker_func.dart';
-import 'package:si_hicoach_fe/common/inbody/inbody_vm.dart';
-import 'package:si_hicoach_fe/common/inbody/models/inbody_model.dart';
-import 'package:si_hicoach_fe/common/inbody/detail.dart';
+import 'package:si_hicoach_fe/domain/common/inbody/detail.dart';
+import 'package:si_hicoach_fe/domain/common/inbody/inbody_vm.dart';
+import 'package:si_hicoach_fe/domain/common/inbody/models/inbody_model.dart';
 import 'package:si_hicoach_fe/common/theme/color.dart';
 import 'package:si_hicoach_fe/common/theme/typography.dart';
 import 'package:si_hicoach_fe/common/utils/date_format.dart';

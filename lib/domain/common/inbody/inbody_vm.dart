@@ -1,9 +1,8 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:get/get.dart';
-import 'package:logger/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:si_hicoach_fe/common/file_picker/file_picker_extension.dart';
-import 'package:si_hicoach_fe/common/inbody/models/inbody_model.dart';
+import 'package:si_hicoach_fe/domain/common/inbody/models/inbody_model.dart';
 import 'package:si_hicoach_fe/common/shared_preferences/key.dart';
 import 'package:si_hicoach_fe/infrastructure/study/dto/get_member_studies_response.dart';
 import 'package:si_hicoach_fe/infrastructure/study/dto/update_inBody_dto.dart';
