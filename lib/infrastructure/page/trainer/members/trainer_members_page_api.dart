@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:logger/logger.dart';
 import 'package:multiple_result/multiple_result.dart';
 import 'package:si_hicoach_fe/common/dio/dio_helper.dart';
 import 'package:si_hicoach_fe/common/dio/http_utils.dart';
@@ -12,7 +13,9 @@ class TrainerMembersPageApi {
       String path = '/api/v2/app/trainer/members';
 
       final response =
-          await dio.get(path, queryParameters: {'isFinished': isFinished});
+      await dio.get(path, queryParameters: {'isFinished': isFinished});
+
+      Logger().i(response);
 
       return Success(GetMembersPageResponse.fromJson(response.data));
     });

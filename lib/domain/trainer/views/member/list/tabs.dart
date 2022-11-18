@@ -51,7 +51,7 @@ class MemberListTabs extends StatelessWidget {
   }
 
   _buildTabBarView() {
-    return Obx(() {
+    return GetBuilder<MemberListViewModel>(builder: (vm) {
       final inClassMembers = _vm.inClassMembers;
       final finishedMembers = _vm.finishedMembers;
 

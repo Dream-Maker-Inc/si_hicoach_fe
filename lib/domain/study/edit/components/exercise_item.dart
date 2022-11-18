@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/common/components/divider.dart';
-import 'package:si_hicoach_fe/common/study/edit/components/text_field.dart';
+import 'package:si_hicoach_fe/domain/study/edit/components/text_field.dart';
 import 'package:si_hicoach_fe/common/theme/color.dart';
 import 'package:si_hicoach_fe/common/theme/typography.dart';
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/common/components/app_bar_with_logo.dart';
-import 'package:si_hicoach_fe/common/study/detail/detail.dart';
-import 'package:si_hicoach_fe/common/study/edit/study.dart';
+import 'package:si_hicoach_fe/domain/study/detail/detail.dart';
+import 'package:si_hicoach_fe/domain/study/edit/study.dart';
 
 class StudyProps {
   final int index;

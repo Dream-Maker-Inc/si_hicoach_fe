@@ -35,7 +35,7 @@ class MemberListViewModel extends GetxController {
         id: items.member.id,
         name: items.member.name,
         matchedDate: _formatDate(items.matching.createdAt),
-        latestStudyRound: items.latestStudy.round,
+        latestStudyRound: items.latestStudy?.round ?? 0,
         totalStudyCount: items.totalStudyCount);
   }
 
@@ -52,7 +52,7 @@ class MemberListViewModel extends GetxController {
     final result = await TrainerMembersPageApi.getData();
 
     result.when((e) => (apiError.value = e),
-        (response) => (_getInClassMembersResponse.value = response));
+            (response) => (_getInClassMembersResponse.value = response));
   }
 
   // fetch finished members
@@ -65,7 +65,7 @@ class MemberListViewModel extends GetxController {
     final result = await TrainerMembersPageApi.getData(isFinished: true);
 
     result.when((e) => (apiError.value = e),
-        (response) => (_getFinishedMembersResponse.value = response));
+            (response) => (_getFinishedMembersResponse.value = response));
   }
 
   //
