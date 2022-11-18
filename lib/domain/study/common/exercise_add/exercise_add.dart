@@ -119,6 +119,10 @@ class _Detail extends MyGetXState<ExerciseAddView, ExerciseAddViewModel> {
 
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Future.wait([vm.searchExerciseItems('')]);
+    });
+
     return widget;
   }
 

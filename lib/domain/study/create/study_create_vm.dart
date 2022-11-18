@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-import 'package:logger/logger.dart';
 import 'package:si_hicoach_fe/domain/study/common/components/exercise_item.dart';
 import 'package:si_hicoach_fe/domain/study/common/components/time/simple_time.dart';
 import 'package:si_hicoach_fe/domain/study/common/components/time/time.dart';
@@ -83,11 +82,6 @@ class StudyCreateViewModel extends GetxController {
         endedAt: studyTime.value.getLocalDateOfEndDate(),
         memo: memo.value,
         myExercises: myExercisesDto);
-
-    Logger().i([
-      studyTime.value.getLocalDate(),
-      studyTime.value.getLocalDateOfEndDate(),
-    ]);
 
     final result = await StudyApi.createStudy(dto);
 
