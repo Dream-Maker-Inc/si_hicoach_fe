@@ -27,8 +27,9 @@ Map<String, dynamic> _$GetMemberPageResponseToJson(
 Data _$DataFromJson(Map<String, dynamic> json) => Data(
       member: Member.fromJson(json['member'] as Map<String, dynamic>),
       matching: Matching.fromJson(json['matching'] as Map<String, dynamic>),
-      latestStudy:
-          LatestStudy.fromJson(json['latestStudy'] as Map<String, dynamic>),
+      latestStudy: json['latestStudy'] == null
+          ? null
+          : LatestStudy.fromJson(json['latestStudy'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$DataToJson(Data instance) => <String, dynamic>{

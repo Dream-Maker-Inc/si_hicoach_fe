@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:logger/logger.dart';
 import 'package:si_hicoach_fe/common/components/divider.dart';
 import 'package:si_hicoach_fe/common/theme/color.dart';
 import 'package:si_hicoach_fe/common/theme/typography.dart';
@@ -51,9 +52,11 @@ class MemberListTabs extends StatelessWidget {
   }
 
   _buildTabBarView() {
-    return Obx(() {
+    return GetBuilder<MemberListViewModel>(builder: (vm) {
       final inClassMembers = _vm.inClassMembers;
       final finishedMembers = _vm.finishedMembers;
+
+      Logger().i(inClassMembers);
 
       return TabBarView(children: [
         StudyingListView(list: inClassMembers),

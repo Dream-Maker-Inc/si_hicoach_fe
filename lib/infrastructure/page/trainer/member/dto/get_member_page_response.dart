@@ -29,7 +29,7 @@ class Data {
 
   late final Member member;
   late final Matching matching;
-  late final LatestStudy latestStudy;
+  late final LatestStudy? latestStudy;
 
   factory Data.fromJson(Map<String, dynamic> json) => _$DataFromJson(json);
 

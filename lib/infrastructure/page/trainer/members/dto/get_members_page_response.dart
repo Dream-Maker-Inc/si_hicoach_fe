@@ -39,13 +39,13 @@ class Items {
   Items({
     required this.member,
     required this.matching,
-    required this.latestStudy,
     required this.totalStudyCount,
+    this.latestStudy,
   });
 
   late final Member member;
   late final Matching matching;
-  late final LatestStudy latestStudy;
+  final LatestStudy? latestStudy;
   late final int totalStudyCount;
 
   factory Items.fromJson(Map<String, dynamic> json) => _$ItemsFromJson(json);
