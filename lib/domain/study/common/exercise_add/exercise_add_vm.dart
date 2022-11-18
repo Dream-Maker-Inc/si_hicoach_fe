@@ -20,7 +20,7 @@ class ExerciseAddViewModel extends _FetchController {
     if (res == null) return;
 
     searchItems.value = exercises
-        .map((e) => CustomListTileWithArrowModel(e.title, e.part))
+        .map((e) => CustomListTileWithArrowModel(e.id, e.title, e.part))
         .toList();
   }
 }

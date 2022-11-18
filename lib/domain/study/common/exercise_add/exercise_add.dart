@@ -5,7 +5,7 @@ import 'package:si_hicoach_fe/common/components/divider.dart';
 import 'package:si_hicoach_fe/common/components/list_tile.dart';
 import 'package:si_hicoach_fe/common/constants/constants.dart';
 import 'package:si_hicoach_fe/common/getx/my_getx_state.dart';
-import 'package:si_hicoach_fe/domain/study/edit/add/exercise_add_vm.dart';
+import 'package:si_hicoach_fe/domain/study/common/exercise_add/exercise_add_vm.dart';
 
 class ExerciseAddView extends StatefulWidget {
   const ExerciseAddView({Key? key}) : super(key: key);
@@ -76,8 +76,10 @@ class _ExerciseAddViewState extends _Detail {
 
       return ListView.builder(
           itemCount: items.length,
-          itemBuilder: (ctx, index) =>
-              CustomListTileWithArrow(model: items[index]));
+          itemBuilder: (ctx, index) => CustomListTileWithArrow(
+                model: items[index],
+                onTap: () => handleItemClick(items[index]),
+              ));
     });
   }
 }
@@ -89,6 +91,10 @@ class _Detail extends MyGetXState<ExerciseAddView, ExerciseAddViewModel> {
 
   handleSearchButtonPressed() {
     vm.searchExerciseItems(vm.keyword.value);
+  }
+
+  handleItemClick(CustomListTileWithArrowModel model) {
+    Get.back(result: {'id': model.id, 'title': model.title});
   }
 
   @override
@@ -111,10 +117,6 @@ class _Detail extends MyGetXState<ExerciseAddView, ExerciseAddViewModel> {
 
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      // Future.wait([vm.fetchMyInfo()]);
-    });
-
     return widget;
   }
 

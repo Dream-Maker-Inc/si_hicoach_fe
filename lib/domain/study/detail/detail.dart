@@ -6,7 +6,7 @@ import 'package:si_hicoach_fe/common/constants/constants.dart';
 import 'package:si_hicoach_fe/domain/study/detail/components/exercise.dart';
 import 'package:si_hicoach_fe/domain/study/detail/components/memo.dart';
 import 'package:si_hicoach_fe/domain/study/detail/components/time.dart';
-import 'package:si_hicoach_fe/domain/study/edit/study.dart';
+import 'package:si_hicoach_fe/domain/study/create/study.dart';
 import 'package:si_hicoach_fe/common/theme/typography.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/detail/detail.dart';
 
@@ -23,7 +23,7 @@ class StudyDetailView extends StatelessWidget {
     handleEditButtonPressed() {
       Navigator.of(context).push(
         MaterialPageRoute(
-          builder: (context) => StudyEditView(),
+          builder: (context) => const StudyEditView(),
         ),
       );
     }
