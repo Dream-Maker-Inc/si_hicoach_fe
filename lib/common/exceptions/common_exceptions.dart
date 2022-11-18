@@ -8,5 +8,7 @@ class PastMatchingException implements Exception {}
 // study
 class AlreadyInBodyException implements Exception {}
 
+class ExistStudyException implements Exception {}
+
 // 인증
 class UnauthorizedException implements Exception {}

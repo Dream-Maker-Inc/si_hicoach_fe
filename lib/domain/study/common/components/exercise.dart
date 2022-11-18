@@ -4,21 +4,23 @@ import 'package:si_hicoach_fe/domain/study/common/exercise_add/exercise_add.dart
 import 'package:si_hicoach_fe/domain/study/common/components/exercise_item.dart';
 import 'package:si_hicoach_fe/common/theme/color.dart';
 import 'package:si_hicoach_fe/common/theme/typography.dart';
+import 'package:si_hicoach_fe/infrastructure/exercises/exercise_item/dto/get_exercise_items_response.dart';
 
 class EditExercise extends StatelessWidget {
   const EditExercise(
       {Key? key, required this.itemProps, required this.onAddExercise})
       : super(key: key);
   final List<StudyEditExerciseItemProps> itemProps;
-  final Function(int exerciseId, String exerciseTitle) onAddExercise;
+  final Function(ExerciseItem exercise) onAddExercise;
 
   handleAddIconPressed(BuildContext context) async {
-    final Map result = await Get.to(const ExerciseAddView());
+    final Map? result = await Get.to(const ExerciseAddView());
 
-    final int exerciseId = result['id'];
-    final String exerciseTitle = result['title'];
+    if (result == null) return;
 
-    onAddExercise(exerciseId, exerciseTitle);
+    final ExerciseItem exercise = result['exercise'];
+
+    onAddExercise(exercise);
   }
 
   @override

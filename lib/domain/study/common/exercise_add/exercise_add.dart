@@ -94,7 +94,9 @@ class _Detail extends MyGetXState<ExerciseAddView, ExerciseAddViewModel> {
   }
 
   handleItemClick(CustomListTileWithArrowModel model) {
-    Get.back(result: {'id': model.id, 'title': model.title});
+    final exercise = vm.findExercise(model.id);
+
+    Get.back(result: {'exercise': exercise});
   }
 
   @override

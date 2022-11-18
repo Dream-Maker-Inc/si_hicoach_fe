@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:si_hicoach_fe/domain/study/create/study.dart';
+import 'package:si_hicoach_fe/domain/study/create/study_create.dart';
 import 'package:si_hicoach_fe/common/calendar/monthly/calendar.dart';
 import 'package:si_hicoach_fe/common/calendar/weekly/components/calendar.dart';
 import 'package:si_hicoach_fe/common/theme/typography.dart';
@@ -60,7 +60,8 @@ class _WeeklyCalendarViewState extends State<WeeklyCalendarView> {
             onPressed: () {
               Navigator.of(context).push(
                 MaterialPageRoute(
-                  builder: (BuildContext context) => const StudyEditView(),
+                  builder: (BuildContext context) => const StudyEditView(
+                      matchingId: 1, latestStudyRound: 1, totalStudyCount: 1),
                 ),
               );
             },

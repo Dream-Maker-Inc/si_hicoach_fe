@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:si_hicoach_fe/common/components/alert.dart';
 import 'package:si_hicoach_fe/common/components/app_bar.dart';
 import 'package:si_hicoach_fe/common/components/divider.dart';
-import 'package:si_hicoach_fe/domain/study/create/study.dart';
+import 'package:si_hicoach_fe/domain/study/create/study_create.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/detail/detail_vm.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/detail/information/information.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/detail/study/studying_list.dart';
@@ -80,7 +80,10 @@ class _Detail extends State<DetailView> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (BuildContext context) => const StudyEditView(),
+        builder: (BuildContext context) => StudyEditView(
+            matchingId: _vm.matchingId,
+            latestStudyRound: 1,
+            totalStudyCount: _vm.latestStudy.totalStudyCount),
       ),
     );
   }
