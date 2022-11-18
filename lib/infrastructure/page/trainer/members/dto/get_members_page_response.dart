@@ -91,15 +91,11 @@ class LatestStudy {
   LatestStudy({
     required this.id,
     required this.round,
-    required this.startedAt,
-    required this.endedAt,
     required this.isFinished,
   });
 
   late final int id;
   late final int round;
-  late final String startedAt;
-  late final String endedAt;
   late final bool isFinished;
 
   factory LatestStudy.fromJson(Map<String, dynamic> json) =>

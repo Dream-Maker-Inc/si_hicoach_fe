@@ -77,8 +77,6 @@ Map<String, dynamic> _$MatchingToJson(Matching instance) => <String, dynamic>{
 LatestStudy _$LatestStudyFromJson(Map<String, dynamic> json) => LatestStudy(
       id: json['id'] as int,
       round: json['round'] as int,
-      startedAt: json['startedAt'] as String,
-      endedAt: json['endedAt'] as String,
       isFinished: json['isFinished'] as bool,
     );
 
@@ -86,7 +84,5 @@ Map<String, dynamic> _$LatestStudyToJson(LatestStudy instance) =>
     <String, dynamic>{
       'id': instance.id,
       'round': instance.round,
-      'startedAt': instance.startedAt,
-      'endedAt': instance.endedAt,
       'isFinished': instance.isFinished,
     };

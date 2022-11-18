@@ -14,7 +14,7 @@ class EditExercise extends StatelessWidget {
     handleAddIconPressed() {
       Navigator.of(context).push(
         MaterialPageRoute(
-          builder: (context) => StudyEditExerciseAdd(),
+          builder: (context) => const ExerciseAddView(),
         ),
       );
     }
