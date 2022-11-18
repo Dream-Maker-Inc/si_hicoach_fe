@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/common/components/app_bar.dart';
-import 'package:si_hicoach_fe/common/study/detail/detail.dart';
+import 'package:si_hicoach_fe/domain/study/detail/detail.dart';
 
 class MemoProps {
   final String title;

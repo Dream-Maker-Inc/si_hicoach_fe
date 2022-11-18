@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:si_hicoach_fe/common/study/detail/detail.dart';
+import 'package:si_hicoach_fe/domain/study/detail/detail.dart';
 
 class StudyingListItemModel {
   String title;

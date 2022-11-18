@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:si_hicoach_fe/common/study/edit/add/exercise_add.dart';
-import 'package:si_hicoach_fe/common/study/edit/components/exercise_item.dart';
-import 'package:si_hicoach_fe/common/study/edit/study.dart';
+import 'package:si_hicoach_fe/domain/study/edit/add/exercise_add.dart';
+import 'package:si_hicoach_fe/domain/study/edit/components/exercise_item.dart';
+import 'package:si_hicoach_fe/domain/study/edit/study.dart';
 import 'package:si_hicoach_fe/common/theme/color.dart';
 import 'package:si_hicoach_fe/common/theme/typography.dart';
 
