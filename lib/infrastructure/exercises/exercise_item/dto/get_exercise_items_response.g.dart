@@ -27,7 +27,7 @@ Map<String, dynamic> _$GetExerciseItemsResponseToJson(
 Data _$DataFromJson(Map<String, dynamic> json) => Data(
       metaData: MetaData.fromJson(json['metaData'] as Map<String, dynamic>),
       items: (json['items'] as List<dynamic>)
-          .map((e) => Items.fromJson(e as Map<String, dynamic>))
+          .map((e) => ExerciseItem.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
@@ -36,7 +36,7 @@ Map<String, dynamic> _$DataToJson(Data instance) => <String, dynamic>{
       'items': instance.items,
     };
 
-Items _$ItemsFromJson(Map<String, dynamic> json) => Items(
+ExerciseItem _$ExerciseItemFromJson(Map<String, dynamic> json) => ExerciseItem(
       createdAt: json['createdAt'] as String,
       updatedAt: json['updatedAt'] as String,
       deletedAt: json['deletedAt'] as String?,
@@ -46,7 +46,8 @@ Items _$ItemsFromJson(Map<String, dynamic> json) => Items(
       type: json['type'] as String,
     );
 
-Map<String, dynamic> _$ItemsToJson(Items instance) => <String, dynamic>{
+Map<String, dynamic> _$ExerciseItemToJson(ExerciseItem instance) =>
+    <String, dynamic>{
       'createdAt': instance.createdAt,
       'updatedAt': instance.updatedAt,
       'deletedAt': instance.deletedAt,

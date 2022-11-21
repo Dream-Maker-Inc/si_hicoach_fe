@@ -26,7 +26,7 @@ class Data {
     required this.items,
   });
   late final MetaData metaData;
-  late final List<Items> items;
+  late final List<ExerciseItem> items;
 
   factory Data.fromJson(Map<String, dynamic> json) => _$DataFromJson(json);
 
@@ -34,8 +34,8 @@ class Data {
 }
 
 @JsonSerializable()
-class Items extends BaseDto {
-  Items({
+class ExerciseItem extends BaseDto {
+  ExerciseItem({
     required super.createdAt,
     required super.updatedAt,
     super.deletedAt,
@@ -49,7 +49,8 @@ class Items extends BaseDto {
   late final String part;
   late final String type;
 
-  factory Items.fromJson(Map<String, dynamic> json) => _$ItemsFromJson(json);
+  factory ExerciseItem.fromJson(Map<String, dynamic> json) =>
+      _$ExerciseItemFromJson(json);
 
-  Map<String, dynamic> toJson() => _$ItemsToJson(this);
+  Map<String, dynamic> toJson() => _$ExerciseItemToJson(this);
 }

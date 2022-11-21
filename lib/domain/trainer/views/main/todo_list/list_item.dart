@@ -37,7 +37,9 @@ class TrainerMainTodoItem extends StatelessWidget {
     handleItemPressed() {
       Navigator.of(context).push(
         MaterialPageRoute(
-          builder: (context) => const StudyDetailView(),
+          builder: (context) => const StudyDetailView(
+            studyId: 1,
+          ),
         ),
       );
     }

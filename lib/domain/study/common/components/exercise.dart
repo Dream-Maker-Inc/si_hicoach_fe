@@ -1,24 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:si_hicoach_fe/domain/study/edit/add/exercise_add.dart';
-import 'package:si_hicoach_fe/domain/study/edit/components/exercise_item.dart';
-import 'package:si_hicoach_fe/domain/study/edit/study.dart';
+import 'package:get/get.dart';
+import 'package:si_hicoach_fe/domain/study/common/exercise_add/exercise_add.dart';
+import 'package:si_hicoach_fe/domain/study/common/components/exercise_item.dart';
 import 'package:si_hicoach_fe/common/theme/color.dart';
 import 'package:si_hicoach_fe/common/theme/typography.dart';
+import 'package:si_hicoach_fe/infrastructure/exercises/exercise_item/dto/get_exercise_items_response.dart';
 
 class EditExercise extends StatelessWidget {
-  const EditExercise({Key? key, required this.list}) : super(key: key);
-  final List<StudyProps> list;
+  const EditExercise(
+      {Key? key, required this.itemProps, required this.onAddExercise})
+      : super(key: key);
+  final List<StudyEditExerciseItemProps> itemProps;
+  final Function(ExerciseItem exercise) onAddExercise;
+
+  handleAddIconPressed(BuildContext context) async {
+    final Map? result = await Get.to(const ExerciseAddView());
+
+    if (result == null) return;
+
+    final ExerciseItem exercise = result['exercise'];
+
+    onAddExercise(exercise);
+  }
 
   @override
   Widget build(BuildContext context) {
-    handleAddIconPressed() {
-      Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (context) => const ExerciseAddView(),
-        ),
-      );
-    }
-
     return Column(
       children: <Widget>[
         Row(
@@ -35,7 +41,7 @@ class EditExercise extends StatelessWidget {
               ),
             ),
             IconButton(
-              onPressed: handleAddIconPressed,
+              onPressed: () => handleAddIconPressed(context),
               icon: const Icon(Icons.add_rounded),
               color: primaryColor,
               style: ButtonStyle(
@@ -46,17 +52,10 @@ class EditExercise extends StatelessWidget {
             ),
           ],
         ),
+        // StudyEditExerciseItem(model: it)
         Column(
-          children: list
-              .map(
-                (it) => StudyEditExerciseItem(
-                  count: it.count,
-                  name: it.name,
-                  set: it.set,
-                  weight: it.weight,
-                ),
-              )
-              .toList(),
+          children:
+              itemProps.map((it) => StudyEditExerciseItem(props: it)).toList(),
         ),
       ],
     );

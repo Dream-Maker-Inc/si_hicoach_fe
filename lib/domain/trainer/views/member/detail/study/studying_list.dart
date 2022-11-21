@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:si_hicoach_fe/domain/study/edit/study.dart';
+import 'package:si_hicoach_fe/domain/study/create/study_create.dart';
 import 'package:si_hicoach_fe/common/theme/color.dart';
 import 'package:si_hicoach_fe/common/utils/date_format.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/detail/detail_vm.dart';
@@ -20,7 +20,10 @@ class StudyingListView extends StatelessWidget {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (BuildContext context) => StudyEditView(),
+        builder: (BuildContext context) => StudyCreateView(
+            matchingId: _vm.matchingId,
+            latestStudyRound: 1,
+            totalStudyCount: _vm.latestStudy.totalStudyCount),
       ),
     );
   }

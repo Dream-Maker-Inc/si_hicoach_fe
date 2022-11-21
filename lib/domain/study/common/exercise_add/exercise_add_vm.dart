@@ -8,19 +8,25 @@ class ExerciseAddViewModel extends _FetchController {
 
   RxList<CustomListTileWithArrowModel> searchItems = RxList();
 
+  findExercise(int exerciseId) {
+    return exercises.firstWhere((it) => it.id == exerciseId);
+  }
+
   //
   @override
   Future<void> onInit() async {
     super.onInit();
 
     ever(_fetchExercisesResponse, _handlefetchExercisesResponse);
+    debounce(keyword, (it) => searchExerciseItems(it),
+        time: const Duration(seconds: 1));
   }
 
   _handlefetchExercisesResponse(GetExerciseItemsResponse? res) {
     if (res == null) return;
 
     searchItems.value = exercises
-        .map((e) => CustomListTileWithArrowModel(e.title, e.part))
+        .map((e) => CustomListTileWithArrowModel(e.id, e.title, e.part))
         .toList();
   }
 }
@@ -32,13 +38,13 @@ class _FetchController extends GetxController {
   // search
   final Rxn<GetExerciseItemsResponse> _fetchExercisesResponse = Rxn();
 
-  List<Items> get exercises => _fetchExercisesResponse.value?.data.items ?? [];
+  List<ExerciseItem> get exercises =>
+      _fetchExercisesResponse.value?.data.items ?? [];
 
   Future searchExerciseItems(String title) async {
     final result = await ExerciseItemsApi.search(title);
 
     result.when((e) => (apiError.value = e),
         (res) => (_fetchExercisesResponse.value = res));
-    return;
   }
 }

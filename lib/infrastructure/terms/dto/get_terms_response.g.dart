@@ -25,41 +25,43 @@ Map<String, dynamic> _$GetTermsResponseToJson(GetTermsResponse instance) =>
     };
 
 Data _$DataFromJson(Map<String, dynamic> json) => Data(
-      json['createdAt'] as String,
-      json['updatedAt'] as String,
-      json['deletedAt'] as String?,
-      json['id'] as int,
-      json['title'] as String,
-      json['content'] as String,
-      json['isRequired'] as bool,
-      MyAgreed.fromJson(json['myAgreed'] as Map<String, dynamic>),
+      createdAt: json['createdAt'] as String,
+      updatedAt: json['updatedAt'] as String,
+      deletedAt: json['deletedAt'] as String?,
+      id: json['id'] as int,
+      title: json['title'] as String,
+      content: json['content'] as String,
+      isRequired: json['isRequired'] as bool,
+      myAgreed: json['myAgreed'] == null
+          ? null
+          : MyAgreed.fromJson(json['myAgreed'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$DataToJson(Data instance) => <String, dynamic>{
+      'createdAt': instance.createdAt,
+      'updatedAt': instance.updatedAt,
+      'deletedAt': instance.deletedAt,
       'id': instance.id,
       'title': instance.title,
       'content': instance.content,
       'isRequired': instance.isRequired,
-      'createdAt': instance.createdAt,
-      'updatedAt': instance.updatedAt,
-      'deletedAt': instance.deletedAt,
       'myAgreed': instance.myAgreed,
     };
 
 MyAgreed _$MyAgreedFromJson(Map<String, dynamic> json) => MyAgreed(
-      json['id'] as int,
-      json['memberId'] as int,
-      json['serviceTermId'] as int,
-      json['createdAt'] as String,
-      json['updatedAt'] as String,
-      json['deletedAt'] as String?,
+      id: json['id'] as int,
+      memberId: json['memberId'] as int,
+      serviceTermId: json['serviceTermId'] as int,
+      createdAt: json['createdAt'] as String,
+      updatedAt: json['updatedAt'] as String,
+      deletedAt: json['deletedAt'] as String?,
     );
 
 Map<String, dynamic> _$MyAgreedToJson(MyAgreed instance) => <String, dynamic>{
-      'id': instance.id,
-      'memberId': instance.memberId,
-      'serviceTermId': instance.serviceTermId,
       'createdAt': instance.createdAt,
       'updatedAt': instance.updatedAt,
       'deletedAt': instance.deletedAt,
+      'id': instance.id,
+      'memberId': instance.memberId,
+      'serviceTermId': instance.serviceTermId,
     };
