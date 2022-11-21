@@ -9,7 +9,7 @@ class CustomAlertDialog extends StatefulWidget {
   final String positiveText;
   final VoidCallback onPositivePressed;
   final String? negativeText;
-  final Function? onNegativePressed;
+  final VoidCallback? onNegativePressed;
 
   const CustomAlertDialog({
     Key? key,
@@ -40,7 +40,7 @@ class _CustomAlertDialogState extends State<CustomAlertDialog> {
       actions: <Widget>[
         if (widget.negativeText?.isNotEmpty ?? false) ...[
           TextButton(
-            onPressed: () => widget.onNegativePressed,
+            onPressed: widget.onNegativePressed,
             child: Text(
               widget.negativeText!,
               style: bodySmall,

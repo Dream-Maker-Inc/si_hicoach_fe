@@ -86,6 +86,7 @@ Map<String, dynamic> _$GoalsToJson(Goals instance) => <String, dynamic>{
 
 LatestStudy _$LatestStudyFromJson(Map<String, dynamic> json) => LatestStudy(
       id: json['id'] as int,
+      round: json['round'] as int,
       startedAt: json['startedAt'] as String,
       totalStudyCount: json['totalStudyCount'] as int,
     );
@@ -93,6 +94,7 @@ LatestStudy _$LatestStudyFromJson(Map<String, dynamic> json) => LatestStudy(
 Map<String, dynamic> _$LatestStudyToJson(LatestStudy instance) =>
     <String, dynamic>{
       'id': instance.id,
+      'round': instance.round,
       'startedAt': instance.startedAt,
       'totalStudyCount': instance.totalStudyCount,
     };

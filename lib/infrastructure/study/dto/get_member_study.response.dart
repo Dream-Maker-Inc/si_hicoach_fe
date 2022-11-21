@@ -26,6 +26,7 @@ class Data {
   });
   late final Member member;
   late final Study study;
+  late final Matching matching;
 
   factory Data.fromJson(Map<String, dynamic> json) => _$DataFromJson(json);
 
@@ -113,4 +114,18 @@ class Exercise {
       _$ExerciseFromJson(json);
 
   Map<String, dynamic> toJson() => _$ExerciseToJson(this);
+}
+
+@JsonSerializable()
+class Matching {
+  Matching({
+    required this.id,
+    required this.ticketCount,
+  });
+  late final int id;
+  late final int ticketCount;
+  factory Matching.fromJson(Map<String, dynamic> json) =>
+      _$MatchingFromJson(json);
+
+  Map<String, dynamic> toJson() => _$MatchingToJson(this);
 }

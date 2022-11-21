@@ -44,4 +44,14 @@ class _FetchController extends GetxController {
     result.when(
         (e) => (apiError.value = e), (res) => (fetchStudyResponse.value = res));
   }
+
+  // delete
+  RxBool deleteStudyResponse = RxBool(false);
+
+  Future deleteStudy(int studyId) async {
+    final result = await StudyApi.deleteStudy(studyId);
+
+    result.when((e) => (apiError.value = e),
+        (res) => (deleteStudyResponse.value = res));
+  }
 }

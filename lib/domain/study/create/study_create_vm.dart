@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:si_hicoach_fe/domain/study/common/templates/study_form_vm.dart';
-import 'package:si_hicoach_fe/infrastructure/study/dto/create_study_dto.dart';
+import 'package:si_hicoach_fe/infrastructure/study/dto/mutation/mutate_study_dto.dart';
 import 'package:si_hicoach_fe/infrastructure/study/study_api.dart';
 
 class StudyCreateViewModel extends StudyFormViewModel {
@@ -16,9 +16,6 @@ class StudyCreateViewModel extends StudyFormViewModel {
 
   Future createStudy() async {
     final myExercisesDto = myExercises.map((it) {
-      final exercise =
-          Exercise(id: it.id, title: it.title, part: it.part, type: it.type);
-
       final exerciseModel =
           exerciseItemModels.firstWhere((el) => el.id == it.id);
 
@@ -26,7 +23,7 @@ class StudyCreateViewModel extends StudyFormViewModel {
           interval: exerciseModel.count,
           set: exerciseModel.sets,
           weight: exerciseModel.weight,
-          exercise: exercise);
+          exerciseId: exerciseModel.id);
 
       return myExercise;
     }).toList();
@@ -35,13 +32,20 @@ class StudyCreateViewModel extends StudyFormViewModel {
         matchingId: matchingId,
         startedAt: studyTime.value.getLocalDate(),
         endedAt: studyTime.value.getLocalDateOfEndDate(),
-        memo: memo.value,
+        memo: memo.value ?? "",
         myExercises: myExercisesDto);
 
     final result = await StudyApi.createStudy(dto);
 
     result.when(
         (e) => (apiError.value = e), (res) => (createStudySuccess.value = res));
+  }
+
+  @override
+  Future<void> onInit() async {
+    super.onInit();
+
+    memo.value = "";
   }
 
   @override
