@@ -113,16 +113,6 @@ class _Detail extends State<DetailView> {
 
     _vm.memberId = widget.memberId;
 
-    _vm.fetchMemberPageResponse.listen((it) {
-      if (it == null) return;
-      setState(() {});
-    });
-
-    _vm.fetchMemberStudiesResponse.listen((it) {
-      if (it == null) return;
-      setState(() {});
-    });
-
     _vm.removeMatchingSuccess.listen((b) {
       if (!b) return;
 
