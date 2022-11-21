@@ -8,9 +8,9 @@ import 'package:si_hicoach_fe/domain/study/common/components/exercise_item.dart'
 import 'package:si_hicoach_fe/domain/study/detail/components/exercise.dart';
 import 'package:si_hicoach_fe/domain/study/detail/components/memo.dart';
 import 'package:si_hicoach_fe/domain/study/detail/components/time.dart';
-import 'package:si_hicoach_fe/domain/study/create/study_create.dart';
 import 'package:si_hicoach_fe/common/theme/typography.dart';
 import 'package:si_hicoach_fe/domain/study/detail/study_detail_vm.dart';
+import 'package:si_hicoach_fe/domain/study/update/study_update.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/detail/detail.dart';
 
 class StudyDetailView extends StatefulWidget {
@@ -31,8 +31,7 @@ class _StudyDetailViewState extends _Detail {
   handleEditButtonPressed() {
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (context) => const StudyCreateView(
-            matchingId: 1, latestStudyRound: 1, totalStudyCount: 1),
+        builder: (context) => StudyUpdateView(studyId: vm.studyId),
       ),
     );
   }
@@ -159,6 +158,13 @@ class _StudyDetailViewState extends _Detail {
 }
 
 class _Detail extends MyGetXState<StudyDetailView, StudyDetailViewModel> {
+  @override
+  void initState() {
+    super.initState();
+
+    vm.studyId = widget.studyId;
+  }
+
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((_) {

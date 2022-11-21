@@ -25,8 +25,6 @@ class _DetailViewState extends _Detail {
   Widget build(BuildContext context) {
     super.build(context);
 
-    //
-
     return Obx(() {
       final memberName = _vm.member.name;
 

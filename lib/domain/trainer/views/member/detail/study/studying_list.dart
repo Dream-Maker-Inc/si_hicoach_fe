@@ -11,11 +11,6 @@ class StudyingListView extends StatelessWidget {
 
   final MemberDetailViewModel _vm = Get.find<MemberDetailViewModel>();
 
-  List<StudyingListItemModel> get models => _vm.memberStudies
-      .map((it) => StudyingListItemModel(
-          title: '${it.round}회차', subtitle: it.startedDate.toKoreanFormat))
-      .toList();
-
   _onFABPressed(BuildContext context) {
     Navigator.push(
       context,
@@ -31,18 +26,7 @@ class StudyingListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView(
-        scrollDirection: Axis.vertical,
-        shrinkWrap: true,
-        children: ListTile.divideTiles(
-          context: context,
-          tiles: models.map(
-            (it) => StudyingListItemView(
-              model: it,
-            ),
-          ),
-        ).toList(),
-      ),
+      body: _buildListView(context),
       floatingActionButton: FloatingActionButton(
         onPressed: () => _onFABPressed(context),
         backgroundColor: Colors.white,
@@ -57,5 +41,27 @@ class StudyingListView extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  _buildListView(BuildContext context) {
+    return Obx(() {
+      List<StudyingListItemModel> models = _vm.memberStudies
+          .map((it) => StudyingListItemModel(
+              title: '${it.round}회차', subtitle: it.startedDate.toKoreanFormat))
+          .toList();
+
+      return ListView(
+        scrollDirection: Axis.vertical,
+        shrinkWrap: true,
+        children: ListTile.divideTiles(
+          context: context,
+          tiles: models.map(
+            (it) => StudyingListItemView(
+              model: it,
+            ),
+          ),
+        ).toList(),
+      );
+    });
   }
 }

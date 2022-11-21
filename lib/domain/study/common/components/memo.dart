@@ -4,8 +4,7 @@ import 'package:si_hicoach_fe/common/theme/color.dart';
 import 'package:si_hicoach_fe/common/theme/typography.dart';
 
 class EditMemo extends StatelessWidget {
-  const EditMemo({Key? key, required this.memo, required this.onChange})
-      : super(key: key);
+  const EditMemo({super.key, required this.memo, required this.onChange});
   final String memo;
   final Function(String v) onChange;
 

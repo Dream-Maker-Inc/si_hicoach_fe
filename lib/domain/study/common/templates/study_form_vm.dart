@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-import 'package:logger/logger.dart';
 import 'package:si_hicoach_fe/domain/study/common/components/exercise_item.dart';
 import 'package:si_hicoach_fe/domain/study/common/components/time/simple_time.dart';
 import 'package:si_hicoach_fe/domain/study/common/components/time/time.dart';
@@ -7,11 +6,9 @@ import 'package:si_hicoach_fe/domain/study/common/templates/study_form_model.dar
 import 'package:si_hicoach_fe/infrastructure/exercises/exercise_item/dto/get_exercise_items_response.dart';
 
 class StudyFormViewModel extends GetxController {
-  final StudyFormModel? initialStudyFormModel;
+  Rxn<StudyFormModel> initialStudyFormModel = Rxn();
 
-  StudyFormViewModel({this.initialStudyFormModel});
-
-  RxInt latestStudyRound = RxInt(0);
+  RxInt studyRound = RxInt(0);
   RxInt totalStudyCount = RxInt(0);
 
   Rx<SimpleTime> studyTime = Rx(SimpleTime(hour: 0));
@@ -19,9 +16,9 @@ class StudyFormViewModel extends GetxController {
       time: SimpleTime(hour: 0), studyRound: 0, totalStudyCount: 0));
   RxList<ExerciseItem> myExercises = RxList();
   RxList<ExerciseItemModel> exerciseItemModels = RxList();
-  RxString memo = RxString('');
+  RxnString memo = RxnString();
 
-  bool get submitButtonDisabled => myExercises.isEmpty;
+  bool get submitButtonDisabled => exerciseItemModels.isEmpty;
 
   addExerciseItem(ExerciseItem exercise) {
     myExercises.add(exercise);
@@ -67,7 +64,7 @@ class StudyFormViewModel extends GetxController {
           totalStudyCount: editTimeModel.value.totalStudyCount);
     });
 
-    ever(latestStudyRound, (it) {
+    ever(studyRound, (it) {
       editTimeModel.value = EditTimeModel(
           time: editTimeModel.value.time,
           studyRound: it,
@@ -88,16 +85,16 @@ class StudyFormViewModel extends GetxController {
       exerciseItemModels.add(model);
     });
 
-    _ifExistInitDataThenSet();
+    ever(initialStudyFormModel, (_) => _handleInitStudyForm());
   }
 
-  _ifExistInitDataThenSet() {
-    if (initialStudyFormModel == null) return;
+  _handleInitStudyForm() {
+    if (initialStudyFormModel.value == null) return;
 
-    final fm = initialStudyFormModel!;
+    final fm = initialStudyFormModel.value!;
 
-    latestStudyRound.value = fm.latestStudyRound;
-    totalStudyCount.value = fm.totalStudyCount;
+    studyRound.value = fm.studyRound;
+    totalStudyCount.value = fm.ticketCount;
     studyTime.value = SimpleTime(hour: fm.startedHour);
     exerciseItemModels.value = fm.exerciseItemModels;
     memo.value = fm.memo;

@@ -25,11 +25,12 @@ Map<String, dynamic> _$GetStudyResponseToJson(GetStudyResponse instance) =>
 Data _$DataFromJson(Map<String, dynamic> json) => Data(
       member: Member.fromJson(json['member'] as Map<String, dynamic>),
       study: Study.fromJson(json['study'] as Map<String, dynamic>),
-    );
+    )..matching = Matching.fromJson(json['matching'] as Map<String, dynamic>);
 
 Map<String, dynamic> _$DataToJson(Data instance) => <String, dynamic>{
       'member': instance.member,
       'study': instance.study,
+      'matching': instance.matching,
     };
 
 Member _$MemberFromJson(Map<String, dynamic> json) => Member(
@@ -99,4 +100,14 @@ Map<String, dynamic> _$ExerciseToJson(Exercise instance) => <String, dynamic>{
       'title': instance.title,
       'part': instance.part,
       'type': instance.type,
+    };
+
+Matching _$MatchingFromJson(Map<String, dynamic> json) => Matching(
+      id: json['id'] as int,
+      ticketCount: json['ticketCount'] as int,
+    );
+
+Map<String, dynamic> _$MatchingToJson(Matching instance) => <String, dynamic>{
+      'id': instance.id,
+      'ticketCount': instance.ticketCount,
     };

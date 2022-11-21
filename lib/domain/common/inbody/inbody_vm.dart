@@ -5,8 +5,8 @@ import 'package:si_hicoach_fe/common/file_picker/file_picker_extension.dart';
 import 'package:si_hicoach_fe/domain/common/inbody/models/inbody_model.dart';
 import 'package:si_hicoach_fe/common/shared_preferences/key.dart';
 import 'package:si_hicoach_fe/infrastructure/study/dto/get_member_studies_response.dart';
-import 'package:si_hicoach_fe/infrastructure/study/dto/update_inBody_dto.dart';
-import 'package:si_hicoach_fe/infrastructure/study/dto/upload_today_inBody_dto.dart';
+import 'package:si_hicoach_fe/infrastructure/study/dto/mutation/update_inBody_dto.dart';
+import 'package:si_hicoach_fe/infrastructure/study/dto/mutation/upload_today_inBody_dto.dart';
 import 'package:si_hicoach_fe/infrastructure/study/study_api.dart';
 
 class InBodyViewModel extends _FetchController {

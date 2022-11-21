@@ -11,9 +11,10 @@ import 'package:si_hicoach_fe/domain/study/common/components/memo.dart';
 import 'package:si_hicoach_fe/domain/study/common/templates/study_form_vm.dart';
 
 class StudyForm extends StatefulWidget {
+  final String formTitle;
   final StudyFormViewModel vm;
 
-  const StudyForm({super.key, required this.vm});
+  const StudyForm({super.key, required this.vm, this.formTitle = "운동 일지 작성"});
 
   @override
   State<StudyForm> createState() => _StudyFormState();
@@ -37,7 +38,7 @@ class _StudyFormState extends State<StudyForm> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBarArrowBack(
-        titleText: '운동 일지 작성',
+        titleText: widget.formTitle,
         actionsWidget: <Widget>[_buildSubmitButton()],
       ),
       body: SafeArea(
@@ -124,6 +125,8 @@ class _StudyFormState extends State<StudyForm> {
 
     return Obx(() {
       final memo = vm.memo.value;
+
+      if (memo == null) return Container();
 
       return EditMemo(
         memo: memo,
