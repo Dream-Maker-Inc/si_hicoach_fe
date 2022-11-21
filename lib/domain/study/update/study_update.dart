@@ -42,6 +42,8 @@ class _Detail extends MyGetXState<StudyUpdateView, StudyUpdateViewModel> {
           onConfirm: () {
             Get.back();
             Get.back();
+
+            vm.fetchStudy(vm.studyId);
           });
     });
 

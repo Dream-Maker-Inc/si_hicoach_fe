@@ -46,7 +46,8 @@ class StudyFormViewModel extends GetxController {
   }
 
   handleExerciseItemDelete(int exerciseId) {
-    exerciseItemModels.removeWhere((it) => it.id == exerciseId);
+    final target = exerciseItemModels.lastWhere((it) => it.id == exerciseId);
+    exerciseItemModels.remove(target);
   }
 
   // submit

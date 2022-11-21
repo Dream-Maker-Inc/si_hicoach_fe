@@ -20,7 +20,7 @@ class StudyingListView extends StatelessWidget {
             latestStudyRound: _vm.latestStudy.round,
             totalStudyCount: _vm.latestStudy.totalStudyCount),
       ),
-    );
+    ).then((_) => _vm.fetchMemberStudies());
   }
 
   @override

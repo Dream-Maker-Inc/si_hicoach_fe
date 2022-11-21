@@ -46,7 +46,7 @@ class _StudyDetailViewState extends _Detail {
         positiveText: '삭제',
         onPositivePressed: () => vm.deleteStudy(vm.studyId),
         negativeText: '취소',
-        onNegativePressed: () => Navigator.pop(context, true),
+        onNegativePressed: () => Navigator.of(context).pop(),
       ),
     );
   }
