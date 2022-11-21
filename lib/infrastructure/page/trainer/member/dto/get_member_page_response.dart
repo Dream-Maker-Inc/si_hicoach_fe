@@ -29,7 +29,7 @@ class Data {
 
   late final Member member;
   late final Matching matching;
-  late final LatestStudy latestStudy;
+  late final LatestStudy? latestStudy;
 
   factory Data.fromJson(Map<String, dynamic> json) => _$DataFromJson(json);
 
@@ -97,11 +97,13 @@ class Goals extends BaseDto {
 class LatestStudy {
   LatestStudy({
     required this.id,
+    required this.round,
     required this.startedAt,
     required this.totalStudyCount,
   });
 
   late final int id;
+  late final int round;
   late final String startedAt;
   late final int totalStudyCount;
 

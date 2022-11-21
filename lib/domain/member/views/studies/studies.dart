@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/common/components/app_bar_with_logo.dart';
-import 'package:si_hicoach_fe/common/study/detail/detail.dart';
-import 'package:si_hicoach_fe/common/study/edit/study.dart';
+import 'package:si_hicoach_fe/domain/study/detail/detail.dart';
+import 'package:si_hicoach_fe/domain/study/create/study_create.dart';
 
 class StudyProps {
   final int index;
@@ -31,7 +31,8 @@ class MemberStudiesView extends StatelessWidget {
     handleAddButtonPressed() {
       Navigator.of(context).push(
         MaterialPageRoute(
-          builder: (BuildContext context) => StudyEditView(),
+          builder: (BuildContext context) => const StudyCreateView(
+              matchingId: 1, latestStudyRound: 1, totalStudyCount: 1),
         ),
       );
     }
@@ -40,6 +41,7 @@ class MemberStudiesView extends StatelessWidget {
       Navigator.of(context).push(
         MaterialPageRoute(
           builder: (BuildContext context) => const StudyDetailView(
+            studyId: 1,
             isMemberDetailEnabled: false,
           ),
         ),

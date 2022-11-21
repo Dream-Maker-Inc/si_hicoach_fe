@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:si_hicoach_fe/infrastructure/common/base_dto.dart';
 part 'get_terms_response.g.dart';
 
 @JsonSerializable()
@@ -16,35 +17,40 @@ class GetTermsResponse {
 }
 
 @JsonSerializable()
-class Data {
+class Data extends BaseDto {
   int id;
   String title;
   String content;
   bool isRequired;
-  String createdAt;
-  String updatedAt;
-  String? deletedAt;
-  MyAgreed myAgreed;
+  MyAgreed? myAgreed;
 
-  Data(this.createdAt, this.updatedAt, this.deletedAt, this.id, this.title,
-      this.content, this.isRequired, this.myAgreed);
+  Data(
+      {required super.createdAt,
+      required super.updatedAt,
+      required super.deletedAt,
+      required this.id,
+      required this.title,
+      required this.content,
+      required this.isRequired,
+      this.myAgreed});
 
-  factory Data.fromJson(Map<String, dynamic> json) =>
-      _$DataFromJson(json);
+  factory Data.fromJson(Map<String, dynamic> json) => _$DataFromJson(json);
   Map<String, dynamic> toJson() => _$DataToJson(this);
 }
 
 @JsonSerializable()
-class MyAgreed {
+class MyAgreed extends BaseDto {
   int id;
   int memberId;
   int serviceTermId;
-  String createdAt;
-  String updatedAt;
-  String? deletedAt;
 
-  MyAgreed(this.id, this.memberId, this.serviceTermId, this.createdAt,
-      this.updatedAt, this.deletedAt);
+  MyAgreed(
+      {required this.id,
+      required this.memberId,
+      required this.serviceTermId,
+      required super.createdAt,
+      required super.updatedAt,
+      super.deletedAt});
 
   factory MyAgreed.fromJson(Map<String, dynamic> json) =>
       _$MyAgreedFromJson(json);

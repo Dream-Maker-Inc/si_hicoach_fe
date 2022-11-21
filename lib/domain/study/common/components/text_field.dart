@@ -21,6 +21,9 @@ class ExerciseTextField extends StatelessWidget {
         height: 50,
         child: TextFormField(
           decoration: InputDecoration(
+            border: OutlineInputBorder(
+              borderSide: BorderSide(width: 1, color: Colors.grey.shade300),
+            ),
             enabledBorder: OutlineInputBorder(
               borderSide: BorderSide(width: 1, color: Colors.grey.shade300),
             ),

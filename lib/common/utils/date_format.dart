@@ -5,4 +5,9 @@ extension DateFormatExtension on DateTime {
     final DateFormat formatter = DateFormat('yyyy년 MM월 dd일');
     return formatter.format(this);
   }
+
+  String get toKoreanTimeFormat {
+    final DateFormat formatter = DateFormat('HH시 mm분');
+    return formatter.format(this);
+  }
 }

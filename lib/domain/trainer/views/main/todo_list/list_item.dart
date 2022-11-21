@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/common/constants/constants.dart';
-import 'package:si_hicoach_fe/common/study/detail/detail.dart';
+import 'package:si_hicoach_fe/domain/study/detail/detail.dart';
 import 'package:si_hicoach_fe/common/theme/color.dart';
 import 'package:si_hicoach_fe/common/theme/typography.dart';
 
@@ -37,7 +37,9 @@ class TrainerMainTodoItem extends StatelessWidget {
     handleItemPressed() {
       Navigator.of(context).push(
         MaterialPageRoute(
-          builder: (context) => const StudyDetailView(),
+          builder: (context) => const StudyDetailView(
+            studyId: 1,
+          ),
         ),
       );
     }

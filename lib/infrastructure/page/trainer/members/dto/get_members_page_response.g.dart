@@ -39,9 +39,10 @@ Map<String, dynamic> _$DataToJson(Data instance) => <String, dynamic>{
 Items _$ItemsFromJson(Map<String, dynamic> json) => Items(
       member: Member.fromJson(json['member'] as Map<String, dynamic>),
       matching: Matching.fromJson(json['matching'] as Map<String, dynamic>),
-      latestStudy:
-          LatestStudy.fromJson(json['latestStudy'] as Map<String, dynamic>),
       totalStudyCount: json['totalStudyCount'] as int,
+      latestStudy: json['latestStudy'] == null
+          ? null
+          : LatestStudy.fromJson(json['latestStudy'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$ItemsToJson(Items instance) => <String, dynamic>{
@@ -76,8 +77,6 @@ Map<String, dynamic> _$MatchingToJson(Matching instance) => <String, dynamic>{
 LatestStudy _$LatestStudyFromJson(Map<String, dynamic> json) => LatestStudy(
       id: json['id'] as int,
       round: json['round'] as int,
-      startedAt: json['startedAt'] as String,
-      endedAt: json['endedAt'] as String,
       isFinished: json['isFinished'] as bool,
     );
 
@@ -85,7 +84,5 @@ Map<String, dynamic> _$LatestStudyToJson(LatestStudy instance) =>
     <String, dynamic>{
       'id': instance.id,
       'round': instance.round,
-      'startedAt': instance.startedAt,
-      'endedAt': instance.endedAt,
       'isFinished': instance.isFinished,
     };

@@ -1,10 +1,12 @@
 class InBodyModel {
-  final int studyId;
-  final String studyAt;
+  final int inbodyId;
+  final String registedAt;
   final String imageUrl;
 
-  DateTime get studyDate => DateTime.parse(studyAt);
+  DateTime get registedDate => DateTime.parse(registedAt);
 
   InBodyModel(
-      {required this.studyId, required this.imageUrl, required this.studyAt});
+      {required this.inbodyId,
+      required this.imageUrl,
+      required this.registedAt});
 }

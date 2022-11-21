@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:si_hicoach_fe/common/study/edit/study.dart';
+import 'package:si_hicoach_fe/domain/study/create/study_create.dart';
 import 'package:si_hicoach_fe/common/theme/color.dart';
 import 'package:si_hicoach_fe/common/utils/date_format.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/detail/detail_vm.dart';
@@ -11,35 +11,22 @@ class StudyingListView extends StatelessWidget {
 
   final MemberDetailViewModel _vm = Get.find<MemberDetailViewModel>();
 
-  List<StudyingListItemModel> get models => _vm.memberStudies
-      .map((it) => StudyingListItemModel(
-          title: '${it.round}회차', subtitle: it.startedDate.toKoreanFormat))
-      .toList();
-
   _onFABPressed(BuildContext context) {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (BuildContext context) => StudyEditView(),
+        builder: (BuildContext context) => StudyCreateView(
+            matchingId: _vm.matchingId,
+            latestStudyRound: _vm.latestStudy.round,
+            totalStudyCount: _vm.latestStudy.totalStudyCount),
       ),
-    );
+    ).then((_) => _vm.fetchMemberStudies());
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView(
-        scrollDirection: Axis.vertical,
-        shrinkWrap: true,
-        children: ListTile.divideTiles(
-          context: context,
-          tiles: models.map(
-            (it) => StudyingListItemView(
-              model: it,
-            ),
-          ),
-        ).toList(),
-      ),
+      body: _buildListView(context),
       floatingActionButton: FloatingActionButton(
         onPressed: () => _onFABPressed(context),
         backgroundColor: Colors.white,
@@ -54,5 +41,29 @@ class StudyingListView extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  _buildListView(BuildContext context) {
+    return Obx(() {
+      List<StudyingListItemModel> models = _vm.memberStudies
+          .map((it) => StudyingListItemModel(
+              studyId: it.id,
+              title: '${it.round}회차',
+              subtitle: it.startedDate.toKoreanFormat))
+          .toList();
+
+      return ListView(
+        scrollDirection: Axis.vertical,
+        shrinkWrap: true,
+        children: ListTile.divideTiles(
+          context: context,
+          tiles: models.map(
+            (it) => StudyingListItemView(
+              model: it,
+            ),
+          ),
+        ).toList(),
+      );
+    });
   }
 }

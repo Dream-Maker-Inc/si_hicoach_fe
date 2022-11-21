@@ -25,7 +25,7 @@ class InbodyItem extends StatelessWidget {
     final result = await showFilePickerAndGet();
     if (result == null) return;
 
-    vm.updateInBody(model.studyId, result);
+    vm.updateInBody(model.inbodyId, result);
   }
 
   _onDeleteButtonTapped(BuildContext ctx) {
@@ -39,7 +39,7 @@ class InbodyItem extends StatelessWidget {
             cancelTextColor: primaryColor,
             confirmTextColor: Colors.grey.shade600,
             onConfirm: () {
-              vm.deleteInBody(model.studyId);
+              vm.deleteInBody(model.inbodyId);
               Get.back();
             }));
   }
@@ -74,7 +74,7 @@ class InbodyItem extends StatelessWidget {
                         child: Container(
                           padding: const EdgeInsets.all(smallPadding),
                           child: Text(
-                            model.studyDate.toKoreanFormat,
+                            model.registedDate.toKoreanFormat,
                             style: bodySmall,
                             textAlign: TextAlign.center,
                           ),

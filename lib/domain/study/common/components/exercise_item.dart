@@ -1,37 +1,79 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/common/components/divider.dart';
-import 'package:si_hicoach_fe/common/study/edit/components/text_field.dart';
+import 'package:si_hicoach_fe/domain/study/common/components/text_field.dart';
 import 'package:si_hicoach_fe/common/theme/color.dart';
 import 'package:si_hicoach_fe/common/theme/typography.dart';
 
-class StudyEditExerciseItem extends StatelessWidget {
-  const StudyEditExerciseItem({
-    Key? key,
-    required this.name,
-    required this.weight,
-    required this.count,
-    required this.set,
-  }) : super(key: key);
-
+class ExerciseItemModel {
+  int id;
   final String name;
-  final int weight;
-  final int count;
-  final int set;
+  int weight;
+  int count;
+  int sets;
+
+  ExerciseItemModel({
+    required this.name,
+    this.id = 0,
+    this.weight = 0,
+    this.count = 0,
+    this.sets = 0,
+  });
+}
+
+class StudyEditExerciseItemProps {
+  ExerciseItemModel model;
+
+  Function(int weight) onWeightChange;
+  Function(int count) onCountChange;
+  Function(int sets) onSetsChange;
+  Function(int exerciseId) onDelete;
+
+  StudyEditExerciseItemProps(
+      {required this.model,
+      required this.onWeightChange,
+      required this.onCountChange,
+      required this.onSetsChange,
+      required this.onDelete});
+}
+
+class StudyEditExerciseItem extends StatelessWidget {
+  const StudyEditExerciseItem({Key? key, required this.props})
+      : super(key: key);
+
+  final StudyEditExerciseItemProps props;
+
+  // final ExerciseItemModel model;
 
   _handleWeightInputChanged(String value) {
-    print('weight: $value');
+    final v = int.tryParse(value) ?? 0;
+
+    props.onWeightChange(v);
   }
 
   _handleCountInputChanged(String value) {
-    print('count: $value');
+    final v = int.tryParse(value) ?? 0;
+
+    props.onCountChange(v);
   }
 
   _handleSetInputChanged(String value) {
-    print('set: $value');
+    final v = int.tryParse(value) ?? 0;
+
+    props.onSetsChange(v);
+  }
+
+  _handleDeleteClick() {
+    props.onDelete(props.model.id);
   }
 
   @override
   Widget build(BuildContext context) {
+    final model = props.model;
+    final name = model.name;
+    final weight = model.weight;
+    final count = model.count;
+    final set = model.sets;
+
     return Column(
       children: <Widget>[
         const Padding(
@@ -47,7 +89,7 @@ class StudyEditExerciseItem extends StatelessWidget {
                 Text(name,
                     style: bodyMedium.copyWith(color: Colors.grey.shade600)),
                 IconButton(
-                  onPressed: () {},
+                  onPressed: _handleDeleteClick,
                   icon: const Icon(Icons.close),
                   color: primaryColor,
                   iconSize: 16,

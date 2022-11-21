@@ -27,8 +27,9 @@ Map<String, dynamic> _$GetMemberPageResponseToJson(
 Data _$DataFromJson(Map<String, dynamic> json) => Data(
       member: Member.fromJson(json['member'] as Map<String, dynamic>),
       matching: Matching.fromJson(json['matching'] as Map<String, dynamic>),
-      latestStudy:
-          LatestStudy.fromJson(json['latestStudy'] as Map<String, dynamic>),
+      latestStudy: json['latestStudy'] == null
+          ? null
+          : LatestStudy.fromJson(json['latestStudy'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$DataToJson(Data instance) => <String, dynamic>{
@@ -85,6 +86,7 @@ Map<String, dynamic> _$GoalsToJson(Goals instance) => <String, dynamic>{
 
 LatestStudy _$LatestStudyFromJson(Map<String, dynamic> json) => LatestStudy(
       id: json['id'] as int,
+      round: json['round'] as int,
       startedAt: json['startedAt'] as String,
       totalStudyCount: json['totalStudyCount'] as int,
     );
@@ -92,6 +94,7 @@ LatestStudy _$LatestStudyFromJson(Map<String, dynamic> json) => LatestStudy(
 Map<String, dynamic> _$LatestStudyToJson(LatestStudy instance) =>
     <String, dynamic>{
       'id': instance.id,
+      'round': instance.round,
       'startedAt': instance.startedAt,
       'totalStudyCount': instance.totalStudyCount,
     };

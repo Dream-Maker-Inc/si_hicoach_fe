@@ -4,7 +4,10 @@ import 'package:si_hicoach_fe/common/theme/color.dart';
 import 'package:si_hicoach_fe/common/theme/typography.dart';
 
 class DetailTime extends StatelessWidget {
-  const DetailTime({Key? key}) : super(key: key);
+  final String startedTime;
+  final String endedTime;
+  const DetailTime(
+      {super.key, required this.startedTime, required this.endedTime});
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +38,7 @@ class DetailTime extends StatelessWidget {
                   bottom: 6,
                 ),
                 child: Text(
-                  '오전 11:00',
+                  startedTime,
                   style: bodySmall.copyWith(color: primaryColor),
                 ),
               ),
@@ -59,7 +62,7 @@ class DetailTime extends StatelessWidget {
                   top: 6,
                   bottom: 6,
                 ),
-                child: Text('오전 11:50', style: bodySmall),
+                child: Text(endedTime, style: bodySmall),
               ),
             ),
             Padding(

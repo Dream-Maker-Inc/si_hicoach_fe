@@ -1,15 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/common/components/divider.dart';
 
-class CustomListTileWithArrow extends StatelessWidget {
+class CustomListTileWithArrowModel {
+  final int id;
   final String title;
   final String subtitle;
+
+  CustomListTileWithArrowModel(this.id, this.title, this.subtitle);
+}
+
+class CustomListTileWithArrow extends StatelessWidget {
+  final CustomListTileWithArrowModel model;
   final VoidCallback? onTap;
 
   const CustomListTileWithArrow({
     Key? key,
-    required this.title,
-    required this.subtitle,
+    required this.model,
     this.onTap,
   }) : super(key: key);
 
@@ -18,9 +24,9 @@ class CustomListTileWithArrow extends StatelessWidget {
     return Column(
       children: <Widget>[
         ListTile(
-          onTap: () => Navigator.pop(context),
-          title: Text(title),
-          subtitle: Text(subtitle),
+          onTap: onTap,
+          title: Text(model.title),
+          subtitle: Text(model.subtitle),
           trailing: const Icon(
             Icons.keyboard_arrow_right,
             color: Colors.grey,
