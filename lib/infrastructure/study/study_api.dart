@@ -68,6 +68,18 @@ class StudyApi {
     });
   }
 
+  static Future<Result<Exception, bool>> deleteStudy(int studyId) async {
+    return safeApiCall<bool>(() async {
+      Dio dio = DioHelper().dio;
+
+      String path = '/api/v2/study/$studyId';
+
+      await dio.delete(path);
+
+      return const Success(true);
+    });
+  }
+
   // inbody
   static Future<Result<Exception, bool>> uploadTodayInBody(
       UploadTodayInBodyDto dto) async {

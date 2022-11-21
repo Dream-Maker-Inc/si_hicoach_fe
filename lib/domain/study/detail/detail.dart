@@ -44,7 +44,7 @@ class _StudyDetailViewState extends _Detail {
         title: '일지 삭제',
         content: '운동 일지를 삭제하시겠습니까?',
         positiveText: '삭제',
-        onPositivePressed: () => Navigator.of(context).pop(),
+        onPositivePressed: () => vm.deleteStudy(vm.studyId),
         negativeText: '취소',
         onNegativePressed: () => Navigator.pop(context, true),
       ),
@@ -163,6 +163,33 @@ class _Detail extends MyGetXState<StudyDetailView, StudyDetailViewModel> {
     super.initState();
 
     vm.studyId = widget.studyId;
+
+    vm.deleteStudyResponse.listen((isSuccess) {
+      if (isSuccess == false) return;
+
+      Get.defaultDialog(
+          title: '운동일지 삭제 성공',
+          content: const Text("운동일지가 삭제 되었습니다."),
+          textConfirm: "확인",
+          onConfirm: () {
+            Get.back();
+            Get.back();
+            Get.back();
+          });
+    });
+
+    vm.apiError.listen((e) {
+      if (e == null) return;
+
+      Get.defaultDialog(
+          title: 'Error',
+          content: Text(e.toString()),
+          textConfirm: "뒤로가기",
+          onConfirm: () {
+            Get.back();
+            Get.back();
+          });
+    });
   }
 
   @override
