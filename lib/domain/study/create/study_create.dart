@@ -1,15 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:si_hicoach_fe/common/components/app_bar.dart';
-import 'package:si_hicoach_fe/common/components/divider.dart';
-import 'package:si_hicoach_fe/common/constants/constants.dart';
 import 'package:si_hicoach_fe/common/exceptions/common_exceptions.dart';
 import 'package:si_hicoach_fe/common/getx/my_getx_state.dart';
-import 'package:si_hicoach_fe/domain/study/common/components/exercise.dart';
-import 'package:si_hicoach_fe/domain/study/common/components/exercise_item.dart';
-import 'package:si_hicoach_fe/domain/study/common/components/time/simple_time.dart';
-import 'package:si_hicoach_fe/domain/study/common/components/time/time.dart';
-import 'package:si_hicoach_fe/domain/study/common/components/memo.dart';
+import 'package:si_hicoach_fe/domain/study/common/templates/study_form.dart';
 import 'package:si_hicoach_fe/domain/study/create/study_create_vm.dart';
 
 class StudyEditView extends StatefulWidget {
@@ -24,113 +17,25 @@ class StudyEditView extends StatefulWidget {
       required this.totalStudyCount});
 
   @override
-  State<StudyEditView> createState() => _StudyEditViewState();
+  State<StudyEditView> createState() => _StudyCreateState();
 }
 
-class _StudyEditViewState extends _Detail {
-  handleSubmitButtonPressed() {
-    vm.createStudy();
-  }
-
+class _StudyCreateState extends _Detail {
   @override
   Widget build(BuildContext context) {
     super.build(context);
+    // final model = StudyFormModel(
+    //     latestStudyRound: 1,
+    //     totalStudyCount: 1,
+    //     memo: "asdasd",
+    //     startedAt: DateTime(2022, 1, 1, 22, 0, 0),
+    //     exerciseItemModels: [
+    //       ExerciseItemModel(id: 1, name: "asd", count: 1, sets: 2, weight: 3)
+    //     ]);
 
-    return Scaffold(
-      appBar: CustomAppBarArrowBack(
-        titleText: '운동 일지 작성',
-        actionsWidget: <Widget>[_buildSubmitButton()],
-      ),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          child: Padding(
-            padding: const EdgeInsets.all(defaultPadding),
-            child: Column(
-              children: <Widget>[
-                _buildTimeSection(),
-                const SizedBox(height: widePadding),
-                _buildEditExerciseSection(),
-                const SizedBox(height: defaultPadding),
-                const CustomDivider(),
-                const SizedBox(height: widePadding),
-                _buildEditMemoSection(),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
+    // Logger().i(vm);
 
-  _buildSubmitButton() {
-    return Obx(() {
-      final disabled = vm.submitButtonDisabled;
-      final onClick = !disabled ? handleSubmitButtonPressed : null;
-
-      return IconButton(
-        icon: const Icon(Icons.check),
-        onPressed: onClick,
-      );
-    });
-  }
-
-  _buildTimeSection() {
-    handleTimeSelect(SimpleTime time) {
-      vm.studyTime.value = time;
-    }
-
-    return Obx(() {
-      final model = vm.editTimeModel.value;
-
-      return EditTime(
-        model: model,
-        onTimeSelect: handleTimeSelect,
-      );
-    });
-  }
-
-  _buildEditExerciseSection() {
-    final handleAddExercise = vm.addExerciseItem;
-
-    return Obx(() {
-      final models = vm.exerciseItemModels.toList();
-      final List<StudyEditExerciseItemProps> itemProps = models
-          .map((it) => StudyEditExerciseItemProps(
-                model: it,
-                onWeightChange: (weight) {
-                  vm.handleExerciseItemStateChange(it.id, weight: weight);
-                },
-                onCountChange: (count) {
-                  vm.handleExerciseItemStateChange(it.id, count: count);
-                },
-                onSetsChange: (sets) {
-                  vm.handleExerciseItemStateChange(it.id, sets: sets);
-                },
-                onDelete: vm.handleExerciseItemDelete,
-              ))
-          .toList();
-
-      return EditExercise(
-        itemProps: itemProps,
-        onAddExercise: handleAddExercise,
-      );
-    });
-  }
-
-  _buildEditMemoSection() {
-    handleMemoChange(String v) {
-      vm.memo.value = v;
-    }
-
-    return Obx(() {
-      final memo = vm.memo.value;
-
-      return EditMemo(
-        memo: memo,
-        onChange: handleMemoChange,
-      );
-    });
+    return StudyForm(vm: vm);
   }
 }
 
@@ -178,8 +83,6 @@ class _Detail extends MyGetXState<StudyEditView, StudyCreateViewModel> {
   }
 
   @override
-  StudyCreateViewModel createViewModel() => StudyCreateViewModel(
-      matchingId: widget.matchingId,
-      latestStudyRound: widget.latestStudyRound,
-      totalStudyCount: widget.latestStudyRound);
+  StudyCreateViewModel createViewModel() =>
+      StudyCreateViewModel(matchingId: widget.matchingId);
 }
