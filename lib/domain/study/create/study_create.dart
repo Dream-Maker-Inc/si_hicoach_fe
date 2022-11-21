@@ -24,16 +24,6 @@ class _StudyCreateViewState extends _Detail {
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    // final model = StudyFormModel(
-    //     latestStudyRound: 1,
-    //     totalStudyCount: 1,
-    //     memo: "asdasd",
-    //     startedAt: DateTime(2022, 1, 1, 22, 0, 0),
-    //     exerciseItemModels: [
-    //       ExerciseItemModel(id: 1, name: "asd", count: 1, sets: 2, weight: 3)
-    //     ]);
-
-    // Logger().i(vm);
 
     return StudyForm(vm: vm);
   }
@@ -43,6 +33,10 @@ class _Detail extends MyGetXState<StudyCreateView, StudyCreateViewModel> {
   @override
   void initState() {
     super.initState();
+
+    vm.matchingId = widget.matchingId;
+    vm.studyRound.value = widget.latestStudyRound;
+    vm.totalStudyCount.value = widget.totalStudyCount;
 
     vm.createStudySuccess.listen((isSuccess) {
       if (isSuccess == false) return;

@@ -17,7 +17,7 @@ class StudyingListView extends StatelessWidget {
       MaterialPageRoute(
         builder: (BuildContext context) => StudyCreateView(
             matchingId: _vm.matchingId,
-            latestStudyRound: 1,
+            latestStudyRound: _vm.latestStudy.round,
             totalStudyCount: _vm.latestStudy.totalStudyCount),
       ),
     );
@@ -47,7 +47,9 @@ class StudyingListView extends StatelessWidget {
     return Obx(() {
       List<StudyingListItemModel> models = _vm.memberStudies
           .map((it) => StudyingListItemModel(
-              title: '${it.round}회차', subtitle: it.startedDate.toKoreanFormat))
+              studyId: it.id,
+              title: '${it.round}회차',
+              subtitle: it.startedDate.toKoreanFormat))
           .toList();
 
       return ListView(

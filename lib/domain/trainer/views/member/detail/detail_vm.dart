@@ -34,6 +34,7 @@ class MemberDetailViewModel extends GetxController {
 
     return LatestStudyModel(
         id: _latestStudy?.id ?? 0,
+        round: _latestStudy?.round ?? 0,
         startedAt: startedAt,
         finishedStudyCount: _latestStudy?.totalStudyCount ?? 0,
         totalStudyCount: _matching?.ticketCount ?? 0);
