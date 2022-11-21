@@ -1,13 +1,11 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:get/get.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:si_hicoach_fe/common/file_picker/file_picker_extension.dart';
 import 'package:si_hicoach_fe/domain/common/inbody/models/inbody_model.dart';
-import 'package:si_hicoach_fe/common/shared_preferences/key.dart';
-import 'package:si_hicoach_fe/infrastructure/study/dto/get_member_studies_response.dart';
-import 'package:si_hicoach_fe/infrastructure/study/dto/mutation/update_inBody_dto.dart';
-import 'package:si_hicoach_fe/infrastructure/study/dto/mutation/upload_today_inBody_dto.dart';
-import 'package:si_hicoach_fe/infrastructure/study/study_api.dart';
+import 'package:si_hicoach_fe/infrastructure/inbody/dto/create_today_inBody_dto.dart';
+import 'package:si_hicoach_fe/infrastructure/inbody/dto/get_inbodies_response.dart';
+import 'package:si_hicoach_fe/infrastructure/inbody/dto/update_inBody_dto.dart';
+import 'package:si_hicoach_fe/infrastructure/inbody/inbody_api.dart';
 
 class InBodyViewModel extends _FetchController {
   int memberId = 0;
@@ -17,33 +15,32 @@ class InBodyViewModel extends _FetchController {
   RxnString loadingMsg = RxnString(null);
 
   // upload InBody
-  RxBool uploadTodayInBodySuccess = false.obs;
+  RxBool createTodayInBodySuccess = false.obs;
 
-  uploadTodayInBody(FilePickerResult filePickerResult) async {
+  createTodayInBody(FilePickerResult filePickerResult) async {
     final multipartFiles = await Future.wait(
         filePickerResult.files.map((it) => it.toMultipartFile));
 
-    final dto =
-        UploadTodayInBodyDto(matchingId: matchingId, files: multipartFiles);
+    final dto = CreateTodayInBodyDto(memberId: memberId, files: multipartFiles);
 
     loadingMsg("파일 업로드 중 입니다.");
-    final result = await StudyApi.uploadTodayInBody(dto);
+    final result = await InBodyApi.createTodayInBody(dto);
 
     result.when((e) => (apiError.value = e),
-        (response) => (uploadTodayInBodySuccess.value = response));
+        (response) => (createTodayInBodySuccess.value = response));
   }
 
   // update InBody
   RxBool updateInBodySuccess = false.obs;
 
-  updateInBody(int studyId, FilePickerResult filePickerResult) async {
+  updateInBody(int inbodyId, FilePickerResult filePickerResult) async {
     final multipartFiles = await Future.wait(
         filePickerResult.files.map((it) => it.toMultipartFile));
 
     final dto = UpdateInBodyDto(multipartFiles);
 
     loadingMsg("파일 업로드 중 입니다.");
-    final result = await StudyApi.updateInBody(studyId, dto);
+    final result = await InBodyApi.updateInBody(inbodyId, dto);
 
     result.when((e) => (apiError.value = e),
         (response) => (updateInBodySuccess.value = response));
@@ -52,8 +49,8 @@ class InBodyViewModel extends _FetchController {
   // delete InBody
   RxBool deleteInBodySuccess = false.obs;
 
-  deleteInBody(int studyId) async {
-    final result = await StudyApi.deleteInBody(studyId);
+  deleteInBody(int inbodyId) async {
+    final result = await InBodyApi.deleteInBody(inbodyId);
 
     result.when((e) => (apiError.value = e),
         (response) => (deleteInBodySuccess.value = response));
@@ -64,20 +61,20 @@ class InBodyViewModel extends _FetchController {
   Future<void> onInit() async {
     super.onInit();
 
-    ever(fetchMemberStudiesResponse, (_) {
+    ever(fetchInbodyResponse, (_) {
       _setInBodyModels();
       loadingMsg.value = null;
     });
-    ever(uploadTodayInBodySuccess, (_) {
-      fetchMemberStudies(memberId);
+    ever(createTodayInBodySuccess, (_) {
+      fetchMemberInbodies(memberId);
       loadingMsg.value = null;
     });
     ever(updateInBodySuccess, (_) {
-      fetchMemberStudies(memberId);
+      fetchMemberInbodies(memberId);
       loadingMsg.value = null;
     });
     ever(deleteInBodySuccess, (_) {
-      fetchMemberStudies(memberId);
+      fetchMemberInbodies(memberId);
     });
     ever(apiError, (_) {
       loadingMsg.value = null;
@@ -85,12 +82,9 @@ class InBodyViewModel extends _FetchController {
   }
 
   _setInBodyModels() {
-    inBodyModels.value = studies
-        .where((it) => it.inBody != null)
+    inBodyModels.value = inbodies
         .map((it) => InBodyModel(
-            studyId: it.id,
-            imageUrl: it.inBody?.imageUrl ?? "",
-            studyAt: it.startedAt))
+            inbodyId: it.id, imageUrl: it.imageUrl, registedAt: it.registDate))
         .toList();
   }
 }
@@ -98,23 +92,15 @@ class InBodyViewModel extends _FetchController {
 class _FetchController extends GetxController {
   Rx<Exception?> apiError = Rx(null);
 
-  // fetch studies
-  final Rxn<GetMemberStudiesResponse> fetchMemberStudiesResponse = Rxn();
+  // fetch inbodis
+  final Rxn<GetInbodiesResponse> fetchInbodyResponse = Rxn();
 
-  List<Items> get studies => fetchMemberStudiesResponse.value?.data.items ?? [];
+  List<Items> get inbodies => fetchInbodyResponse.value?.data.items ?? [];
 
-  Future fetchMemberStudies(int memberId) async {
-    final userId = await _getUserId();
-
-    final result =
-        await StudyApi.getMemberStudies(trainerId: userId, memberId: memberId);
+  Future fetchMemberInbodies(int memberId) async {
+    final result = await InBodyApi.getInBodies(memberId);
 
     result.when((e) => (apiError.value = e),
-        (response) => (fetchMemberStudiesResponse.value = response));
-  }
-
-  _getUserId() async {
-    final prefs = await SharedPreferences.getInstance();
-    return prefs.getInt(SharedPrefsKeys.id.key) ?? 0;
+        (response) => (fetchInbodyResponse.value = response));
   }
 }

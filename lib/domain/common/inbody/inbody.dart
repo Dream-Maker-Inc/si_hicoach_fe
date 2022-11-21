@@ -69,7 +69,7 @@ class _Detail extends MyGetXState<InbodyView, InBodyViewModel> {
     final result = await showFilePickerAndGet();
     if (result == null) return;
 
-    vm.uploadTodayInBody(result);
+    vm.createTodayInBody(result);
   }
 
   @override
@@ -79,12 +79,12 @@ class _Detail extends MyGetXState<InbodyView, InBodyViewModel> {
     vm.memberId = widget.memberId;
     vm.matchingId = widget.matchingId;
 
-    vm.uploadTodayInBodySuccess.listen((isSuccess) {
+    vm.createTodayInBodySuccess.listen((isSuccess) {
       if (isSuccess == false) return;
 
       Get.snackbar("인바디 등록 성공", "인바디 정보가 등록되었습니다.",
           snackPosition: SnackPosition.BOTTOM);
-      vm.uploadTodayInBodySuccess.value = false;
+      vm.createTodayInBodySuccess.value = false;
     });
 
     vm.updateInBodySuccess.listen((isSuccess) {
@@ -127,7 +127,7 @@ class _Detail extends MyGetXState<InbodyView, InBodyViewModel> {
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      Future.wait([vm.fetchMemberStudies(vm.memberId)]);
+      Future.wait([vm.fetchMemberInbodies(vm.memberId)]);
     });
 
     return widget;
