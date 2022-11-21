@@ -60,7 +60,7 @@ class _WeeklyCalendarViewState extends State<WeeklyCalendarView> {
             onPressed: () {
               Navigator.of(context).push(
                 MaterialPageRoute(
-                  builder: (BuildContext context) => const StudyEditView(
+                  builder: (BuildContext context) => const StudyCreateView(
                       matchingId: 1, latestStudyRound: 1, totalStudyCount: 1),
                 ),
               );

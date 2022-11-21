@@ -36,7 +36,7 @@ Map<String, dynamic> _$DataToJson(Data instance) => <String, dynamic>{
       'items': instance.items,
     };
 
-ExerciseItem _$ItemsFromJson(Map<String, dynamic> json) => ExerciseItem(
+ExerciseItem _$ExerciseItemFromJson(Map<String, dynamic> json) => ExerciseItem(
       createdAt: json['createdAt'] as String,
       updatedAt: json['updatedAt'] as String,
       deletedAt: json['deletedAt'] as String?,
@@ -46,7 +46,8 @@ ExerciseItem _$ItemsFromJson(Map<String, dynamic> json) => ExerciseItem(
       type: json['type'] as String,
     );
 
-Map<String, dynamic> _$ItemsToJson(ExerciseItem instance) => <String, dynamic>{
+Map<String, dynamic> _$ExerciseItemToJson(ExerciseItem instance) =>
+    <String, dynamic>{
       'createdAt': instance.createdAt,
       'updatedAt': instance.updatedAt,
       'deletedAt': instance.deletedAt,

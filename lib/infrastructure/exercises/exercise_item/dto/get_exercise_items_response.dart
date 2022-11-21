@@ -50,7 +50,7 @@ class ExerciseItem extends BaseDto {
   late final String type;
 
   factory ExerciseItem.fromJson(Map<String, dynamic> json) =>
-      _$ItemsFromJson(json);
+      _$ExerciseItemFromJson(json);
 
-  Map<String, dynamic> toJson() => _$ItemsToJson(this);
+  Map<String, dynamic> toJson() => _$ExerciseItemToJson(this);
 }

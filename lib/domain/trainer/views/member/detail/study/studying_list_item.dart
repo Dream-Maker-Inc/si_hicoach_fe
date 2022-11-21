@@ -20,6 +20,7 @@ class StudyingListItemView extends StatelessWidget {
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: (context) => const StudyDetailView(
+              studyId: 100,
               isMemberDetailEnabled: false,
             ),
           ),

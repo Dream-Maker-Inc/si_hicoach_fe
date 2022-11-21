@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/common/theme/typography.dart';
 
 class DetailMemo extends StatelessWidget {
-  const DetailMemo({Key? key}) : super(key: key);
+  final String memo;
+
+  const DetailMemo({super.key, required this.memo});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,7 @@ class DetailMemo extends StatelessWidget {
         SizedBox(
           width: double.infinity,
           child: Text(
-            '안녕하세요',
+            memo,
             style: bodySmall.copyWith(
               color: Colors.grey.shade700,
             ),

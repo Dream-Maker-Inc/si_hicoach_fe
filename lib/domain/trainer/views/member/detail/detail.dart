@@ -25,51 +25,55 @@ class _DetailViewState extends _Detail {
   Widget build(BuildContext context) {
     super.build(context);
 
-    final member = _vm.member;
     //
 
-    return Scaffold(
-      appBar: CustomAppBarArrowBack(
-        titleText: '${member.name} 님',
-        actionsWidget: <Widget>[
-          IconButton(
-            icon: const SizedBox(width: 20, child: Icon(Icons.delete_outline)),
-            onPressed: () => onMemberDeleteIconPressed(context),
-          ),
-        ],
-      ),
-      body: SizedBox(
-        width: double.infinity,
-        child: Column(
-          children: <Widget>[
-            Expanded(
-              child: DefaultTabController(
-                length: 2,
-                child: Scaffold(
-                  appBar: AppBar(
-                    automaticallyImplyLeading: false,
-                    title: Header(),
-                  ),
-                  body: Column(
-                    children: <Widget>[
-                      const CustomDivider(),
-                      Expanded(
-                        child: TabBarView(
-                          children: <Widget>[
-                            Information(),
-                            StudyingListView(),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+    return Obx(() {
+      final memberName = _vm.member.name;
+
+      return Scaffold(
+        appBar: CustomAppBarArrowBack(
+          titleText: '$memberName 님',
+          actionsWidget: <Widget>[
+            IconButton(
+              icon:
+                  const SizedBox(width: 20, child: Icon(Icons.delete_outline)),
+              onPressed: () => onMemberDeleteIconPressed(context),
             ),
           ],
         ),
-      ),
-    );
+        body: SizedBox(
+          width: double.infinity,
+          child: Column(
+            children: <Widget>[
+              Expanded(
+                child: DefaultTabController(
+                  length: 2,
+                  child: Scaffold(
+                    appBar: AppBar(
+                      automaticallyImplyLeading: false,
+                      title: Header(),
+                    ),
+                    body: Column(
+                      children: <Widget>[
+                        const CustomDivider(),
+                        Expanded(
+                          child: TabBarView(
+                            children: <Widget>[
+                              Information(),
+                              StudyingListView(),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+    });
   }
 }
 
@@ -80,7 +84,7 @@ class _Detail extends State<DetailView> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (BuildContext context) => StudyEditView(
+        builder: (BuildContext context) => StudyCreateView(
             matchingId: _vm.matchingId,
             latestStudyRound: 1,
             totalStudyCount: _vm.latestStudy.totalStudyCount),

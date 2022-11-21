@@ -47,11 +47,16 @@ class MyExercises {
 }
 
 class Exercise {
+  int id;
   String title;
   String part;
   String type;
 
-  Exercise({required this.title, required this.part, required this.type});
+  Exercise(
+      {required this.id,
+      required this.title,
+      required this.part,
+      required this.type});
 
   Map<String, dynamic> toMap() {
     return {

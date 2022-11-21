@@ -31,7 +31,7 @@ class MemberStudiesView extends StatelessWidget {
     handleAddButtonPressed() {
       Navigator.of(context).push(
         MaterialPageRoute(
-          builder: (BuildContext context) => const StudyEditView(
+          builder: (BuildContext context) => const StudyCreateView(
               matchingId: 1, latestStudyRound: 1, totalStudyCount: 1),
         ),
       );
@@ -41,6 +41,7 @@ class MemberStudiesView extends StatelessWidget {
       Navigator.of(context).push(
         MaterialPageRoute(
           builder: (BuildContext context) => const StudyDetailView(
+            studyId: 1,
             isMemberDetailEnabled: false,
           ),
         ),

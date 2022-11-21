@@ -5,15 +5,15 @@ import 'package:si_hicoach_fe/common/theme/color.dart';
 import 'package:si_hicoach_fe/common/theme/typography.dart';
 
 class ExerciseItemModel {
-  final int id;
+  int id;
   final String name;
   int weight;
   int count;
   int sets;
 
   ExerciseItemModel({
-    required this.id,
     required this.name,
+    this.id = 0,
     this.weight = 0,
     this.count = 0,
     this.sets = 0,

@@ -16,7 +16,8 @@ class StudyCreateViewModel extends StudyFormViewModel {
 
   Future createStudy() async {
     final myExercisesDto = myExercises.map((it) {
-      final exercise = Exercise(title: it.title, part: it.part, type: it.type);
+      final exercise =
+          Exercise(id: it.id, title: it.title, part: it.part, type: it.type);
 
       final exerciseModel =
           exerciseItemModels.firstWhere((el) => el.id == it.id);

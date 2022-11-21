@@ -30,7 +30,9 @@ class MemoListView extends StatelessWidget {
     onMemoItemPressed() {
       Navigator.of(context).push(
         MaterialPageRoute(
-          builder: (BuildContext context) => const StudyDetailView(),
+          builder: (BuildContext context) => const StudyDetailView(
+            studyId: 1,
+          ),
         ),
       );
     }

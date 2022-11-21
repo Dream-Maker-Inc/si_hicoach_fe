@@ -20,7 +20,7 @@ class StudyingListView extends StatelessWidget {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (BuildContext context) => StudyEditView(
+        builder: (BuildContext context) => StudyCreateView(
             matchingId: _vm.matchingId,
             latestStudyRound: 1,
             totalStudyCount: _vm.latestStudy.totalStudyCount),
