@@ -82,22 +82,36 @@ class MonthlyCalendarItem extends StatelessWidget {
   }
 
   _buildItem(BoxDecoration itemBackground, String text) {
-    return InkWell(
-      onTap: onClick,
-      child: Container(
-        margin: const EdgeInsets.only(
-          top: 4,
-          left: 4,
-          right: 4,
-        ),
-        padding: const EdgeInsets.all(2),
-        decoration: itemBackground,
-        child: Text(
-          text,
-          style: bodySmall.copyWith(
-            color: Colors.white,
+    return Tooltip(
+      message: '수업 $text개',
+      child: InkWell(
+        onTap: onClick,
+        child: Container(
+          margin: const EdgeInsets.only(
+            top: 4,
+            left: 4,
+            right: 4,
           ),
-          textAlign: TextAlign.center,
+          padding: const EdgeInsets.all(2),
+          decoration: itemBackground,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              const Icon(
+                Icons.fitness_center_rounded,
+                color: Colors.white,
+                size: 12,
+              ),
+              const SizedBox(width: 2),
+              Text(
+                text,
+                style: bodySmall.copyWith(
+                  color: Colors.white,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ),
         ),
       ),
     );
