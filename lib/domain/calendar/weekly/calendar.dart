@@ -1,16 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:si_hicoach_fe/domain/study/create/study_create.dart';
+import 'package:get/get.dart';
+import 'package:si_hicoach_fe/common/getx/my_getx_state.dart';
+import 'package:si_hicoach_fe/domain/calendar/weekly/weekly_calendar_vm.dart';
 import 'package:si_hicoach_fe/domain/calendar/monthly/calendar.dart';
 import 'package:si_hicoach_fe/domain/calendar/weekly/components/calendar.dart';
 import 'package:si_hicoach_fe/common/theme/typography.dart';
-
-const List<String> list = <String>[
-  '9월 1주차',
-  '9월 2주차',
-  '9월 3주차',
-  '9월 4주차',
-  '9월 5주차'
-];
 
 class WeeklyCalendarView extends StatefulWidget {
   const WeeklyCalendarView({super.key});
@@ -19,31 +13,10 @@ class WeeklyCalendarView extends StatefulWidget {
   State<WeeklyCalendarView> createState() => _WeeklyCalendarViewState();
 }
 
-class _WeeklyCalendarViewState extends State<WeeklyCalendarView> {
+class _WeeklyCalendarViewState extends _Detail {
   @override
   Widget build(BuildContext context) {
-    String dropdownValue = list.first;
-
-    Widget appBarTitle() {
-      return DropdownButton<String>(
-        value: dropdownValue,
-        icon: const Icon(Icons.keyboard_arrow_down_rounded),
-        elevation: 16,
-        style: titleMedium.copyWith(fontWeight: FontWeight.w400),
-        underline: Container(height: 2, color: Colors.transparent),
-        onChanged: (String? value) {
-          setState(() => dropdownValue = value!);
-        },
-        items: list.map<DropdownMenuItem<String>>(
-          (String value) {
-            return DropdownMenuItem<String>(
-              value: value,
-              child: Text(value),
-            );
-          },
-        ).toList(),
-      );
-    }
+    super.build(context);
 
     return Scaffold(
       appBar: AppBar(
@@ -54,19 +27,8 @@ class _WeeklyCalendarViewState extends State<WeeklyCalendarView> {
           ),
           onPressed: () {},
         ),
-        title: appBarTitle(),
+        title: _buildAppBarTitle(),
         actions: <Widget>[
-          IconButton(
-            onPressed: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (BuildContext context) => const StudyCreateView(
-                      matchingId: 1, latestStudyRound: 1, totalStudyCount: 1),
-                ),
-              );
-            },
-            icon: const Icon(Icons.add_rounded),
-          ),
           IconButton(
             onPressed: () {
               Navigator.of(context).push(
@@ -80,7 +42,65 @@ class _WeeklyCalendarViewState extends State<WeeklyCalendarView> {
           ),
         ],
       ),
-      body: WeeklyCalendar(),
+      body: const WeeklyCalendar(),
     );
   }
+
+  _buildAppBarTitle() {
+    handleTargetWeekChange(String? v) {
+      if (v == null) return;
+
+      vm.targetWeek.value = v;
+    }
+
+    return Obx(() {
+      final weeks = vm.weeks;
+      final targetWeekId = vm.targetWeek.value;
+
+      if (targetWeekId.isEmpty) return Container();
+
+      return DropdownButton<String>(
+        value: targetWeekId,
+        icon: const Icon(Icons.keyboard_arrow_down_rounded),
+        elevation: 16,
+        style: titleMedium.copyWith(fontWeight: FontWeight.w400),
+        underline: Container(height: 2, color: Colors.transparent),
+        onChanged: handleTargetWeekChange,
+        items: weeks.map<DropdownMenuItem<String>>(
+          (week) {
+            return DropdownMenuItem<String>(
+              value: week.weekString,
+              child: Text(week.formattedWeek),
+            );
+          },
+        ).toList(),
+      );
+    });
+  }
+}
+
+class _Detail extends MyGetXState<WeeklyCalendarView, WeeklyCalendarViewModel> {
+  @override
+  void initState() {
+    super.initState();
+
+    vm.apiError.listen((e) {
+      if (e == null) return;
+
+      vm.apiError.value = null;
+
+      Get.defaultDialog(title: 'Error', content: Text(e.toString()));
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Future.wait([vm.fetchMemberStudies()]);
+    });
+    return widget;
+  }
+
+  @override
+  WeeklyCalendarViewModel createViewModel() => WeeklyCalendarViewModel();
 }
