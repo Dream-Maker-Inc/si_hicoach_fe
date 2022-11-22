@@ -3,7 +3,7 @@ description: HiCoach FrontEnd w/Flutter
 version: 1.0.0+1
 
 environment:
-  sdk: '>=2.18.2 <3.0.0'
+  sdk: ">=2.18.2 <3.0.0"
 
 dependencies:
   flutter:
@@ -34,7 +34,6 @@ dev_dependencies:
   flutter_lints: ^2.0.0
   build_runner: ^2.3.2
   json_serializable: ^6.5.4
-
 
 flutter:
   uses-material-design: true

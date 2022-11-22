@@ -56,6 +56,7 @@ class TrainerMainView extends StatelessWidget {
               ),
             ),
             const Calendar(),
+            const SizedBox(height: 10),
             const CustomDivider(),
             Expanded(
                 child: ListView(
