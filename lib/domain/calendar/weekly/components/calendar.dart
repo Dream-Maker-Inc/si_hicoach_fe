@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:si_hicoach_fe/common/calendar/weekly/components/header.dart';
-import 'package:si_hicoach_fe/common/calendar/weekly/components/item.dart';
+import 'package:si_hicoach_fe/domain/calendar/weekly/components/header.dart';
+import 'package:si_hicoach_fe/domain/calendar/weekly/components/item.dart';
 import 'package:si_hicoach_fe/common/theme/typography.dart';
 
 class WeeklyCalendar extends StatelessWidget {

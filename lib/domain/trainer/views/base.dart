@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:si_hicoach_fe/common/calendar/weekly/calendar.dart';
+import 'package:si_hicoach_fe/domain/calendar/weekly/calendar.dart';
 import 'package:si_hicoach_fe/common/components/divider.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/main/main.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/list/member_list.dart';
@@ -18,7 +18,7 @@ class _TrainerBaseViewState extends State<TrainerBaseView> {
   final List _pages = [
     TrainerMainView(),
     const WeeklyCalendarView(),
-    MemberListView(),
+    const MemberListView(),
     const MypageView(),
   ];
 
