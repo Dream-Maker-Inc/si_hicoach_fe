@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/common/components/app_bar.dart';
 import 'package:si_hicoach_fe/common/components/app_bar_with_logo.dart';
 import 'package:si_hicoach_fe/common/utils/get_date_time.dart';
-import 'package:si_hicoach_fe/common/calendar/monthly/header.dart';
-import 'package:si_hicoach_fe/common/calendar/monthly/item.dart';
+import 'package:si_hicoach_fe/domain/calendar/monthly/header.dart';
+import 'package:si_hicoach_fe/domain/calendar/monthly/item.dart';
 
 class MonthlyCalendarView extends StatelessWidget {
   const MonthlyCalendarView({

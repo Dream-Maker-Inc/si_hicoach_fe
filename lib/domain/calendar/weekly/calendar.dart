@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/study/create/study_create.dart';
-import 'package:si_hicoach_fe/common/calendar/monthly/calendar.dart';
-import 'package:si_hicoach_fe/common/calendar/weekly/components/calendar.dart';
+import 'package:si_hicoach_fe/domain/calendar/monthly/calendar.dart';
+import 'package:si_hicoach_fe/domain/calendar/weekly/components/calendar.dart';
 import 'package:si_hicoach_fe/common/theme/typography.dart';
 
 const List<String> list = <String>[
