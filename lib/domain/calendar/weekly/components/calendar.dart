@@ -71,7 +71,7 @@ class _WeeklyCalendarState extends State<WeeklyCalendar> {
 
           return WeeklyCalendarItem(
             props: WeeklyCalendarItemProps(
-                name: weekStudyItem.memberName,
+                name: weekStudyItem.title,
                 onClick: () =>
                     handleWeeklyCalendarItemClick(weekStudyItem.studyId)),
           );

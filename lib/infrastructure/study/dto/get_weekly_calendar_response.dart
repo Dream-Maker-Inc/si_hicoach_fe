@@ -154,7 +154,7 @@ class Holiday {
     required this.date,
     required this.title,
   });
-  late final String date;
+  late final DateTime date;
   late final String title;
 
   factory Holiday.fromJson(Map<String, dynamic> json) =>

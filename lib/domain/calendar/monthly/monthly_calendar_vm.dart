@@ -1,61 +1,64 @@
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:si_hicoach_fe/common/shared_preferences/key.dart';
-import 'package:si_hicoach_fe/domain/calendar/models/week.dart';
-import 'package:si_hicoach_fe/domain/calendar/models/week_study_item.dart';
+import 'package:si_hicoach_fe/domain/calendar/models/monthly_day_item.dart';
 import 'package:si_hicoach_fe/infrastructure/study/dto/get_weekly_calendar_response.dart';
 import 'package:si_hicoach_fe/infrastructure/study/study_api.dart';
 
-class WeeklyCalendarViewModel extends _FetchController {
-  RxString targetWeek = RxString('');
-
-  List<WeekModel> get weeks {
+class MonthlyCalendarViewModel extends _FetchController {
+  int get weeks {
     final now = DateTime.now();
     final days = DateTime(now.year, now.month, 0).day;
     final weeks = (days / 7).ceil();
 
-    return List.generate(
-        weeks, (index) => WeekModel(month: now.month, week: index + 1));
+    return weeks;
   }
 
-  List<WeekStudyItemModel> get weekStudyItems {
-    final targetWeek = this.targetWeek.value;
+  List<MonthlyDayItemModel> getStudyItemModelsByWeek(int week) => _items
+      .where((it) => it.week == week)
+      .expand((e) => e.studies)
+      .where((it) => it.member.id != userId)
+      .map((e) => MonthlyDayItemModel(weekDay: e.weekDay))
+      .toList();
 
-    final studies = _getWeekStudiesByWeek(int.parse(targetWeek));
-    final models = studies
-        .map((e) => WeekStudyItemModel(
-            studyId: e.study.id,
-            title: e.member.name,
-            weekDay: e.weekDay,
-            startedAt: e.study.startedAt,
-            endedAt: e.study.endedAt))
-        .toList();
+  List<MonthlyDayItemModel> getPersonalStudyItemModelsByWeek(int week) => _items
+      .where((it) => it.week == week)
+      .expand((e) => e.studies)
+      .where((it) => it.member.id == userId)
+      .map((e) => MonthlyDayItemModel(weekDay: e.weekDay))
+      .toList();
 
-    return models;
+  Holiday? getHolidayOrNull(DateTime date) {
+    final studies = _items.expand((it) => it.studies);
+    if (studies.isEmpty) return null;
+
+    final holiday = studies.first.holiday;
+    final formatter = DateFormat('yyyy-MM-dd');
+
+    if (holiday == null) return null;
+
+    if (formatter.format(holiday.date) != formatter.format(date)) {
+      return null;
+    }
+
+    return holiday;
   }
-
-  List<Studies> _getWeekStudiesByWeek(int week) =>
-      _items.where((it) => it.week == week).expand((e) => e.studies).toList();
 
   @override
   onInit() {
     super.onInit();
-
-    _handleWeeksDataUpdate();
 
     ever(fetchWeeklyCalendarResponse,
         (res) => _handleFetchWeeklyCalendarResponse(res));
   }
 
   _handleFetchWeeklyCalendarResponse(GetWeeklyCalendarResponse? res) {}
-
-  _handleWeeksDataUpdate() {
-    final now = DateTime.now();
-    targetWeek.value = (now.day / 7).ceil().toString();
-  }
 }
 
 class _FetchController extends GetxController {
+  int userId = 0;
+
   Rx<Exception?> apiError = Rx(null);
 
   // fetch
@@ -71,6 +74,13 @@ class _FetchController extends GetxController {
 
     result.when((e) => (apiError.value = e),
         (response) => (fetchWeeklyCalendarResponse.value = response));
+  }
+
+  @override
+  onInit() async {
+    super.onInit();
+
+    userId = await getUserId();
   }
 
   //

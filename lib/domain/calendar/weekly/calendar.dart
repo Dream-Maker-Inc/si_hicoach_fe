@@ -30,14 +30,7 @@ class _WeeklyCalendarViewState extends _Detail {
         title: _buildAppBarTitle(),
         actions: <Widget>[
           IconButton(
-            onPressed: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (BuildContext context) =>
-                      const MonthlyCalendarView(),
-                ),
-              );
-            },
+            onPressed: handleMonthCalendarClick,
             icon: const Icon(Icons.calendar_month_rounded),
           ),
         ],
@@ -80,6 +73,17 @@ class _WeeklyCalendarViewState extends _Detail {
 }
 
 class _Detail extends MyGetXState<WeeklyCalendarView, WeeklyCalendarViewModel> {
+  handleMonthCalendarClick() {
+    Navigator.of(context)
+        .push(
+          MaterialPageRoute(
+            builder: (BuildContext context) =>
+                const MonthlyCalendarView(isBackButtonEnabled: true),
+          ),
+        )
+        .then((value) => vm.fetchMemberStudies());
+  }
+
   @override
   void initState() {
     super.initState();

@@ -134,11 +134,11 @@ Map<String, dynamic> _$MemberToJson(Member instance) => <String, dynamic>{
     };
 
 Holiday _$HolidayFromJson(Map<String, dynamic> json) => Holiday(
-      date: json['date'] as String,
+      date: DateTime.parse(json['date'] as String),
       title: json['title'] as String,
     );
 
 Map<String, dynamic> _$HolidayToJson(Holiday instance) => <String, dynamic>{
-      'date': instance.date,
+      'date': instance.date.toIso8601String(),
       'title': instance.title,
     };
