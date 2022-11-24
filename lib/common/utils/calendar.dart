@@ -1,12 +1,13 @@
 List<DateTime> getCalendarVisibleDate(int showCount) {
   final now = DateTime.now();
+  final firstDayOfThisMonth = DateTime(now.year, now.month, 1);
   final lastDayOfLastMonth = DateTime(now.year, now.month, -1);
   final days = DateTime(now.year, now.month, 0).day;
 
-  final firstWeekdayOfThisMonth = now.weekday;
+  final firstWeekdayOfThisMonth = firstDayOfThisMonth.weekday;
   final dateListOfLastMonth = List.generate(
       firstWeekdayOfThisMonth,
-      (index) => DateTime(lastDayOfLastMonth.year, lastDayOfLastMonth.month - 1,
+      (index) => DateTime(lastDayOfLastMonth.year, lastDayOfLastMonth.month + 1,
           -(index + 1))).reversed;
 
   final daysOfThisMonth = List.generate(
