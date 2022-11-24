@@ -46,6 +46,6 @@ class SignupViewModel extends GetxController {
     final result = await SignupApi.signup(dto);
 
     result.when(
-        (e) => signupError.value = e, (response) => signupSuccess.value = true);
+        (e) => signupError.value = e, (res) => signupSuccess.value = res);
   }
 }

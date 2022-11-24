@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:si_hicoach_fe/domain/account/find/views/pw/find_pw_vm.dart';
 import 'package:si_hicoach_fe/domain/account/login/views/login.dart';
 import 'package:si_hicoach_fe/common/components/app_bar.dart';
 import 'package:si_hicoach_fe/common/components/text_field.dart';
@@ -6,28 +8,72 @@ import 'package:si_hicoach_fe/common/components/title_with_description.dart';
 import 'package:si_hicoach_fe/common/constants/constants.dart';
 import 'package:si_hicoach_fe/common/theme/button.dart';
 
-class PasswordFindSuccessView extends StatelessWidget {
-  const PasswordFindSuccessView({Key? key}) : super(key: key);
+class PasswordResetView extends StatefulWidget {
+  final String certificationToken;
+
+  const PasswordResetView({Key? key, required this.certificationToken})
+      : super(key: key);
+
+  @override
+  State<PasswordResetView> createState() => _PasswordResetViewState();
+}
+
+class _PasswordResetViewState extends State<PasswordResetView> {
+  final FindPasswordViewModel _vm = Get.find<FindPasswordViewModel>();
 
   _handlePasswordChanged(String value) {
-    print('새 비밀번호 : $value');
+    _vm.pw.value = value;
   }
 
   _handlePasswordRepeatChanged(String value) {
-    print('비밀번호 확인 : $value');
+    _vm.pwRepeat.value = value;
+  }
+
+  _handleSubmitButtonPressed() {
+    _vm.submit(widget.certificationToken);
+  }
+
+  _navigateLoginView() {
+    Get.offAll(const LoginView());
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    _vm.updatePwSuccess.listen((isSuccess) {
+      if (!isSuccess) return;
+
+      Get.defaultDialog(
+          title: "비밀번호 재설정 성공",
+          content: const Text("비밀번호가 재설정 되었습니다."),
+          textConfirm: "확인",
+          onConfirm: () {
+            Get.back();
+            _navigateLoginView();
+          });
+    });
+
+    _vm.apiError.listen((e) {
+      if (e == null) return;
+
+      String title = "Error";
+      String message = e.toString();
+
+      _vm.apiError.value = null;
+
+      Get.defaultDialog(
+          title: title,
+          content: Text(message),
+          textConfirm: "확인",
+          onConfirm: () {
+            Get.back();
+          });
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    handleSubmitButtonPressed() {
-      Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(
-          builder: (context) => const LoginView(),
-        ),
-        (Route<dynamic> route) => false,
-      );
-    }
-
     return Scaffold(
       appBar: const CustomAppBarArrowBack(titleText: '비밀번호 재설정'),
       body: SafeArea(
@@ -56,21 +102,13 @@ class PasswordFindSuccessView extends StatelessWidget {
                             description:
                                 '영문 대문자와 특수문자가 포함된 8자 이상의 비밀번호를 설정해 주세요.',
                           ),
-                          CustomTextField(
-                            isPassword: true,
-                            hintText: '비밀번호 입력',
-                            onChanged: _handlePasswordChanged,
-                          ),
+                          _buildPwField(),
                           const SizedBox(height: widePadding),
                           const TitleWithDescription(
                             title: '비밀번호 확인',
                             description: '비밀번호 다시 한 번 입력해 주세요.',
                           ),
-                          CustomTextField(
-                            isPassword: true,
-                            hintText: '비밀번호 입력',
-                            onChanged: _handlePasswordRepeatChanged,
-                          ),
+                          _buildPwRepeatField(),
                         ],
                       ),
                     ),
@@ -78,10 +116,7 @@ class PasswordFindSuccessView extends StatelessWidget {
                     const Spacer(),
                     SizedBox(
                       width: double.infinity,
-                      child: CustomElevatedButton(
-                        onPressed: handleSubmitButtonPressed,
-                        text: '비밀번호 변경하기',
-                      ),
+                      child: _buildSubmitButton(),
                     ),
                   ],
                 ),
@@ -91,5 +126,42 @@ class PasswordFindSuccessView extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  _buildPwField() {
+    return Obx(() {
+      final errorText = _vm.passwordErrorText;
+      return CustomTextField(
+        isPassword: true,
+        hintText: '비밀번호 입력',
+        onChanged: _handlePasswordChanged,
+        errorText: errorText,
+      );
+    });
+  }
+
+  _buildPwRepeatField() {
+    return Obx(() {
+      final errorText = _vm.pwRepeatErrorText;
+
+      return CustomTextField(
+        isPassword: true,
+        hintText: '비밀번호 입력',
+        onChanged: _handlePasswordRepeatChanged,
+        errorText: errorText,
+      );
+    });
+  }
+
+  _buildSubmitButton() {
+    return Obx(() {
+      final onSubmit =
+          !_vm.submitButtonDisabled ? _handleSubmitButtonPressed : null;
+
+      return CustomElevatedButton(
+        onPressed: onSubmit,
+        text: '비밀번호 변경하기',
+      );
+    });
   }
 }
