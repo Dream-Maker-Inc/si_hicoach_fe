@@ -41,8 +41,7 @@ class RemoveTicketDialog extends StatelessWidget {
         suffixText: '회',
         onChanged: handleInputChanged,
         inputFormatters: [
-          CustomRangeTextInputFormatter(
-              min: 1, max: _vm.remainingTicketCount.value)
+          CustomRangeTextInputFormatter(min: 1, max: _vm.remainingTicketCount)
         ],
       );
     });

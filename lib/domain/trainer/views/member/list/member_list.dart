@@ -46,11 +46,13 @@ class _Detail extends State<MemberListView> {
   late MemberListViewModel _vm;
 
   handleAddButtonPressed() {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (BuildContext context) => const AddView(),
-      ),
-    );
+    Navigator.of(context)
+        .push(
+          MaterialPageRoute(
+            builder: (BuildContext context) => const AddView(),
+          ),
+        )
+        .then((value) => _vm.fetchInClassMembers());
   }
 
   @override

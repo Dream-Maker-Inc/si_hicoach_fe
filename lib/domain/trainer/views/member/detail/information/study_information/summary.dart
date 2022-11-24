@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:si_hicoach_fe/common/constants/constants.dart';
 import 'package:si_hicoach_fe/common/theme/typography.dart';
-import 'package:si_hicoach_fe/common/utils/date_format.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/detail/detail_vm.dart';
 
 class Summary extends StatelessWidget {
@@ -28,7 +27,7 @@ class Summary extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Text('수업 등록 일자', style: bodyMedium),
-                Text(latestStudy.startedAt.toKoreanFormat, style: bodyMedium),
+                Text(latestStudy.startedAt, style: bodyMedium),
               ],
             ),
             const SizedBox(height: 4),

@@ -25,11 +25,13 @@ class Data {
     required this.member,
     required this.matching,
     required this.latestStudy,
+    required this.totalStudyCount,
   });
 
   late final Member member;
   late final Matching matching;
   late final LatestStudy? latestStudy;
+  late final int totalStudyCount;
 
   factory Data.fromJson(Map<String, dynamic> json) => _$DataFromJson(json);
 
@@ -99,13 +101,11 @@ class LatestStudy {
     required this.id,
     required this.round,
     required this.startedAt,
-    required this.totalStudyCount,
   });
 
   late final int id;
   late final int round;
   late final String startedAt;
-  late final int totalStudyCount;
 
   factory LatestStudy.fromJson(Map<String, dynamic> json) =>
       _$LatestStudyFromJson(json);
