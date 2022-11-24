@@ -30,4 +30,6 @@ class DioHelper {
   factory DioHelper() => _instance;
 
   Dio dio = _createDio();
+
+  get pureDio => Dio(_options);
 }
