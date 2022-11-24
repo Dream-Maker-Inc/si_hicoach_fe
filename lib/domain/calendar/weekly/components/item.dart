@@ -46,6 +46,7 @@ class WeeklyCalendarItem extends StatelessWidget {
             style: bodySmall.copyWith(
               color: Colors.white,
             ),
+            overflow: TextOverflow.ellipsis,
           ),
         ),
       ),

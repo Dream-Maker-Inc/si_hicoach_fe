@@ -109,6 +109,7 @@ class MonthlyCalendarItem extends StatelessWidget {
                   color: Colors.white,
                 ),
                 textAlign: TextAlign.center,
+                overflow: TextOverflow.ellipsis,
               ),
             ],
           ),

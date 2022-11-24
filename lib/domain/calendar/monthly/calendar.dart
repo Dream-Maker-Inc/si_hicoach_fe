@@ -134,7 +134,7 @@ class _MonthlyCalendarViewState extends _Detail {
                 ? "${targetDayStudyItems.length}"
                 : null,
             personalStudyText: targetDayPersonalStudyItems.isNotEmpty
-                ? "개인 ${targetDayPersonalStudyItems.length}개"
+                ? "${targetDayPersonalStudyItems.length}"
                 : null,
           );
         }).toList();
