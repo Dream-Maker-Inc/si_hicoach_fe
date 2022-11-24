@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:intl/intl.dart';
+import 'package:logger/logger.dart';
 import 'package:multiple_result/multiple_result.dart';
 import 'package:si_hicoach_fe/common/dio/dio_helper.dart';
 import 'package:si_hicoach_fe/common/dio/http_utils.dart';
@@ -34,7 +35,9 @@ class StudyApi {
 
       String path = '/api/v2/study/$studyId';
 
-      await dio.put(path, data: dto.toMap());
+      final res = await dio.put(path, data: dto.toMap());
+
+      Logger().i(res);
 
       return const Success(true);
     });
