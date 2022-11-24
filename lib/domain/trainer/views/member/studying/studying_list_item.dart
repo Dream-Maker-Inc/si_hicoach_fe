@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:si_hicoach_fe/common/theme/typography.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/detail/detail.dart';
+import 'package:si_hicoach_fe/domain/trainer/views/member/list/member_list_vm.dart';
 
 class StudyingListItemView extends StatelessWidget {
-  const StudyingListItemView({
+  StudyingListItemView({
     Key? key,
     required this.id,
     required this.name,
@@ -18,18 +20,22 @@ class StudyingListItemView extends StatelessWidget {
   final int currentStudy;
   final int totalStudy;
 
+  final MemberListViewModel _vm = Get.find<MemberListViewModel>();
+
+  handleDetailButtonPressed(BuildContext context) {
+    Navigator.of(context)
+        .push(
+          MaterialPageRoute(
+            builder: (context) => DetailView(memberId: id),
+          ),
+        )
+        .then((value) => _vm.refetch());
+  }
+
   @override
   Widget build(BuildContext context) {
-    handleDetailButtonPressed() {
-      Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (context) => DetailView(memberId: id),
-        ),
-      );
-    }
-
     return ListTile(
-      onTap: handleDetailButtonPressed,
+      onTap: () => handleDetailButtonPressed(context),
       title: Text('$name 회원님'),
       subtitle: Text(
         '등록일자 : $regDate',
@@ -49,7 +55,7 @@ class StudyingListItemView extends StatelessWidget {
               ),
             ),
             IconButton(
-              onPressed: handleDetailButtonPressed,
+              onPressed: () => handleDetailButtonPressed(context),
               icon: const Icon(
                 Icons.keyboard_arrow_right,
                 color: Colors.grey,

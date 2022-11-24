@@ -42,6 +42,16 @@ class MemberListViewModel extends GetxController {
   //
   Rx<Exception?> apiError = Rx(null);
 
+  // referch
+  refetch() {
+    if (tabIndex.value == 0) {
+      fetchInClassMembers();
+      return;
+    }
+
+    fetchFinishedMembers();
+  }
+
   // fetch in class members
   final Rxn<GetMembersPageResponse> _getInClassMembersResponse = Rxn();
 
@@ -52,7 +62,7 @@ class MemberListViewModel extends GetxController {
     final result = await TrainerMembersPageApi.getData();
 
     result.when((e) => (apiError.value = e),
-            (response) => (_getInClassMembersResponse.value = response));
+        (response) => (_getInClassMembersResponse.value = response));
   }
 
   // fetch finished members
@@ -65,7 +75,7 @@ class MemberListViewModel extends GetxController {
     final result = await TrainerMembersPageApi.getData(isFinished: true);
 
     result.when((e) => (apiError.value = e),
-            (response) => (_getFinishedMembersResponse.value = response));
+        (response) => (_getFinishedMembersResponse.value = response));
   }
 
   //
