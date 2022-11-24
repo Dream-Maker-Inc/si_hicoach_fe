@@ -4,12 +4,11 @@ import 'package:si_hicoach_fe/common/components/app_bar.dart';
 import 'package:si_hicoach_fe/common/components/title_with_description.dart';
 import 'package:si_hicoach_fe/common/constants/constants.dart';
 import 'package:si_hicoach_fe/common/theme/button.dart';
-import 'package:si_hicoach_fe/common/theme/color.dart';
 
 class IDFindSuccessView extends StatelessWidget {
-  const IDFindSuccessView({Key? key}) : super(key: key);
+  final String id;
 
-  final String id = "hicoach";
+  const IDFindSuccessView({Key? key, required this.id}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
