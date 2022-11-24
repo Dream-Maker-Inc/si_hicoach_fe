@@ -115,7 +115,7 @@ class _Detail extends State<SignUpAgreementView> {
   }
 
   _handleItemClick(int id) {
-    print('ItemClick: ${id}');
+    print('ItemClick: $id');
   }
 
   _handleItemCheck(int id) {
@@ -127,7 +127,7 @@ class _Detail extends State<SignUpAgreementView> {
 
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (BuildContext context) => SignUpVerifyView(),
+        builder: (BuildContext context) => const SignUpVerifyView(),
       ),
     );
   }
@@ -145,5 +145,4 @@ class _Detail extends State<SignUpAgreementView> {
     WidgetsBinding.instance.addPostFrameCallback((_) => _vm.fetchTerms());
     return const SizedBox.shrink();
   }
-
 }

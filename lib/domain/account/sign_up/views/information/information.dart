@@ -19,7 +19,6 @@ class SignUpInformationView extends StatefulWidget {
 }
 
 class _SignUpInformationViewState extends _Detail {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -154,7 +153,7 @@ class _Detail extends State<SignUpInformationView> {
         MaterialPageRoute(
           builder: (context) => const SignUpFinishView(),
         ),
-            (Route<dynamic> route) => false);
+        (Route<dynamic> route) => false);
   }
 
   @override
@@ -177,5 +176,4 @@ class _Detail extends State<SignUpInformationView> {
   Widget build(BuildContext context) {
     throw UnimplementedError();
   }
-
 }

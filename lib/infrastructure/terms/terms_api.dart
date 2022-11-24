@@ -1,4 +1,3 @@
-import 'package:logger/logger.dart';
 import 'package:multiple_result/multiple_result.dart';
 import 'package:si_hicoach_fe/common/dio/dio_helper.dart';
 import 'package:dio/dio.dart';
@@ -11,8 +10,6 @@ class TermsApi {
       String path = '/api/v2/terms';
 
       final response = await dio.get(path);
-
-      Logger().i(response);
 
       return Success(GetTermsResponse.fromJson(response.data));
     } catch (e) {
