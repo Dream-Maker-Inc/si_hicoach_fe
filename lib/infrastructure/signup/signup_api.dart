@@ -5,13 +5,11 @@ import 'package:si_hicoach_fe/common/exceptions/signup_exceptions.dart';
 import 'package:si_hicoach_fe/common/exceptions/status_code.dart';
 import 'package:dio/dio.dart';
 import 'package:si_hicoach_fe/infrastructure/signup/dto/request_signup_dto.dart';
-import 'package:si_hicoach_fe/infrastructure/signup/dto/signup_response.dart';
 import 'package:si_hicoach_fe/infrastructure/signup/dto/validate_response.dart';
 
 class SignupApi {
-  static Future<Result<Exception, SignUpResponse>> signup(
-      RequestSignUpDto dto) async {
-    return safeApiCall<SignUpResponse>(() async {
+  static Future<Result<Exception, bool>> signup(RequestSignUpDto dto) async {
+    return safeApiCall<bool>(() async {
       Dio dio = DioHelper().dio;
       String path = '/api/v2/member/signUp';
 
@@ -30,7 +28,7 @@ class SignupApi {
         return Error(AlreadyUsedPhoneException());
       }
 
-      return Success(SignUpResponse.fromJson(response.data));
+      return const Success(true);
     });
   }
 
