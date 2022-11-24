@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:logger/logger.dart';
 import 'package:multiple_result/multiple_result.dart';
 import 'package:si_hicoach_fe/common/dio/dio_helper.dart';
 import 'package:si_hicoach_fe/common/dio/http_utils.dart';
@@ -62,6 +63,25 @@ class MemberApi {
       }
 
       return Success(FindIdResponse.fromJson(res.data));
+    });
+  }
+
+  static Future<Result<Exception, bool>> resetPassword(
+      String certificationToken, String newPassword) async {
+    return safeApiCall<bool>(() async {
+      Dio dio = DioHelper().pureDio;
+      String path = '/api/v2/member/password';
+      dio.options.headers['Authorization'] = 'Bearer $certificationToken';
+
+      final res = await dio.patch(path, data: {'newPassword': newPassword});
+
+      Logger().i(res);
+
+      if (res.data?['statusCode'] == StatusCode.notExist.code) {
+        return Error(NotExistException());
+      }
+
+      return const Success(true);
     });
   }
 }
