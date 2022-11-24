@@ -24,7 +24,7 @@ class _ExercisePurposeState extends State<ExercisePurpose> {
         builder: (BuildContext context) =>
             PurposeEditView(matchingId: _vm.matchingId),
       ),
-    );
+    ).then((value) => _vm.fetchMemberInfo());
   }
 
   @override

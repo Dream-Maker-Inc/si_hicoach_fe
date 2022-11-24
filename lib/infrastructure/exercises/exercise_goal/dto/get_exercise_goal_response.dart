@@ -41,7 +41,7 @@ class Items extends BaseDto {
       required this.title,
       required super.createdAt,
       required super.updatedAt,
-      required super.deletedAt});
+      super.deletedAt});
 
   factory Items.fromJson(Map<String, dynamic> json) => _$ItemsFromJson(json);
 
