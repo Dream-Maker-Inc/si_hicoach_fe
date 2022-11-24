@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:si_hicoach_fe/common/constants/constants.dart';
 import 'package:si_hicoach_fe/common/theme/typography.dart';
+import 'package:si_hicoach_fe/common/utils/number_format.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/detail/detail_vm.dart';
 
 class Summary extends StatelessWidget {
@@ -35,7 +36,8 @@ class Summary extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Text('진행한 수업 횟수', style: bodyMedium),
-                Text('${latestStudy.finishedStudyCount}회', style: bodyMedium),
+                Text('${latestStudy.finishedStudyCount.toKC}회',
+                    style: bodyMedium),
               ],
             ),
             const SizedBox(height: 4),
@@ -43,7 +45,7 @@ class Summary extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Text('잔여 수업 횟수', style: bodyMedium),
-                Text('${latestStudy.totalStudyCount}회', style: bodyMedium),
+                Text('${latestStudy.totalStudyCount.toKC}회', style: bodyMedium),
               ],
             ),
           ],

@@ -20,7 +20,7 @@ class StudyingListView extends StatelessWidget {
               name: it.name,
               currentStudy: it.latestStudyRound,
               regDate: it.matchedDate,
-              totalStudy: it.totalStudyCount,
+              totalTicketCount: it.totalStudyCount,
             ),
           ),
         ),

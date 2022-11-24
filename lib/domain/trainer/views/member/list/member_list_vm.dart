@@ -36,7 +36,7 @@ class MemberListViewModel extends GetxController {
         name: items.member.name,
         matchedDate: _formatDate(items.matching.createdAt),
         latestStudyRound: items.latestStudy?.round ?? 0,
-        totalStudyCount: items.totalStudyCount);
+        totalStudyCount: items.matching.ticketCount);
   }
 
   //
