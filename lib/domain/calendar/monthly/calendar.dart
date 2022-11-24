@@ -131,7 +131,7 @@ class _MonthlyCalendarViewState extends _Detail {
             date: targetDate.day,
             holidayText: isHoliday ? holiday.title : null,
             studyText: targetDayStudyItems.isNotEmpty
-                ? "수업 ${targetDayStudyItems.length}개"
+                ? "${targetDayStudyItems.length}"
                 : null,
             personalStudyText: targetDayPersonalStudyItems.isNotEmpty
                 ? "개인 ${targetDayPersonalStudyItems.length}개"

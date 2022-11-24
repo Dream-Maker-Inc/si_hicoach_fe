@@ -2,6 +2,7 @@ import 'package:intl/intl.dart';
 import 'package:collection/collection.dart';
 
 class Utils {
+  // static final DateTime dateTime = DateTime(2022, 11, 1);
   static final DateTime dateTime = DateTime.now();
   static late DateFormat formatter;
 
@@ -21,6 +22,9 @@ class Utils {
     switch (type) {
       case 'year_month_date':
         formatter = DateFormat('yyyy년 MM월 dd일');
+        break;
+      case 'year_month_date_dash':
+        formatter = DateFormat('yyyy-MM-dd');
         break;
       case 'year_month':
         formatter = DateFormat('yyyy년 MM월');
@@ -67,6 +71,32 @@ class Utils {
       0,
     );
     return lastDayOfThisMonth.day;
+  }
+
+  static DateTime getLastDateTimeOfLastMonth() {
+    DateTime lastDayOfThisMonth = DateTime(
+      dateTime.year,
+      dateTime.month,
+      0,
+    );
+    return lastDayOfThisMonth;
+  }
+
+  static List<String> getThisWeekDays() {
+    List<String> list = [];
+    DateFormat formatter = DateFormat('yyyy-MM-dd');
+
+    for (int i = -3; i <= 3; i++) {
+      String formattedDate = formatter.format(
+        DateTime(
+          dateTime.year,
+          dateTime.month,
+          dateTime.day + i,
+        ),
+      );
+      list.add(formattedDate);
+    }
+    return list;
   }
 
   static String getDayTextFromDayNumber(int dayNumber) {

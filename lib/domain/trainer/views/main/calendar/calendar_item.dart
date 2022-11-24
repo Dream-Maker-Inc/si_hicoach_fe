@@ -7,12 +7,14 @@ class CalendarItem extends StatelessWidget {
   final String dayText;
   final int dayNumber;
   final bool highlight;
+  final GestureTapCallback? onTap;
 
   const CalendarItem({
     Key? key,
     required this.dayText,
     required this.dayNumber,
     required this.highlight,
+    this.onTap,
   }) : super(key: key);
 
   @override
@@ -48,8 +50,8 @@ class CalendarItem extends StatelessWidget {
               ),
             ),
             const SizedBox(height: smallPadding),
-            InkWell(
-              onTap: () {},
+            GestureDetector(
+              onTap: onTap,
               child: Container(
                 width: 40,
                 height: 40,

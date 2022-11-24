@@ -6,7 +6,7 @@ import 'package:si_hicoach_fe/common/exceptions/status_code.dart';
 import 'package:dio/dio.dart';
 import 'package:si_hicoach_fe/infrastructure/signup/dto/request_signup_dto.dart';
 import 'package:si_hicoach_fe/infrastructure/signup/dto/signup_response.dart';
-import 'package:si_hicoach_fe/infrastructure/signup/dto/validate_email_response.dart';
+import 'package:si_hicoach_fe/infrastructure/signup/dto/validate_response.dart';
 
 class SignupApi {
   static Future<Result<Exception, SignUpResponse>> signup(
@@ -22,13 +22,21 @@ class SignupApi {
         return Error(MissingRequiredTermException());
       }
 
+      if (response.data?['statusCode'] == StatusCode.alreadyUsedEmail.code) {
+        return Error(AlreadyUsedEmailException());
+      }
+
+      if (response.data?['statusCode'] == StatusCode.alreadyUsedPhone.code) {
+        return Error(AlreadyUsedPhoneException());
+      }
+
       return Success(SignUpResponse.fromJson(response.data));
     });
   }
 
-  static Future<Result<Exception, ValidateEmailResponse>> validateEmail(
+  static Future<Result<Exception, ValidateResponse>> validateEmail(
       String email) async {
-    try {
+    return safeApiCall<ValidateResponse>(() async {
       Dio dio = DioHelper().dio;
       String path = '/api/v2/member/email/validate';
 
@@ -38,9 +46,23 @@ class SignupApi {
         return Error(AlreadyUsedEmailException());
       }
 
-      return Success(ValidateEmailResponse.fromJson(response.data));
-    } catch (e) {
-      return Error(Exception(e));
-    }
+      return Success(ValidateResponse.fromJson(response.data));
+    });
+  }
+
+  static Future<Result<Exception, ValidateResponse>> validatePhone(
+      String phone) async {
+    return safeApiCall<ValidateResponse>(() async {
+      Dio dio = DioHelper().dio;
+      String path = '/api/v2/member/phone/validate';
+
+      var response = await dio.post(path, data: {"phone": phone});
+
+      if (response.data?['statusCode'] == StatusCode.alreadyUsedPhone.code) {
+        return Error(AlreadyUsedPhoneException());
+      }
+
+      return Success(ValidateResponse.fromJson(response.data));
+    });
   }
 }

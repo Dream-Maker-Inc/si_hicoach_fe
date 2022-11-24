@@ -1,14 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'validate_email_response.dart';
+part of 'validate_response.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-ValidateEmailResponse _$ValidateEmailResponseFromJson(
-        Map<String, dynamic> json) =>
-    ValidateEmailResponse(
+ValidateResponse _$ValidateResponseFromJson(Map<String, dynamic> json) =>
+    ValidateResponse(
       json['ref'],
       json['data'] == null
           ? null
@@ -17,8 +16,7 @@ ValidateEmailResponse _$ValidateEmailResponseFromJson(
       json['message'] as String,
     );
 
-Map<String, dynamic> _$ValidateEmailResponseToJson(
-        ValidateEmailResponse instance) =>
+Map<String, dynamic> _$ValidateResponseToJson(ValidateResponse instance) =>
     <String, dynamic>{
       'ref': instance.ref,
       'data': instance.data,

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:si_hicoach_fe/common/utils/get_date_time.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/main/calendar/calendar_item.dart';
-import 'package:si_hicoach_fe/domain/trainer/views/main/calendar/left_shadow.dart';
-import 'package:si_hicoach_fe/domain/trainer/views/main/calendar/right_shadow.dart';
+import 'package:si_hicoach_fe/domain/trainer/views/main/main_vm.dart';
 
 class Calendar extends StatefulWidget {
   const Calendar({Key? key}) : super(key: key);
@@ -12,55 +12,43 @@ class Calendar extends StatefulWidget {
 }
 
 class _CalendarState extends State<Calendar> {
-  int selectedDay = int.parse(Utils.getCurrentDateTime('date_number'));
+  final MainViewModel _vm = Get.find<MainViewModel>();
+
+  _handleDayPressed(String it) {
+    _vm.targetDate.value = DateTime.parse(it);
+  }
 
   @override
   Widget build(BuildContext context) {
-    List<int> daysOfThisMonthList = [];
+    return Obx(() {
+      int targetDay = _vm.targetDate.value.day;
 
-    for (int i = 1; i <= Utils.getLastDayOfThisMonth(); i++) {
-      daysOfThisMonthList.add(i);
-    }
-
-    return Stack(
-      children: <Widget>[
-        SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Row(children: <Widget>[
-            Wrap(
-              children: daysOfThisMonthList.map(
-                (it) {
-                  while (true) {
-                    for (int i = 0; i <= Utils.koreanDate.length; i++) {
-                      if (it == selectedDay) {
-                        return SizedBox(
-                          width: MediaQuery.of(context).size.width / 7,
-                          child: CalendarItem(
-                            dayText: Utils.getDayTextFromDayNumber(it),
-                            dayNumber: it,
-                            highlight: true,
-                          ),
-                        );
-                      } else {
-                        return SizedBox(
-                          width: MediaQuery.of(context).size.width / 7,
-                          child: CalendarItem(
-                            dayText: Utils.getDayTextFromDayNumber(it),
-                            dayNumber: it,
-                            highlight: false,
-                          ),
-                        );
-                      }
-                    }
-                  }
-                },
-              ).toList(),
+      return Stack(
+        children: <Widget>[
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: Utils.getThisWeekDays()
+                  .map(
+                    (it) => SizedBox(
+                      width: MediaQuery.of(context).size.width / 7 - 2,
+                      child: CalendarItem(
+                        dayText: Utils.getDayTextFromDayNumber(
+                          int.parse(it.substring(8)),
+                        ),
+                        dayNumber: int.parse(it.substring(8)),
+                        highlight: int.parse(it.substring(8)) == targetDay
+                            ? true
+                            : false,
+                        onTap: () => _handleDayPressed(it),
+                      ),
+                    ),
+                  )
+                  .toList(),
             ),
-          ]),
-        ),
-        const LeftShadow(),
-        const RightShadow(),
-      ],
-    );
+          ),
+        ],
+      );
+    });
   }
 }

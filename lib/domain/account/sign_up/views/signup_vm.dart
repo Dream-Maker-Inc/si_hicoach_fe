@@ -42,6 +42,7 @@ class SignupViewModel extends GetxController {
 
   Future<void> signup() async {
     final dto = _createDto();
+
     final result = await SignupApi.signup(dto);
 
     result.when(

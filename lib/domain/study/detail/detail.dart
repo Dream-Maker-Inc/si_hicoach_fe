@@ -29,11 +29,13 @@ class StudyDetailView extends StatefulWidget {
 
 class _StudyDetailViewState extends _Detail {
   handleEditButtonPressed() {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => StudyUpdateView(studyId: vm.studyId),
-      ),
-    );
+    Navigator.of(context)
+        .push(
+          MaterialPageRoute(
+            builder: (context) => StudyUpdateView(studyId: vm.studyId),
+          ),
+        )
+        .then((value) => vm.fetchStudy(vm.studyId));
   }
 
   handleDeleteButtonPressed() {
@@ -54,7 +56,7 @@ class _StudyDetailViewState extends _Detail {
   handleMemberDetailButtonPressed() {
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (context) => DetailView(memberId: 3),
+        builder: (context) => DetailView(memberId: vm.member?.id ?? 0),
       ),
     );
   }
