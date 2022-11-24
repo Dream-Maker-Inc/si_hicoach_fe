@@ -8,6 +8,7 @@ import 'package:si_hicoach_fe/infrastructure/member/member/dto/get_my_info_respo
 import 'package:si_hicoach_fe/infrastructure/member/member/member_api.dart';
 import 'package:si_hicoach_fe/infrastructure/page/trainer/main/dto/get_trainer_main_response.dart';
 import 'package:si_hicoach_fe/infrastructure/page/trainer/main/trainer_main_page_api.dart';
+import 'package:collection/collection.dart';
 
 class MainViewModel extends _FetchController {
   Rx<DateTime> targetDate = Rx(DateTime.now());
@@ -25,6 +26,7 @@ class MainViewModel extends _FetchController {
           isCompleted: data.study.isFinished,
           studyCount: data.totalStudyCount,
           totalTicketCount: data.matching.ticketCount))
+      .sorted((a, b) => a.time - b.time)
       .toList();
 
   @override
