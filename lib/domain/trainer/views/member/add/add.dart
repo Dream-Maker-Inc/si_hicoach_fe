@@ -27,6 +27,9 @@ class _AddViewState extends _Detail {
           final email = _vm.email.value;
           final validationErrorText = _vm.validationErrorText;
 
+          final validationButtonClick =
+              _vm.submitButtonDisabled ? handleIDValidationButtonClicked : null;
+
           final submitButtonText = _vm.buttonText;
 
           final submitButtonPressed =
@@ -48,7 +51,7 @@ class _AddViewState extends _Detail {
                     hintText: '아이디 (이메일) 입력',
                     keyboardType: TextInputType.emailAddress,
                     suffix: CustomElevatedButton(
-                      onPressed: handleIDValidationButtonClicked,
+                      onPressed: validationButtonClick,
                       text: '검증',
                     ),
                     value: email,

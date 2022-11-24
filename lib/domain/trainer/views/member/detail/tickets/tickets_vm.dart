@@ -7,10 +7,10 @@ class TicketsViewModel extends GetxController {
 
   //
   RxInt finishedStudyCount = RxInt(0);
-  RxInt remainingTicketCount = RxInt(0);
+  RxInt totalTicketCount = RxInt(0);
 
-  int get totalTicketCount =>
-      finishedStudyCount.value + remainingTicketCount.value;
+  int get remainingTicketCount =>
+      totalTicketCount.value - finishedStudyCount.value;
 
   //
   RxInt countOfAdd = RxInt(0);
@@ -58,7 +58,7 @@ class TicketsViewModel extends GetxController {
       final data = res?.data;
 
       finishedStudyCount.value = data?.finishedStudyCount ?? 0;
-      remainingTicketCount.value = data?.remainingTicketCount ?? 0;
+      totalTicketCount.value = data?.remainingTicketCount ?? 0;
     });
 
     ever(increaseTicketsSuccess, (isSuccess) {

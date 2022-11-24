@@ -38,24 +38,24 @@ class _TicketsViewState extends _Detail {
     );
   }
 
+  handleRemoveButtonPressed() {
+    showDialog<String>(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) => CustomAlertDialogWidget(
+        title: 'PT 횟수 차감',
+        content: RemoveTicketDialog(),
+        positiveText: '차감하기',
+        onPositivePressed: () => vm.decreaseTickets(),
+        negativeText: '취소',
+        onNegativePressed: () => Navigator.pop(context),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     super.build(context);
-
-    handleRemoveButtonPressed() {
-      showDialog<String>(
-        context: context,
-        barrierDismissible: false,
-        builder: (BuildContext context) => CustomAlertDialogWidget(
-          title: 'PT 횟수 차감',
-          content: RemoveTicketDialog(),
-          positiveText: '차감하기',
-          onPositivePressed: () => vm.decreaseTickets(),
-          negativeText: '취소',
-          onNegativePressed: () => Navigator.pop(context),
-        ),
-      );
-    }
 
     return Scaffold(
       appBar: const CustomAppBarArrowBack(titleText: '수강권 관리'),
@@ -63,7 +63,7 @@ class _TicketsViewState extends _Detail {
         width: double.infinity,
         child: Obx(() {
           final finishedStudyCount = vm.finishedStudyCount.value;
-          final remainingTicketCount = vm.remainingTicketCount.value;
+          final remainingTicketCount = vm.remainingTicketCount;
           final totalTicketCount = vm.totalTicketCount;
 
           return Column(
@@ -91,13 +91,7 @@ class _TicketsViewState extends _Detail {
                     ),
                     child: Row(
                       children: <Widget>[
-                        IconButton(
-                          onPressed: handleRemoveButtonPressed,
-                          icon: const Icon(
-                            Icons.remove_rounded,
-                            color: Colors.red,
-                          ),
-                        ),
+                        _buildMinusButton(),
                         Container(
                           width: 1,
                           height: 30,
@@ -105,13 +99,7 @@ class _TicketsViewState extends _Detail {
                             color: Colors.grey.shade300,
                           ),
                         ),
-                        IconButton(
-                          onPressed: handleAddButtonPressed,
-                          icon: Icon(
-                            Icons.add_rounded,
-                            color: primaryColor,
-                          ),
-                        ),
+                        _buildAddButton(),
                       ],
                     ),
                   ),
@@ -126,6 +114,26 @@ class _TicketsViewState extends _Detail {
             ],
           );
         }),
+      ),
+    );
+  }
+
+  IconButton _buildMinusButton() {
+    return IconButton(
+      onPressed: handleRemoveButtonPressed,
+      icon: const Icon(
+        Icons.remove_rounded,
+        color: Colors.red,
+      ),
+    );
+  }
+
+  IconButton _buildAddButton() {
+    return IconButton(
+      onPressed: handleAddButtonPressed,
+      icon: Icon(
+        Icons.add_rounded,
+        color: primaryColor,
       ),
     );
   }

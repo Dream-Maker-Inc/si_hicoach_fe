@@ -113,7 +113,7 @@ class TrainerInfo {
     required this.companyName,
   });
 
-  late final String companyName;
+  late final String? companyName;
 
   factory TrainerInfo.fromJson(Map<String, dynamic> json) =>
       _$TrainerInfoFromJson(json);

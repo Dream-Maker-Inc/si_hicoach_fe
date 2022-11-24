@@ -30,12 +30,14 @@ Data _$DataFromJson(Map<String, dynamic> json) => Data(
       latestStudy: json['latestStudy'] == null
           ? null
           : LatestStudy.fromJson(json['latestStudy'] as Map<String, dynamic>),
+      totalStudyCount: json['totalStudyCount'] as int,
     );
 
 Map<String, dynamic> _$DataToJson(Data instance) => <String, dynamic>{
       'member': instance.member,
       'matching': instance.matching,
       'latestStudy': instance.latestStudy,
+      'totalStudyCount': instance.totalStudyCount,
     };
 
 Member _$MemberFromJson(Map<String, dynamic> json) => Member(
@@ -88,7 +90,6 @@ LatestStudy _$LatestStudyFromJson(Map<String, dynamic> json) => LatestStudy(
       id: json['id'] as int,
       round: json['round'] as int,
       startedAt: json['startedAt'] as String,
-      totalStudyCount: json['totalStudyCount'] as int,
     );
 
 Map<String, dynamic> _$LatestStudyToJson(LatestStudy instance) =>
@@ -96,5 +97,4 @@ Map<String, dynamic> _$LatestStudyToJson(LatestStudy instance) =>
       'id': instance.id,
       'round': instance.round,
       'startedAt': instance.startedAt,
-      'totalStudyCount': instance.totalStudyCount,
     };

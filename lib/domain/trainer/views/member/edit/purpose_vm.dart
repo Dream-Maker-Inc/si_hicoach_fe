@@ -45,21 +45,23 @@ class PurposeEditViewModel extends _FetchController {
   Future<void> onInit() async {
     super.onInit();
 
-    ever(_fetchGoalsResponse,
-        (res) => (res != null) && _handleFetchGoalsSuccess(res));
+    ever(_fetchGoalsResponse, (res) => _handleFetchGoalsSuccess(res));
 
-    ever(_fetchMatchingResponse,
-        (res) => (res != null) && _handleFetchMatchingSuccess(res));
+    ever(_fetchMatchingResponse, (res) => _handleFetchMatchingSuccess(res));
 
     ever(apiError, (e) => apiError.value = null);
   }
 
-  _handleFetchGoalsSuccess(GetExerciseGoalResponse res) {
+  _handleFetchGoalsSuccess(GetExerciseGoalResponse? res) {
+    if (res == null) return;
+
     customChipProps.value =
         goals.map((it) => CustomChipProps(it.id, it.title, false)).toList();
   }
 
-  _handleFetchMatchingSuccess(MatchingResponse.GetMatchingResponse res) {
+  _handleFetchMatchingSuccess(MatchingResponse.GetMatchingResponse? res) {
+    if (res == null) return;
+
     final oldGoalIds = oldGoals.map((it) => it.id);
 
     final newChipProps = customChipProps.map((it) {

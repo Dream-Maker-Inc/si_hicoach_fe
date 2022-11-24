@@ -18,11 +18,14 @@ class StudyInformation extends StatelessWidget {
   onDetailTicketButtonPressed(BuildContext ctx) {
     final matchingId = _vm.matchingId;
 
-    Navigator.of(ctx).push(
-      MaterialPageRoute(
-        builder: (BuildContext context) => TicketsView(matchingId: matchingId),
-      ),
-    );
+    Navigator.of(ctx)
+        .push(
+          MaterialPageRoute(
+            builder: (BuildContext context) =>
+                TicketsView(matchingId: matchingId),
+          ),
+        )
+        .then((value) => _vm.fetchMemberInfo());
   }
 
   onDetailInBodyButtonPressed(BuildContext ctx) {

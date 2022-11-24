@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:si_hicoach_fe/common/shared_preferences/key.dart';
+import 'package:si_hicoach_fe/common/utils/date_format.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/detail/models/exercise_goal_model.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/detail/models/latest_study_model.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/detail/models/member_model.dart';
@@ -29,14 +30,16 @@ class MemberDetailViewModel extends GetxController {
   }
 
   LatestStudyModel get latestStudy {
-    final startedAt = DateTime.parse(
-        _latestStudy?.startedAt ?? DateTime.now().toIso8601String());
+    final startedAt = (_latestStudy != null)
+        ? DateTime.parse(_latestStudy!.startedAt).toKoreanFormat
+        : "";
 
     return LatestStudyModel(
         id: _latestStudy?.id ?? 0,
         round: _latestStudy?.round ?? 0,
         startedAt: startedAt,
-        finishedStudyCount: _latestStudy?.totalStudyCount ?? 0,
+        finishedStudyCount:
+            fetchMemberPageResponse.value?.data.totalStudyCount ?? 0,
         totalStudyCount: _matching?.ticketCount ?? 0);
   }
 

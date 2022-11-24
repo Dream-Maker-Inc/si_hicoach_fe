@@ -7,7 +7,7 @@ part 'get_matching_response.g.dart';
 @JsonSerializable()
 class GetMatchingResponse extends BaseResponse<Data> {
   GetMatchingResponse(
-      {required super.ref,
+      {super.ref,
       required super.data,
       required super.statusCode,
       required super.message});

@@ -102,7 +102,7 @@ Map<String, dynamic> _$TrainerToJson(Trainer instance) => <String, dynamic>{
     };
 
 TrainerInfo _$TrainerInfoFromJson(Map<String, dynamic> json) => TrainerInfo(
-      companyName: json['companyName'] as String,
+      companyName: json['companyName'] as String?,
     );
 
 Map<String, dynamic> _$TrainerInfoToJson(TrainerInfo instance) =>

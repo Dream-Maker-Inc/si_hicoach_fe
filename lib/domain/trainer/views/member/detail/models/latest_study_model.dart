@@ -1,7 +1,7 @@
 class LatestStudyModel {
   int id;
   int round;
-  DateTime startedAt;
+  String startedAt;
   int finishedStudyCount;
   int totalStudyCount;
 

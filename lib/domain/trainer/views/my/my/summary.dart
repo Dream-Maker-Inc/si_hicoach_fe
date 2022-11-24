@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/common/components/title_with_description.dart';
 import 'package:si_hicoach_fe/common/constants/constants.dart';
 import 'package:si_hicoach_fe/common/theme/typography.dart';
+import 'package:si_hicoach_fe/common/utils/number_format.dart';
 
 class TrainerMypageSummaryView extends StatelessWidget {
   const TrainerMypageSummaryView({
@@ -40,7 +41,7 @@ class TrainerMypageSummaryView extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Text('이번 달 완료 수업 (총합)', style: bodyMedium),
-                    Text('$currentStudy개', style: bodyMedium),
+                    Text('${currentStudy.toKC}개', style: bodyMedium),
                   ],
                 ),
                 const SizedBox(height: smallPadding),
@@ -48,7 +49,7 @@ class TrainerMypageSummaryView extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Text('저번 달 완료 수업 (총합)', style: bodyMedium),
-                    Text('$pastStudy개', style: bodyMedium),
+                    Text('${pastStudy.toKC}개', style: bodyMedium),
                   ],
                 ),
               ],
