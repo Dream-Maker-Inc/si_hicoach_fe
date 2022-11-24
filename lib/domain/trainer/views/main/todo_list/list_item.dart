@@ -4,24 +4,50 @@ import 'package:si_hicoach_fe/domain/study/detail/detail.dart';
 import 'package:si_hicoach_fe/common/theme/color.dart';
 import 'package:si_hicoach_fe/common/theme/typography.dart';
 
-class TrainerMainTodoItem extends StatelessWidget {
+class TrainerMainTodoItemModel {
+  final int studyId;
   final int time;
   final String name;
   final bool isCompleted;
-  final int currentStudy;
-  final int totalStudy;
+  final int studyCount;
+  final int totalTicketCount;
 
-  const TrainerMainTodoItem({
-    Key? key,
+  TrainerMainTodoItemModel({
+    required this.studyId,
     required this.time,
     required this.name,
     required this.isCompleted,
-    required this.currentStudy,
-    required this.totalStudy,
+    required this.studyCount,
+    required this.totalTicketCount,
+  });
+}
+
+class TrainerMainTodoItem extends StatelessWidget {
+  final TrainerMainTodoItemModel model;
+
+  const TrainerMainTodoItem({
+    Key? key,
+    required this.model,
   }) : super(key: key);
+
+  handleItemPressed(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => StudyDetailView(
+          studyId: model.studyId,
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
+    final int time = model.time;
+    final String name = model.name;
+    final bool isCompleted = model.isCompleted;
+    final int currentStudy = model.studyCount;
+    final int totalStudy = model.totalTicketCount;
+
     ButtonStyle buttonStyle = ButtonStyle(
       backgroundColor: MaterialStateProperty.all(
         isCompleted ? Colors.grey.shade200 : primaryColor.withAlpha(20),
@@ -33,16 +59,6 @@ class TrainerMainTodoItem extends StatelessWidget {
       ),
       elevation: MaterialStateProperty.all(0),
     );
-
-    handleItemPressed() {
-      Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (context) => const StudyDetailView(
-            studyId: 1,
-          ),
-        ),
-      );
-    }
 
     return Padding(
       padding: const EdgeInsets.only(
@@ -67,7 +83,7 @@ class TrainerMainTodoItem extends StatelessWidget {
               padding: const EdgeInsets.only(left: defaultPadding),
               child: ElevatedButton(
                 style: buttonStyle,
-                onPressed: handleItemPressed,
+                onPressed: () => handleItemPressed(context),
                 child: ListTile(
                   title: Text(
                     '$name 회원님',
