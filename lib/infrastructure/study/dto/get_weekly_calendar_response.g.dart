@@ -55,11 +55,12 @@ Studies _$StudiesFromJson(Map<String, dynamic> json) => Studies(
       holiday: json['holiday'] == null
           ? null
           : Holiday.fromJson(json['holiday'] as Map<String, dynamic>),
-    );
+    )..isPersonal = json['isPersonal'] as bool;
 
 Map<String, dynamic> _$StudiesToJson(Studies instance) => <String, dynamic>{
       'study': instance.study,
       'member': instance.member,
+      'isPersonal': instance.isPersonal,
       'weekDay': instance.weekDay,
       'holiday': instance.holiday,
     };
