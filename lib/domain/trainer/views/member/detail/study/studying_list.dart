@@ -17,7 +17,7 @@ class StudyingListView extends StatelessWidget {
       MaterialPageRoute(
         builder: (BuildContext context) => StudyCreateView(
             matchingId: _vm.matchingId,
-            nextStudyRound: _vm.latestStudy.round + 1,
+            nextStudyRound: _vm.nextStudyRound,
             totalTicketCount: _vm.latestStudy.totalStudyCount),
       ),
     ).then((_) => _vm.fetchMemberStudies());
