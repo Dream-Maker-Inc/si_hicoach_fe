@@ -13,8 +13,6 @@ class TrainerMyPageApi {
 
       final response = await dio.get(path);
 
-      print(response);
-
       return Success(GetMyPageResponse.fromJson(response.data));
     });
   }

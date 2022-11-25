@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/common/components/dialog.dart';
 import 'package:si_hicoach_fe/common/exceptions/common_exceptions.dart';
+import 'package:si_hicoach_fe/common/getx/my_getx_state.dart';
 import 'package:si_hicoach_fe/domain/account/find/views/tabs/tab.dart';
 import 'package:si_hicoach_fe/common/components/text_field.dart';
 import 'package:si_hicoach_fe/common/constants/constants.dart';
@@ -23,8 +24,8 @@ class _LoginViewState extends _Detail {
   @override
   Widget build(BuildContext context) {
     return Scaffold(body: SafeArea(child: Obx(() {
-      final email = _vm.email.value;
-      final password = _vm.password.value;
+      final email = vm.email.value;
+      final password = vm.password.value;
 
       return SingleChildScrollView(
         child: Column(
@@ -82,7 +83,7 @@ class _LoginViewState extends _Detail {
                   SizedBox(
                     width: double.infinity,
                     child: CustomElevatedButton(
-                      onPressed: !_vm.buttonDisabled
+                      onPressed: !vm.buttonDisabled
                           ? () => _handleLoginButtonClicked(context)
                           : null,
                       text: '로그인',
@@ -113,6 +114,13 @@ class _LoginViewState extends _Detail {
                 text: '30초 회원가입',
               ),
             ),
+            // TODO: DELETE
+            ElevatedButton(
+                onPressed: () {
+                  vm.testUserLogin();
+                },
+                child: const Text("테스트 유저 로그인"))
+            // TODO: DELETE
           ],
         ),
       );
@@ -120,19 +128,17 @@ class _LoginViewState extends _Detail {
   }
 }
 
-class _Detail extends State<LoginView> {
-  late LoginViewModel _vm;
-
+class _Detail extends MyGetXState<LoginView, LoginViewModel> {
   _handleEmailInputChanged(String value) {
-    _vm.email.value = value;
+    vm.email.value = value;
   }
 
   _handlePasswordInputChanged(String value) {
-    _vm.password.value = value;
+    vm.password.value = value;
   }
 
   _handleLoginButtonClicked(BuildContext ctx) {
-    _vm.submit();
+    vm.submit();
   }
 
   _handleSignUpButtonClicked(BuildContext ctx) {
@@ -159,31 +165,25 @@ class _Detail extends State<LoginView> {
     );
   }
 
-
   @override
   void initState() {
     super.initState();
 
-    Get.delete<LoginViewModel>();
-    _vm = Get.put(LoginViewModel());
-
-    _vm.loginSuccess.listen((isSuccess) {
+    vm.loginSuccess.listen((isSuccess) {
       if (!isSuccess) return;
-      if (_vm.isRoleTrainer.value == null) return;
+      if (vm.isRoleTrainer.value == null) return;
 
-      _navigateMainPage(_vm.isRoleTrainer.value!);
-      _vm.clear();
+      _navigateMainPage(vm.isRoleTrainer.value!);
+      vm.clear();
     });
 
-    _vm.loginError.listen((e) {
-      if(e == null) return;
+    vm.loginError.listen((e) {
+      if (e == null) return;
 
       showSimpleDialog(
           context: context, title: "로그인 실패", content: _getErrorMessage(e));
 
-      _vm.clear();
-
-      print("Todo: show exception dialog :$e");
+      vm.clear();
     });
   }
 
@@ -196,7 +196,9 @@ class _Detail extends State<LoginView> {
 
   @override
   Widget build(BuildContext context) {
-    return const SizedBox.shrink();
+    return widget;
   }
 
+  @override
+  LoginViewModel createViewModel() => LoginViewModel();
 }

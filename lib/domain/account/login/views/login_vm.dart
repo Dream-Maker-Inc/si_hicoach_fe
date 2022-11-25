@@ -67,4 +67,16 @@ class LoginViewModel extends GetxController {
       loginSuccess.value = true;
     });
   }
+
+  // TODO: DELETE
+  testUserLogin() async {
+    final dto =
+        RequestLoginDto(email: "test@gmail.com", password: "asdasd123!!");
+    final result = await LoginApi.login(dto);
+
+    result.when((e) => loginError.value = e,
+        (response) async => await _handleLoginSuccess(response));
+  }
+  // TODO: DELETE
+
 }
