@@ -63,6 +63,19 @@ class _MemoListViewState extends _Detail {
 
 class _Detail extends MyGetXState<MemoListView, MyMemoPageViewModel> {
   @override
+  void initState() {
+    super.initState();
+
+    vm.apiError.listen((e) {
+      if (e == null) return;
+
+      vm.apiError.value = null;
+
+      Get.defaultDialog(title: 'Error', content: Text(e.toString()));
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       Future.wait([vm.fetchData()]);
