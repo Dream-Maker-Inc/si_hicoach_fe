@@ -31,8 +31,7 @@ class _FetchController extends GetxController {
         (e) => (apiError.value = e), (res) => (fetchResponse.value = res));
   }
 
-  @override
-  Future refresh() async {
+  Future refetch() async {
     fetchData();
   }
 }
