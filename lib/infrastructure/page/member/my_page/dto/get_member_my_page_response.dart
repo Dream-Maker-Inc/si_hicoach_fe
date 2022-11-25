@@ -22,16 +22,16 @@ class GetMemberMyPageResponse extends BaseResponse<Data> {
 class Data {
   Data({
     required this.member,
-    this.latestStudy,
     required this.totalStudyCount,
-    required this.matching,
-    required this.trainer,
+    this.latestStudy,
+    this.matching,
+    this.trainer,
   });
   late final Member member;
-  late final LatestStudy? latestStudy;
   late final int totalStudyCount;
-  late final Matching matching;
-  late final Trainer trainer;
+  late final LatestStudy? latestStudy;
+  late final Matching? matching;
+  late final Trainer? trainer;
 
   factory Data.fromJson(Map<String, dynamic> json) => _$DataFromJson(json);
 

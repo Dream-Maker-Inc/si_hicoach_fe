@@ -6,7 +6,7 @@ import 'package:si_hicoach_fe/common/constants/constants.dart';
 import 'package:si_hicoach_fe/common/theme/button.dart';
 import 'package:si_hicoach_fe/common/theme/typography.dart';
 import 'package:si_hicoach_fe/domain/common/inbody/inbody.dart';
-import 'package:si_hicoach_fe/domain/member/views/my/my/memo/memo.dart';
+import 'package:si_hicoach_fe/domain/member/views/my/memo/memo.dart';
 import 'package:si_hicoach_fe/domain/member/views/my/my/mypage_vm.dart';
 
 class SummaryView extends StatelessWidget {
@@ -69,6 +69,9 @@ class SummaryView extends StatelessWidget {
 
   _buildSummary() {
     return Obx(() {
+      final trainerNameLabel =
+          (_vm.trainerName.isEmpty) ? "" : '${_vm.trainerName} 코치님';
+
       return Container(
         margin: const EdgeInsets.all(defaultPadding),
         child: Column(
@@ -85,7 +88,7 @@ class SummaryView extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Text('담당 코치 정보', style: bodyMedium),
-                Text('${_vm.trainerName} 코치님', style: bodyMedium),
+                Text(trainerNameLabel, style: bodyMedium),
               ],
             ),
           ],
