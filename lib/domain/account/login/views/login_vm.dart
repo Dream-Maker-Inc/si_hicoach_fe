@@ -1,11 +1,11 @@
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:si_hicoach_fe/common/shared_preferences/key.dart';
-import 'package:si_hicoach_fe/domain/member/data/dto/get_my_info_response.dart';
-import 'package:si_hicoach_fe/domain/member/data/member_api.dart';
 import 'package:si_hicoach_fe/infrastructure/login/dto/login_response.dart';
 import 'package:si_hicoach_fe/infrastructure/login/dto/request_login_dto.dart';
 import 'package:si_hicoach_fe/infrastructure/login/login_api.dart';
+import 'package:si_hicoach_fe/infrastructure/member/member/dto/get_my_info_response.dart';
+import 'package:si_hicoach_fe/infrastructure/member/member/member_api.dart';
 
 class LoginViewModel extends GetxController {
   RxString email = RxString('admin@gmail.com');
@@ -44,7 +44,7 @@ class LoginViewModel extends GetxController {
   }
 
   _getMyInfo() async {
-    final result = await MemberApi.getMyInfo();
+    final result = await MemberApi.findMe();
 
     result.when((e) => loginError.value = e,
         (response) async => await _handleGetMyInfoSuccess(response));
@@ -52,9 +52,9 @@ class LoginViewModel extends GetxController {
 
   _handleGetMyInfoSuccess(GetMyInfoResponse res) async {
     final prefs = await SharedPreferences.getInstance();
-    prefs.setInt(SharedPrefsKeys.id.key, res.data?.member.id ?? 0);
+    prefs.setInt(SharedPrefsKeys.id.key, res.data.member.id);
 
-    final trainerInfo = res.data?.member.trainerInfo;
+    final trainerInfo = res.data.member.trainerInfo;
 
     isRoleTrainer.value = (trainerInfo != null);
   }
