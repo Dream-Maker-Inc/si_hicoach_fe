@@ -14,6 +14,9 @@ class MemberMyPageViewModel extends _FetchController {
 
   String get companyName => data?.trainer.companyName ?? "";
   String get trainerName => data?.trainer.name ?? "";
+
+  int get memberId => data?.member.id ?? 0;
+  int get matchingId => data?.matching.id ?? 0;
 }
 
 class _FetchController extends GetxController {

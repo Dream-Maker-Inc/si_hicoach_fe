@@ -6,13 +6,30 @@ import 'package:si_hicoach_fe/common/constants/constants.dart';
 import 'package:si_hicoach_fe/common/theme/button.dart';
 import 'package:si_hicoach_fe/common/theme/typography.dart';
 import 'package:si_hicoach_fe/domain/common/inbody/inbody.dart';
-import 'package:si_hicoach_fe/domain/member/views/my/my/memo.dart';
+import 'package:si_hicoach_fe/domain/member/views/my/my/memo/memo.dart';
 import 'package:si_hicoach_fe/domain/member/views/my/my/mypage_vm.dart';
 
 class SummaryView extends StatelessWidget {
   SummaryView({Key? key}) : super(key: key);
 
   final _vm = Get.find<MemberMyPageViewModel>();
+
+  handleInBodyClick(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (BuildContext context) => InbodyView(
+            memberId: _vm.memberId, matchingId: _vm.matchingId, addable: false),
+      ),
+    );
+  }
+
+  handleMemoClick(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (BuildContext context) => MemoListView(),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,27 +48,14 @@ class SummaryView extends StatelessWidget {
             children: <Widget>[
               Expanded(
                 child: CustomOutlinedButton(
-                  onPressed: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (BuildContext context) => MemoListView(),
-                      ),
-                    );
-                  },
+                  onPressed: () => handleMemoClick(context),
                   text: '메모 모아보기',
                 ),
               ),
               const SizedBox(width: defaultPadding),
               Expanded(
                 child: CustomOutlinedButton(
-                  onPressed: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (BuildContext context) =>
-                            const InbodyView(memberId: 1, matchingId: 1),
-                      ),
-                    );
-                  },
+                  onPressed: () => handleInBodyClick(context),
                   text: '인바디 데이터',
                 ),
               ),

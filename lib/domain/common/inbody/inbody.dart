@@ -12,9 +12,13 @@ import 'package:si_hicoach_fe/domain/common/inbody/item.dart';
 class InbodyView extends StatefulWidget {
   final int memberId;
   final int matchingId;
+  final bool addable;
 
   const InbodyView(
-      {super.key, required this.memberId, required this.matchingId});
+      {super.key,
+      required this.memberId,
+      required this.matchingId,
+      this.addable = true});
 
   @override
   State<InbodyView> createState() => _InbodyViewState();
@@ -28,17 +32,21 @@ class _InbodyViewState extends _Detail {
     return Obx(() {
       final loadingMsg = vm.loadingMsg.value;
 
+      final List<Widget>? renderActionIcon = widget.addable
+          ? [
+              IconButton(
+                onPressed: handleUploadClick,
+                icon: const Icon(Icons.add_rounded),
+              )
+            ]
+          : null;
+
       return OverlayCircularProgressIndicator(
           message: loadingMsg,
           child: Scaffold(
             appBar: CustomAppBarArrowBack(
               titleText: '인바디 데이터',
-              actionsWidget: <Widget>[
-                IconButton(
-                  onPressed: handleUploadClick,
-                  icon: const Icon(Icons.add_rounded),
-                ),
-              ],
+              actionsWidget: renderActionIcon,
             ),
             body: _buildGrid(),
           ));
@@ -56,7 +64,7 @@ class _InbodyViewState extends _Detail {
         padding: const EdgeInsets.all(defaultPadding),
         children: List.from(
           models.map(
-            (it) => InbodyItem(model: it),
+            (it) => InbodyItem(model: it, editable: false),
           ),
         ),
       );
