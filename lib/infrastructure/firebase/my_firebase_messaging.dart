@@ -20,7 +20,7 @@ class MyFirebaseMessagingManager {
   Future<void> _initMessaging() async {
     FirebaseMessaging messaging = FirebaseMessaging.instance;
 
-    // 권한 요청
+    // 알림 권한 요청
     await messaging.requestPermission(
       alert: true,
       announcement: false,
@@ -31,7 +31,7 @@ class MyFirebaseMessagingManager {
       sound: true,
     );
 
-    // ios foreground 허용하기
+    // iOS foreground 허용하기
     await FirebaseMessaging.instance
         .setForegroundNotificationPresentationOptions(
       alert: true,
@@ -39,10 +39,10 @@ class MyFirebaseMessagingManager {
       sound: true,
     );
 
-    // 포그라운드 핸들러 등록
+    // 포그라운드 메시지 수신 핸들러 등록
     FirebaseMessaging.onMessage.listen(_handleForegroundMessage);
 
-    // 백그라운드 핸들러 등록
+    // 백그라운드 메시지 수신 핸들러 등록
     FirebaseMessaging.onBackgroundMessage(_handleBackgroundMessage);
   }
 

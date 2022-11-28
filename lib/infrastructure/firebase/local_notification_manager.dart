@@ -2,7 +2,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 // 안드로이드 채널 설정
-var _androidChannel = const AndroidNotificationChannel(
+const _androidChannel = AndroidNotificationChannel(
   'high_importance_channel', // id
   'High Importance Notifications', // name
   description: 'This channel is used for important notifications.',
@@ -15,7 +15,7 @@ const InitializationSettings initializationSettings = InitializationSettings(
     android: AndroidInitializationSettings('@mipmap/ic_launcher'),
     iOS: DarwinInitializationSettings());
 
-//
+/// 로컬 푸시 기능 관리 클래스
 class LocalNotificationsManager {
   LocalNotificationsManager._privateConstructor() {
     _init();
@@ -46,42 +46,42 @@ class LocalNotificationsManager {
     RemoteMessage? initialMessage =
         await FirebaseMessaging.instance.getInitialMessage();
 
-    // 앱 종료상태에서 클릭한 푸시 알림 메세지 핸들링
+    // 앱 종료 상태에서 클릭한 푸시 알림 메세지 핸들링
     if (initialMessage != null) _handleBackgroundMessageClick(initialMessage);
 
-    // 앱이 백그라운드 상태에서 푸시 알림 클릭 하여 열릴 경우 메세지 스트림을 통해 처리
+    // 앱이 백그라운드 상태에서 푸시 알림 클릭되어 열릴 때, 메세지 스트림을 통해 처리
     FirebaseMessaging.onMessageOpenedApp.listen(_handleBackgroundMessageClick);
   }
 
   // foreground 메시지 클릭 핸들링
   _handleForegroundMessageClick(NotificationResponse payload) {
-    // if (payload != null) {
-    //   Get.to(const NextPage(), arguments: payload);
-    // }
+    // 포그라운드 메시지 클릭시 동작이 있는 경우 작성
   }
 
   // background 메시지 클릭 핸들링
   _handleBackgroundMessageClick(RemoteMessage message) {
-    // if (message.data['type'] == 'chat') {
-    //   Get.toNamed('/chat', arguments: message.data);
-    // }
+    // 백그라운드 메시지 클릭시 동작이 있는 경우 작성
   }
 
   // 메시지를 디바이스로 뿌려주기
   show(RemoteMessage message) async {
-    final detail = NotificationDetails(
-        android: AndroidNotificationDetails(
-          _androidChannel.id,
-          _androidChannel.name,
-          channelDescription: _androidChannel.description,
-          icon: '@mipmap/ic_launcher',
-        ),
-        iOS: const DarwinNotificationDetails(
-          badgeNumber: 1,
-          subtitle: 'the subtitle',
-          sound: 'slow_spring_board.aiff',
-        ));
+    final androidNotiDetails = AndroidNotificationDetails(
+      _androidChannel.id,
+      _androidChannel.name,
+      channelDescription: _androidChannel.description,
+      icon: '@mipmap/ic_launcher',
+    );
 
+    const iosNotiDetails = DarwinNotificationDetails(
+      badgeNumber: 1,
+      subtitle: 'the subtitle',
+      sound: 'slow_spring_board.aiff',
+    );
+
+    final detail =
+        NotificationDetails(android: androidNotiDetails, iOS: iosNotiDetails);
+
+    // 뿌리기
     _notificationsPlugin.show(message.hashCode, message.notification?.title,
         message.notification?.body, detail);
   }
