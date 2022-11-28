@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/common/components/divider.dart';
 import 'package:si_hicoach_fe/common/theme/color.dart';
 import 'package:si_hicoach_fe/common/theme/typography.dart';
-import 'package:si_hicoach_fe/domain/member/views/main/grid.dart';
+import 'package:si_hicoach_fe/domain/member/views/main/past/grid.dart';
+import 'package:si_hicoach_fe/domain/member/views/main/present/list.dart';
 
 class MemberMainTab extends StatelessWidget {
   const MemberMainTab({Key? key}) : super(key: key);
@@ -11,9 +12,9 @@ class MemberMainTab extends StatelessWidget {
   Widget build(BuildContext context) {
     List<String> tabTitle = ['완료 수업', '오늘 수업', '예정 수업'];
     List<Widget> tabBar = <Widget>[
-      MemberMainGridView(),
-      MemberMainGridView(),
-      MemberMainGridView(),
+      PastGridView(),
+      PresentListView(),
+      PresentListView(),
     ];
 
     PreferredSizeWidget memberMainAppBar() {
