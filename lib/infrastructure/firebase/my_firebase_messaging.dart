@@ -31,6 +31,14 @@ class MyFirebaseMessagingManager {
       sound: true,
     );
 
+    // ios foreground 허용하기
+    await FirebaseMessaging.instance
+        .setForegroundNotificationPresentationOptions(
+      alert: true,
+      badge: true,
+      sound: true,
+    );
+
     // 포그라운드 핸들러 등록
     FirebaseMessaging.onMessage.listen(_handleForegroundMessage);
 
