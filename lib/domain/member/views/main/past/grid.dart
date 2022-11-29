@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/common/constants/constants.dart';
 import 'package:si_hicoach_fe/common/theme/typography.dart';
-import 'package:si_hicoach_fe/domain/member/views/main/grid_item.dart';
+import 'package:si_hicoach_fe/domain/member/views/main/past/grid_item.dart';
 
 class StudyProps {
   final String name;
@@ -12,8 +12,8 @@ class StudyProps {
   StudyProps(this.name, this.weight, this.set, this.count);
 }
 
-class MemberMainGridView extends StatelessWidget {
-  MemberMainGridView({Key? key}) : super(key: key);
+class PastGridView extends StatelessWidget {
+  PastGridView({Key? key}) : super(key: key);
 
   final List<StudyProps> list = [
     StudyProps('벤치프레스', 1, 2, 3),

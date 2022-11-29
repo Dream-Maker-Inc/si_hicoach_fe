@@ -84,8 +84,8 @@ class _Detail extends State<DetailView> {
       MaterialPageRoute(
         builder: (BuildContext context) => StudyCreateView(
             matchingId: _vm.matchingId,
-            latestStudyRound: 1,
-            totalStudyCount: _vm.latestStudy.totalStudyCount),
+            nextStudyRound: _vm.nextStudyRound,
+            totalTicketCount: _vm.latestStudy.totalStudyCount),
       ),
     );
   }

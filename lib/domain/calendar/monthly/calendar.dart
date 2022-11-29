@@ -130,12 +130,11 @@ class _MonthlyCalendarViewState extends _Detail {
             dayTextColor: getDayTextColor(targetDate, isHoliday),
             date: targetDate.day,
             holidayText: isHoliday ? holiday.title : null,
-            studyText: targetDayStudyItems.isNotEmpty
-                ? "${targetDayStudyItems.length}"
-                : null,
-            personalStudyText: targetDayPersonalStudyItems.isNotEmpty
-                ? "${targetDayPersonalStudyItems.length}"
-                : null,
+            studyCount:
+                targetDayStudyItems.isNotEmpty ? targetDayStudyItems.length : 0,
+            personalStudyCount: targetDayPersonalStudyItems.isNotEmpty
+                ? targetDayPersonalStudyItems.length
+                : 0,
           );
         }).toList();
 

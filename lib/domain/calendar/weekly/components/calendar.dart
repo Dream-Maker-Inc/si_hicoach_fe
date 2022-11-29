@@ -67,7 +67,7 @@ class _WeeklyCalendarState extends State<WeeklyCalendar> {
           final weekStudyItem = weekStudyItems.firstWhereOrNull(
               (it) => (it.startedTime == time) && (it.weekDay == weekDay));
 
-          if (weekStudyItem == null) return const WeeklyCalendarItem();
+          if (weekStudyItem == null) return WeeklyCalendarItem();
 
           return WeeklyCalendarItem(
             props: WeeklyCalendarItemProps(

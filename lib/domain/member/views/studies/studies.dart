@@ -1,52 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:si_hicoach_fe/common/components/app_bar_with_logo.dart';
+import 'package:si_hicoach_fe/common/getx/my_getx_state.dart';
+import 'package:si_hicoach_fe/domain/member/views/studies/studies_vm.dart';
 import 'package:si_hicoach_fe/domain/study/detail/detail.dart';
 import 'package:si_hicoach_fe/domain/study/create/study_create.dart';
 
-class StudyProps {
-  final int index;
-  final String timestamp;
-  final String type;
-
-  StudyProps(this.index, this.timestamp, this.type);
-}
-
-class MemberStudiesView extends StatelessWidget {
-  MemberStudiesView({Key? key}) : super(key: key);
-
-  final List<StudyProps> list = [
-    StudyProps(1, "2022. 10. 28. 11:00 ~ 11:50", 'PT 수업'),
-    StudyProps(2, "2022. 10. 28. 11:00 ~ 11:50", '개인 일정'),
-    StudyProps(3, "2022. 10. 28. 11:00 ~ 11:50", 'PT 수업'),
-    StudyProps(4, "2022. 10. 28. 11:00 ~ 11:50", '개인 일정'),
-    StudyProps(5, "2022. 10. 28. 11:00 ~ 11:50", 'PT 수업'),
-    StudyProps(6, "2022. 10. 28. 11:00 ~ 11:50", '개인 일정'),
-    StudyProps(7, "2022. 10. 28. 11:00 ~ 11:50", 'PT 수업'),
-    StudyProps(8, "2022. 10. 28. 11:00 ~ 11:50", '개인 일정'),
-    StudyProps(9, "2022. 10. 28. 11:00 ~ 11:50", 'PT 수업'),
-  ];
+class MemberStudiesView extends StatefulWidget {
+  const MemberStudiesView({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    handleAddButtonPressed() {
-      Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (BuildContext context) => const StudyCreateView(
-              matchingId: 1, latestStudyRound: 1, totalStudyCount: 1),
-        ),
-      );
-    }
+  State<MemberStudiesView> createState() => _MemberStudiesViewState();
+}
 
-    onItemPressed() {
-      Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (BuildContext context) => const StudyDetailView(
-            studyId: 1,
-            isMemberDetailEnabled: false,
-          ),
-        ),
-      );
-    }
+class _MemberStudiesViewState extends _Detail {
+  @override
+  Widget build(BuildContext context) {
+    super.build(context);
 
     return Scaffold(
       appBar: CustomAppBarWithLogo(titleText: '운동일지', actionsWidget: <Widget>[
@@ -55,23 +25,94 @@ class MemberStudiesView extends StatelessWidget {
           icon: const Icon(Icons.add_rounded),
         ),
       ]),
-      body: SafeArea(
-        child: ListView(
-          children: ListTile.divideTiles(
-            context: context,
-            tiles: List.of(
-              list.map(
-                (it) => ListTile(
-                  title: Text('${it.index}회차 수업'),
-                  subtitle: Text(it.timestamp),
-                  trailing: Text(it.type),
-                  onTap: onItemPressed,
-                ),
-              ),
-            ),
-          ).toList(),
-        ),
-      ),
+      body: SafeArea(child: _buildListView()),
     );
   }
+
+  _buildListView() {
+    return Obx(() {
+      final items = vm.studyModels;
+
+      return ListView.builder(
+        itemCount: items.length,
+        itemBuilder: (context, index) {
+          final item = items[index];
+
+          return Column(children: [
+            ListTile(
+              title: Padding(
+                  padding: const EdgeInsets.only(top: 8),
+                  child: Text('${item.round}회차 수업')),
+              subtitle: Padding(
+                padding: const EdgeInsets.only(top: 8),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(item.startedDateFormat),
+                    Text(item.runningTimeFormatString)
+                  ],
+                ),
+              ),
+              trailing: Text(item.exerciseTypeLabel),
+              onTap: () => onItemPressed(item.id),
+            ),
+            const Divider()
+          ]);
+        },
+      );
+    });
+  }
+}
+
+class _Detail extends MyGetXState<MemberStudiesView, MemberMyStudiesViewModel> {
+  handleAddButtonPressed() {
+    Navigator.of(context)
+        .push(
+          MaterialPageRoute(
+            builder: (BuildContext context) => StudyCreateView(
+                matchingId: vm.matchingId,
+                nextStudyRound: vm.nextStudyRound,
+                totalTicketCount: vm.totalTicketCount),
+          ),
+        )
+        .then((value) => vm.refetch());
+  }
+
+  onItemPressed(int studyId) {
+    Navigator.of(context)
+        .push(
+          MaterialPageRoute(
+            builder: (BuildContext context) => StudyDetailView(
+              studyId: studyId,
+              isMemberDetailEnabled: false,
+            ),
+          ),
+        )
+        .then((value) => vm.refetch());
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    vm.apiError.listen((e) {
+      if (e == null) return;
+
+      vm.apiError.value = null;
+
+      Get.defaultDialog(title: 'Error', content: Text(e.toString()));
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Future.wait([vm.fetchData()]);
+    });
+
+    return widget;
+  }
+
+  @override
+  MemberMyStudiesViewModel createViewModel() => MemberMyStudiesViewModel();
 }

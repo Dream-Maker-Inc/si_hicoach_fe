@@ -8,7 +8,7 @@ import 'package:si_hicoach_fe/infrastructure/exercises/exercise_item/dto/get_exe
 class StudyFormViewModel extends GetxController {
   Rxn<StudyFormModel> initialStudyFormModel = Rxn();
 
-  RxInt studyRound = RxInt(0);
+  RxInt nextStudyRound = RxInt(0);
   RxInt totalStudyCount = RxInt(0);
 
   Rx<SimpleTime> studyTime = Rx(SimpleTime(hour: 0));
@@ -65,7 +65,7 @@ class StudyFormViewModel extends GetxController {
           totalStudyCount: editTimeModel.value.totalStudyCount);
     });
 
-    ever(studyRound, (it) {
+    ever(nextStudyRound, (it) {
       editTimeModel.value = EditTimeModel(
           time: editTimeModel.value.time,
           studyRound: it,
@@ -94,7 +94,7 @@ class StudyFormViewModel extends GetxController {
 
     final fm = initialStudyFormModel.value!;
 
-    studyRound.value = fm.studyRound;
+    nextStudyRound.value = fm.studyRound;
     totalStudyCount.value = fm.ticketCount;
     studyTime.value = SimpleTime(hour: fm.startedHour);
     exerciseItemModels.value = fm.exerciseItemModels;

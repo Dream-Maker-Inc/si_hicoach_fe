@@ -1,37 +1,71 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:si_hicoach_fe/common/components/app_bar.dart';
+import 'package:si_hicoach_fe/common/getx/my_getx_state.dart';
+import 'package:si_hicoach_fe/domain/member/views/my/account/account_vm.dart';
 
-class MypageAccountView extends StatelessWidget {
-  const MypageAccountView({Key? key}) : super(key: key);
+class AccountView extends StatefulWidget {
+  const AccountView({Key? key}) : super(key: key);
 
   @override
+  State<AccountView> createState() => _AccountViewState();
+}
+
+class _AccountViewState extends _Detail {
+  @override
   Widget build(BuildContext context) {
+    super.build(context);
+
     return Scaffold(
-      appBar: CustomAppBarArrowBack(
+      appBar: const CustomAppBarArrowBack(
         titleText: '계정 정보',
-        actionsWidget: <Widget>[
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.edit_rounded),
-          ),
-        ],
       ),
-      body: ListView(
+      body: _buildListView(),
+    );
+  }
+
+  _buildListView() {
+    return Obx(() {
+      final columns = vm.columns;
+
+      return ListView(
         scrollDirection: Axis.vertical,
         shrinkWrap: true,
         children: ListTile.divideTiles(
-          context: context,
-          tiles: List.of(
-            const <Widget>[
-              ListTile(title: Text('이름'), trailing: Text('이은석')),
-              ListTile(title: Text('아이디 (이메일)'), trailing: Text('이은석')),
-              ListTile(title: Text('생년월일'), trailing: Text('이은석')),
-              ListTile(title: Text('소속'), trailing: Text('이은석')),
-              ListTile(title: Text('전화번호'), trailing: Text('이은석')),
-            ],
-          ),
-        ).toList(),
-      ),
-    );
+                context: context,
+                tiles: columns
+                    .map((it) => ListTile(
+                        title: Text(it.item1), trailing: Text(it.item2)))
+                    .toList())
+            .toList(),
+      );
+    });
   }
+}
+
+class _Detail extends MyGetXState<AccountView, AccountPageViewModel> {
+  @override
+  void initState() {
+    super.initState();
+
+    vm.apiError.listen((e) {
+      if (e == null) return;
+
+      vm.apiError.value = null;
+
+      Get.defaultDialog(title: 'Error', content: Text(e.toString()));
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Future.wait([vm.fetchData()]);
+    });
+
+    return widget;
+  }
+
+  @override
+  AccountPageViewModel createViewModel() => AccountPageViewModel();
 }

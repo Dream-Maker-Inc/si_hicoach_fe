@@ -6,16 +6,16 @@ class MonthlyCalendarItem extends StatelessWidget {
   final Color dayTextColor;
 
   final int? date;
-  final String? studyText;
-  final String? personalStudyText;
+  final int studyCount;
+  final int personalStudyCount;
   final String? holidayText;
   final VoidCallback? onClick;
 
   const MonthlyCalendarItem(
       {super.key,
       required this.dayTextColor,
-      this.studyText,
-      this.personalStudyText,
+      this.studyCount = 0,
+      this.personalStudyCount = 0,
       this.holidayText,
       this.date,
       this.onClick});
@@ -45,11 +45,19 @@ class MonthlyCalendarItem extends StatelessWidget {
       borderRadius: BorderRadius.circular(4),
     );
 
+    const icon = Icon(
+      Icons.fitness_center_rounded,
+      color: Colors.white,
+      size: 12,
+    );
+
+    final item = (studyCount > 0)
+        ? _buildItem(itemBackground, studyCount.toString(), icon)
+        : Container();
+
     return SizedBox(
       width: MediaQuery.of(context).size.width / 7,
-      child: studyText != null
-          ? _buildItem(itemBackground, studyText!)
-          : Container(),
+      child: Tooltip(message: "수업 $studyCount개", child: item),
     );
   }
 
@@ -59,11 +67,19 @@ class MonthlyCalendarItem extends StatelessWidget {
       borderRadius: BorderRadius.circular(4),
     );
 
+    const icon = Icon(
+      Icons.account_circle,
+      color: Colors.white,
+      size: 12,
+    );
+
+    final item = (personalStudyCount > 0)
+        ? _buildItem(itemBackground, personalStudyCount.toString(), icon)
+        : Container();
+
     return SizedBox(
       width: MediaQuery.of(context).size.width / 7,
-      child: (personalStudyText != null)
-          ? _buildItem(itemBackground, personalStudyText!)
-          : Container(),
+      child: Tooltip(message: "개인 $personalStudyCount", child: item),
     );
   }
 
@@ -73,46 +89,47 @@ class MonthlyCalendarItem extends StatelessWidget {
       borderRadius: BorderRadius.circular(4),
     );
 
+    const icon = Icon(
+      Icons.home,
+      color: Colors.white,
+      size: 12,
+    );
+
+    final item = (holidayText != null)
+        ? _buildItem(itemBackground, holidayText!, icon)
+        : Container();
+
     return SizedBox(
       width: MediaQuery.of(context).size.width / 7,
-      child: (holidayText != null)
-          ? _buildItem(itemBackground, holidayText!)
-          : Container(),
+      child: item,
     );
   }
 
-  _buildItem(BoxDecoration itemBackground, String text) {
-    return Tooltip(
-      message: '수업 $text개',
-      child: InkWell(
-        onTap: onClick,
-        child: Container(
-          margin: const EdgeInsets.only(
-            top: 4,
-            left: 4,
-            right: 4,
-          ),
-          padding: const EdgeInsets.all(2),
-          decoration: itemBackground,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              const Icon(
-                Icons.fitness_center_rounded,
+  _buildItem(BoxDecoration itemBackground, String text, Icon icon) {
+    return InkWell(
+      onTap: onClick,
+      child: Container(
+        margin: const EdgeInsets.only(
+          top: 4,
+          left: 4,
+          right: 4,
+        ),
+        padding: const EdgeInsets.all(2),
+        decoration: itemBackground,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            icon,
+            const SizedBox(width: 2),
+            Text(
+              text,
+              style: bodySmall.copyWith(
                 color: Colors.white,
-                size: 12,
               ),
-              const SizedBox(width: 2),
-              Text(
-                text,
-                style: bodySmall.copyWith(
-                  color: Colors.white,
-                ),
-                textAlign: TextAlign.center,
-                overflow: TextOverflow.ellipsis,
-              ),
-            ],
-          ),
+              textAlign: TextAlign.center,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ],
         ),
       ),
     );

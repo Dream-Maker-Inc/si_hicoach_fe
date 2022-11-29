@@ -15,11 +15,10 @@ enum MoreSelections { edit, delete }
 class InbodyItem extends StatelessWidget {
   final InBodyModel model;
   final InBodyViewModel vm = Get.find<InBodyViewModel>();
+  final bool editable;
 
-  InbodyItem({
-    Key? key,
-    required this.model,
-  }) : super(key: key);
+  InbodyItem({Key? key, required this.model, this.editable = true})
+      : super(key: key);
 
   _onEditButtonTapped() async {
     final result = await showFilePickerAndGet();
@@ -91,16 +90,18 @@ class InbodyItem extends StatelessWidget {
   }
 
   _buildPopupMenuButton() {
-    return Theme(
-      data: ThemeData(useMaterial3: false),
-      child: Builder(
-        builder: (BuildContext context) {
-          return Padding(
-              padding: const EdgeInsets.all(4),
-              child: _buildCustomMorePopupButton());
-        },
-      ),
-    );
+    return editable
+        ? Theme(
+            data: ThemeData(useMaterial3: false),
+            child: Builder(
+              builder: (BuildContext context) {
+                return Padding(
+                    padding: const EdgeInsets.all(4),
+                    child: _buildCustomMorePopupButton());
+              },
+            ),
+          )
+        : Container();
   }
 
   ClipRRect _buildCustomMorePopupButton() {

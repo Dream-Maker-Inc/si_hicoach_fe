@@ -18,14 +18,14 @@ class MonthlyCalendarViewModel extends _FetchController {
   List<MonthlyDayItemModel> getStudyItemModelsByWeek(int week) => _items
       .where((it) => it.week == week)
       .expand((e) => e.studies)
-      .where((it) => it.member.id != userId)
+      .where((it) => !it.isPersonal)
       .map((e) => MonthlyDayItemModel(weekDay: e.weekDay))
       .toList();
 
   List<MonthlyDayItemModel> getPersonalStudyItemModelsByWeek(int week) => _items
       .where((it) => it.week == week)
       .expand((e) => e.studies)
-      .where((it) => it.member.id == userId)
+      .where((it) => it.isPersonal)
       .map((e) => MonthlyDayItemModel(weekDay: e.weekDay))
       .toList();
 

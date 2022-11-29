@@ -1,5 +1,6 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
-import 'package:si_hicoach_fe/common/theme/color.dart';
 import 'package:si_hicoach_fe/common/theme/typography.dart';
 
 class WeeklyCalendarItemProps {
@@ -11,12 +12,19 @@ class WeeklyCalendarItemProps {
 
 class WeeklyCalendarItem extends StatelessWidget {
   final WeeklyCalendarItemProps? props;
-  const WeeklyCalendarItem({super.key, this.props});
+  WeeklyCalendarItem({super.key, this.props});
+
+  final List<Color> colorList = const [
+    Color(0xff5A5EE6),
+    Color(0xff5B80FF),
+    Color(0xff4BB0FF),
+  ];
+  final _random = Random();
 
   @override
   Widget build(BuildContext context) {
     BoxDecoration itemBackground = BoxDecoration(
-      color: primaryColor,
+      color: colorList[_random.nextInt(colorList.length)],
       borderRadius: BorderRadius.circular(4),
     );
 

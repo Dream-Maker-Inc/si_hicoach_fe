@@ -58,6 +58,7 @@ class Studies {
   });
   late final Study study;
   late final Member member;
+  late final bool isPersonal;
   late final int weekDay;
   late final Holiday? holiday;
 

@@ -96,9 +96,13 @@ class StudyApi {
       Dio dio = DioHelper().dio;
       String path = '/api/v2/study/$studyId';
 
-      final response = await dio.get(path);
+      final res = await dio.get(path);
 
-      return Success(GetStudyResponse.fromJson(response.data));
+      if (res.data?['statusCode'] == StatusCode.notExist.code) {
+        return Error(NotExistException());
+      }
+
+      return Success(GetStudyResponse.fromJson(res.data));
     });
   }
 }

@@ -7,14 +7,14 @@ import 'package:si_hicoach_fe/domain/study/create/study_create_vm.dart';
 
 class StudyCreateView extends StatefulWidget {
   final int matchingId;
-  final int latestStudyRound;
-  final int totalStudyCount;
+  final int nextStudyRound;
+  final int totalTicketCount;
 
   const StudyCreateView(
       {super.key,
       required this.matchingId,
-      required this.latestStudyRound,
-      required this.totalStudyCount});
+      required this.nextStudyRound,
+      required this.totalTicketCount});
 
   @override
   State<StudyCreateView> createState() => _StudyCreateViewState();
@@ -35,8 +35,8 @@ class _Detail extends MyGetXState<StudyCreateView, StudyCreateViewModel> {
     super.initState();
 
     vm.matchingId = widget.matchingId;
-    vm.studyRound.value = widget.latestStudyRound;
-    vm.totalStudyCount.value = widget.totalStudyCount;
+    vm.nextStudyRound.value = widget.nextStudyRound;
+    vm.totalStudyCount.value = widget.totalTicketCount;
 
     vm.createStudySuccess.listen((isSuccess) {
       if (isSuccess == false) return;

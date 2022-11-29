@@ -59,12 +59,23 @@ class MemberDetailViewModel extends GetxController {
   // fetch member info tab data
   final Rxn<GetMemberPageResponse> fetchMemberPageResponse = Rxn();
 
+  int get totalStudyCount =>
+      fetchMemberPageResponse.value?.data.totalStudyCount ?? 0;
+
   Member? get _member => fetchMemberPageResponse.value?.data.member;
 
   Matching? get _matching => fetchMemberPageResponse.value?.data.matching;
 
   LatestStudy? get _latestStudy =>
       fetchMemberPageResponse.value?.data.latestStudy;
+
+  int get nextStudyRound {
+    if (_latestStudy == null) {
+      return totalStudyCount + 1;
+    }
+
+    return _latestStudy!.round + 1;
+  }
 
   fetchMemberInfo() async {
     final result = await TrainerMemberPageApi.getData(memberId);
