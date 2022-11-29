@@ -1,3 +1,5 @@
+class ExistException implements Exception {}
+
 class NotExistException implements Exception {}
 
 class SameUserException implements Exception {}

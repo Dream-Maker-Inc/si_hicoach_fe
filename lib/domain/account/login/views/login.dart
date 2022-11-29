@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
 import 'package:si_hicoach_fe/common/components/dialog.dart';
 import 'package:si_hicoach_fe/common/exceptions/common_exceptions.dart';
 import 'package:si_hicoach_fe/common/getx/my_getx_state.dart';
@@ -23,6 +24,8 @@ class LoginView extends StatefulWidget {
 class _LoginViewState extends _Detail {
   @override
   Widget build(BuildContext context) {
+    super.build(context);
+
     return Scaffold(body: SafeArea(child: Obx(() {
       final email = vm.email.value;
       final password = vm.password.value;
@@ -155,41 +158,44 @@ class _Detail extends MyGetXState<LoginView, LoginViewModel> {
 
   _navigateMainPage(bool isTrainer) {
     if (isTrainer) {
-      return Navigator.of(context).push(
-        MaterialPageRoute(builder: (context) => const TrainerBaseView()),
-      );
+      return Navigator.of(context)
+          .push(
+            MaterialPageRoute(builder: (context) => const TrainerBaseView()),
+          )
+          .then((value) => vm.clear());
     }
 
-    Navigator.of(context).push(
-      MaterialPageRoute(builder: (context) => const MemberBaseView()),
-    );
+    Navigator.of(context)
+        .push(
+          MaterialPageRoute(builder: (context) => const MemberBaseView()),
+        )
+        .then((value) => vm.clear());
   }
 
   @override
   void initState() {
     super.initState();
 
-    vm.loginSuccess.listen((isSuccess) {
+    vm.addDeviceSuccess.listen((isSuccess) {
       if (!isSuccess) return;
       if (vm.isRoleTrainer.value == null) return;
 
       _navigateMainPage(vm.isRoleTrainer.value!);
-      vm.clear();
     });
 
-    vm.loginError.listen((e) {
+    vm.apiError.listen((e) {
       if (e == null) return;
 
       showSimpleDialog(
           context: context, title: "로그인 실패", content: _getErrorMessage(e));
-
-      vm.clear();
     });
   }
 
   String _getErrorMessage(Exception? e) {
     if (e is NotExistException) return "아이디가 존재하지 않습니다.";
     if (e is UnauthorizedException) return "아이디 혹은 비밀번호가 맞지 않습니다.";
+
+    Logger().e(e);
 
     return "알 수 없는 에러";
   }
