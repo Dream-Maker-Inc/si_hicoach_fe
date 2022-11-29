@@ -48,7 +48,9 @@ class MyFirebaseMessagingManager {
 
   // 포그라운드 메시지 감지시 핸들링
   Future<void> _handleForegroundMessage(RemoteMessage message) async {
-    if (message.notification != null) _localNotificationsManager.show(message);
+    if (message.notification == null) return;
+
+    _localNotificationsManager.show(message);
   }
 
   // FCM 토큰 가져오기

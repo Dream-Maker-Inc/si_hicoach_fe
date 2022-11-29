@@ -47,7 +47,10 @@ class LocalNotificationsManager {
         await FirebaseMessaging.instance.getInitialMessage();
 
     // 앱 종료 상태에서 클릭한 푸시 알림 메세지 핸들링
-    if (initialMessage != null) _handleBackgroundMessageClick(initialMessage);
+    if (initialMessage != null) {
+      _handleClosedBackgroundMessageClick(initialMessage);
+      return;
+    }
 
     // 앱이 백그라운드 상태에서 푸시 알림 클릭되어 열릴 때, 메세지 스트림을 통해 처리
     FirebaseMessaging.onMessageOpenedApp.listen(_handleBackgroundMessageClick);
@@ -59,6 +62,10 @@ class LocalNotificationsManager {
   }
 
   // background 메시지 클릭 핸들링
+  _handleClosedBackgroundMessageClick(RemoteMessage message) {
+    // 앱 종료 상태에서 백그라운드 메시지 클릭시 동작이 있는 경우 작성
+  }
+
   _handleBackgroundMessageClick(RemoteMessage message) {
     // 백그라운드 메시지 클릭시 동작이 있는 경우 작성
   }

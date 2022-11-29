@@ -3,7 +3,9 @@ import 'package:get/get.dart';
 import 'package:si_hicoach_fe/common/components/alert.dart';
 import 'package:si_hicoach_fe/common/components/app_bar.dart';
 import 'package:si_hicoach_fe/common/constants/constants.dart';
+import 'package:si_hicoach_fe/common/exceptions/common_exceptions.dart';
 import 'package:si_hicoach_fe/common/getx/my_getx_state.dart';
+import 'package:si_hicoach_fe/domain/account/login/views/login.dart';
 import 'package:si_hicoach_fe/domain/study/common/components/exercise_item.dart';
 import 'package:si_hicoach_fe/domain/study/detail/components/exercise.dart';
 import 'package:si_hicoach_fe/domain/study/detail/components/memo.dart';
@@ -182,6 +184,31 @@ class _Detail extends MyGetXState<StudyDetailView, StudyDetailViewModel> {
 
     vm.apiError.listen((e) {
       if (e == null) return;
+
+      if (e is UnauthorizedException) {
+        Get.defaultDialog(
+            title: '로그인 필요',
+            content: const Text("로그인 후 확인 할 수 있어요."),
+            textConfirm: "로그인하기",
+            onConfirm: () {
+              Get.offAll(const LoginView());
+            });
+
+        return;
+      }
+
+      if (e is NotExistException) {
+        Get.defaultDialog(
+            title: '스터디 정보 없음',
+            content: const Text("스터디 정보가 없습니다."),
+            textConfirm: "뒤로가기",
+            onConfirm: () {
+              Get.back();
+              Get.back();
+            });
+
+        return;
+      }
 
       Get.defaultDialog(
           title: 'Error',
