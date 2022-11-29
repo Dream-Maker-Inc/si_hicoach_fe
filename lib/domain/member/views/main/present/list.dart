@@ -1,50 +1,56 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:si_hicoach_fe/domain/member/views/main/main_vm.dart';
+import 'package:si_hicoach_fe/domain/member/views/main/present/models/study_item_model.dart';
+import 'package:si_hicoach_fe/domain/study/detail/detail.dart';
 
-class ExerciseProps {
-  final int count;
-  final String date;
+class PresentListView extends StatefulWidget {
+  final List<StudyItemModel> models;
 
-  ExerciseProps(this.count, this.date);
+  const PresentListView({super.key, required this.models});
+
+  @override
+  State<PresentListView> createState() => _PresentListViewState();
 }
 
-class PresentListView extends StatelessWidget {
-  PresentListView({super.key});
+class _PresentListViewState extends State<PresentListView> {
+  MainPageViewModel vm = Get.find<MainPageViewModel>();
 
-  final List<ExerciseProps> list = [
-    ExerciseProps(5, '2022년 10월 10일 오전 11시 ~ 오전 11시 50분'),
-    ExerciseProps(4, '2022년 10월 10일 오전 11시 ~ 오전 11시 50분'),
-    ExerciseProps(3, '2022년 10월 10일 오전 11시 ~ 오전 11시 50분'),
-    ExerciseProps(2, '2022년 10월 10일 오전 11시 ~ 오전 11시 50분'),
-    ExerciseProps(1, '2022년 10월 10일 오전 11시 ~ 오전 11시 50분'),
-  ];
+  handleItemClick(int studyId) {
+    Get.to(StudyDetailView(
+      studyId: studyId,
+      readonly: true,
+      isMemberDetailEnabled: false,
+    ))?.then((value) => vm.refetch());
+  }
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: list.length,
+      itemCount: widget.models.length,
       itemBuilder: (context, index) {
-        final item = list[index];
+        final item = widget.models[index];
 
         return Column(children: [
           ListTile(
             title: Padding(
                 padding: const EdgeInsets.only(top: 8),
-                child: Text('${item.count}회차 수업')),
+                child: Text('${item.round}회차 수업')),
             subtitle: Padding(
               padding: const EdgeInsets.only(top: 8),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(item.date),
+                  Text(item.startedDateFormat),
+                  Text(item.runningTimeFormatString)
                 ],
               ),
             ),
-            onTap: () {},
+            onTap: () => handleItemClick(item.id),
           ),
           const Divider()
         ]);
       },
     );
-    ;
   }
 }

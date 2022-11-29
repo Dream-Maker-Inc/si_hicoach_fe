@@ -18,12 +18,13 @@ import 'package:si_hicoach_fe/domain/trainer/views/member/detail/detail.dart';
 class StudyDetailView extends StatefulWidget {
   final int studyId;
   final bool isMemberDetailEnabled;
+  final bool readonly;
 
-  const StudyDetailView({
-    super.key,
-    required this.studyId,
-    this.isMemberDetailEnabled = true,
-  });
+  const StudyDetailView(
+      {super.key,
+      required this.studyId,
+      this.isMemberDetailEnabled = true,
+      this.readonly = false});
 
   @override
   State<StudyDetailView> createState() => _StudyDetailViewState();
@@ -68,19 +69,23 @@ class _StudyDetailViewState extends _Detail {
     super.build(context);
 
     return Obx(() {
+      final actionIcons = widget.readonly
+          ? null
+          : <Widget>[
+              IconButton(
+                icon: const Icon(Icons.edit),
+                onPressed: handleEditButtonPressed,
+              ),
+              IconButton(
+                icon: const Icon(Icons.delete_forever),
+                onPressed: handleDeleteButtonPressed,
+              ),
+            ];
+
       return Scaffold(
         appBar: CustomAppBarArrowBack(
           titleText: '운동 일지 상세',
-          actionsWidget: <Widget>[
-            IconButton(
-              icon: const Icon(Icons.edit),
-              onPressed: handleEditButtonPressed,
-            ),
-            IconButton(
-              icon: const Icon(Icons.delete_forever),
-              onPressed: handleDeleteButtonPressed,
-            ),
-          ],
+          actionsWidget: actionIcons,
         ),
         body: SingleChildScrollView(
           child: Padding(

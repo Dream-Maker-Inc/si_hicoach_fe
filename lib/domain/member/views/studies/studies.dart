@@ -54,7 +54,7 @@ class _MemberStudiesViewState extends _Detail {
                 ),
               ),
               trailing: Text(item.exerciseTypeLabel),
-              onTap: () => onItemPressed(item.id),
+              onTap: () => onItemPressed(item.id, item.isPersonal),
             ),
             const Divider()
           ]);
@@ -78,12 +78,13 @@ class _Detail extends MyGetXState<MemberStudiesView, MemberMyStudiesViewModel> {
         .then((value) => vm.refetch());
   }
 
-  onItemPressed(int studyId) {
+  onItemPressed(int studyId, bool isPersonal) {
     Navigator.of(context)
         .push(
           MaterialPageRoute(
             builder: (BuildContext context) => StudyDetailView(
               studyId: studyId,
+              readonly: !isPersonal,
               isMemberDetailEnabled: false,
             ),
           ),
