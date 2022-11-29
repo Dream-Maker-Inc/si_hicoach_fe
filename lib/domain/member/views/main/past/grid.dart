@@ -90,7 +90,11 @@ class _PastGridViewState extends _Detail {
 
 class _Detail extends MyGetXState<PastGridView, MainLatestStudyViewModel> {
   handleItemClick(int studyId) {
-    Get.to(StudyDetailView(studyId: studyId))?.then((_) => vm.fetchData());
+    Get.to(StudyDetailView(
+      studyId: studyId,
+      readonly: true,
+      isMemberDetailEnabled: false,
+    ))?.then((_) => vm.fetchData());
   }
 
   @override

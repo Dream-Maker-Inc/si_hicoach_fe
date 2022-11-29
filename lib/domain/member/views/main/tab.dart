@@ -34,9 +34,9 @@ class _MemberMainTabState extends State<MemberMainTab>
   @override
   Widget build(BuildContext context) {
     List<Widget> tabBar = <Widget>[
-      PastGridView(),
-      PresentListView(),
-      PresentListView(),
+      const PastGridView(),
+      _buildTodayStudies(),
+      _buildNextStudies(),
     ];
 
     PreferredSizeWidget memberMainAppBar() {
@@ -69,5 +69,21 @@ class _MemberMainTabState extends State<MemberMainTab>
         body: TabBarView(controller: tabController, children: tabBar),
       ),
     );
+  }
+
+  _buildNextStudies() {
+    return Obx(() {
+      return PresentListView(
+        models: vm.nextStudyItemModels,
+      );
+    });
+  }
+
+  _buildTodayStudies() {
+    return Obx(() {
+      return PresentListView(
+        models: vm.todayStudyItemModels,
+      );
+    });
   }
 }
