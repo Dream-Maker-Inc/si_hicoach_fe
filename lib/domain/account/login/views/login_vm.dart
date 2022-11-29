@@ -10,17 +10,11 @@ import 'package:si_hicoach_fe/infrastructure/member/devices/member_devices_api.d
 import 'package:si_hicoach_fe/infrastructure/member/member/dto/get_my_info_response.dart';
 import 'package:si_hicoach_fe/infrastructure/member/member/member_api.dart';
 
-class LoginViewModel extends GetxController {
-  RxString email = RxString('admin@gmail.com');
-  RxString password = RxString('asdasd123!!');
-
-  bool get buttonDisabled => email.isEmpty || password.isEmpty;
-
-  RxnBool isRoleTrainer = RxnBool(null);
-
-  final Rx<bool> _loginSuccess = Rx(false);
-  Rx<bool> addDeviceSuccess = Rx(false);
+class LoginViewModel extends BaseLoginViewModel {
   Rx<Exception?> apiError = Rx(null);
+
+  // login
+  final Rx<bool> _loginSuccess = Rx(false);
 
   submit() async {
     final dto = RequestLoginDto(email: email.value, password: password.value);
@@ -30,33 +24,27 @@ class LoginViewModel extends GetxController {
         (response) async => await _handleLoginSuccess(response));
   }
 
-  clear() {
-    isRoleTrainer.value = null;
-    _loginSuccess.value = false;
-    addDeviceSuccess.value = false;
-    apiError.value = null;
-  }
-
   _handleLoginSuccess(LoginResponse res) async {
     final accessToken = res.data?.accessToken ?? '';
-    await _saveAccessTokenToDevice(accessToken);
-    await _getMyInfo();
-    await _sendDeviceInfo();
+
+    Future.wait([
+      saveAccessTokenToDevice(accessToken),
+      _getMyInfo(),
+      _sendDeviceInfo()
+    ]);
   }
 
-  _saveAccessTokenToDevice(accessToken) async {
-    final prefs = await SharedPreferences.getInstance();
-    prefs.setString(SharedPrefsKeys.accessToken.key, accessToken);
-  }
+  // get my info
+  RxnBool isRoleTrainer = RxnBool(null);
 
-  _getMyInfo() async {
+  Future _getMyInfo() async {
     final result = await MemberApi.findMe();
 
     result.when((e) => apiError.value = e,
         (response) async => await _handleGetMyInfoSuccess(response));
   }
 
-  _handleGetMyInfoSuccess(GetMyInfoResponse res) async {
+  Future _handleGetMyInfoSuccess(GetMyInfoResponse res) async {
     final prefs = await SharedPreferences.getInstance();
     prefs.setInt(SharedPrefsKeys.id.key, res.data.member.id);
 
@@ -65,7 +53,10 @@ class LoginViewModel extends GetxController {
     isRoleTrainer.value = (trainerInfo != null);
   }
 
-  _sendDeviceInfo() async {
+  // add device
+  Rx<bool> addDeviceSuccess = Rx(false);
+
+  Future _sendDeviceInfo() async {
     final deviceInfo = await getDeviceInfo();
 
     final dto = AddDeviceDto(
@@ -79,13 +70,12 @@ class LoginViewModel extends GetxController {
         (e) => apiError.value = e, (res) => addDeviceSuccess.value = res);
   }
 
-  @override
-  void onInit() {
-    super.onInit();
-
-    ever(isRoleTrainer, (_) {
-      _loginSuccess.value = true;
-    });
+  //
+  clear() {
+    isRoleTrainer.value = null;
+    _loginSuccess.value = false;
+    addDeviceSuccess.value = false;
+    apiError.value = null;
   }
 
   // TODO: DELETE
@@ -99,4 +89,17 @@ class LoginViewModel extends GetxController {
   }
   // TODO: DELETE
 
+}
+
+class BaseLoginViewModel extends GetxController {
+  RxString email = RxString('admin@gmail.com');
+  RxString password = RxString('asdasd123!!');
+
+  bool get buttonDisabled => email.isEmpty || password.isEmpty;
+
+  // save access token
+  Future saveAccessTokenToDevice(accessToken) async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setString(SharedPrefsKeys.accessToken.key, accessToken);
+  }
 }

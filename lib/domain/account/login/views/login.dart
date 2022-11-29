@@ -157,24 +157,24 @@ class _Detail extends MyGetXState<LoginView, LoginViewModel> {
   }
 
   _navigateMainPage(bool isTrainer) {
+    if (!mounted) return;
+
     if (isTrainer) {
-      return Navigator.of(context)
-          .push(
-            MaterialPageRoute(builder: (context) => const TrainerBaseView()),
-          )
-          .then((value) => vm.clear());
+      return Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (context) => const TrainerBaseView()),
+      );
     }
 
-    Navigator.of(context)
-        .push(
-          MaterialPageRoute(builder: (context) => const MemberBaseView()),
-        )
-        .then((value) => vm.clear());
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(builder: (context) => const MemberBaseView()),
+    );
   }
 
   @override
   void initState() {
     super.initState();
+
+    vm.clear();
 
     vm.addDeviceSuccess.listen((isSuccess) {
       if (!isSuccess) return;
@@ -185,6 +185,8 @@ class _Detail extends MyGetXState<LoginView, LoginViewModel> {
 
     vm.apiError.listen((e) {
       if (e == null) return;
+
+      vm.clear();
 
       showSimpleDialog(
           context: context, title: "로그인 실패", content: _getErrorMessage(e));

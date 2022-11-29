@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:si_hicoach_fe/common/components/divider.dart';
+import 'package:si_hicoach_fe/common/shared_preferences/key.dart';
+import 'package:si_hicoach_fe/domain/account/login/views/login.dart';
 import 'package:si_hicoach_fe/domain/common/edit_password/edit_password.dart';
 import 'package:si_hicoach_fe/common/invite/invite.dart';
 import 'package:si_hicoach_fe/domain/member/views/my/account/account.dart';
 import 'package:si_hicoach_fe/domain/member/views/my/my/notification.dart';
-import 'package:si_hicoach_fe/domain/splash/splash.dart';
 
 class MenuView extends StatelessWidget {
   const MenuView({Key? key}) : super(key: key);
@@ -70,14 +72,21 @@ class MenuView extends StatelessWidget {
           title: const Text('로그아웃'),
           trailing: const Icon(Icons.keyboard_arrow_right_rounded),
           onTap: () => {
-            Navigator.of(context).push(
+            deleteAccessToken(),
+            Navigator.of(context).pushAndRemoveUntil(
               MaterialPageRoute(
-                builder: (context) => const SplashPage(),
+                builder: (context) => const LoginView(),
               ),
-            )
+              (Route<dynamic> route) => false,
+            ),
           },
         ),
       ],
     );
+  }
+
+  Future deleteAccessToken() async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.remove(SharedPrefsKeys.accessToken.key);
   }
 }
