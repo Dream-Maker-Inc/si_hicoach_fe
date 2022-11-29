@@ -2,8 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:si_hicoach_fe/common/shared_preferences/key.dart';
 
-// String url = 'http://9a02-218-236-78-53.ngrok.io';
-String url = 'https://hicoch.ureca.im';
+String url = 'http://afd9-218-236-78-53.ngrok.io';
+// String url = 'https://hicoch.ureca.im';
 
 BaseOptions _options = BaseOptions(baseUrl: url);
 Interceptor _interceptor =

@@ -51,7 +51,17 @@ class WeeklyCalendarViewModel extends _FetchController {
 
   _handleWeeksDataUpdate() {
     final now = DateTime.now();
-    targetWeek.value = (now.day / 7).ceil().toString();
+    final targetDay = now.day;
+
+    final firstDayOfMonth = DateTime(now.year, now.month, 1);
+    final lastDayOfFirstWeek =
+        DateTime(now.year, now.month, 7 - firstDayOfMonth.weekday);
+
+    final restDay = targetDay - lastDayOfFirstWeek.day;
+
+    final result = ((restDay / 7).ceil() + 1).toString();
+
+    targetWeek.value = result;
   }
 }
 
