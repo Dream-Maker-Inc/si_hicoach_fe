@@ -2,18 +2,13 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:si_hicoach_fe/common/shared_preferences/key.dart';
+import 'package:si_hicoach_fe/common/utils/calendar.dart';
 import 'package:si_hicoach_fe/domain/calendar/models/monthly_day_item.dart';
 import 'package:si_hicoach_fe/infrastructure/study/dto/get_weekly_calendar_response.dart';
 import 'package:si_hicoach_fe/infrastructure/study/study_api.dart';
 
 class MonthlyCalendarViewModel extends _FetchController {
-  int get weeks {
-    final now = DateTime.now();
-    final days = DateTime(now.year, now.month, 0).day;
-    final weeks = (days / 7).ceil();
-
-    return weeks;
-  }
+  int get weeks => getThisMonthWeeks();
 
   List<MonthlyDayItemModel> getStudyItemModelsByWeek(int week) => _items
       .where((it) => it.week == week)

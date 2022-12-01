@@ -71,8 +71,6 @@ class _MonthlyCalendarViewState extends _Detail {
   }
 
   _buildTable(TableBorder tableBorder) {
-    const maxCalendarShowCount = 35;
-
     useIncreaseIndex() {
       int index = 0;
 
@@ -81,32 +79,9 @@ class _MonthlyCalendarViewState extends _Detail {
       return increaseIndex;
     }
 
-    Color getDayTextColor(DateTime date, bool isHoliday) {
-      const saturday = 6;
-      const sunday = 7;
-
-      if (!date.isThisMonth) {
-        return Colors.grey.shade400;
-      }
-
-      if (isHoliday) {
-        return Colors.redAccent.shade200;
-      }
-
-      if (date.weekday == saturday) {
-        return Colors.blueAccent.shade700;
-      }
-
-      if (date.weekday == sunday) {
-        return Colors.redAccent.shade700;
-      }
-
-      return Colors.blueGrey.shade800;
-    }
-
     return Obx(() {
       final weeks = vm.weeks;
-      final calendarVisibleDate = getCalendarVisibleDate(maxCalendarShowCount);
+      final calendarVisibleDate = getCalendarVisibleDate();
 
       final getIndex = useIncreaseIndex();
 
@@ -150,6 +125,29 @@ class _MonthlyCalendarViewState extends _Detail {
         ),
       );
     });
+  }
+
+  Color getDayTextColor(DateTime date, bool isHoliday) {
+    const saturday = 6;
+    const sunday = 7;
+
+    if (!date.isThisMonth) {
+      return Colors.grey.shade400;
+    }
+
+    if (isHoliday) {
+      return Colors.redAccent.shade200;
+    }
+
+    if (date.weekday == saturday) {
+      return Colors.blueAccent.shade700;
+    }
+
+    if (date.weekday == sunday) {
+      return Colors.redAccent.shade700;
+    }
+
+    return Colors.blueGrey.shade800;
   }
 }
 
