@@ -53,6 +53,8 @@ class MemberDetailViewModel extends GetxController {
 
   int get matchingId => _matching?.id ?? 0;
 
+  bool get isPersonalMatching => (_member?.id ?? 0) == trainerId;
+
   //
   Rx<Exception?> apiError = Rx(null);
 

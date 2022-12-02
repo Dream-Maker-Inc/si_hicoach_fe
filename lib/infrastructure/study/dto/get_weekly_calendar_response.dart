@@ -54,13 +54,11 @@ class Studies {
     required this.study,
     required this.member,
     required this.weekDay,
-    this.holiday,
   });
   late final Study study;
   late final Member member;
   late final bool isPersonal;
   late final int weekDay;
-  late final Holiday? holiday;
 
   factory Studies.fromJson(Map<String, dynamic> json) =>
       _$StudiesFromJson(json);
@@ -147,19 +145,4 @@ class Member {
   factory Member.fromJson(Map<String, dynamic> json) => _$MemberFromJson(json);
 
   Map<String, dynamic> toJson() => _$MemberToJson(this);
-}
-
-@JsonSerializable()
-class Holiday {
-  Holiday({
-    required this.date,
-    required this.title,
-  });
-  late final DateTime date;
-  late final String title;
-
-  factory Holiday.fromJson(Map<String, dynamic> json) =>
-      _$HolidayFromJson(json);
-
-  Map<String, dynamic> toJson() => _$HolidayToJson(this);
 }

@@ -27,16 +27,19 @@ class _DetailViewState extends _Detail {
 
     return Obx(() {
       final memberName = _vm.member.name;
+      final isPersonal = _vm.isPersonalMatching;
 
       return Scaffold(
         appBar: CustomAppBarArrowBack(
           titleText: '$memberName 님',
           actionsWidget: <Widget>[
-            IconButton(
-              icon:
-                  const SizedBox(width: 20, child: Icon(Icons.delete_outline)),
-              onPressed: () => onMemberDeleteIconPressed(context),
-            ),
+            !isPersonal
+                ? IconButton(
+                    icon: const SizedBox(
+                        width: 20, child: Icon(Icons.delete_outline)),
+                    onPressed: () => onMemberDeleteIconPressed(context),
+                  )
+                : Container(),
           ],
         ),
         body: SizedBox(
