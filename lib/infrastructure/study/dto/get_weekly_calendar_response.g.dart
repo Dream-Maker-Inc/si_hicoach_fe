@@ -52,9 +52,6 @@ Studies _$StudiesFromJson(Map<String, dynamic> json) => Studies(
       study: Study.fromJson(json['study'] as Map<String, dynamic>),
       member: Member.fromJson(json['member'] as Map<String, dynamic>),
       weekDay: json['weekDay'] as int,
-      holiday: json['holiday'] == null
-          ? null
-          : Holiday.fromJson(json['holiday'] as Map<String, dynamic>),
     )..isPersonal = json['isPersonal'] as bool;
 
 Map<String, dynamic> _$StudiesToJson(Studies instance) => <String, dynamic>{
@@ -62,7 +59,6 @@ Map<String, dynamic> _$StudiesToJson(Studies instance) => <String, dynamic>{
       'member': instance.member,
       'isPersonal': instance.isPersonal,
       'weekDay': instance.weekDay,
-      'holiday': instance.holiday,
     };
 
 Study _$StudyFromJson(Map<String, dynamic> json) => Study(
@@ -132,14 +128,4 @@ Member _$MemberFromJson(Map<String, dynamic> json) => Member(
 Map<String, dynamic> _$MemberToJson(Member instance) => <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
-    };
-
-Holiday _$HolidayFromJson(Map<String, dynamic> json) => Holiday(
-      date: DateTime.parse(json['date'] as String),
-      title: json['title'] as String,
-    );
-
-Map<String, dynamic> _$HolidayToJson(Holiday instance) => <String, dynamic>{
-      'date': instance.date.toIso8601String(),
-      'title': instance.title,
     };

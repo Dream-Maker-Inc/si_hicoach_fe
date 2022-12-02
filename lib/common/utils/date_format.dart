@@ -10,4 +10,14 @@ extension DateFormatExtension on DateTime {
     final DateFormat formatter = DateFormat('HH시 mm분');
     return formatter.format(this);
   }
+
+  String get toYearMonth {
+    final DateFormat formatter = DateFormat('yyyy-MM');
+    return formatter.format(this);
+  }
+
+  String get toOnlyDate {
+    final DateFormat formatter = DateFormat('yyyy-MM-dd');
+    return formatter.format(this);
+  }
 }

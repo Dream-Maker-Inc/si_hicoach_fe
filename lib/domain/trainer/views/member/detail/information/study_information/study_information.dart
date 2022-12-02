@@ -51,10 +51,7 @@ class StudyInformation extends StatelessWidget {
         Row(
           children: <Widget>[
             Expanded(
-              child: CustomOutlinedButton(
-                onPressed: () => onDetailTicketButtonPressed(context),
-                text: '수강권 관리',
-              ),
+              child: _buildTicketManageButton(context),
             ),
             const SizedBox(width: defaultPadding),
             Expanded(
@@ -67,5 +64,18 @@ class StudyInformation extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  _buildTicketManageButton(BuildContext context) {
+    return Obx(() {
+      final onClick = _vm.isPersonalMatching
+          ? null
+          : () => onDetailTicketButtonPressed(context);
+
+      return CustomOutlinedButton(
+        onPressed: onClick,
+        text: '수강권 관리',
+      );
+    });
   }
 }

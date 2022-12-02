@@ -8,7 +8,7 @@ class MonthlyCalendarItem extends StatelessWidget {
   final int? date;
   final int studyCount;
   final int personalStudyCount;
-  final String? holidayText;
+  final String holidayText;
   final VoidCallback? onClick;
 
   const MonthlyCalendarItem(
@@ -16,7 +16,7 @@ class MonthlyCalendarItem extends StatelessWidget {
       required this.dayTextColor,
       this.studyCount = 0,
       this.personalStudyCount = 0,
-      this.holidayText,
+      this.holidayText = "",
       this.date,
       this.onClick});
 
@@ -95,13 +95,13 @@ class MonthlyCalendarItem extends StatelessWidget {
       size: 12,
     );
 
-    final item = (holidayText != null)
-        ? _buildItem(itemBackground, holidayText!, icon)
+    final item = (holidayText.isNotEmpty)
+        ? _buildItem(itemBackground, "1", icon)
         : Container();
 
     return SizedBox(
       width: MediaQuery.of(context).size.width / 7,
-      child: item,
+      child: Tooltip(message: holidayText, child: item),
     );
   }
 

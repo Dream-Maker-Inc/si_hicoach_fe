@@ -28,17 +28,20 @@ class CustomElevatedButton extends StatelessWidget {
 }
 
 class CustomOutlinedButton extends StatelessWidget {
-  final Function() onPressed;
+  final Function()? onPressed;
   final String text;
 
   const CustomOutlinedButton({
     Key? key,
-    required this.onPressed,
+    this.onPressed,
     required this.text,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final isDisabled = onPressed == null;
+    final disabledColor = Colors.grey.shade300;
+
     return OutlinedButton(
       style: OutlinedButton.styleFrom(
         shape: RoundedRectangleBorder(
@@ -46,7 +49,7 @@ class CustomOutlinedButton extends StatelessWidget {
         ),
         side: BorderSide(
           width: 1,
-          color: primaryColor,
+          color: isDisabled ? disabledColor : primaryColor,
           style: BorderStyle.solid,
         ),
       ),

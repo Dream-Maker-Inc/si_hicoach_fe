@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:logger/logger.dart';
 import 'package:si_hicoach_fe/common/components/app_bar.dart';
 import 'package:si_hicoach_fe/common/components/app_bar_with_logo.dart';
 import 'package:si_hicoach_fe/common/getx/my_getx_state.dart';
@@ -99,12 +100,14 @@ class _MonthlyCalendarViewState extends _Detail {
           final targetDate = calendarVisibleDate[getIndex()];
 
           final holiday = vm.getHolidayOrNull(targetDate);
+
+          Logger().w(holiday);
           final isHoliday = (holiday != null);
 
           return MonthlyCalendarItem(
             dayTextColor: getDayTextColor(targetDate, isHoliday),
             date: targetDate.day,
-            holidayText: isHoliday ? holiday.title : null,
+            holidayText: holiday?.title ?? "",
             studyCount:
                 targetDayStudyItems.isNotEmpty ? targetDayStudyItems.length : 0,
             personalStudyCount: targetDayPersonalStudyItems.isNotEmpty
@@ -180,7 +183,7 @@ class _Detail
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      Future.wait([vm.fetchMemberStudies()]);
+      Future.wait([vm.fetchMemberStudies(), vm.fetchHolidaysOfThisMonth()]);
     });
     return widget;
   }
