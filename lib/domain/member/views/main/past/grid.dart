@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
+import 'package:si_hicoach_fe/common/components/dialog.dart';
 import 'package:si_hicoach_fe/common/constants/constants.dart';
 import 'package:si_hicoach_fe/common/exceptions/common_exceptions.dart';
 import 'package:si_hicoach_fe/common/getx/my_getx_state.dart';
@@ -115,11 +116,13 @@ class _Detail extends MyGetXState<PastGridView, MainLatestStudyViewModel> {
 
       vm.apiError.value = null;
 
-      Get.defaultDialog(
+      showMySimpleDialog(
+          context: context,
           title: title,
-          content: Text(message),
-          textConfirm: "확인",
-          onConfirm: () {});
+          content: message,
+          onConfirm: () {
+            Get.back();
+          });
     });
   }
 

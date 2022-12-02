@@ -163,7 +163,7 @@ class _Detail extends State<AddAdditionalInformation> {
     _vm.createMatchingSuccess.listen((isSuccess) {
       if (!isSuccess) return;
 
-      showSimpleDialog(
+      showMySimpleDialog(
           context: context,
           title: '회원 추가 성공',
           content: _vm.matchingSuccessMsg,
@@ -181,7 +181,8 @@ class _Detail extends State<AddAdditionalInformation> {
 
       _vm.clear();
 
-      showSimpleDialog(context: context, title: 'Error', content: e.toString());
+      showMySimpleDialog(
+          context: context, title: 'Error', content: e.toString());
     });
   }
 

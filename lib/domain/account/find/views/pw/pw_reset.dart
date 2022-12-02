@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:si_hicoach_fe/common/components/dialog.dart';
 import 'package:si_hicoach_fe/domain/account/find/views/pw/find_pw_vm.dart';
 import 'package:si_hicoach_fe/domain/account/login/views/login.dart';
 import 'package:si_hicoach_fe/common/components/app_bar.dart';
@@ -44,10 +45,10 @@ class _PasswordResetViewState extends State<PasswordResetView> {
     _vm.updatePwSuccess.listen((isSuccess) {
       if (!isSuccess) return;
 
-      Get.defaultDialog(
+      showMySimpleDialog(
+          context: context,
           title: "비밀번호 재설정 성공",
-          content: const Text("비밀번호가 재설정 되었습니다."),
-          textConfirm: "확인",
+          content: "비밀번호가 재설정 되었습니다.",
           onConfirm: () {
             Get.back();
             _navigateLoginView();
@@ -62,10 +63,10 @@ class _PasswordResetViewState extends State<PasswordResetView> {
 
       _vm.apiError.value = null;
 
-      Get.defaultDialog(
+      showMySimpleDialog(
+          context: context,
           title: title,
-          content: Text(message),
-          textConfirm: "확인",
+          content: message,
           onConfirm: () {
             Get.back();
           });

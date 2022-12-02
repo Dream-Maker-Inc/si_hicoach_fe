@@ -12,12 +12,14 @@ class Memo extends StatelessWidget {
   final MemberDetailViewModel _vm = Get.find<MemberDetailViewModel>();
 
   onEditIconPressed(BuildContext ctx) {
-    Navigator.of(ctx).push(
-      MaterialPageRoute(
-        builder: (BuildContext context) =>
-            MemoEditView(matchingId: _vm.matchingId),
-      ),
-    );
+    Navigator.of(ctx)
+        .push(
+          MaterialPageRoute(
+            builder: (BuildContext context) =>
+                MemoEditView(matchingId: _vm.matchingId),
+          ),
+        )
+        .then((_) => _vm.fetchMemberInfo());
   }
 
   @override

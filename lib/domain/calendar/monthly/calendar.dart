@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 import 'package:si_hicoach_fe/common/components/app_bar.dart';
 import 'package:si_hicoach_fe/common/components/app_bar_with_logo.dart';
+import 'package:si_hicoach_fe/common/components/dialog.dart';
 import 'package:si_hicoach_fe/common/getx/my_getx_state.dart';
 import 'package:si_hicoach_fe/common/utils/calendar.dart';
 import 'package:si_hicoach_fe/common/utils/get_date_time.dart';
@@ -176,7 +177,13 @@ class _Detail
 
       vm.apiError.value = null;
 
-      Get.defaultDialog(title: 'Error', content: Text(e.toString()));
+      showMySimpleDialog(
+          context: context,
+          title: 'Error',
+          content: e.toString(),
+          onConfirm: () {
+            Get.back();
+          });
     });
   }
 

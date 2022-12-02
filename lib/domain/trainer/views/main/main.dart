@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:si_hicoach_fe/common/components/app_bar_with_logo.dart';
+import 'package:si_hicoach_fe/common/components/dialog.dart';
 import 'package:si_hicoach_fe/common/components/divider.dart';
 import 'package:si_hicoach_fe/common/components/title_with_description.dart';
 import 'package:si_hicoach_fe/common/constants/constants.dart';
@@ -63,7 +64,13 @@ class _Detail extends MyGetXState<TrainerMainView, MainViewModel> {
     vm.apiError.listen((e) {
       if (e == null) return;
 
-      Get.defaultDialog(title: 'Error', content: Text(e.toString()));
+      showMySimpleDialog(
+          context: context,
+          title: 'Error',
+          content: e.toString(),
+          onConfirm: () {
+            Get.back();
+          });
     });
   }
 

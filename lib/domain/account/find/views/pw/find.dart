@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:si_hicoach_fe/common/components/dialog.dart';
 import 'package:si_hicoach_fe/common/exceptions/signup_exceptions.dart';
 import 'package:si_hicoach_fe/common/getx/my_getx_state.dart';
 import 'package:si_hicoach_fe/domain/account/find/views/pw/find_pw_vm.dart';
@@ -82,10 +83,10 @@ class _Detail extends MyGetXState<PasswordFindView, FindPasswordViewModel> {
     vm.validateEmailSuccess.listen((isSuccess) {
       if (!isSuccess) return;
 
-      Get.defaultDialog(
+      showMySimpleDialog(
+          context: context,
           title: "유저 없음",
-          content: const Text("유저 정보가 없습니다."),
-          textConfirm: "확인",
+          content: "유저 정보가 없습니다.",
           onConfirm: () {
             Get.back();
             vm.validateEmailSuccess.value = false;
@@ -105,10 +106,10 @@ class _Detail extends MyGetXState<PasswordFindView, FindPasswordViewModel> {
         return;
       }
 
-      Get.defaultDialog(
+      showMySimpleDialog(
+          context: context,
           title: title,
-          content: Text(message),
-          textConfirm: "확인",
+          content: message,
           onConfirm: () {
             Get.back();
           });

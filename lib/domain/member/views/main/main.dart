@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:si_hicoach_fe/common/components/app_bar_with_logo.dart';
+import 'package:si_hicoach_fe/common/components/dialog.dart';
 import 'package:si_hicoach_fe/common/exceptions/common_exceptions.dart';
 import 'package:si_hicoach_fe/common/getx/my_getx_state.dart';
 import 'package:si_hicoach_fe/domain/member/views/main/main_vm.dart';
@@ -48,10 +49,10 @@ class _Detail extends MyGetXState<MemberMainView, MainPageViewModel> {
 
       vm.apiError.value = null;
 
-      Get.defaultDialog(
+      showMySimpleDialog(
+          context: context,
           title: title,
-          content: Text(message),
-          textConfirm: "확인",
+          content: message,
           onConfirm: () {
             Get.back();
             Get.back();

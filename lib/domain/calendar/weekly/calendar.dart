@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:si_hicoach_fe/common/components/dialog.dart';
 import 'package:si_hicoach_fe/common/getx/my_getx_state.dart';
 import 'package:si_hicoach_fe/domain/calendar/weekly/weekly_calendar_vm.dart';
 import 'package:si_hicoach_fe/domain/calendar/monthly/calendar.dart';
@@ -93,7 +94,13 @@ class _Detail extends MyGetXState<WeeklyCalendarView, WeeklyCalendarViewModel> {
 
       vm.apiError.value = null;
 
-      Get.defaultDialog(title: 'Error', content: Text(e.toString()));
+      showMySimpleDialog(
+          context: context,
+          title: 'Error',
+          content: e.toString(),
+          onConfirm: () {
+            Get.back();
+          });
     });
   }
 

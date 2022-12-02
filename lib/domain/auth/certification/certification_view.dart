@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:si_hicoach_fe/common/components/dialog.dart';
 import 'package:si_hicoach_fe/common/getx/my_getx_state.dart';
 import 'package:si_hicoach_fe/common/components/app_bar.dart';
 import 'package:si_hicoach_fe/common/third_party/iamport/iamport_certification_view.dart';
@@ -51,11 +52,13 @@ class _Detail extends MyGetXState<CertificationView, CertificationViewModel> {
   }
 
   handleCertificationFail() {
-    Get.defaultDialog(
+    showMySimpleDialog(
+        context: context,
         title: '인증 실패',
-        content: const Text("인증에 실패 했습니다."),
-        textConfirm: "확인",
-        onConfirm: () => Get.back());
+        content: "인증에 실패 했습니다.",
+        onConfirm: () {
+          Get.back();
+        });
   }
 
   @override
@@ -76,10 +79,10 @@ class _Detail extends MyGetXState<CertificationView, CertificationViewModel> {
 
       vm.apiError.value = null;
 
-      Get.defaultDialog(
+      showMySimpleDialog(
+          context: context,
           title: title,
-          content: Text(message),
-          textConfirm: "확인",
+          content: message,
           onConfirm: () {
             Get.back();
             _refresh();

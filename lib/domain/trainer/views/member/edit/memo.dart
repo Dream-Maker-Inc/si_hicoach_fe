@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:si_hicoach_fe/common/components/app_bar.dart';
+import 'package:si_hicoach_fe/common/components/dialog.dart';
 import 'package:si_hicoach_fe/common/constants/constants.dart';
 import 'package:si_hicoach_fe/common/getx/my_getx_state.dart';
 import 'package:si_hicoach_fe/common/theme/color.dart';
@@ -84,10 +85,10 @@ class _Detail extends MyGetXState<MemoEditView, MemoEditViewModel> {
     vm.updateMatchingSuccess.listen((isSuccess) {
       if (isSuccess == false) return;
 
-      Get.defaultDialog(
+      showMySimpleDialog(
+          context: context,
           title: '수정 성공',
-          content: const Text("메모가 수정되었습니다."),
-          textConfirm: "확인",
+          content: "메모가 수정되었습니다.",
           onConfirm: () {
             Get.back();
             Get.back();
@@ -97,7 +98,13 @@ class _Detail extends MyGetXState<MemoEditView, MemoEditViewModel> {
     vm.apiError.listen((e) {
       if (e == null) return;
 
-      Get.defaultDialog(title: 'Error', content: Text(e.toString()));
+      showMySimpleDialog(
+          context: context,
+          title: 'Error',
+          content: e.toString(),
+          onConfirm: () {
+            Get.back();
+          });
     });
   }
 

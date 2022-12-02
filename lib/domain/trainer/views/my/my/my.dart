@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:si_hicoach_fe/common/components/app_bar_with_logo.dart';
+import 'package:si_hicoach_fe/common/components/dialog.dart';
 import 'package:si_hicoach_fe/common/getx/my_getx_state.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/my/my/menu.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/my/my/mypage_vm.dart';
@@ -65,10 +66,11 @@ class _Detail extends MyGetXState<MypageView, MyPageViewModel> {
     vm.apiError.listen((e) {
       if (e == null) return;
 
-      Get.defaultDialog(
+      showMySimpleDialog(
+          context: context,
           title: 'Error',
-          content: Text(e.toString()),
-          textConfirm: "뒤로가기",
+          content: e.toString(),
+          confirmText: "뒤로가기",
           onConfirm: () {
             Get.back();
             Get.back();
