@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 import 'package:si_hicoach_fe/common/components/dialog.dart';
+import 'package:si_hicoach_fe/common/components/empty_patch.dart';
 import 'package:si_hicoach_fe/common/constants/constants.dart';
 import 'package:si_hicoach_fe/common/exceptions/common_exceptions.dart';
 import 'package:si_hicoach_fe/common/getx/my_getx_state.dart';
@@ -22,24 +23,30 @@ class _PastGridViewState extends _Detail {
   Widget build(BuildContext context) {
     super.build(context);
 
-    return SingleChildScrollView(
-      child: Container(
-        width: double.infinity,
-        padding: const EdgeInsets.only(
-          top: defaultPadding,
-          left: defaultPadding,
-          right: defaultPadding,
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            _buildDateCaption(),
-            const SizedBox(height: smallPadding),
-            _buildListView(),
-          ],
-        ),
-      ),
-    );
+    return Obx(() {
+      final modelsIsNotEmpty = vm.pastGridModels.isNotEmpty;
+
+      return modelsIsNotEmpty
+          ? SingleChildScrollView(
+              child: Container(
+                width: double.infinity,
+                padding: const EdgeInsets.only(
+                  top: defaultPadding,
+                  left: defaultPadding,
+                  right: defaultPadding,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: <Widget>[
+                    _buildDateCaption(),
+                    const SizedBox(height: smallPadding),
+                    _buildListView(),
+                  ],
+                ),
+              ),
+            )
+          : const EmptyDataPatch();
+    });
   }
 
   _buildDateCaption() {

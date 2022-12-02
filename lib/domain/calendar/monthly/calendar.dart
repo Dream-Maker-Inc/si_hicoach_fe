@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:logger/logger.dart';
 import 'package:si_hicoach_fe/common/components/app_bar.dart';
 import 'package:si_hicoach_fe/common/components/app_bar_with_logo.dart';
 import 'package:si_hicoach_fe/common/components/dialog.dart';
@@ -102,7 +101,6 @@ class _MonthlyCalendarViewState extends _Detail {
 
           final holiday = vm.getHolidayOrNull(targetDate);
 
-          Logger().w(holiday);
           final isHoliday = (holiday != null);
 
           return MonthlyCalendarItem(

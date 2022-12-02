@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:si_hicoach_fe/common/components/app_bar.dart';
 import 'package:si_hicoach_fe/common/components/dialog.dart';
+import 'package:si_hicoach_fe/common/components/empty_patch.dart';
 import 'package:si_hicoach_fe/common/getx/my_getx_state.dart';
 import 'package:si_hicoach_fe/domain/member/views/my/memo/memo_vm.dart';
 import 'package:si_hicoach_fe/domain/study/detail/detail.dart';
@@ -37,27 +38,29 @@ class _MemoListViewState extends _Detail {
     return Obx(() {
       final items = vm.items;
 
-      return ListView.builder(
-        itemCount: items.length,
-        itemBuilder: (context, index) {
-          final item = items[index];
+      return items.isNotEmpty
+          ? ListView.builder(
+              itemCount: items.length,
+              itemBuilder: (context, index) {
+                final item = items[index];
 
-          return Column(children: [
-            ListTile(
-              title: Text(item.date),
-              subtitle: Opacity(
-                  opacity: 0.8,
-                  child: Text(
-                    item.content,
-                    overflow: TextOverflow.ellipsis,
-                  )),
-              trailing: const Icon(Icons.keyboard_arrow_right_rounded),
-              onTap: () => onMemoItemPressed(item.studyId),
-            ),
-            const Divider()
-          ]);
-        },
-      );
+                return Column(children: [
+                  ListTile(
+                    title: Text(item.date),
+                    subtitle: Opacity(
+                        opacity: 0.8,
+                        child: Text(
+                          item.content,
+                          overflow: TextOverflow.ellipsis,
+                        )),
+                    trailing: const Icon(Icons.keyboard_arrow_right_rounded),
+                    onTap: () => onMemoItemPressed(item.studyId),
+                  ),
+                  const Divider()
+                ]);
+              },
+            )
+          : const EmptyDataPatch();
     });
   }
 }
