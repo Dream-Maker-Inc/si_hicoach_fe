@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:si_hicoach_fe/common/components/app_bar.dart';
+import 'package:si_hicoach_fe/common/components/dialog.dart';
 import 'package:si_hicoach_fe/common/components/divider.dart';
 import 'package:si_hicoach_fe/common/components/list_tile.dart';
 import 'package:si_hicoach_fe/common/constants/constants.dart';
@@ -106,10 +107,11 @@ class _Detail extends MyGetXState<ExerciseAddView, ExerciseAddViewModel> {
     vm.apiError.listen((e) {
       if (e == null) return;
 
-      Get.defaultDialog(
+      showMySimpleDialog(
+          context: context,
           title: 'Error',
-          content: Text(e.toString()),
-          textConfirm: "뒤로가기",
+          content: e.toString(),
+          confirmText: "뒤로가기",
           onConfirm: () {
             Get.back();
             Get.back();

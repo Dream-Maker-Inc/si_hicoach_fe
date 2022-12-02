@@ -149,7 +149,7 @@ class _Detail extends MyGetXState<TicketsView, TicketsViewModel> {
     vm.increaseTicketsSuccess.listen((isSuccess) {
       if (isSuccess == false) return;
 
-      showSimpleDialog(
+      showMySimpleDialog(
           context: context,
           title: "요청 처리",
           content: "회원의 수강권 횟수를 추가했습니다.",
@@ -164,7 +164,7 @@ class _Detail extends MyGetXState<TicketsView, TicketsViewModel> {
     vm.decreaseTicketsSuccess.listen((isSuccess) {
       if (isSuccess == false) return;
 
-      showSimpleDialog(
+      showMySimpleDialog(
           context: context,
           title: "요청 처리",
           content: "회원의 수강권 횟수를 차감했습니다.",
@@ -177,7 +177,7 @@ class _Detail extends MyGetXState<TicketsView, TicketsViewModel> {
     });
 
     vm.apiError.listen((e) {
-      showSimpleDialog(context: context, title: "에러", content: e.toString());
+      showMySimpleDialog(context: context, title: "에러", content: e.toString());
     });
   }
 

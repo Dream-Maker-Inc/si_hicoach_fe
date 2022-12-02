@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:si_hicoach_fe/common/components/app_bar.dart';
+import 'package:si_hicoach_fe/common/components/dialog.dart';
 import 'package:si_hicoach_fe/common/components/text_field.dart';
 import 'package:si_hicoach_fe/common/components/title_with_description.dart';
 import 'package:si_hicoach_fe/common/constants/constants.dart';
@@ -85,10 +86,10 @@ class _Detail extends MyGetXState<MypageEditView, MyCompanyEditViewModel> {
     vm.updateMyCompanyResponse.listen((res) {
       if (res == false) return;
 
-      Get.defaultDialog(
+      showMySimpleDialog(
+          context: context,
           title: '처리 완료',
-          content: const Text("소속이 수정되었습니다."),
-          textConfirm: "확인",
+          content: "소속이 수정되었습니다.",
           onConfirm: () {
             Get.back();
             Get.back();
@@ -98,10 +99,11 @@ class _Detail extends MyGetXState<MypageEditView, MyCompanyEditViewModel> {
     vm.apiError.listen((e) {
       if (e == null) return;
 
-      Get.defaultDialog(
+      showMySimpleDialog(
+          context: context,
           title: 'Error',
-          content: Text(e.toString()),
-          textConfirm: "뒤로가기",
+          content: e.toString(),
+          confirmText: "뒤로가기",
           onConfirm: () {
             Get.back();
             Get.back();

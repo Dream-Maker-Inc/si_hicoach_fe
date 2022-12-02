@@ -42,7 +42,7 @@ class InviteView extends StatelessWidget {
       message: message,
       recipients: recipents,
     ).catchError(
-      (onError) => showSimpleDialog(
+      (onError) => showMySimpleDialog(
         title: '문자 메시지 전송 오류',
         content: onError,
         context: context,
@@ -62,7 +62,7 @@ class InviteView extends StatelessWidget {
 
         await ShareClient.instance.launchKakaoTalk(uri);
       } catch (error) {
-        showSimpleDialog(
+        showMySimpleDialog(
           context: context,
           title: '카카오톡 공유 실패',
           content: '카카오톡 공유를 실패했습니다.\n오류 : $error',
@@ -76,7 +76,7 @@ class InviteView extends StatelessWidget {
         );
         await launchBrowserTab(shareUrl, popupOpen: true);
       } catch (error) {
-        showSimpleDialog(
+        showMySimpleDialog(
           context: context,
           title: '카카오톡 공유 실패',
           content: '카카오톡이 설치되어 있지 않거나, 모바일 기기가 아닙니다.\n오류 : $error',

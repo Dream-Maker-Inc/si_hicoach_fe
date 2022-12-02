@@ -111,7 +111,7 @@ class _Detail extends State<AddView> {
     _vm.getMemberSuccess.listen((isSuccess) {
       if (isSuccess == false) return;
 
-      showSimpleDialog(
+      showMySimpleDialog(
           context: context,
           title: '회원 확인',
           content: _vm.validationSuccessText ?? '');
@@ -122,7 +122,7 @@ class _Detail extends State<AddView> {
     _vm.recoverMatchingSuccess.listen((isSuccess) {
       if (isSuccess == false) return;
 
-      showSimpleDialog(
+      showMySimpleDialog(
           context: context,
           title: '매칭 복구',
           content: _vm.recoverSuccessMessage,
@@ -140,17 +140,18 @@ class _Detail extends State<AddView> {
       _vm.clear();
 
       if (e is NotExistException) {
-        showSimpleDialog(
+        showMySimpleDialog(
             context: context, title: '알림', content: "해당 이메일의 회원이 존재하지 않습니다.");
         return;
       }
       if (e is SameUserException) {
-        showSimpleDialog(
+        showMySimpleDialog(
             context: context, title: '알림', content: "회원 본인을 검색 하셨습니다.");
         return;
       }
 
-      showSimpleDialog(context: context, title: 'error', content: e.toString());
+      showMySimpleDialog(
+          context: context, title: 'error', content: e.toString());
     });
   }
 

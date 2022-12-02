@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:si_hicoach_fe/common/components/app_bar_with_logo.dart';
+import 'package:si_hicoach_fe/common/components/dialog.dart';
+import 'package:si_hicoach_fe/common/components/empty_patch.dart';
 import 'package:si_hicoach_fe/common/getx/my_getx_state.dart';
 import 'package:si_hicoach_fe/domain/member/views/studies/studies_vm.dart';
 import 'package:si_hicoach_fe/domain/study/detail/detail.dart';
@@ -33,33 +35,35 @@ class _MemberStudiesViewState extends _Detail {
     return Obx(() {
       final items = vm.studyModels;
 
-      return ListView.builder(
-        itemCount: items.length,
-        itemBuilder: (context, index) {
-          final item = items[index];
+      return items.isNotEmpty
+          ? ListView.builder(
+              itemCount: items.length,
+              itemBuilder: (context, index) {
+                final item = items[index];
 
-          return Column(children: [
-            ListTile(
-              title: Padding(
-                  padding: const EdgeInsets.only(top: 8),
-                  child: Text('${item.round}회차 수업')),
-              subtitle: Padding(
-                padding: const EdgeInsets.only(top: 8),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(item.startedDateFormat),
-                    Text(item.runningTimeFormatString)
-                  ],
-                ),
-              ),
-              trailing: Text(item.exerciseTypeLabel),
-              onTap: () => onItemPressed(item.id, item.isPersonal),
-            ),
-            const Divider()
-          ]);
-        },
-      );
+                return Column(children: [
+                  ListTile(
+                    title: Padding(
+                        padding: const EdgeInsets.only(top: 8),
+                        child: Text('${item.round}회차 수업')),
+                    subtitle: Padding(
+                      padding: const EdgeInsets.only(top: 8),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(item.startedDateFormat),
+                          Text(item.runningTimeFormatString)
+                        ],
+                      ),
+                    ),
+                    trailing: Text(item.exerciseTypeLabel),
+                    onTap: () => onItemPressed(item.id, item.isPersonal),
+                  ),
+                  const Divider()
+                ]);
+              },
+            )
+          : const EmptyDataPatch();
     });
   }
 }
@@ -101,7 +105,13 @@ class _Detail extends MyGetXState<MemberStudiesView, MemberMyStudiesViewModel> {
 
       vm.apiError.value = null;
 
-      Get.defaultDialog(title: 'Error', content: Text(e.toString()));
+      showMySimpleDialog(
+          context: context,
+          title: 'Error',
+          content: e.toString(),
+          onConfirm: () {
+            Get.back();
+          });
     });
   }
 

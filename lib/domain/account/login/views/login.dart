@@ -188,7 +188,7 @@ class _Detail extends MyGetXState<LoginView, LoginViewModel> {
 
       vm.clear();
 
-      showSimpleDialog(
+      showMySimpleDialog(
           context: context, title: "로그인 실패", content: _getErrorMessage(e));
     });
   }

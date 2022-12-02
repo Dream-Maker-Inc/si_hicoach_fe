@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:si_hicoach_fe/common/components/app_bar.dart';
+import 'package:si_hicoach_fe/common/components/dialog.dart';
+import 'package:si_hicoach_fe/common/components/empty_patch.dart';
 import 'package:si_hicoach_fe/common/components/overlay_circular_progress_indicator.dart';
 import 'package:si_hicoach_fe/common/constants/constants.dart';
 import 'package:si_hicoach_fe/common/exceptions/common_exceptions.dart';
@@ -57,17 +59,19 @@ class _InbodyViewState extends _Detail {
     return Obx(() {
       final models = vm.inBodyModels;
 
-      return GridView.count(
-        crossAxisSpacing: defaultPadding,
-        mainAxisSpacing: 20,
-        crossAxisCount: 2,
-        padding: const EdgeInsets.all(defaultPadding),
-        children: List.from(
-          models.map(
-            (it) => InbodyItem(model: it, editable: false),
-          ),
-        ),
-      );
+      return models.isNotEmpty
+          ? GridView.count(
+              crossAxisSpacing: defaultPadding,
+              mainAxisSpacing: 20,
+              crossAxisCount: 2,
+              padding: const EdgeInsets.all(defaultPadding),
+              children: List.from(
+                models.map(
+                  (it) => InbodyItem(model: it, editable: false),
+                ),
+              ),
+            )
+          : const EmptyDataPatch();
     });
   }
 }
@@ -123,12 +127,22 @@ class _Detail extends MyGetXState<InbodyView, InBodyViewModel> {
       vm.apiError.value = null;
 
       if (e is AlreadyInBodyException) {
-        Get.defaultDialog(
-            title: '요청 실패', content: const Text("이미 오늘 인바디가 등록되어 있습니다."));
-        return;
+        return showMySimpleDialog(
+            context: context,
+            title: '요청 실패',
+            content: "이미 오늘 인바디가 등록되어 있습니다.",
+            onConfirm: () {
+              Get.back();
+            });
       }
 
-      Get.defaultDialog(title: 'Error', content: Text(e.toString()));
+      showMySimpleDialog(
+          context: context,
+          title: 'Error',
+          content: e.toString(),
+          onConfirm: () {
+            Get.back();
+          });
     });
   }
 

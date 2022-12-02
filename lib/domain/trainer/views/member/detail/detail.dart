@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:si_hicoach_fe/common/components/alert.dart';
 import 'package:si_hicoach_fe/common/components/app_bar.dart';
+import 'package:si_hicoach_fe/common/components/dialog.dart';
 import 'package:si_hicoach_fe/common/components/divider.dart';
 import 'package:si_hicoach_fe/domain/study/create/study_create.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/detail/detail_vm.dart';
@@ -121,10 +122,10 @@ class _Detail extends State<DetailView> {
     _vm.removeMatchingSuccess.listen((b) {
       if (!b) return;
 
-      Get.defaultDialog(
+      showMySimpleDialog(
+          context: context,
           title: "매칭 취소",
-          content: Text("${_vm.member.name} 회원님과 매칭이 종료되었습니다."),
-          textConfirm: "확인",
+          content: "${_vm.member.name} 회원님과 매칭이 종료되었습니다.",
           onConfirm: () {
             Get.back();
             Get.back();

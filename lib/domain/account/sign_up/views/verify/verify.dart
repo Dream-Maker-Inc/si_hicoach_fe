@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:si_hicoach_fe/common/components/dialog.dart';
 import 'package:si_hicoach_fe/common/exceptions/signup_exceptions.dart';
 import 'package:si_hicoach_fe/common/getx/my_getx_state.dart';
 import 'package:si_hicoach_fe/domain/account/sign_up/views/type/type.dart';
@@ -70,11 +71,13 @@ class _Detail extends MyGetXState<SignUpVerifyView, VerifyViewModel> {
   }
 
   handleCertificationFail() {
-    Get.defaultDialog(
+    showMySimpleDialog(
+        context: context,
         title: '인증 실패',
-        content: const Text("인증에 실패 했습니다."),
-        textConfirm: "확인",
-        onConfirm: () => Get.back());
+        content: "인증에 실패 했습니다.",
+        onConfirm: () {
+          Get.back();
+        });
   }
 
   @override
@@ -100,10 +103,10 @@ class _Detail extends MyGetXState<SignUpVerifyView, VerifyViewModel> {
 
       vm.apiError.value = null;
 
-      Get.defaultDialog(
+      showMySimpleDialog(
+          context: context,
           title: title,
-          content: Text(message),
-          textConfirm: "확인",
+          content: message,
           onConfirm: () {
             Get.back();
             _refresh();

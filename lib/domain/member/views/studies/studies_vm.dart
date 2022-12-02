@@ -38,7 +38,7 @@ class MemberMyStudiesViewModel extends _FetchController {
             .sorted((a, b) => a.round - b.round)
             .lastOrNull
             ?.round ??
-        personalMatching!.totalStudyCount + 1;
+        personalMatching!.totalStudyCount;
   }
 
   int get nextStudyRound => _latestStudyRound + 1;

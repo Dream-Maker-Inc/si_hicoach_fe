@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:si_hicoach_fe/common/components/alert.dart';
 import 'package:si_hicoach_fe/common/components/app_bar.dart';
+import 'package:si_hicoach_fe/common/components/dialog.dart';
 import 'package:si_hicoach_fe/common/constants/constants.dart';
 import 'package:si_hicoach_fe/common/exceptions/common_exceptions.dart';
 import 'package:si_hicoach_fe/common/getx/my_getx_state.dart';
@@ -176,10 +177,10 @@ class _Detail extends MyGetXState<StudyDetailView, StudyDetailViewModel> {
     vm.deleteStudyResponse.listen((isSuccess) {
       if (isSuccess == false) return;
 
-      Get.defaultDialog(
+      showMySimpleDialog(
+          context: context,
           title: '운동일지 삭제 성공',
-          content: const Text("운동일지가 삭제 되었습니다."),
-          textConfirm: "확인",
+          content: "운동일지가 삭제 되었습니다.",
           onConfirm: () {
             Get.back();
             Get.back();
@@ -191,34 +192,31 @@ class _Detail extends MyGetXState<StudyDetailView, StudyDetailViewModel> {
       if (e == null) return;
 
       if (e is UnauthorizedException) {
-        Get.defaultDialog(
+        return showMySimpleDialog(
+            context: context,
             title: '로그인 필요',
-            content: const Text("로그인 후 확인 할 수 있어요."),
-            textConfirm: "로그인하기",
+            content: "로그인 후 확인 할 수 있어요.",
             onConfirm: () {
               Get.offAll(const LoginView());
             });
-
-        return;
       }
 
       if (e is NotExistException) {
-        Get.defaultDialog(
+        return showMySimpleDialog(
+            context: context,
             title: '스터디 정보 없음',
-            content: const Text("스터디 정보가 없습니다."),
-            textConfirm: "뒤로가기",
+            content: "스터디 정보가 없습니다.",
             onConfirm: () {
               Get.back();
               Get.back();
             });
-
-        return;
       }
 
-      Get.defaultDialog(
+      showMySimpleDialog(
+          context: context,
           title: 'Error',
-          content: Text(e.toString()),
-          textConfirm: "뒤로가기",
+          content: e.toString(),
+          confirmText: "뒤로가기",
           onConfirm: () {
             Get.back();
             Get.back();

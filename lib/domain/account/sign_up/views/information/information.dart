@@ -168,7 +168,8 @@ class _Detail extends State<SignUpInformationView> {
     });
 
     _signupVm.signupError.listen((e) {
-      showSimpleDialog(context: context, title: "error", content: e.toString());
+      showMySimpleDialog(
+          context: context, title: "error", content: e.toString());
     });
   }
 

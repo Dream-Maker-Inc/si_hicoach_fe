@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:si_hicoach_fe/common/components/app_bar_with_logo.dart';
+import 'package:si_hicoach_fe/common/components/dialog.dart';
 import 'package:si_hicoach_fe/common/components/divider.dart';
+import 'package:si_hicoach_fe/common/components/empty_patch.dart';
 import 'package:si_hicoach_fe/common/components/title_with_description.dart';
 import 'package:si_hicoach_fe/common/constants/constants.dart';
 import 'package:si_hicoach_fe/common/getx/my_getx_state.dart';
@@ -23,7 +25,6 @@ class _TrainerMainViewState extends _Detail {
     super.build(context);
 
     return Obx(() {
-      final list = vm.todoItemModels;
       final memberName = vm.memberName;
       final targetDate = vm.targetDate.value;
 
@@ -42,15 +43,25 @@ class _TrainerMainViewState extends _Detail {
               const Calendar(),
               const SizedBox(height: 10),
               const CustomDivider(),
-              Expanded(
-                  child: ListView.builder(
-                      itemCount: list.length,
-                      itemBuilder: (ctx, index) =>
-                          TrainerMainTodoItem(model: list[index]))),
+              _buildListView(),
             ],
           ),
         ),
       );
+    });
+  }
+
+  _buildListView() {
+    return Obx(() {
+      final list = vm.todoItemModels;
+
+      return Expanded(
+          child: list.isNotEmpty
+              ? ListView.builder(
+                  itemCount: list.length,
+                  itemBuilder: (ctx, index) =>
+                      TrainerMainTodoItem(model: list[index]))
+              : const EmptyDataPatch());
     });
   }
 }
@@ -63,7 +74,13 @@ class _Detail extends MyGetXState<TrainerMainView, MainViewModel> {
     vm.apiError.listen((e) {
       if (e == null) return;
 
-      Get.defaultDialog(title: 'Error', content: Text(e.toString()));
+      showMySimpleDialog(
+          context: context,
+          title: 'Error',
+          content: e.toString(),
+          onConfirm: () {
+            Get.back();
+          });
     });
   }
 

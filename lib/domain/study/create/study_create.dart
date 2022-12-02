@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:si_hicoach_fe/common/components/dialog.dart';
 import 'package:si_hicoach_fe/common/exceptions/common_exceptions.dart';
 import 'package:si_hicoach_fe/common/getx/my_getx_state.dart';
 import 'package:si_hicoach_fe/domain/study/common/templates/study_form.dart';
@@ -41,10 +42,10 @@ class _Detail extends MyGetXState<StudyCreateView, StudyCreateViewModel> {
     vm.createStudySuccess.listen((isSuccess) {
       if (isSuccess == false) return;
 
-      Get.defaultDialog(
+      showMySimpleDialog(
+          context: context,
           title: '운동일지 등록 성공',
-          content: const Text("운동일지가 등록 되었습니다."),
-          textConfirm: "확인",
+          content: "운동일지가 등록 되었습니다.",
           onConfirm: () {
             Get.back();
             Get.back();
@@ -60,10 +61,11 @@ class _Detail extends MyGetXState<StudyCreateView, StudyCreateViewModel> {
         return;
       }
 
-      Get.defaultDialog(
+      showMySimpleDialog(
+          context: context,
           title: 'Error',
-          content: Text(e.toString()),
-          textConfirm: "뒤로가기",
+          content: e.toString(),
+          confirmText: "뒤로가기",
           onConfirm: () {
             Get.back();
             Get.back();

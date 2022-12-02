@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:si_hicoach_fe/common/components/dialog.dart';
 import 'package:si_hicoach_fe/common/components/divider.dart';
 import 'package:si_hicoach_fe/common/constants/constants.dart';
 import 'package:si_hicoach_fe/common/file_picker/file_picker_func.dart';
@@ -28,19 +29,19 @@ class InbodyItem extends StatelessWidget {
   }
 
   _onDeleteButtonTapped(BuildContext ctx) {
-    Future.delayed(
-        const Duration(seconds: 0),
-        () => Get.defaultDialog(
-            title: "삭제 확인",
-            content: const Text("정말 인바디 정보를 삭제하시겠습니까?"),
-            textCancel: "취소",
-            textConfirm: "삭제",
-            cancelTextColor: primaryColor,
-            confirmTextColor: Colors.grey.shade600,
-            onConfirm: () {
-              vm.deleteInBody(model.inbodyId);
-              Get.back();
-            }));
+    Future.delayed(const Duration(seconds: 0), () {
+      showMySimpleDialog(
+          context: ctx,
+          title: "삭제 확인",
+          content: "정말 인바디 정보를 삭제하시겠습니까?",
+          confirmText: "삭제",
+          cancelColor: primaryColor,
+          confirmColor: Colors.red.shade600,
+          onConfirm: () {
+            vm.deleteInBody(model.inbodyId);
+            Get.back();
+          });
+    });
   }
 
   _handleCardClick() {

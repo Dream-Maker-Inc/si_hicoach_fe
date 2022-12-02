@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
+import 'package:si_hicoach_fe/common/components/dialog.dart';
 import 'package:si_hicoach_fe/common/components/title_with_description.dart';
 import 'package:si_hicoach_fe/common/constants/constants.dart';
 import 'package:si_hicoach_fe/common/exceptions/common_exceptions.dart';
@@ -69,14 +70,11 @@ class _IDFindViewState extends MyGetXState<IDFindView, FindIdViewModel> {
 
       vm.apiError.value = null;
 
-      Get.defaultDialog(
+      showMySimpleDialog(
+          context: context,
           title: title,
-          content: Text(message),
-          textConfirm: "확인",
-          onConfirm: () {
-            Get.back();
-            Get.back();
-          });
+          content: message,
+          onConfirm: () => Get.back());
     });
   }
 

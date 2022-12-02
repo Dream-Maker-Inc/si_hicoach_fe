@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:si_hicoach_fe/common/components/app_bar.dart';
+import 'package:si_hicoach_fe/common/components/dialog.dart';
 import 'package:si_hicoach_fe/common/components/text_field.dart';
 import 'package:si_hicoach_fe/common/components/title_with_description.dart';
 import 'package:si_hicoach_fe/common/constants/constants.dart';
@@ -125,10 +126,10 @@ class _Detail extends MyGetXState<EditPasswordView, EditPasswordViewModel> {
     vm.updatePasswordSuccess.listen((b) {
       if (!b) return;
 
-      Get.defaultDialog(
+      showMySimpleDialog(
+          context: context,
           title: '변경 완료',
-          content: const Text("비밀번호가 변경되었습니다.\n\n다시 로그인 해주세요."),
-          textConfirm: "확인",
+          content: "비밀번호가 변경되었습니다.\n\n다시 로그인 해주세요.",
           onConfirm: () {
             Get.offAll(() => const LoginView());
           });
@@ -138,12 +139,22 @@ class _Detail extends MyGetXState<EditPasswordView, EditPasswordViewModel> {
       if (e == null) return;
 
       if (e is UnauthorizedException) {
-        Get.defaultDialog(
-            title: '인증 실패', content: const Text("기존 비밀번호가 일치하지 않습니다."));
-        return;
+        return showMySimpleDialog(
+            context: context,
+            title: '인증 실패',
+            content: "기존 비밀번호가 일치하지 않습니다.",
+            onConfirm: () {
+              Get.back();
+            });
       }
 
-      Get.defaultDialog(title: 'Error', content: Text(e.toString()));
+      showMySimpleDialog(
+          context: context,
+          title: 'Error',
+          content: e.toString(),
+          onConfirm: () {
+            Get.back();
+          });
     });
   }
 
