@@ -30,10 +30,7 @@
 			<key>CFBundleURLName</key>
 			<string>Kakao</string>
 			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>kakao</string>
-				<string>02cfb74cf149bdc54ec9e4e015c7875a</string>
-			</array>
+            <string>kakao02cfb74cf149bdc54ec9e4e015c7875a</string>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
@@ -64,5 +61,7 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>사진 권한 필요</string>
 </dict>
 </plist>
