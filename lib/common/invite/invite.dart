@@ -79,7 +79,7 @@ class InviteView extends StatelessWidget {
         showMySimpleDialog(
           context: context,
           title: '카카오톡 공유 실패',
-          content: '카카오톡이 설치되어 있지 않거나, 모바일 기기가 아닙니다.\n오류 : $error',
+          content: '카카오톡이 설치되어 있지 않습니다.',
         );
         print('카카오톡 공유 실패 $error');
       }
