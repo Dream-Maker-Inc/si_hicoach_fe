@@ -82,6 +82,7 @@ class _Detail extends MyGetXState<MypageEditView, MyCompanyEditViewModel> {
     super.initState();
 
     vm.initialCompanyName.value = widget.companyName;
+    vm.companyName.value = widget.companyName;
 
     vm.updateMyCompanyResponse.listen((res) {
       if (res == false) return;
