@@ -7,7 +7,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>Si Hicoach Fe</string>
+	<string>하이코치</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -31,8 +31,7 @@
 			<string>Kakao</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>kakao</string>
-				<string>02cfb74cf149bdc54ec9e4e015c7875a</string>
+				<string>kakao005ade5c53d77bbb48335bfcb671a7e1</string>
 			</array>
 		</dict>
 	</array>
