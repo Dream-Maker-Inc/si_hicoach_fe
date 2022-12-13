@@ -1,4 +1,4 @@
-# si_hicoach_fe
+# si_hicoach
 
 HiCoach FrontEnd w/Flutter
 

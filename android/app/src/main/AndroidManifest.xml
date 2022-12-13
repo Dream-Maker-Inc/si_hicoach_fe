@@ -1,8 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="im.ureca.si_hicoach_fe">
+    package="im.ureca.si_hicoach">
 
     <application
-        android:label="si_hicoach_fe"
+        android:label="하이코치"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon"
         android:usesCleartextTraffic="true"

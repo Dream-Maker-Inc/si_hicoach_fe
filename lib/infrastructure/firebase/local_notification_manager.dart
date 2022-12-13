@@ -12,7 +12,7 @@ const _androidChannel = AndroidNotificationChannel(
 
 // 로컬 푸시 플러그인 초기 설정
 const InitializationSettings initializationSettings = InitializationSettings(
-    android: AndroidInitializationSettings('@mipmap/ic_launcher'),
+    android: AndroidInitializationSettings('@mipmap/launcher_icon'),
     iOS: DarwinInitializationSettings());
 
 /// 로컬 푸시 기능 관리 클래스
@@ -76,7 +76,7 @@ class LocalNotificationsManager {
       _androidChannel.id,
       _androidChannel.name,
       channelDescription: _androidChannel.description,
-      icon: '@mipmap/ic_launcher',
+      icon: '@mipmap/launcher_icon',
     );
 
     const iosNotiDetails = DarwinNotificationDetails(

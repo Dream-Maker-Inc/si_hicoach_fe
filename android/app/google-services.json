@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "1095060398386",
-    "project_id": "hicoach-test",
-    "storage_bucket": "hicoach-test.appspot.com"
+    "project_number": "962896654060",
+    "project_id": "hicoach-4e199",
+    "storage_bucket": "hicoach-4e199.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1095060398386:android:92dafba191ae25bec8f72b",
+        "mobilesdk_app_id": "1:962896654060:android:8a3d2ea09f12a0e75c7fc9",
         "android_client_info": {
-          "package_name": "im.ureca.si_hicoach_fe"
+          "package_name": "im.ureca.si_hicoach"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1095060398386-ol2fjli8kttrjrl6481moiq2mgarqpvc.apps.googleusercontent.com",
+          "client_id": "962896654060-jf8cd0jokddo2h08uplhcjhmkftr2atv.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBoHH6hquhyvK4KaaBCM75volHxfKKQqGM"
+          "current_key": "AIzaSyCumgFIZMLCFsg6FcSL11zVGsMzR_z6kx8"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1095060398386-ol2fjli8kttrjrl6481moiq2mgarqpvc.apps.googleusercontent.com",
+              "client_id": "962896654060-jf8cd0jokddo2h08uplhcjhmkftr2atv.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
