@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>1095060398386-3vhb5qi63un42kpms1b10tgpice4m1b2.apps.googleusercontent.com</string>
+	<string>962896654060-nncg78csa5h9p9a3f15o4h1jagpvj5ss.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.1095060398386-3vhb5qi63un42kpms1b10tgpice4m1b2</string>
+	<string>com.googleusercontent.apps.962896654060-nncg78csa5h9p9a3f15o4h1jagpvj5ss</string>
 	<key>API_KEY</key>
-	<string>AIzaSyDSz1Oktv3yZP94rPDxQYSOyKdJMHzF1i8</string>
+	<string>AIzaSyB5Kp9692lhQXcJYGzWDW4i-Sxtlpeza6M</string>
 	<key>GCM_SENDER_ID</key>
-	<string>1095060398386</string>
+	<string>962896654060</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>im.ureca.siHicoachFe</string>
+	<string>im.ureca.si-hicoach</string>
 	<key>PROJECT_ID</key>
-	<string>hicoach-test</string>
+	<string>hicoach-4e199</string>
 	<key>STORAGE_BUCKET</key>
-	<string>hicoach-test.appspot.com</string>
+	<string>hicoach-4e199.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:1095060398386:ios:80da46acbdd559ddc8f72b</string>
+	<string>1:962896654060:ios:8cb05dbcb227f20d5c7fc9</string>
 </dict>
 </plist>

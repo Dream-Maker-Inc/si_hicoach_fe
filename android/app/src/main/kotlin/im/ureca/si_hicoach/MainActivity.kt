@@ -1,4 +1,4 @@
-package im.ureca.si_hicoach_fe
+package im.ureca.si_hicoach
 
 import io.flutter.embedding.android.FlutterActivity
 

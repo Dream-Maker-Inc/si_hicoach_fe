@@ -50,20 +50,21 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyBoHH6hquhyvK4KaaBCM75volHxfKKQqGM',
-    appId: '1:1095060398386:android:92dafba191ae25bec8f72b',
-    messagingSenderId: '1095060398386',
-    projectId: 'hicoach-test',
-    storageBucket: 'hicoach-test.appspot.com',
+    apiKey: 'AIzaSyCumgFIZMLCFsg6FcSL11zVGsMzR_z6kx8',
+    appId: '1:962896654060:android:7c5879462b6f34785c7fc9',
+    messagingSenderId: '962896654060',
+    projectId: 'hicoach-4e199',
+    storageBucket: 'hicoach-4e199.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDSz1Oktv3yZP94rPDxQYSOyKdJMHzF1i8',
-    appId: '1:1095060398386:ios:80da46acbdd559ddc8f72b',
-    messagingSenderId: '1095060398386',
-    projectId: 'hicoach-test',
-    storageBucket: 'hicoach-test.appspot.com',
-    iosClientId: '1095060398386-3vhb5qi63un42kpms1b10tgpice4m1b2.apps.googleusercontent.com',
-    iosBundleId: 'im.ureca.siHicoachFe',
+    apiKey: 'AIzaSyB5Kp9692lhQXcJYGzWDW4i-Sxtlpeza6M',
+    appId: '1:962896654060:ios:5a0329c15b9f59f05c7fc9',
+    messagingSenderId: '962896654060',
+    projectId: 'hicoach-4e199',
+    storageBucket: 'hicoach-4e199.appspot.com',
+    iosClientId:
+        '962896654060-icbtj4poqc0m1qgg34p332tulir3c82p.apps.googleusercontent.com',
+    iosBundleId: 'im.ureca.hicoach',
   );
 }
