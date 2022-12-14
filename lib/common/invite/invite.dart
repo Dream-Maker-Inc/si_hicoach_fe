@@ -76,11 +76,6 @@ class InviteView extends StatelessWidget {
         );
         await launchBrowserTab(shareUrl, popupOpen: true);
       } catch (error) {
-        showMySimpleDialog(
-          context: context,
-          title: '카카오톡 공유 실패',
-          content: '카카오톡이 설치되어 있지 않습니다.',
-        );
         print('카카오톡 공유 실패 $error');
       }
     }
