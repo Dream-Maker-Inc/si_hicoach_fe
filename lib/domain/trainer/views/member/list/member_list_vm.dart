@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/list/member_list.dart';
 import 'package:si_hicoach_fe/infrastructure/page/trainer/members/dto/get_members_page_response.dart';
 import 'package:si_hicoach_fe/infrastructure/page/trainer/members/trainer_members_page_api.dart';
@@ -18,15 +17,19 @@ class MemberListViewModel extends GetxController {
     }
   }
 
+  // 수강중 멤버 목록
   List<MemberProps> get inClassMembers =>
       _inClassMembers.map(_mapToMemberProps).toList();
 
+  // 수강중 멤버 수
   int get _totalInClassMemberCount =>
       _getInClassMembersResponse.value?.data.metaData.totalItemCount ?? 0;
 
+  // 수강 완료 멤버 목록
   List<MemberProps> get finishedMembers =>
       _finishedMembers.map(_mapToMemberProps).toList();
 
+  // 수강 완료 멤버 수
   int get _totalFinishedMembersCount =>
       _getFinishedMembersResponse.value?.data.metaData.totalItemCount ?? 0;
 
@@ -34,7 +37,7 @@ class MemberListViewModel extends GetxController {
     return MemberProps(
         id: items.member.id,
         name: items.member.name,
-        matchedDate: _formatDate(items.matching.createdAt),
+        matchedDate: items.matching.createdAtLabel,
         latestStudyRound:
             items.latestStudy?.round ?? (items.totalStudyCount + 1),
         totalStudyCount: items.matching.ticketCount);
@@ -95,13 +98,5 @@ class MemberListViewModel extends GetxController {
     if (index == 1) {
       return fetchFinishedMembers();
     }
-  }
-
-  //
-  String _formatDate(String dateString) {
-    final DateFormat formatter = DateFormat('yyyy년 MM월 dd일');
-    final date = DateTime.parse(dateString);
-
-    return formatter.format(date);
   }
 }

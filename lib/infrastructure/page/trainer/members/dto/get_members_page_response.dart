@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:si_hicoach_fe/common/utils/date_format.dart';
 import 'package:si_hicoach_fe/infrastructure/common/base_response.dart';
 import 'package:si_hicoach_fe/infrastructure/common/meta_data_response.dart';
 
@@ -77,8 +78,10 @@ class Matching {
   });
 
   late final int id;
-  late final String createdAt;
+  late final DateTime createdAt;
   late final int ticketCount;
+
+  get createdAtLabel => createdAt.toKoreanFormat;
 
   factory Matching.fromJson(Map<String, dynamic> json) =>
       _$MatchingFromJson(json);

@@ -48,7 +48,7 @@ class _WeeklyCalendarViewState extends _Detail {
     }
 
     return Obx(() {
-      final weeks = vm.weeks;
+      final weeks = vm.weekModels;
       final targetWeekId = vm.targetWeek.value;
 
       if (targetWeekId.isEmpty) return Container();

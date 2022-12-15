@@ -5,6 +5,7 @@ import 'package:si_hicoach_fe/domain/calendar/weekly/components/item.dart';
 import 'package:si_hicoach_fe/common/theme/typography.dart';
 import 'package:si_hicoach_fe/domain/calendar/weekly/weekly_calendar_vm.dart';
 import 'package:si_hicoach_fe/domain/study/detail/detail.dart';
+import 'package:si_hicoach_fe/domain/trainer/views/member/list-popup/member_list_popup.dart';
 
 const dayTimeCount = 24;
 const weekDays = [7, 1, 2, 3, 4, 5, 6];
@@ -63,17 +64,20 @@ class _WeeklyCalendarState extends State<WeeklyCalendar> {
   _buildWeeklyCalendarItems() {
     final weekStudyItems = vm.weekStudyItems;
 
+    // 각 요일 박스 가로 순차 렌더링
     buildWeekDays(int time) => weekDays.map((weekDay) {
-          final weekStudyItem = weekStudyItems.firstWhereOrNull(
+          final targetStudyItem = weekStudyItems.firstWhereOrNull(
               (it) => (it.startedTime == time) && (it.weekDay == weekDay));
 
-          if (weekStudyItem == null) return WeeklyCalendarItem();
+          if (targetStudyItem == null) {
+            return _buildEmptyWeekdayItem(weekDay: weekDay, time: time);
+          }
 
           return WeeklyCalendarItem(
             props: WeeklyCalendarItemProps(
-                name: weekStudyItem.title,
+                name: targetStudyItem.title,
                 onClick: () =>
-                    handleWeeklyCalendarItemClick(weekStudyItem.studyId)),
+                    handleWeeklyCalendarItemClick(targetStudyItem.studyId)),
           );
         }).toList();
 
@@ -83,6 +87,24 @@ class _WeeklyCalendarState extends State<WeeklyCalendar> {
         children: <Widget>[_buildTimeItem(time), ...buildWeekDays(time)],
       ),
     );
+  }
+
+  // 캘린더 아이템이 없을 때, 대체 컴포넌트
+  Widget _buildEmptyWeekdayItem({required int time, required int weekDay}) {
+    final targetDate = vm.findDayByWeekDay(weekDay);
+    final targetDateTime =
+        DateTime(targetDate.year, targetDate.month, targetDate.day, time);
+
+    return InkWell(
+        onTap: () {
+          Get.dialog(
+              MemberListPopup(
+                targetDateTime: targetDateTime,
+                onSuccess: () => vm.fetchMemberStudies(),
+              ),
+              barrierDismissible: true);
+        },
+        child: WeeklyCalendarItem());
   }
 
   _buildTimeItem(int index) {
@@ -103,13 +125,9 @@ class _WeeklyCalendarState extends State<WeeklyCalendar> {
   }
 
   handleWeeklyCalendarItemClick(int studyId) {
-    Navigator.of(context)
-        .push(
-          MaterialPageRoute(
-            builder: (BuildContext context) =>
-                StudyDetailView(studyId: studyId, isMemberDetailEnabled: false),
-          ),
-        )
-        .then((_) => vm.fetchMemberStudies());
+    Get.to(StudyDetailView(
+      studyId: studyId,
+      isMemberDetailEnabled: false,
+    ))?.then((_) => vm.fetchMemberStudies());
   }
 }

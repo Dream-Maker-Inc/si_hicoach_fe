@@ -34,7 +34,11 @@ class StudyApi {
 
       String path = '/api/v2/study/$studyId';
 
-      await dio.put(path, data: dto.toMap());
+      final res = await dio.put(path, data: dto.toMap());
+
+      if (res.data?['statusCode'] == StatusCode.existStudy.code) {
+        return Error(ExistStudyException());
+      }
 
       return const Success(true);
     });

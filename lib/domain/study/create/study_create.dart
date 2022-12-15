@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:si_hicoach_fe/common/components/dialog.dart';
@@ -10,12 +12,15 @@ class StudyCreateView extends StatefulWidget {
   final int matchingId;
   final int nextStudyRound;
   final int totalTicketCount;
+  DateTime? targetDateTime = DateTime.now();
 
-  const StudyCreateView(
-      {super.key,
-      required this.matchingId,
-      required this.nextStudyRound,
-      required this.totalTicketCount});
+  StudyCreateView({
+    super.key,
+    required this.matchingId,
+    required this.nextStudyRound,
+    required this.totalTicketCount,
+    this.targetDateTime,
+  });
 
   @override
   State<StudyCreateView> createState() => _StudyCreateViewState();
@@ -31,13 +36,20 @@ class _StudyCreateViewState extends _Detail {
 }
 
 class _Detail extends MyGetXState<StudyCreateView, StudyCreateViewModel> {
+  // 뷰모델 초기값 설정
+  _setInitialViewModelData() {
+    vm.targetDate.value = widget.targetDateTime!;
+    vm.setStudyTime(widget.targetDateTime!.hour);
+    vm.matchingId = widget.matchingId;
+    vm.nextStudyRound.value = widget.nextStudyRound;
+    vm.totalStudyCount.value = widget.totalTicketCount;
+  }
+
   @override
   void initState() {
     super.initState();
 
-    vm.matchingId = widget.matchingId;
-    vm.nextStudyRound.value = widget.nextStudyRound;
-    vm.totalStudyCount.value = widget.totalTicketCount;
+    _setInitialViewModelData();
 
     vm.createStudySuccess.listen((isSuccess) {
       if (isSuccess == false) return;

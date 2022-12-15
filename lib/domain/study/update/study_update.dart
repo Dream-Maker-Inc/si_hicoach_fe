@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:si_hicoach_fe/common/components/dialog.dart';
+import 'package:si_hicoach_fe/common/exceptions/common_exceptions.dart';
 import 'package:si_hicoach_fe/common/getx/my_getx_state.dart';
 import 'package:si_hicoach_fe/domain/study/common/templates/study_form.dart';
 import 'package:si_hicoach_fe/domain/study/update/study_update_vm.dart';
@@ -50,6 +51,16 @@ class _Detail extends MyGetXState<StudyUpdateView, StudyUpdateViewModel> {
 
     vm.apiError.listen((e) {
       if (e == null) return;
+
+      if (e is ExistStudyException) {
+        return showMySimpleDialog(
+            context: context,
+            title: '수정 실패',
+            content: "이미 해당 시간에 예약된 스터디가 존재합니다.",
+            onConfirm: () {
+              Get.back();
+            });
+      }
 
       showMySimpleDialog(
           context: context,

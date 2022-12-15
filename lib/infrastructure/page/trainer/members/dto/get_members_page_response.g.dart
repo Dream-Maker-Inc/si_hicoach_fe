@@ -64,13 +64,13 @@ Map<String, dynamic> _$MemberToJson(Member instance) => <String, dynamic>{
 
 Matching _$MatchingFromJson(Map<String, dynamic> json) => Matching(
       id: json['id'] as int,
-      createdAt: json['createdAt'] as String,
+      createdAt: DateTime.parse(json['createdAt'] as String),
       ticketCount: json['ticketCount'] as int,
     );
 
 Map<String, dynamic> _$MatchingToJson(Matching instance) => <String, dynamic>{
       'id': instance.id,
-      'createdAt': instance.createdAt,
+      'createdAt': instance.createdAt.toIso8601String(),
       'ticketCount': instance.ticketCount,
     };
 

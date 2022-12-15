@@ -12,7 +12,7 @@ int getThisMonthWeeks() {
   final firstWeekdayOfThisMonth = firstDayOfThisMonth.weekday;
 
   // 이번 달의 총 day의 수
-  final days = (DateTime(now.year, now.month, 0).day) + 1;
+  final days = (DateTime(now.year, now.month + 1, 0).day);
 
   // 이번 달의 총 week 수
   final weekOfThisMonth = ((firstWeekdayOfThisMonth + days) / oneWeek).ceil();
@@ -20,7 +20,8 @@ int getThisMonthWeeks() {
   return weekOfThisMonth;
 }
 
-List<DateTime> getCalendarVisibleDate() {
+// 캘린더에서 보여져야 할 저번 달의 날짜들
+List<DateTime> getCalendarLastMonthVisibleDate() {
   final now = DateTime.now();
 
   // 이번 달의 시작일
@@ -29,17 +30,29 @@ List<DateTime> getCalendarVisibleDate() {
   // 저번 달의 마지막 일
   final lastDayOfLastMonth = DateTime(now.year, now.month, -1);
 
-  // 이번 달의 총 day의 수
-  final days = (DateTime(now.year, now.month, 0).day) + 1;
-
   // 이번 달의 시작 일의 weekday 인덱스
   final firstWeekdayOfThisMonth = firstDayOfThisMonth.weekday;
 
   // 캘린더에 보여야 할 저번 달의 days
   final dateListOfLastMonth = List.generate(
-      firstWeekdayOfThisMonth,
-      (index) => DateTime(lastDayOfLastMonth.year, lastDayOfLastMonth.month + 1,
-          -(index + 1))).reversed;
+          firstWeekdayOfThisMonth,
+          (index) => DateTime(
+              lastDayOfLastMonth.year, lastDayOfLastMonth.month + 1, -(index)))
+      .reversed
+      .toList();
+
+  return dateListOfLastMonth;
+}
+
+// 캘린더에서 보여져야 할 모든 날짜들
+List<DateTime> getCalendarVisibleDate() {
+  final now = DateTime.now();
+
+  // 이번 달의 총 day의 수
+  final days = (DateTime(now.year, now.month + 1, 0).day);
+
+  // 캘린더에 보여야 할 저번 달의 days
+  final dateListOfLastMonth = getCalendarLastMonthVisibleDate();
 
   // 이번 달 days
   final daysOfThisMonth =
