@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:si_hicoach_fe/common/shared_preferences/key.dart';
 
-// String url = 'http://hicoch-alb-1137226405.ap-northeast-2.elb.amazonaws.com';
+// String url = 'http://9479-218-236-78-53.ngrok.io';
 String url = 'http://hicoch-alb-1137226405.ap-northeast-2.elb.amazonaws.com';
 
 BaseOptions _options = BaseOptions(baseUrl: url);

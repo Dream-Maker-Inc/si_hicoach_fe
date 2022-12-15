@@ -1,12 +1,11 @@
 import 'package:intl/intl.dart';
 
 class SimpleTime {
+  DateTime? date;
   int hour;
   int minute;
 
-  SimpleTime({required this.hour, this.minute = 0});
-
-  _toTwoDigitOrNothing(int number) => (number > 9) ? '$number' : '0$number';
+  SimpleTime({this.date, required this.hour, this.minute = 0});
 
   getTime() {
     return "$hour시 $minute분";
@@ -17,8 +16,8 @@ class SimpleTime {
   }
 
   DateTime getDate() {
-    final now = DateTime.now();
-    final today = DateTime(now.year, now.month, now.day, hour, minute);
+    final date = this.date!;
+    final today = DateTime(date.year, date.month, date.day, hour, minute);
 
     return today;
   }

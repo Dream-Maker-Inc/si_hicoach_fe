@@ -5,7 +5,6 @@ import 'package:si_hicoach_fe/common/components/divider.dart';
 import 'package:si_hicoach_fe/common/constants/constants.dart';
 import 'package:si_hicoach_fe/domain/study/common/components/exercise.dart';
 import 'package:si_hicoach_fe/domain/study/common/components/exercise_item.dart';
-import 'package:si_hicoach_fe/domain/study/common/components/time/simple_time.dart';
 import 'package:si_hicoach_fe/domain/study/common/components/time/time.dart';
 import 'package:si_hicoach_fe/domain/study/common/components/memo.dart';
 import 'package:si_hicoach_fe/domain/study/common/templates/study_form_vm.dart';
@@ -63,6 +62,7 @@ class _StudyFormState extends State<StudyForm> {
     );
   }
 
+  // 제출 버튼
   _buildSubmitButton() {
     return Obx(() {
       final disabled = vm.submitButtonDisabled;
@@ -75,9 +75,10 @@ class _StudyFormState extends State<StudyForm> {
     });
   }
 
+  // 스터디 시간 설정 섹션
   _buildTimeSection() {
-    handleTimeSelect(SimpleTime time) {
-      vm.studyTime.value = time;
+    handleTimeSelect(int hour) {
+      vm.setStudyTime(hour);
     }
 
     return Obx(() {
@@ -90,6 +91,7 @@ class _StudyFormState extends State<StudyForm> {
     });
   }
 
+  // 내 운동 목록 설정 섹션
   _buildEditExerciseSection() {
     final handleAddExercise = vm.addExerciseItem;
 
@@ -118,6 +120,7 @@ class _StudyFormState extends State<StudyForm> {
     });
   }
 
+  // 메모 섹션
   _buildEditMemoSection() {
     handleMemoChange(String v) {
       vm.memo.value = v;

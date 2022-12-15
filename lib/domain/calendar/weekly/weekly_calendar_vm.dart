@@ -1,15 +1,38 @@
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:si_hicoach_fe/common/shared_preferences/key.dart';
+import 'package:si_hicoach_fe/common/utils/calendar.dart';
 import 'package:si_hicoach_fe/domain/calendar/models/week.dart';
 import 'package:si_hicoach_fe/domain/calendar/models/week_study_item.dart';
 import 'package:si_hicoach_fe/infrastructure/study/dto/get_weekly_calendar_response.dart';
 import 'package:si_hicoach_fe/infrastructure/study/study_api.dart';
+import "package:collection/collection.dart";
 
 class WeeklyCalendarViewModel extends _FetchController {
   RxString targetWeek = RxString('');
+  int get targetWeekValue => int.parse(targetWeek.value);
 
-  List<WeekModel> get weeks {
+  // 현재 선택된 월 week의 date 목록을 리턴
+  List<DateTime> get daysOfTargetWeek {
+    final dates = getCalendarVisibleDate();
+
+    int index = 1;
+    final daysOfWeeks = dates.groupListsBy((it) {
+      return (index++ / 7).ceil();
+    });
+
+    return daysOfWeeks[targetWeekValue] ?? [];
+  }
+
+  // 현재 선택된 월 week dates에서 weekday로 선택
+  DateTime findDayByWeekDay(int weekDay) {
+    final index = (weekDay >= 7) ? 0 : weekDay;
+
+    return daysOfTargetWeek[index];
+  }
+
+  // 월 week UI 모델
+  List<WeekModel> get weekModels {
     final now = DateTime.now();
     final days = DateTime(now.year, now.month, 0).day;
     final weeks = (days / 7).ceil();
@@ -18,6 +41,7 @@ class WeeklyCalendarViewModel extends _FetchController {
         weeks, (index) => WeekModel(month: now.month, week: index + 1));
   }
 
+  // 스터디 아이템 UI 모델
   List<WeekStudyItemModel> get weekStudyItems {
     final targetWeek = this.targetWeek.value;
 

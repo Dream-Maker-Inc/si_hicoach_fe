@@ -24,7 +24,7 @@ class EditTime extends StatelessWidget {
   }) : super(key: key);
 
   final EditTimeModel model;
-  final Function(SimpleTime time) onTimeSelect;
+  final Function(int time) onTimeSelect;
 
   final times = List.generate(24, ((index) => SimpleTime(hour: index)));
 
@@ -44,7 +44,7 @@ class EditTime extends StatelessWidget {
   }
 
   _handleTimeSelect(int index) {
-    onTimeSelect(times[index]);
+    onTimeSelect(times[index].hour);
   }
 
   @override
