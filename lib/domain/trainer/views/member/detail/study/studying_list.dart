@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:si_hicoach_fe/common/components/empty_patch.dart';
-import 'package:si_hicoach_fe/domain/study/create/study_create.dart';
+import 'package:si_hicoach_fe/domain/common/study/create/study_create.dart';
 import 'package:si_hicoach_fe/common/theme/color.dart';
 import 'package:si_hicoach_fe/common/utils/date_format.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/detail/detail_vm.dart';

@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:kakao_flutter_sdk_share/kakao_flutter_sdk_share.dart';
 import 'package:si_hicoach_fe/common/theme/checkbox.dart';
 import 'package:si_hicoach_fe/common/theme/color.dart';
-import 'package:si_hicoach_fe/domain/splash/splash.dart';
+import 'package:si_hicoach_fe/domain/common/splash/splash.dart';
 import 'package:si_hicoach_fe/infrastructure/firebase/helper/firebase_initializer.dart';
 import 'package:si_hicoach_fe/secret/secret.dart';
 

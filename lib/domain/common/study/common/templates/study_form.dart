@@ -3,11 +3,11 @@ import 'package:get/get.dart';
 import 'package:si_hicoach_fe/common/components/app_bar.dart';
 import 'package:si_hicoach_fe/common/components/divider.dart';
 import 'package:si_hicoach_fe/common/constants/constants.dart';
-import 'package:si_hicoach_fe/domain/study/common/components/exercise.dart';
-import 'package:si_hicoach_fe/domain/study/common/components/exercise_item.dart';
-import 'package:si_hicoach_fe/domain/study/common/components/time/time.dart';
-import 'package:si_hicoach_fe/domain/study/common/components/memo.dart';
-import 'package:si_hicoach_fe/domain/study/common/templates/study_form_vm.dart';
+import 'package:si_hicoach_fe/domain/common/study/common/components/exercise.dart';
+import 'package:si_hicoach_fe/domain/common/study/common/components/exercise_item.dart';
+import 'package:si_hicoach_fe/domain/common/study/common/components/time/time.dart';
+import 'package:si_hicoach_fe/domain/common/study/common/components/memo.dart';
+import 'package:si_hicoach_fe/domain/common/study/common/templates/study_form_vm.dart';
 
 class StudyForm extends StatefulWidget {
   final String formTitle;

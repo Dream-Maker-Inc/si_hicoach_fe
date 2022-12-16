@@ -9,7 +9,7 @@ import 'package:si_hicoach_fe/common/utils/get_date_time.dart';
 import 'package:si_hicoach_fe/domain/calendar/monthly/header.dart';
 import 'package:si_hicoach_fe/domain/calendar/monthly/item.dart';
 import 'package:si_hicoach_fe/domain/calendar/monthly/monthly_calendar_vm.dart';
-import 'package:si_hicoach_fe/domain/study/detail/detail.dart';
+import 'package:si_hicoach_fe/domain/common/study/detail/detail.dart';
 
 const weekDays = [7, 1, 2, 3, 4, 5, 6];
 

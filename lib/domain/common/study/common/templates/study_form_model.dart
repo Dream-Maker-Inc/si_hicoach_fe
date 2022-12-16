@@ -1,4 +1,4 @@
-import 'package:si_hicoach_fe/domain/study/common/components/exercise_item.dart';
+import 'package:si_hicoach_fe/domain/common/study/common/components/exercise_item.dart';
 
 class StudyFormModel {
   final int studyRound;

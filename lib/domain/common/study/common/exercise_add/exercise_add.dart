@@ -6,7 +6,7 @@ import 'package:si_hicoach_fe/common/components/divider.dart';
 import 'package:si_hicoach_fe/common/components/list_tile.dart';
 import 'package:si_hicoach_fe/common/constants/constants.dart';
 import 'package:si_hicoach_fe/common/getx/my_getx_state.dart';
-import 'package:si_hicoach_fe/domain/study/common/exercise_add/exercise_add_vm.dart';
+import 'package:si_hicoach_fe/domain/common/study/common/exercise_add/exercise_add_vm.dart';
 
 class ExerciseAddView extends StatefulWidget {
   const ExerciseAddView({Key? key}) : super(key: key);

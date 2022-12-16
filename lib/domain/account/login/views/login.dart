@@ -11,7 +11,7 @@ import 'package:si_hicoach_fe/common/theme/typography.dart';
 import 'package:si_hicoach_fe/domain/account/login/views/login_vm.dart';
 import 'package:si_hicoach_fe/domain/member/views/base.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/base.dart';
-import 'package:si_hicoach_fe/pages/account/signup/signup_page.dart';
+import 'package:si_hicoach_fe/domain/account/sign_up/views/signup_page.dart';
 import 'package:get/get.dart';
 
 class LoginView extends StatefulWidget {

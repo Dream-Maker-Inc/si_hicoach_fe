@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/common/theme/color.dart';
 import 'package:si_hicoach_fe/common/theme/typography.dart';
-import 'package:si_hicoach_fe/domain/study/common/components/time/simple_time.dart';
+import 'package:si_hicoach_fe/domain/common/study/common/components/time/simple_time.dart';
 
 class EditTimeModel {
   final SimpleTime time;

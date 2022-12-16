@@ -5,7 +5,7 @@ import 'package:si_hicoach_fe/common/components/dialog.dart';
 import 'package:si_hicoach_fe/common/components/empty_patch.dart';
 import 'package:si_hicoach_fe/common/getx/my_getx_state.dart';
 import 'package:si_hicoach_fe/domain/member/views/my/memo/memo_vm.dart';
-import 'package:si_hicoach_fe/domain/study/detail/detail.dart';
+import 'package:si_hicoach_fe/domain/common/study/detail/detail.dart';
 
 class MemoListView extends StatefulWidget {
   const MemoListView({Key? key}) : super(key: key);

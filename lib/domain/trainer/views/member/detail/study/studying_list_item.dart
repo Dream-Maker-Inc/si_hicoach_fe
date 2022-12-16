@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:si_hicoach_fe/domain/study/detail/detail.dart';
+import 'package:si_hicoach_fe/domain/common/study/detail/detail.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/detail/detail_vm.dart';
 
 class StudyingListItemModel {

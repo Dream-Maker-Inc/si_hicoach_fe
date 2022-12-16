@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:si_hicoach_fe/domain/study/common/templates/study_form_vm.dart';
+import 'package:si_hicoach_fe/domain/common/study/common/templates/study_form_vm.dart';
 import 'package:si_hicoach_fe/infrastructure/study/dto/mutation/mutate_study_dto.dart';
 import 'package:si_hicoach_fe/infrastructure/study/study_api.dart';
 

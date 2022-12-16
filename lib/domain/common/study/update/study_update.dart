@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import 'package:si_hicoach_fe/common/components/dialog.dart';
 import 'package:si_hicoach_fe/common/exceptions/common_exceptions.dart';
 import 'package:si_hicoach_fe/common/getx/my_getx_state.dart';
-import 'package:si_hicoach_fe/domain/study/common/templates/study_form.dart';
-import 'package:si_hicoach_fe/domain/study/update/study_update_vm.dart';
+import 'package:si_hicoach_fe/domain/common/study/common/templates/study_form.dart';
+import 'package:si_hicoach_fe/domain/common/study/update/study_update_vm.dart';
 
 class StudyUpdateView extends StatefulWidget {
   final int studyId;

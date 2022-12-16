@@ -6,7 +6,7 @@ import 'package:si_hicoach_fe/common/components/alert.dart';
 import 'package:si_hicoach_fe/common/components/app_bar.dart';
 import 'package:si_hicoach_fe/common/components/dialog.dart';
 import 'package:si_hicoach_fe/common/components/divider.dart';
-import 'package:si_hicoach_fe/domain/study/create/study_create.dart';
+import 'package:si_hicoach_fe/domain/common/study/create/study_create.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/detail/detail_vm.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/detail/information/information.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/detail/study/studying_list.dart';

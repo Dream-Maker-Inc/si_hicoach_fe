@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:si_hicoach_fe/common/utils/date_format.dart';
-import 'package:si_hicoach_fe/domain/study/common/components/exercise_item.dart';
+import 'package:si_hicoach_fe/domain/common/study/common/components/exercise_item.dart';
 import 'package:si_hicoach_fe/infrastructure/study/dto/get_member_study.response.dart';
 import 'package:si_hicoach_fe/infrastructure/study/study_api.dart';
 

@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
-import 'package:si_hicoach_fe/domain/study/common/components/exercise_item.dart';
-import 'package:si_hicoach_fe/domain/study/common/templates/study_form_model.dart';
-import 'package:si_hicoach_fe/domain/study/common/templates/study_form_vm.dart';
+import 'package:si_hicoach_fe/domain/common/study/common/components/exercise_item.dart';
+import 'package:si_hicoach_fe/domain/common/study/common/templates/study_form_model.dart';
+import 'package:si_hicoach_fe/domain/common/study/common/templates/study_form_vm.dart';
 import 'package:si_hicoach_fe/infrastructure/study/dto/get_member_study.response.dart';
 import 'package:si_hicoach_fe/infrastructure/study/dto/mutation/mutate_study_dto.dart'
     as mutate;

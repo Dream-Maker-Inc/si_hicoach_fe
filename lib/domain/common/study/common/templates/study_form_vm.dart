@@ -1,8 +1,8 @@
 import 'package:get/get.dart';
-import 'package:si_hicoach_fe/domain/study/common/components/exercise_item.dart';
-import 'package:si_hicoach_fe/domain/study/common/components/time/simple_time.dart';
-import 'package:si_hicoach_fe/domain/study/common/components/time/time.dart';
-import 'package:si_hicoach_fe/domain/study/common/templates/study_form_model.dart';
+import 'package:si_hicoach_fe/domain/common/study/common/components/exercise_item.dart';
+import 'package:si_hicoach_fe/domain/common/study/common/components/time/simple_time.dart';
+import 'package:si_hicoach_fe/domain/common/study/common/components/time/time.dart';
+import 'package:si_hicoach_fe/domain/common/study/common/templates/study_form_model.dart';
 import 'package:si_hicoach_fe/infrastructure/exercises/exercise_item/dto/get_exercise_items_response.dart';
 
 class StudyFormViewModel extends GetxController {

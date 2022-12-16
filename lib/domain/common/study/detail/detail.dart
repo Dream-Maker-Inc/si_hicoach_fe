@@ -7,13 +7,13 @@ import 'package:si_hicoach_fe/common/constants/constants.dart';
 import 'package:si_hicoach_fe/common/exceptions/common_exceptions.dart';
 import 'package:si_hicoach_fe/common/getx/my_getx_state.dart';
 import 'package:si_hicoach_fe/domain/account/login/views/login.dart';
-import 'package:si_hicoach_fe/domain/study/common/components/exercise_item.dart';
-import 'package:si_hicoach_fe/domain/study/detail/components/exercise.dart';
-import 'package:si_hicoach_fe/domain/study/detail/components/memo.dart';
-import 'package:si_hicoach_fe/domain/study/detail/components/time.dart';
+import 'package:si_hicoach_fe/domain/common/study/common/components/exercise_item.dart';
+import 'package:si_hicoach_fe/domain/common/study/detail/components/exercise.dart';
+import 'package:si_hicoach_fe/domain/common/study/detail/components/memo.dart';
+import 'package:si_hicoach_fe/domain/common/study/detail/components/time.dart';
 import 'package:si_hicoach_fe/common/theme/typography.dart';
-import 'package:si_hicoach_fe/domain/study/detail/study_detail_vm.dart';
-import 'package:si_hicoach_fe/domain/study/update/study_update.dart';
+import 'package:si_hicoach_fe/domain/common/study/detail/study_detail_vm.dart';
+import 'package:si_hicoach_fe/domain/common/study/update/study_update.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/detail/detail.dart';
 
 class StudyDetailView extends StatefulWidget {
