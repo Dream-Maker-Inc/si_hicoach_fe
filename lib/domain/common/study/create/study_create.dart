@@ -12,7 +12,7 @@ class StudyCreateView extends StatefulWidget {
   final int matchingId;
   final int nextStudyRound;
   final int totalTicketCount;
-  DateTime? targetDateTime = DateTime.now();
+  DateTime? targetDateTime;
 
   StudyCreateView({
     super.key,
@@ -38,8 +38,10 @@ class _StudyCreateViewState extends _Detail {
 class _Detail extends MyGetXState<StudyCreateView, StudyCreateViewModel> {
   // 뷰모델 초기값 설정
   _setInitialViewModelData() {
-    vm.targetDate.value = widget.targetDateTime!;
-    vm.setStudyTime(widget.targetDateTime!.hour);
+    final targetDate = widget.targetDateTime ?? DateTime.now();
+
+    vm.targetDate.value = targetDate;
+    vm.setStudyTime(targetDate.hour);
     vm.matchingId = widget.matchingId;
     vm.nextStudyRound.value = widget.nextStudyRound;
     vm.totalStudyCount.value = widget.totalTicketCount;
