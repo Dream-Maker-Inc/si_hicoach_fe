@@ -48,7 +48,10 @@ class _LoginViewState extends _Detail {
                 textAlign: TextAlign.center,
               ),
             ),
-            const Image(image: AssetImage('assets/logo.png')),
+            const Image(
+              image: AssetImage('assets/logo.png'),
+              width: 260,
+            ),
             Container(
               padding: const EdgeInsets.only(
                 top: 90,
