@@ -40,7 +40,7 @@ class _CalendarState extends State<Calendar> {
                         highlight: int.parse(it.substring(8)) == targetDay
                             ? true
                             : false,
-                        // onTap: () => _handleDayPressed(it),
+                        onTap: () => _handleDayPressed(it),
                       ),
                     ),
                   )

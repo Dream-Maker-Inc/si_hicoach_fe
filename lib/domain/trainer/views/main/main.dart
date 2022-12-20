@@ -26,7 +26,7 @@ class _TrainerMainViewState extends _Detail {
 
     return Obx(() {
       final memberName = vm.memberName;
-      final targetDate = vm.targetDate.value;
+      final targetDate = DateTime.now();
 
       return Scaffold(
         appBar: const CustomAppBarWithLogo(titleText: '메인'),
