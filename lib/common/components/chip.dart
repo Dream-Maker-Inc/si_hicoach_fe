@@ -25,8 +25,9 @@ class CustomChip extends StatelessWidget {
   ButtonStyle _buildButtonStyle() {
     return ButtonStyle(
       backgroundColor: MaterialStateProperty.all(
-        isChecked ? primaryColor : colorScheme.onPrimary,
+        isChecked ? primaryColor : const Color(0xffF0F1F8),
       ),
+      elevation: MaterialStateProperty.all(0),
     );
   }
 

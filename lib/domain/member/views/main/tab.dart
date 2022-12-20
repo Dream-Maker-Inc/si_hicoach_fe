@@ -62,12 +62,9 @@ class _MemberMainTabState extends State<MemberMainTab>
       );
     }
 
-    return Expanded(
-      flex: 1,
-      child: Scaffold(
-        appBar: memberMainAppBar(),
-        body: TabBarView(controller: tabController, children: tabBar),
-      ),
+    return Scaffold(
+      appBar: memberMainAppBar(),
+      body: TabBarView(controller: tabController, children: tabBar),
     );
   }
 

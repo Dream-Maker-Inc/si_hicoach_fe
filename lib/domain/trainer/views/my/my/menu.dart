@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:si_hicoach_fe/common/components/alert.dart';
 import 'package:si_hicoach_fe/common/components/divider.dart';
 import 'package:si_hicoach_fe/common/shared_preferences/key.dart';
 import 'package:si_hicoach_fe/domain/account/login/views/login.dart';
@@ -72,12 +73,25 @@ class MypageMenuView extends StatelessWidget {
           title: const Text('로그아웃'),
           trailing: const Icon(Icons.keyboard_arrow_right_rounded),
           onTap: () => {
-            deleteAccessToken(),
-            Navigator.of(context).pushAndRemoveUntil(
-              MaterialPageRoute(
-                builder: (context) => const LoginView(),
+            showDialog<String>(
+              context: context,
+              barrierDismissible: false,
+              builder: (BuildContext context) => CustomAlertDialog(
+                title: '로그아웃',
+                content: '로그아웃 하시겠습니까?',
+                positiveText: '로그아웃',
+                onPositivePressed: () => {
+                  deleteAccessToken(),
+                  Navigator.of(context).pushAndRemoveUntil(
+                    MaterialPageRoute(
+                      builder: (context) => const LoginView(),
+                    ),
+                    (Route<dynamic> route) => false,
+                  ),
+                },
+                negativeText: '취소',
+                onNegativePressed: () => Navigator.of(context).pop(),
               ),
-              (Route<dynamic> route) => false,
             ),
           },
         ),

@@ -51,9 +51,9 @@ class DetailTime extends StatelessWidget {
               child: Text('부터', style: bodySmall),
             ),
             Container(
-              decoration: BoxDecoration(
-                borderRadius: const BorderRadius.all(Radius.circular(8)),
-                color: Colors.grey.shade100,
+              decoration: const BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(8)),
+                color: Color.fromRGBO(70, 103, 240, 0.1),
               ),
               child: Padding(
                 padding: const EdgeInsets.only(
@@ -62,7 +62,10 @@ class DetailTime extends StatelessWidget {
                   top: 6,
                   bottom: 6,
                 ),
-                child: Text(endedTime, style: bodySmall),
+                child: Text(
+                  endedTime,
+                  style: bodySmall.copyWith(color: primaryColor),
+                ),
               ),
             ),
             Padding(

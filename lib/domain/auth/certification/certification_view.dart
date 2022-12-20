@@ -32,12 +32,11 @@ class _CertificationViewState extends _Detail {
   }
 
   _buildIamportCertificationView() {
-    return Expanded(
-        child: IamPortCertificationView(
+    return IamPortCertificationView(
       iamportUserCode: IAMPORT_USER_CODE,
       onSuccess: handleCertificationSuccess,
       onFailure: handleCertificationFail,
-    ));
+    );
   }
 }
 

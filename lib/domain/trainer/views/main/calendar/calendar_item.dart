@@ -28,12 +28,12 @@ class CalendarItem extends StatelessWidget {
       color: Colors.transparent,
     );
 
-    TextStyle highlightedTextStyle = titleLarge.copyWith(
+    TextStyle highlightedTextStyle = titleMedium.copyWith(
       color: Colors.white,
       fontWeight: FontWeight.w400,
     );
 
-    TextStyle noHighlightedTextStyle = titleLarge.copyWith(
+    TextStyle noHighlightedTextStyle = titleMedium.copyWith(
       fontWeight: FontWeight.w400,
     );
 
