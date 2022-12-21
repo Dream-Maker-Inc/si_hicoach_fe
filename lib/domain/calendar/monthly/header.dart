@@ -6,7 +6,7 @@ class MonthlyCalendarHeader extends StatelessWidget {
 
   final List<String> dayList = ['일', '월', '화', '수', '목', '금', '토'];
 
-  TableBorder tableBorder = TableBorder.all(
+  final TableBorder tableBorder = TableBorder.all(
     width: 1,
     color: Colors.black12,
     style: BorderStyle.solid,

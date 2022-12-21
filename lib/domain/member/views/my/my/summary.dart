@@ -26,7 +26,7 @@ class SummaryView extends StatelessWidget {
   handleMemoClick(BuildContext context) {
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (BuildContext context) => MemoListView(),
+        builder: (BuildContext context) => const MemoListView(),
       ),
     );
   }

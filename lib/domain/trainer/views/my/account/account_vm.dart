@@ -37,10 +37,6 @@ class _FetchController extends GetxController {
 
   Member? get _member => _fetchMyInfoResponse.value?.data.member;
 
-  Matching? get _matching => _fetchMyInfoResponse.value?.data.matching;
-
-  Trainer? get _trainer => _fetchMyInfoResponse.value?.data.trainer;
-
   Future fetchMyInfo() async {
     final result = await MemberApi.findMe();
 

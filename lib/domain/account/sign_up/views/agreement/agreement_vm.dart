@@ -1,5 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:get/get.dart';
+import 'package:logger/logger.dart';
 import 'package:si_hicoach_fe/infrastructure/terms/dto/get_terms_response.dart';
 import 'package:si_hicoach_fe/infrastructure/terms/terms_api.dart';
 import 'package:si_hicoach_fe/domain/account/sign_up/views/agreement/list_item/list_item.dart';
@@ -30,7 +31,7 @@ class AgreementViewModel extends GetxController {
     final result = await TermsApi.getAgreements();
 
     result.when(
-      (e) => print(e),
+      (e) => Logger().e(e),
       (res) => _handleFetchTermsResponse(res),
     );
 

@@ -34,7 +34,7 @@ class _MemberListViewState extends _Detail {
         return Column(
           children: <Widget>[
             MemberListTitle(totalCount: totalCount),
-            MemberListTabs(),
+            const MemberListTabs(),
           ],
         );
       })),

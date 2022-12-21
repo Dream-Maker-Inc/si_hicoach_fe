@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
 import 'package:si_hicoach_fe/common/components/app_bar.dart';
 import 'package:si_hicoach_fe/common/components/title_with_description.dart';
 import 'package:si_hicoach_fe/common/constants/constants.dart';
@@ -115,7 +116,7 @@ class _Detail extends State<SignUpAgreementView> {
   }
 
   _handleItemClick(int id) {
-    print('ItemClick: $id');
+    Logger().i('ItemClick: $id');
   }
 
   _handleItemCheck(int id) {

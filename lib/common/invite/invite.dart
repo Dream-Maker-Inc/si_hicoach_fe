@@ -1,6 +1,9 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:flutter_sms/flutter_sms.dart';
 import 'package:kakao_flutter_sdk_share/kakao_flutter_sdk_share.dart';
+import 'package:logger/logger.dart';
 import 'package:si_hicoach_fe/common/components/app_bar.dart';
 import 'package:si_hicoach_fe/common/components/dialog.dart';
 
@@ -42,11 +45,13 @@ class InviteView extends StatelessWidget {
       message: message,
       recipients: recipents,
     ).catchError(
-      (onError) => showMySimpleDialog(
-        title: '문자 메시지 전송 오류',
-        content: onError,
-        context: context,
-      ),
+      (onError) {
+        showMySimpleDialog(
+          title: '문자 메시지 전송 오류',
+          content: onError,
+          context: context,
+        );
+      },
     );
   }
 
@@ -67,7 +72,7 @@ class InviteView extends StatelessWidget {
           title: '카카오톡 공유 실패',
           content: '카카오톡 공유를 실패했습니다.\n오류 : $error',
         );
-        print('카카오톡 공유 실패 $error');
+        Logger().e('카카오톡 공유 실패 $error');
       }
     } else {
       try {
@@ -76,7 +81,7 @@ class InviteView extends StatelessWidget {
         );
         await launchBrowserTab(shareUrl, popupOpen: true);
       } catch (error) {
-        print('카카오톡 공유 실패 $error');
+        Logger().e('카카오톡 공유 실패 $error');
       }
     }
   }
