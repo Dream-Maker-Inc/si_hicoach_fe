@@ -21,7 +21,7 @@ class SignupTypeViewModel extends GetxController {
   }
 
   handleMemberTypeChange(index) {
-    memberType.value =MemberTypes.values[index];
+    memberType.value = MemberTypes.values[index];
   }
 
   save() {

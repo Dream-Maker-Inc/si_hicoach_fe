@@ -18,6 +18,7 @@ class MemberDetailViewModel extends GetxController {
   //
   RxInt tabIndex = RxInt(0);
 
+  // 멤버 데이터 모델
   MemberModel get member {
     final birthDay =
         DateTime.parse(_member?.birthDay ?? DateTime.now().toIso8601String());
@@ -29,6 +30,7 @@ class MemberDetailViewModel extends GetxController {
         gender: _member?.gender ?? "");
   }
 
+  // 가장 최근 스터디 모델
   LatestStudyModel get latestStudy {
     final startedAt = (_latestStudy != null)
         ? DateTime.parse(_latestStudy!.startedAt).toKoreanFormat
@@ -43,6 +45,15 @@ class MemberDetailViewModel extends GetxController {
         totalStudyCount: _matching?.ticketCount ?? 0);
   }
 
+  int get remainingTicketCount {
+    final totalTicketCount = _matching?.ticketCount;
+
+    if (totalTicketCount == null) return 0;
+
+    return totalTicketCount - totalStudyCount;
+  }
+
+  // 운동 목표 리스트
   List<ExerciseGoalModel> get exerciseGoals =>
       _matching?.goals
           .map((it) => ExerciseGoalModel(id: it.id, title: it.title))
@@ -53,6 +64,7 @@ class MemberDetailViewModel extends GetxController {
 
   int get matchingId => _matching?.id ?? 0;
 
+  // 개인 일정 여부
   bool get isPersonalMatching => (_member?.id ?? 0) == trainerId;
 
   //

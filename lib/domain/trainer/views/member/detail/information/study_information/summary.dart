@@ -13,6 +13,7 @@ class Summary extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final latestStudy = _vm.latestStudy;
+    final remainingTicketCount = _vm.remainingTicketCount;
 
     return Container(
       width: double.infinity,
@@ -45,7 +46,7 @@ class Summary extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Text('잔여 수업 횟수', style: bodyMedium),
-                Text('${latestStudy.totalStudyCount.toKC}회', style: bodyMedium),
+                Text('${remainingTicketCount.toKC}회', style: bodyMedium),
               ],
             ),
           ],

@@ -118,14 +118,22 @@ class _TicketsViewState extends _Detail {
     );
   }
 
-  IconButton _buildMinusButton() {
-    return IconButton(
-      onPressed: handleRemoveButtonPressed,
-      icon: const Icon(
-        Icons.remove_rounded,
-        color: Colors.red,
-      ),
-    );
+  _buildMinusButton() {
+    return Obx(() {
+      final isMinusable = vm.isMinusable;
+
+      final onClick = isMinusable ? handleRemoveButtonPressed : null;
+      final color =
+          isMinusable ? Colors.red : Colors.grey.shade400.withOpacity(0.5);
+
+      return IconButton(
+        onPressed: onClick,
+        icon: Icon(
+          Icons.remove_rounded,
+          color: color,
+        ),
+      );
+    });
   }
 
   IconButton _buildAddButton() {

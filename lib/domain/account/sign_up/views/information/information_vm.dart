@@ -14,7 +14,8 @@ class SignupInformationViewModel extends GetxController {
   final RxnBool _isDuplicatedEmailRx = RxnBool(null);
 
   bool get validateEmailButtonDisabled =>
-      (_isDuplicatedEmailRx.value == true) || (_isDuplicatedEmailRx.value == null);
+      (_isDuplicatedEmailRx.value == true) ||
+      (_isDuplicatedEmailRx.value == null);
 
   String? get emailErrorText {
     if (email.isEmpty) return null;
@@ -30,10 +31,10 @@ class SignupInformationViewModel extends GetxController {
     final result = await SignupApi.validateEmail(email);
 
     result.when(
-          (e) {
+      (e) {
         if (e is AlreadyUsedEmailException) _isDuplicatedEmailRx.value = true;
       },
-          (res) => _isDuplicatedEmailRx.value = !(res.data?.isValid ?? true),
+      (res) => _isDuplicatedEmailRx.value = !(res.data?.isValid ?? true),
     );
   }
 

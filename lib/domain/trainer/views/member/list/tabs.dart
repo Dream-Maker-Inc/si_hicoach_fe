@@ -66,7 +66,7 @@ class _MemberListTabsState extends State<MemberListTabs>
   }
 
   _buildTabBarView() {
-    return GetBuilder<MemberListViewModel>(builder: (vm) {
+    return Obx(() {
       final inClassMembers = _vm.inClassMembers;
       final finishedMembers = _vm.finishedMembers;
 

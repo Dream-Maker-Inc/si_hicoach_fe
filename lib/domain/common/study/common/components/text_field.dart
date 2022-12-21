@@ -11,7 +11,7 @@ class ExerciseTextField extends StatelessWidget {
 
   final String suffixText;
   final String labelText;
-  final int initialValue;
+  final String initialValue;
   final Function(String)? onChanged;
 
   @override
@@ -33,7 +33,7 @@ class ExerciseTextField extends StatelessWidget {
           ),
           keyboardType: TextInputType.number,
           maxLength: 3,
-          initialValue: initialValue.toString(),
+          initialValue: initialValue,
           onChanged: onChanged,
         ),
       ),

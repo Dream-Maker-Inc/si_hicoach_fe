@@ -9,12 +9,16 @@ class TicketsViewModel extends GetxController {
   RxInt finishedStudyCount = RxInt(0);
   RxInt totalTicketCount = RxInt(0);
 
+  // 남은 수강권 개수
   int get remainingTicketCount =>
       totalTicketCount.value - finishedStudyCount.value;
 
   //
   RxInt countOfAdd = RxInt(0);
   RxInt countOfMinus = RxInt(0);
+
+  // 수강권 차감 가능 여부
+  bool get isMinusable => remainingTicketCount > 0;
 
   //
   Rx<Exception?> apiError = Rx(null);
