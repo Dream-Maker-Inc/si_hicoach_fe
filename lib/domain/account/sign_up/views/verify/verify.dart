@@ -11,9 +11,7 @@ import 'package:si_hicoach_fe/domain/account/sign_up/views/verify/verify_vm.dart
 import 'package:si_hicoach_fe/secret/secret.dart';
 
 class SignUpVerifyView extends StatefulWidget {
-  const SignUpVerifyView({
-    super.key,
-  });
+  const SignUpVerifyView({super.key});
 
   @override
   State<SignUpVerifyView> createState() => _SignUpVerifyViewState();
@@ -40,43 +38,38 @@ class _SignUpVerifyViewState extends _Detail {
     );
   }
 
+  // 아임포트 통합 인증 뷰
   _buildIamportCertificationView() {
     return Expanded(
         child: IamPortCertificationView(
       iamportUserCode: IAMPORT_USER_CODE,
-      onSuccess: handleCertificationSuccess,
-      onFailure: handleCertificationFail,
+      onSuccess: _handleCertificationSuccess,
+      onFailure: _handleCertificationFail,
     ));
   }
 }
 
 class _Detail extends MyGetXState<SignUpVerifyView, VerifyViewModel> {
   _refresh() {
-    Navigator.pushReplacement(context,
-        MaterialPageRoute(builder: (BuildContext context) => super.widget));
+    Get.off(super.widget);
   }
 
-  navigateSignUpTypeView() {
-    Navigator.of(context)
-        .push(
-          MaterialPageRoute(
-            builder: (BuildContext context) => const SignUpTypeView(),
-          ),
-        )
-        .then((_) => _refresh());
+  _navigateSignupTypeView() {
+    Get.to(const SignUpTypeView())?.then((_) => _refresh());
   }
 
-  handleCertificationSuccess(String impUid) {
+  _handleCertificationSuccess(String impUid) {
     vm.certificate(impUid);
   }
 
-  handleCertificationFail() {
+  _handleCertificationFail() {
     showMySimpleDialog(
         context: context,
         title: '인증 실패',
         content: "인증에 실패 했습니다.",
         onConfirm: () {
           Get.back();
+          _refresh();
         });
   }
 
@@ -87,7 +80,7 @@ class _Detail extends MyGetXState<SignUpVerifyView, VerifyViewModel> {
     vm.validatePhoneSuccess.listen((isSuccess) {
       if (!isSuccess) return;
 
-      navigateSignUpTypeView();
+      _navigateSignupTypeView();
     });
 
     vm.apiError.listen((e) {
@@ -100,8 +93,6 @@ class _Detail extends MyGetXState<SignUpVerifyView, VerifyViewModel> {
         title = "사용 불가";
         message = "이미 가입된 휴대폰 번호입니다.";
       }
-
-      vm.apiError.value = null;
 
       showMySimpleDialog(
           context: context,

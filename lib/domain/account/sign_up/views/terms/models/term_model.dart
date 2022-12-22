@@ -4,7 +4,11 @@ class TermModel {
   final String content;
   final bool isRequired;
 
-  TermModel(this.id, this.title, this.content, this.isRequired);
+  TermModel(
+      {required this.id,
+      required this.title,
+      required this.content,
+      required this.isRequired});
 
   String get labeledTitle {
     String labelOfRequired = isRequired ? "[필수]" : "[선택]";

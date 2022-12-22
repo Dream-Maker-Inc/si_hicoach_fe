@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:si_hicoach_fe/domain/account/sign_up/views/agreement/agreement.dart';
+import 'package:si_hicoach_fe/common/getx/my_getx_state.dart';
+import 'package:si_hicoach_fe/domain/account/sign_up/views/terms/terms.dart';
 import 'package:si_hicoach_fe/domain/account/sign_up/views/signup_vm.dart';
-import 'package:get/get.dart';
 
+// 회원가입 플로우 시작점
 class SignupPage extends StatefulWidget {
   const SignupPage({Key? key}) : super(key: key);
 
@@ -10,17 +11,12 @@ class SignupPage extends StatefulWidget {
   State<SignupPage> createState() => _SignupPageState();
 }
 
-class _SignupPageState extends State<SignupPage> {
-  @override
-  void initState() {
-    super.initState();
-
-    Get.delete<SignupViewModel>();
-    Get.put(SignupViewModel());
-  }
-
+class _SignupPageState extends MyGetXState<SignupPage, SignupViewModel> {
   @override
   Widget build(BuildContext context) {
-    return const SignUpAgreementView();
+    return const SignUpTermsView();
   }
+
+  @override
+  SignupViewModel createViewModel() => SignupViewModel();
 }

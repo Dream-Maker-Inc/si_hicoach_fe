@@ -11,9 +11,9 @@ class SignupViewModel extends GetxController {
   String companyName = '';
   String email = '';
   String password = '';
-  String name = 'test';
+  String name = '';
   DateTime birthDay = DateTime.now();
-  String phone = '010-0000-0003';
+  String phone = '010-0000-0000';
   Gender gender = Gender.male;
 
   _createDto() {
@@ -30,8 +30,10 @@ class SignupViewModel extends GetxController {
         phone: phone,
         trainerInfo: trainerInfo);
 
-    final RequestSignUpDto dto =
-        RequestSignUpDto(member: member, termIds: agreedTermIds);
+    final RequestSignUpDto dto = RequestSignUpDto(
+      member: member,
+      termIds: agreedTermIds,
+    );
 
     return dto;
   }
@@ -46,6 +48,8 @@ class SignupViewModel extends GetxController {
     final result = await SignupApi.signup(dto);
 
     result.when(
-        (e) => signupError.value = e, (res) => signupSuccess.value = res);
+      (e) => signupError.value = e,
+      (res) => signupSuccess.value = res,
+    );
   }
 }
