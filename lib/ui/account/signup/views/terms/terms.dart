@@ -5,10 +5,10 @@ import 'package:si_hicoach_fe/common/constants/constants.dart';
 import 'package:si_hicoach_fe/common/getx/my_getx_state.dart';
 import 'package:si_hicoach_fe/common/theme/button.dart';
 import 'package:si_hicoach_fe/common/theme/color.dart';
-import 'package:si_hicoach_fe/domain/account/sign_up/views/terms/terms_vm.dart';
-import 'package:si_hicoach_fe/domain/account/sign_up/views/terms/list_item/check_all_item.dart';
-import 'package:si_hicoach_fe/domain/account/sign_up/views/terms/list_item/list_item.dart';
-import 'package:si_hicoach_fe/domain/account/sign_up/views/verify/verify.dart';
+import 'package:si_hicoach_fe/ui/account/signup/views/terms/terms_vm.dart';
+import 'package:si_hicoach_fe/ui/account/signup/views/terms/list_item/check_all_item.dart';
+import 'package:si_hicoach_fe/ui/account/signup/views/terms/list_item/list_item.dart';
+import 'package:si_hicoach_fe/ui/account/signup/views/verify/verify.dart';
 import 'package:get/get.dart';
 
 class SignUpTermsView extends StatefulWidget {

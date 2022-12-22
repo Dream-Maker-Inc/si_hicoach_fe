@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:si_hicoach_fe/domain/account/sign_up/views/type/data/models/member_types.dart';
+import 'package:si_hicoach_fe/ui/account/signup/views/type/models/member_types.dart';
 import 'package:si_hicoach_fe/infrastructure/signup/dto/request_signup_dto.dart';
 import 'package:si_hicoach_fe/domain/member/models/gender_types.dart';
 import 'package:si_hicoach_fe/infrastructure/signup/signup_api.dart';

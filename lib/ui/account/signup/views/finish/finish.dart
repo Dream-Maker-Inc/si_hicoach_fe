@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:si_hicoach_fe/common/components/app_bar_with_logo.dart';
 import 'package:si_hicoach_fe/common/components/title_with_description.dart';
 import 'package:si_hicoach_fe/common/constants/constants.dart';
@@ -9,19 +10,14 @@ import 'package:si_hicoach_fe/ui/account/login/views/login.dart';
 class SignUpFinishView extends StatelessWidget {
   const SignUpFinishView({Key? key}) : super(key: key);
 
-  _handleSubmitButtonPressed(BuildContext ctx) {
-    Navigator.of(ctx).pushAndRemoveUntil(
-      MaterialPageRoute(
-        builder: (context) => const LoginView(),
-      ),
-      (Route<dynamic> route) => false,
-    );
+  _handleSubmitButtonPressed() {
+    Get.offAll(const LoginView());
   }
 
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: () => _handleSubmitButtonPressed(context),
+      onWillPop: () => _handleSubmitButtonPressed(),
       child: Scaffold(
         appBar: const CustomAppBarWithLogo(titleText: '회원가입'),
         body: SafeArea(
@@ -50,7 +46,7 @@ class SignUpFinishView extends StatelessWidget {
                   width: double.infinity,
                   margin: const EdgeInsets.all(defaultPadding),
                   child: CustomElevatedButton(
-                    onPressed: () => _handleSubmitButtonPressed(context),
+                    onPressed: () => _handleSubmitButtonPressed(),
                     text: '완료',
                   ),
                 ),

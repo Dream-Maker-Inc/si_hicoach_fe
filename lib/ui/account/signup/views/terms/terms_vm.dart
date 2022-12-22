@@ -3,8 +3,8 @@
 import 'package:get/get.dart';
 import 'package:si_hicoach_fe/infrastructure/terms/dto/get_terms_response.dart';
 import 'package:si_hicoach_fe/infrastructure/terms/terms_api.dart';
-import 'package:si_hicoach_fe/domain/account/sign_up/views/terms/models/term_model.dart';
-import 'package:si_hicoach_fe/domain/account/sign_up/views/signup_vm.dart';
+import 'package:si_hicoach_fe/ui/account/signup/views/terms/models/term_model.dart';
+import 'package:si_hicoach_fe/ui/account/signup/views/signup_vm.dart';
 import 'package:collection/collection.dart';
 
 // List.sorted 정렬 순서

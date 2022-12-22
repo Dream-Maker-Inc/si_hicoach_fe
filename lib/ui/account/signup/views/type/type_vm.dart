@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
-import 'package:si_hicoach_fe/domain/account/sign_up/views/signup_vm.dart';
-import 'package:si_hicoach_fe/domain/account/sign_up/views/type/data/models/member_types.dart';
+import 'package:si_hicoach_fe/ui/account/signup/views/signup_vm.dart';
+import 'package:si_hicoach_fe/ui/account/signup/views/type/models/member_types.dart';
 
 class SignupTypeViewModel extends GetxController {
   final SignupViewModel _signupVm = Get.find<SignupViewModel>();
@@ -20,11 +20,11 @@ class SignupTypeViewModel extends GetxController {
     return companyName.isEmpty;
   }
 
-  handleMemberTypeChange(index) {
+  handleMemberTypeChange(int index) {
     memberType.value = MemberTypes.values[index];
   }
 
-  save() {
+  saveToSignupViewModel() {
     _signupVm.memberType = memberType.value;
     _signupVm.companyName = companyName.value;
   }

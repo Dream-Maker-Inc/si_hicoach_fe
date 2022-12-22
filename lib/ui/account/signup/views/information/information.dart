@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/common/components/dialog.dart';
-import 'package:si_hicoach_fe/domain/account/sign_up/views/finish/finish.dart';
+import 'package:si_hicoach_fe/common/getx/my_getx_state.dart';
+import 'package:si_hicoach_fe/ui/account/signup/views/finish/finish.dart';
 import 'package:si_hicoach_fe/common/components/app_bar.dart';
 import 'package:si_hicoach_fe/common/components/text_field.dart';
 import 'package:si_hicoach_fe/common/components/title_with_description.dart';
@@ -8,8 +9,8 @@ import 'package:si_hicoach_fe/common/constants/constants.dart';
 import 'package:si_hicoach_fe/common/theme/button.dart';
 import 'package:si_hicoach_fe/common/theme/color.dart';
 import 'package:get/get.dart';
-import 'package:si_hicoach_fe/domain/account/sign_up/views/information/information_vm.dart';
-import 'package:si_hicoach_fe/domain/account/sign_up/views/signup_vm.dart';
+import 'package:si_hicoach_fe/ui/account/signup/views/information/information_vm.dart';
+import 'package:si_hicoach_fe/ui/account/signup/views/signup_vm.dart';
 
 class SignUpInformationView extends StatefulWidget {
   const SignUpInformationView({Key? key}) : super(key: key);
@@ -22,21 +23,8 @@ class _SignUpInformationViewState extends _Detail {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBarArrowBack(titleText: '회원가입'),
-      body: Obx(() {
-        final email = _vm.email.value;
-        final isValidEmail = _vm.isValidEmail;
-        final emailErrorText = _vm.emailErrorText;
-
-        final password = _vm.password.value;
-        final passwordErrorText = _vm.passwordErrorText;
-
-        final pwRepeat = _vm.pwRepeat.value;
-        final pwRepeatErrorText = _vm.pwRepeatErrorText;
-
-        final buttonDisabled = _vm.buttonDisabled;
-
-        return CustomScrollView(
+        appBar: const CustomAppBarArrowBack(titleText: '회원가입'),
+        body: CustomScrollView(
           slivers: [
             SliverFillRemaining(
               hasScrollBody: false,
@@ -56,16 +44,7 @@ class _SignUpInformationViewState extends _Detail {
                           description: '실제 사용하시는 이메일 주소를 정확히 입력해 주세요.',
                         ),
                         SizedBox(
-                          child: CustomTextField(
-                            hintText: '아이디 (이메일) 입력',
-                            keyboardType: TextInputType.emailAddress,
-                            value: email,
-                            onChanged: _handleIDInputChanged,
-                            errorText: emailErrorText,
-                            suffix: isValidEmail
-                                ? _buildValidateButton(email)
-                                : null,
-                          ),
+                          child: _buildEmailTextField(),
                         ),
                         const SizedBox(height: defaultPadding),
                         const TitleWithDescription(
@@ -73,50 +52,90 @@ class _SignUpInformationViewState extends _Detail {
                           description:
                               '영문 대문자와 특수문자가 포함된 8자 이상의 비밀번호를 설정해 주세요.',
                         ),
-                        CustomTextField(
-                          hintText: '비밀번호 입력',
-                          isPassword: true,
-                          value: password,
-                          onChanged: _handlePasswordInputChanged,
-                          errorText: passwordErrorText,
-                        ),
+                        _buildPwTextField(),
                         const SizedBox(height: defaultPadding),
                         const TitleWithDescription(
                           title: '비밀번호 확인',
                           description: '비밀번호를 다시 한 번 입력해 주세요.',
                         ),
-                        CustomTextField(
-                          hintText: '비밀번호 입력',
-                          isPassword: true,
-                          value: pwRepeat,
-                          onChanged: _handlePasswordRepeatInputChanged,
-                          errorText: pwRepeatErrorText,
-                        ),
+                        _buildPwRepeatTextField(),
                       ],
                     ),
                   ),
                   const Spacer(),
-                  Container(
-                    width: double.infinity,
-                    margin: const EdgeInsets.all(defaultPadding),
-                    child: CustomElevatedButton(
-                      onPressed:
-                          !buttonDisabled ? _handleSubmitButtonClicked : null,
-                      text: '다음',
-                    ),
-                  )
+                  _buildSubmitButton()
                 ],
               ),
             )
           ],
-        );
-      }),
-    );
+        ));
+  }
+
+  _buildSubmitButton() {
+    return Obx(() {
+      final buttonDisabled = vm.buttonDisabled;
+
+      return Container(
+        width: double.infinity,
+        margin: const EdgeInsets.all(defaultPadding),
+        child: CustomElevatedButton(
+          onPressed: !buttonDisabled ? _handleSubmitButtonClicked : null,
+          text: '다음',
+        ),
+      );
+    });
+  }
+
+  _buildPwRepeatTextField() {
+    return Obx(() {
+      final pwRepeat = vm.pwRepeat.value;
+      final pwRepeatErrorText = vm.pwRepeatErrorText;
+
+      return CustomTextField(
+        hintText: '비밀번호 입력',
+        isPassword: true,
+        value: pwRepeat,
+        onChanged: _handlePasswordRepeatInputChanged,
+        errorText: pwRepeatErrorText,
+      );
+    });
+  }
+
+  _buildPwTextField() {
+    return Obx(() {
+      final password = vm.password.value;
+      final passwordErrorText = vm.passwordErrorText;
+
+      return CustomTextField(
+        hintText: '비밀번호 입력',
+        isPassword: true,
+        value: password,
+        onChanged: _handlePasswordInputChanged,
+        errorText: passwordErrorText,
+      );
+    });
+  }
+
+  _buildEmailTextField() {
+    return Obx(() {
+      final email = vm.email.value;
+      final isValidEmail = vm.isValidEmail;
+      final emailErrorText = vm.emailErrorText;
+
+      return CustomTextField(
+        hintText: '아이디 (이메일) 입력',
+        keyboardType: TextInputType.emailAddress,
+        value: email,
+        onChanged: _handleIDInputChanged,
+        errorText: emailErrorText,
+        suffix: isValidEmail ? _buildValidateButton(email) : null,
+      );
+    });
   }
 
   _buildValidateButton(String email) {
     return CustomElevatedButton(
-      onPressed: _vm.validateEmailButtonDisabled
+      onPressed: vm.validateEmailButtonDisabled
           ? () => _handleIDValidationButtonClicked(email)
           : null,
       text: '중복 확인',
@@ -124,47 +143,42 @@ class _SignUpInformationViewState extends _Detail {
   }
 }
 
-class _Detail extends State<SignUpInformationView> {
+class _Detail
+    extends MyGetXState<SignUpInformationView, SignupInformationViewModel> {
   final SignupViewModel _signupVm = Get.find<SignupViewModel>();
-  late SignupInformationViewModel _vm;
 
   _handleIDInputChanged(String value) {
-    _vm.email.value = value;
+    vm.email.value = value;
   }
 
   _handleIDValidationButtonClicked(String value) {
-    _vm.validateEmail(value);
+    vm.validateEmail(value);
   }
 
   _handlePasswordInputChanged(String value) {
-    _vm.password.value = value;
+    vm.password.value = value;
   }
 
   _handlePasswordRepeatInputChanged(String value) {
-    _vm.pwRepeat.value = value;
+    vm.pwRepeat.value = value;
   }
 
   _handleSubmitButtonClicked() {
-    _vm.submit();
+    vm.submit();
   }
 
   _navigateNextPage() {
-    Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(
-          builder: (context) => const SignUpFinishView(),
-        ),
-        (Route<dynamic> route) => false);
+    Get.offAll(const SignUpFinishView());
   }
 
   @override
   void initState() {
     super.initState();
 
-    Get.delete<SignupInformationViewModel>();
-    _vm = Get.put(SignupInformationViewModel());
+    _signupVm.signupSuccess.listen((b) {
+      if (!b) return;
 
-    _signupVm.signupSuccess.listen((isSuccess) {
-      if (isSuccess) _navigateNextPage();
+      _navigateNextPage();
     });
 
     _signupVm.signupError.listen((e) {
@@ -175,6 +189,9 @@ class _Detail extends State<SignUpInformationView> {
 
   @override
   Widget build(BuildContext context) {
-    throw UnimplementedError();
+    return widget;
   }
+
+  @override
+  SignupInformationViewModel createViewModel() => SignupInformationViewModel();
 }

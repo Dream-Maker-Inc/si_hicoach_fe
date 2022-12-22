@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:si_hicoach_fe/domain/account/sign_up/views/signup_vm.dart';
+import 'package:si_hicoach_fe/ui/account/signup/views/signup_vm.dart';
 import 'package:si_hicoach_fe/infrastructure/auth/auth_api.dart';
 import 'package:si_hicoach_fe/infrastructure/auth/dto/request_certifications_response.dart';
 import 'package:si_hicoach_fe/infrastructure/signup/signup_api.dart';

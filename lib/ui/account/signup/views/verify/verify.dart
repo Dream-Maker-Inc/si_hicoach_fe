@@ -3,11 +3,11 @@ import 'package:get/get.dart';
 import 'package:si_hicoach_fe/common/components/dialog.dart';
 import 'package:si_hicoach_fe/common/exceptions/signup_exceptions.dart';
 import 'package:si_hicoach_fe/common/getx/my_getx_state.dart';
-import 'package:si_hicoach_fe/domain/account/sign_up/views/type/type.dart';
+import 'package:si_hicoach_fe/ui/account/signup/views/type/type.dart';
 import 'package:si_hicoach_fe/common/components/app_bar.dart';
 import 'package:si_hicoach_fe/common/theme/color.dart';
 import 'package:si_hicoach_fe/common/third_party/iamport/iamport_certification_view.dart';
-import 'package:si_hicoach_fe/domain/account/sign_up/views/verify/verify_vm.dart';
+import 'package:si_hicoach_fe/ui/account/signup/views/verify/verify_vm.dart';
 import 'package:si_hicoach_fe/secret/secret.dart';
 
 class SignUpVerifyView extends StatefulWidget {
