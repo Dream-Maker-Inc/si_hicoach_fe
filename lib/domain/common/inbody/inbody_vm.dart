@@ -1,11 +1,18 @@
+// ignore_for_file: library_prefixes
+
 import 'package:file_picker/file_picker.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:si_hicoach_fe/common/file_picker/file_picker_extension.dart';
+import 'package:si_hicoach_fe/common/shared_preferences/key.dart';
 import 'package:si_hicoach_fe/domain/common/inbody/models/inbody_model.dart';
 import 'package:si_hicoach_fe/infrastructure/inbody/dto/create_today_inBody_dto.dart';
 import 'package:si_hicoach_fe/infrastructure/inbody/dto/get_inbodies_response.dart';
 import 'package:si_hicoach_fe/infrastructure/inbody/dto/update_inBody_dto.dart';
 import 'package:si_hicoach_fe/infrastructure/inbody/inbody_api.dart';
+import 'package:si_hicoach_fe/infrastructure/member/member/dto/get_my_info_response.dart'
+    as MyInfo;
+import 'package:si_hicoach_fe/infrastructure/member/member/member_api.dart';
 
 class InBodyViewModel extends _FetchController {
   int memberId = 0;
@@ -102,5 +109,24 @@ class _FetchController extends GetxController {
 
     result.when((e) => (apiError.value = e),
         (response) => (fetchInbodyResponse.value = response));
+  }
+
+  // fetch my info
+  RxBool isRoleTrainer = RxBool(false);
+
+  Future fetchMyInfo() async {
+    final result = await MemberApi.findMe();
+
+    result.when((e) => apiError.value = e,
+        (response) async => await _handlefetchMyInfoSuccess(response));
+  }
+
+  Future _handlefetchMyInfoSuccess(MyInfo.GetMyInfoResponse res) async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setInt(SharedPrefsKeys.id.key, res.data.member.id);
+
+    final trainerInfo = res.data.member.trainerInfo;
+
+    isRoleTrainer.value = (trainerInfo != null);
   }
 }

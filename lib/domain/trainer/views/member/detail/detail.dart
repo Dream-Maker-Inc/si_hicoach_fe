@@ -6,6 +6,7 @@ import 'package:si_hicoach_fe/common/components/alert.dart';
 import 'package:si_hicoach_fe/common/components/app_bar.dart';
 import 'package:si_hicoach_fe/common/components/dialog.dart';
 import 'package:si_hicoach_fe/common/components/divider.dart';
+import 'package:si_hicoach_fe/common/getx/my_getx_state.dart';
 import 'package:si_hicoach_fe/domain/common/study/create/study_create.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/detail/detail_vm.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/detail/information/information.dart';
@@ -13,7 +14,10 @@ import 'package:si_hicoach_fe/domain/trainer/views/member/detail/study/studying_
 import 'package:si_hicoach_fe/domain/trainer/views/member/detail/tab/header.dart';
 
 class DetailView extends StatefulWidget {
-  DetailView({super.key, required this.memberId});
+  DetailView({
+    super.key,
+    required this.memberId,
+  });
 
   final int memberId;
 
@@ -27,8 +31,8 @@ class _DetailViewState extends _Detail {
     super.build(context);
 
     return Obx(() {
-      final memberName = _vm.member.name;
-      final isPersonal = _vm.isPersonalMatching;
+      final memberName = vm.member.name;
+      final isPersonal = vm.isPersonalMatching;
 
       return Scaffold(
         appBar: CustomAppBarArrowBack(
@@ -79,17 +83,15 @@ class _DetailViewState extends _Detail {
   }
 }
 
-class _Detail extends State<DetailView> {
-  late MemberDetailViewModel _vm;
-
+class _Detail extends MyGetXState<DetailView, MemberDetailViewModel> {
   onStudyAddIconPressed(BuildContext context) {
     Navigator.push(
       context,
       MaterialPageRoute(
         builder: (BuildContext context) => StudyCreateView(
-            matchingId: _vm.matchingId,
-            nextStudyRound: _vm.nextStudyRound,
-            totalTicketCount: _vm.latestStudy.totalStudyCount),
+            matchingId: vm.matchingId,
+            nextStudyRound: vm.nextStudyRound,
+            totalTicketCount: vm.latestStudy.totalStudyCount),
       ),
     );
   }
@@ -103,7 +105,7 @@ class _Detail extends State<DetailView> {
         content:
             '회원 매칭을 취소하시면\n\n - 해당 회원의 예약 수업 정보 모두 삭제\n - 회원 리스트에서 해당 회원 조회 불가\n\n처리됩니다.',
         positiveText: '매칭 취소하기',
-        onPositivePressed: () => _vm.removeMatching(),
+        onPositivePressed: () => vm.removeMatching(),
         negativeText: '뒤로',
         onNegativePressed: () => Navigator.of(context).pop(),
       ),
@@ -114,18 +116,15 @@ class _Detail extends State<DetailView> {
   void initState() {
     super.initState();
 
-    Get.delete<MemberDetailViewModel>();
-    _vm = Get.put(MemberDetailViewModel());
+    vm.memberId = widget.memberId;
 
-    _vm.memberId = widget.memberId;
-
-    _vm.removeMatchingSuccess.listen((b) {
+    vm.removeMatchingSuccess.listen((b) {
       if (!b) return;
 
       showMySimpleDialog(
           context: context,
           title: "매칭 취소",
-          content: "${_vm.member.name} 회원님과 매칭이 종료되었습니다.",
+          content: "${vm.member.name} 회원님과 매칭이 종료되었습니다.",
           onConfirm: () {
             Get.back();
             Get.back();
@@ -136,9 +135,11 @@ class _Detail extends State<DetailView> {
 
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance
-        .addPostFrameCallback((_) => {_vm.fetchMemberInfo()});
+    WidgetsBinding.instance.addPostFrameCallback((_) => {vm.fetchMemberInfo()});
 
     return const SizedBox.shrink();
   }
+
+  @override
+  MemberDetailViewModel createViewModel() => MemberDetailViewModel();
 }

@@ -25,6 +25,7 @@ class StudyDetailViewModel extends _FetchController {
           .toList() ??
       [];
   String get memo => study?.memo ?? "";
+  int get matchingId => study?.matchingId ?? 0;
 
   //
 }

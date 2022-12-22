@@ -6,20 +6,22 @@ import 'package:si_hicoach_fe/domain/trainer/views/member/detail/detail.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/list/member_list_vm.dart';
 
 class StudyingListItemView extends StatelessWidget {
-  StudyingListItemView({
-    Key? key,
-    required this.id,
-    required this.name,
-    required this.regDate,
-    required this.currentStudy,
-    required this.totalTicketCount,
-  }) : super(key: key);
+  StudyingListItemView(
+      {Key? key,
+      required this.id,
+      required this.name,
+      required this.regDate,
+      required this.currentStudy,
+      required this.totalTicketCount,
+      required this.matchingId})
+      : super(key: key);
 
   final int id;
   final String name;
   final String regDate;
   final int currentStudy;
   final int totalTicketCount;
+  final int matchingId;
 
   final MemberListViewModel _vm = Get.find<MemberListViewModel>();
 

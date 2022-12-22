@@ -105,8 +105,7 @@ class MemberDetailViewModel extends GetxController {
       fetchMemberStudiesResponse.value?.data.items ?? [];
 
   fetchMemberStudies() async {
-    final result = await StudyApi.getMemberStudies(
-        trainerId: trainerId, memberId: memberId);
+    final result = await StudyApi.getMemberStudies(matchingId: matchingId);
 
     result.when((e) => (apiError.value = e),
         (response) => (fetchMemberStudiesResponse.value = response));

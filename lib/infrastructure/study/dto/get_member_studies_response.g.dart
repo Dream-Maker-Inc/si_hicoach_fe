@@ -45,10 +45,6 @@ Items _$ItemsFromJson(Map<String, dynamic> json) => Items(
           .map((e) => MyExercises.fromJson(e as Map<String, dynamic>))
           .toList(),
       memo: json['memo'] as String,
-      isFinished: json['isFinished'] as bool,
-      inBody: json['inBody'] == null
-          ? null
-          : InBody.fromJson(json['inBody'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$ItemsToJson(Items instance) => <String, dynamic>{
@@ -58,8 +54,6 @@ Map<String, dynamic> _$ItemsToJson(Items instance) => <String, dynamic>{
       'endedAt': instance.endedAt,
       'myExercises': instance.myExercises,
       'memo': instance.memo,
-      'isFinished': instance.isFinished,
-      'inBody': instance.inBody,
     };
 
 MyExercises _$MyExercisesFromJson(Map<String, dynamic> json) => MyExercises(
@@ -87,16 +81,4 @@ Map<String, dynamic> _$ExerciseToJson(Exercise instance) => <String, dynamic>{
       'title': instance.title,
       'part': instance.part,
       'type': instance.type,
-    };
-
-InBody _$InBodyFromJson(Map<String, dynamic> json) => InBody(
-      imageKey: json['imageKey'] as String,
-      imageUrl: json['imageUrl'] as String,
-      createdAt: json['createdAt'] as String,
-    );
-
-Map<String, dynamic> _$InBodyToJson(InBody instance) => <String, dynamic>{
-      'imageKey': instance.imageKey,
-      'imageUrl': instance.imageUrl,
-      'createdAt': instance.createdAt,
     };

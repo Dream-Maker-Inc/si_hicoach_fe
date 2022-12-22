@@ -58,16 +58,13 @@ class StudyApi {
 
   // read
   static Future<Result<Exception, GetMemberStudiesResponse>> getMemberStudies(
-      {required int trainerId, required int memberId}) async {
+      {required int matchingId}) async {
     return safeApiCall<GetMemberStudiesResponse>(() async {
       Dio dio = DioHelper().dio;
-      String path = '/api/v2/study';
+      String path = '/api/v3/study';
 
-      final response = await dio.get(path, queryParameters: {
-        'trainerId': trainerId,
-        'memberId': memberId,
-        'size': 9999
-      });
+      final response = await dio
+          .get(path, queryParameters: {'matchingId': matchingId, 'size': 9999});
 
       return Success(GetMemberStudiesResponse.fromJson(response.data));
     });

@@ -40,7 +40,8 @@ class MemberListViewModel extends GetxController {
         matchedDate: items.matching.createdAtLabel,
         latestStudyRound:
             items.latestStudy?.round ?? (items.totalStudyCount + 1),
-        totalStudyCount: items.matching.ticketCount);
+        totalStudyCount: items.matching.ticketCount,
+        matchingId: items.matching.id);
   }
 
   //

@@ -58,9 +58,12 @@ class _StudyDetailViewState extends _Detail {
   }
 
   handleMemberDetailButtonPressed() {
+    final memberId = vm.member?.id ?? 0;
+    final matchingId = vm.matchingId;
+
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (context) => DetailView(memberId: vm.member?.id ?? 0),
+        builder: (context) => DetailView(memberId: memberId),
       ),
     );
   }

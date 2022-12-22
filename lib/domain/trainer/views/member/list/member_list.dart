@@ -79,11 +79,13 @@ class MemberProps {
   final String matchedDate;
   final int latestStudyRound;
   final int totalStudyCount;
+  final int matchingId;
 
   MemberProps(
       {required this.id,
       required this.name,
       required this.matchedDate,
       required this.latestStudyRound,
-      required this.totalStudyCount});
+      required this.totalStudyCount,
+      required this.matchingId});
 }

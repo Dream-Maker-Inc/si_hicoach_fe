@@ -16,11 +16,12 @@ class InbodyView extends StatefulWidget {
   final int matchingId;
   final bool addable;
 
-  const InbodyView(
-      {super.key,
-      required this.memberId,
-      required this.matchingId,
-      this.addable = true});
+  const InbodyView({
+    super.key,
+    required this.memberId,
+    required this.matchingId,
+    this.addable = true,
+  });
 
   @override
   State<InbodyView> createState() => _InbodyViewState();
@@ -58,6 +59,7 @@ class _InbodyViewState extends _Detail {
   _buildGrid() {
     return Obx(() {
       final models = vm.inBodyModels;
+      final isRoleTrainer = vm.isRoleTrainer.value;
 
       return models.isNotEmpty
           ? GridView.count(
@@ -67,7 +69,7 @@ class _InbodyViewState extends _Detail {
               padding: const EdgeInsets.all(defaultPadding),
               children: List.from(
                 models.map(
-                  (it) => InbodyItem(model: it, editable: false),
+                  (it) => InbodyItem(model: it, editable: isRoleTrainer),
                 ),
               ),
             )
@@ -149,7 +151,7 @@ class _Detail extends MyGetXState<InbodyView, InBodyViewModel> {
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      Future.wait([vm.fetchMemberInbodies(vm.memberId)]);
+      Future.wait([vm.fetchMemberInbodies(vm.memberId), vm.fetchMyInfo()]);
     });
 
     return widget;
