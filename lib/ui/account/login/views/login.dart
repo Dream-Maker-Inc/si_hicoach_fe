@@ -8,7 +8,7 @@ import 'package:si_hicoach_fe/common/components/text_field.dart';
 import 'package:si_hicoach_fe/common/constants/constants.dart';
 import 'package:si_hicoach_fe/common/theme/button.dart';
 import 'package:si_hicoach_fe/common/theme/typography.dart';
-import 'package:si_hicoach_fe/domain/account/login/views/login_vm.dart';
+import 'package:si_hicoach_fe/ui/account/login/views/login_vm.dart';
 import 'package:si_hicoach_fe/domain/member/views/base.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/base.dart';
 import 'package:si_hicoach_fe/domain/account/sign_up/views/signup_page.dart';
@@ -64,19 +64,19 @@ class _LoginViewState extends _Detail {
                     keyboardType: TextInputType.emailAddress,
                     hintText: '아이디 (이메일)을 입력하세요.',
                     value: email,
-                    onChanged: _handleEmailInputChanged,
+                    onChanged: _handleEmailChange,
                   ),
                   const SizedBox(height: defaultPadding),
                   CustomTextField(
                     isPassword: true,
                     hintText: '비밀번호를 입력하세요.',
                     value: password,
-                    onChanged: _handlePasswordInputChanged,
+                    onChanged: _handlePasswordChange,
                   ),
                   Align(
                     alignment: Alignment.topRight,
                     child: TextButton(
-                      onPressed: () => _handleTextButtonPressed(context),
+                      onPressed: () => _handleFindAccountClick(),
                       child: Text(
                         '계정을 잊으셨나요?',
                         style: bodySmall.copyWith(
@@ -90,7 +90,7 @@ class _LoginViewState extends _Detail {
                     width: double.infinity,
                     child: CustomElevatedButton(
                       onPressed: !vm.buttonDisabled
-                          ? () => _handleLoginButtonClicked(context)
+                          ? () => _handleLoginButtonClick()
                           : null,
                       text: '로그인',
                     ),
@@ -116,7 +116,7 @@ class _LoginViewState extends _Detail {
               ),
               width: double.infinity,
               child: CustomOutlinedButton(
-                onPressed: () => _handleSignUpButtonClicked(context),
+                onPressed: () => _handleSignUpButtonClick(),
                 text: '30초 회원가입',
               ),
             ),
@@ -135,65 +135,34 @@ class _LoginViewState extends _Detail {
 }
 
 class _Detail extends MyGetXState<LoginView, LoginViewModel> {
-  _handleEmailInputChanged(String value) {
+  _handleEmailChange(String value) {
     vm.email.value = value;
   }
 
-  _handlePasswordInputChanged(String value) {
+  _handlePasswordChange(String value) {
     vm.password.value = value;
   }
 
-  _handleLoginButtonClicked(BuildContext ctx) {
+  _handleLoginButtonClick() {
     vm.submit();
   }
 
-  _handleSignUpButtonClicked(BuildContext ctx) {
-    Navigator.of(ctx).push(
-      MaterialPageRoute(builder: (context) => const SignupPage()),
-    );
+  _handleSignUpButtonClick() {
+    Get.to(const SignupPage());
   }
 
-  _handleTextButtonPressed(BuildContext ctx) {
-    Navigator.of(ctx).push(
-      MaterialPageRoute(builder: (context) => const InformationFindView()),
-    );
+  _handleFindAccountClick() {
+    Get.to(const InformationFindView());
   }
 
-  _navigateMainPage(bool isTrainer) {
+  _navigateConditionalMainPage() {
     if (!mounted) return;
 
-    if (isTrainer) {
-      return Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => const TrainerBaseView()),
-      );
+    if (vm.isRoleTrainer) {
+      return Get.off(const TrainerBaseView());
     }
 
-    Navigator.of(context).pushReplacement(
-      MaterialPageRoute(builder: (context) => const MemberBaseView()),
-    );
-  }
-
-  @override
-  void initState() {
-    super.initState();
-
-    vm.clear();
-
-    vm.addDeviceSuccess.listen((isSuccess) {
-      if (!isSuccess) return;
-      if (vm.isRoleTrainer.value == null) return;
-
-      _navigateMainPage(vm.isRoleTrainer.value!);
-    });
-
-    vm.apiError.listen((e) {
-      if (e == null) return;
-
-      vm.clear();
-
-      showMySimpleDialog(
-          context: context, title: "로그인 실패", content: _getErrorMessage(e));
-    });
+    Get.off(const MemberBaseView());
   }
 
   String _getErrorMessage(Exception? e) {
@@ -203,6 +172,27 @@ class _Detail extends MyGetXState<LoginView, LoginViewModel> {
     Logger().e(e);
 
     return "알 수 없는 에러";
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    vm.addDeviceSuccess.listen((b) {
+      if (!b) return;
+
+      _navigateConditionalMainPage();
+    });
+
+    vm.apiError.listen((e) {
+      if (e == null) return;
+
+      showMySimpleDialog(
+        context: context,
+        title: "로그인 실패",
+        content: _getErrorMessage(e),
+      );
+    });
   }
 
   @override

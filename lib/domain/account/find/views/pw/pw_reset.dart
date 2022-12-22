@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:si_hicoach_fe/common/components/dialog.dart';
 import 'package:si_hicoach_fe/domain/account/find/views/pw/find_pw_vm.dart';
-import 'package:si_hicoach_fe/domain/account/login/views/login.dart';
+import 'package:si_hicoach_fe/ui/account/login/views/login.dart';
 import 'package:si_hicoach_fe/common/components/app_bar.dart';
 import 'package:si_hicoach_fe/common/components/text_field.dart';
 import 'package:si_hicoach_fe/common/components/title_with_description.dart';

@@ -4,7 +4,7 @@ import 'package:si_hicoach_fe/common/components/title_with_description.dart';
 import 'package:si_hicoach_fe/common/constants/constants.dart';
 import 'package:si_hicoach_fe/common/theme/button.dart';
 import 'package:si_hicoach_fe/common/theme/color.dart';
-import 'package:si_hicoach_fe/domain/account/login/views/login.dart';
+import 'package:si_hicoach_fe/ui/account/login/views/login.dart';
 
 class SignUpFinishView extends StatelessWidget {
   const SignUpFinishView({Key? key}) : super(key: key);
