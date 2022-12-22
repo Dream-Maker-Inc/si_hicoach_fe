@@ -1,3 +1,19 @@
+// 오늘 날짜 기준 Week 값
+int getNowWeek() {
+  final now = DateTime.now();
+  final targetDay = now.day;
+
+  final firstDayOfMonth = DateTime(now.year, now.month, 1);
+  final lastDayOfFirstWeek =
+      DateTime(now.year, now.month, 7 - firstDayOfMonth.weekday);
+
+  final restDay = targetDay - lastDayOfFirstWeek.day;
+
+  final result = ((restDay / 7).ceil() + 1);
+
+  return result;
+}
+
 // 이번 달 week의 수
 int getThisMonthWeeks() {
   // 일주일의 days 수

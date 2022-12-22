@@ -37,8 +37,12 @@ class WeeklyCalendarViewModel extends _FetchController {
     final days = DateTime(now.year, now.month, 0).day;
     final weeks = (days / 7).ceil();
 
-    return List.generate(
-        weeks, (index) => WeekModel(month: now.month, week: index + 1));
+    return List.generate(weeks, (index) {
+      final week = index + 1;
+
+      return WeekModel(
+          month: now.month, week: week, isSelected: week == getNowWeek());
+    });
   }
 
   // 스터디 아이템 UI 모델
@@ -74,18 +78,7 @@ class WeeklyCalendarViewModel extends _FetchController {
   _handleFetchWeeklyCalendarResponse(GetWeeklyCalendarResponse? res) {}
 
   _handleWeeksDataUpdate() {
-    final now = DateTime.now();
-    final targetDay = now.day;
-
-    final firstDayOfMonth = DateTime(now.year, now.month, 1);
-    final lastDayOfFirstWeek =
-        DateTime(now.year, now.month, 7 - firstDayOfMonth.weekday);
-
-    final restDay = targetDay - lastDayOfFirstWeek.day;
-
-    final result = ((restDay / 7).ceil() + 1).toString();
-
-    targetWeek.value = result;
+    targetWeek.value = getNowWeek().toString();
   }
 }
 
