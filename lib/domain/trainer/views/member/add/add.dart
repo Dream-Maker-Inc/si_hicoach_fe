@@ -7,6 +7,7 @@ import 'package:si_hicoach_fe/common/components/title_with_description.dart';
 import 'package:si_hicoach_fe/common/constants/constants.dart';
 import 'package:si_hicoach_fe/common/exceptions/common_exceptions.dart';
 import 'package:si_hicoach_fe/common/theme/button.dart';
+import 'package:si_hicoach_fe/common/theme/typography.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/add/add_vm.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/add/additional_information.dart';
 
@@ -35,6 +36,8 @@ class _AddViewState extends _Detail {
           final submitButtonPressed =
               !_vm.submitButtonDisabled ? handleSubmitButtonPressed : null;
 
+          final isExistPastMatching = _vm.isExistPastMatching;
+
           return Container(
             width: double.infinity,
             margin: const EdgeInsets.all(defaultPadding),
@@ -60,6 +63,37 @@ class _AddViewState extends _Detail {
                   ),
                 ),
                 const Spacer(),
+                isExistPastMatching
+                    ? Padding(
+                        padding: const EdgeInsets.only(bottom: 10),
+                        child: Row(
+                          children: <Widget>[
+                            const Icon(
+                              Icons.info_outline_rounded,
+                              color: Colors.grey,
+                            ),
+                            const SizedBox(width: 10),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Text(
+                                  '매칭된 이력이 있는 회원입니다.',
+                                  style: labelMedium.copyWith(
+                                    color: Colors.grey,
+                                  ),
+                                ),
+                                Text(
+                                  '기존 작성된 정보를 기반으로 회원 정보가 복구됩니다.',
+                                  style: labelMedium.copyWith(
+                                    color: Colors.grey,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      )
+                    : Container(),
                 SizedBox(
                   width: double.infinity,
                   child: CustomElevatedButton(

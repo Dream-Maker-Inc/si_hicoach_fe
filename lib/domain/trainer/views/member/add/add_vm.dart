@@ -41,7 +41,6 @@ class TrainerMemberAddViewModel extends GetxController {
   }
 
   String? get validationSuccessText {
-    if (isExistPastMatching) return "($memberName님)\n과거 매칭 내역이 있는 회원입니다.";
     if (isExistMatching) return "($memberName님)\n이미 매칭된 회원입니다.";
     if (isExistMember) return "$memberName님 확인되었습니다.";
 
