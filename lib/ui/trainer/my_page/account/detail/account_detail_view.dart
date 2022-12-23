@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import 'package:si_hicoach_fe/common/components/app_bar.dart';
 import 'package:si_hicoach_fe/common/components/http_error_dialog.dart';
 import 'package:si_hicoach_fe/common/getx/my_getx_state.dart';
-import 'package:si_hicoach_fe/ui/trainer/my-page/account/update/account_update_view.dart';
-import 'package:si_hicoach_fe/ui/trainer/my-page/account/detail/account_detail_vm.dart';
+import 'package:si_hicoach_fe/ui/trainer/my_page/account/update/account_update_view.dart';
+import 'package:si_hicoach_fe/ui/trainer/my_page/account/detail/account_detail_vm.dart';
 
 class TrainerMyAccountDetailView extends StatefulWidget {
   const TrainerMyAccountDetailView({Key? key}) : super(key: key);

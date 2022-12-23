@@ -3,7 +3,7 @@ import 'package:si_hicoach_fe/domain/calendar/weekly/calendar.dart';
 import 'package:si_hicoach_fe/common/components/divider.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/main/main.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/list/member_list.dart';
-import 'package:si_hicoach_fe/domain/trainer/views/my/my/my.dart';
+import 'package:si_hicoach_fe/domain/trainer/views/my/my/my_page_view.dart';
 
 class TrainerBaseView extends StatefulWidget {
   const TrainerBaseView({Key? key}) : super(key: key);
@@ -19,7 +19,7 @@ class _TrainerBaseViewState extends State<TrainerBaseView> {
     const TrainerMainView(),
     const WeeklyCalendarView(),
     const MemberListView(),
-    const MypageView(),
+    const TrainerMyPageView(),
   ];
 
   final _bottomNavigationBarItems = const <BottomNavigationBarItem>[

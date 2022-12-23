@@ -7,7 +7,7 @@ import 'package:si_hicoach_fe/ui/account/login/views/login.dart';
 import 'package:si_hicoach_fe/ui/common/business/business.dart';
 import 'package:si_hicoach_fe/ui/common/edit_password/edit_password.dart';
 import 'package:si_hicoach_fe/common/invite/invite.dart';
-import 'package:si_hicoach_fe/ui/trainer/my-page/account/detail/account_detail_view.dart';
+import 'package:si_hicoach_fe/ui/trainer/my_page/account/detail/account_detail_view.dart';
 
 class MypageMenuView extends StatelessWidget {
   const MypageMenuView({Key? key}) : super(key: key);

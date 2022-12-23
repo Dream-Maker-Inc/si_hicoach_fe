@@ -7,20 +7,14 @@ import 'package:si_hicoach_fe/domain/trainer/views/my/my/menu.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/my/my/mypage_vm.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/my/my/summary.dart';
 
-class MypageView extends StatefulWidget {
-  const MypageView({Key? key}) : super(key: key);
+class TrainerMyPageView extends StatefulWidget {
+  const TrainerMyPageView({Key? key}) : super(key: key);
 
   @override
-  State<MypageView> createState() => _MypageViewState();
+  State<TrainerMyPageView> createState() => _TrainerMyPageViewState();
 }
 
-class _MypageViewState extends _Detail {
-  final String name = '이은석';
-
-  final int currentStudy = 80;
-
-  final int pastStudy = 200;
-
+class _TrainerMyPageViewState extends _Detail {
   @override
   Widget build(BuildContext context) {
     super.build(context);
@@ -58,7 +52,7 @@ class _MypageViewState extends _Detail {
   }
 }
 
-class _Detail extends MyGetXState<MypageView, MyPageViewModel> {
+class _Detail extends MyGetXState<TrainerMyPageView, MyPageViewModel> {
   @override
   void initState() {
     super.initState();

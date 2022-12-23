@@ -8,7 +8,7 @@ import 'package:si_hicoach_fe/common/components/title_with_description.dart';
 import 'package:si_hicoach_fe/common/constants/constants.dart';
 import 'package:si_hicoach_fe/common/getx/my_getx_state.dart';
 import 'package:si_hicoach_fe/common/theme/color.dart';
-import 'package:si_hicoach_fe/ui/trainer/my-page/account/update/account_update_vm.dart';
+import 'package:si_hicoach_fe/ui/trainer/my_page/account/update/account_update_vm.dart';
 
 class TrainerMyAccountUpdateView extends StatefulWidget {
   final String companyName;
