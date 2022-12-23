@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:si_hicoach_fe/common/components/app_bar.dart';
 import 'package:si_hicoach_fe/common/components/dialog.dart';
+import 'package:si_hicoach_fe/common/components/http_error_dialog.dart';
 import 'package:si_hicoach_fe/common/components/text_field.dart';
 import 'package:si_hicoach_fe/common/components/title_with_description.dart';
 import 'package:si_hicoach_fe/common/constants/constants.dart';
@@ -9,7 +10,7 @@ import 'package:si_hicoach_fe/common/exceptions/common_exceptions.dart';
 import 'package:si_hicoach_fe/common/getx/my_getx_state.dart';
 import 'package:si_hicoach_fe/common/theme/color.dart';
 import 'package:si_hicoach_fe/ui/account/login/views/login.dart';
-import 'package:si_hicoach_fe/domain/common/edit_password/edit_password_vm.dart';
+import 'package:si_hicoach_fe/ui/common/edit_password/edit_password_vm.dart';
 
 class EditPasswordView extends StatefulWidget {
   const EditPasswordView({Key? key}) : super(key: key);
@@ -26,9 +27,7 @@ class _EditPasswordViewState extends _Detail {
     return Scaffold(
       appBar: CustomAppBarArrowBack(
         titleText: '비밀번호 변경',
-        actionsWidget: <Widget>[
-          _buildSubmitButton(),
-        ],
+        actionsWidget: [_buildSubmitButton()],
       ),
       body: CustomScrollView(
         slivers: [
@@ -123,7 +122,7 @@ class _Detail extends MyGetXState<EditPasswordView, EditPasswordViewModel> {
   void initState() {
     super.initState();
 
-    vm.updatePasswordSuccess.listen((b) {
+    vm.passwordUpdateSuccess.listen((b) {
       if (!b) return;
 
       showMySimpleDialog(
@@ -148,13 +147,7 @@ class _Detail extends MyGetXState<EditPasswordView, EditPasswordViewModel> {
             });
       }
 
-      showMySimpleDialog(
-          context: context,
-          title: 'Error',
-          content: e.toString(),
-          onConfirm: () {
-            Get.back();
-          });
+      showMyHttpErrorDialog(e.toString());
     });
   }
 

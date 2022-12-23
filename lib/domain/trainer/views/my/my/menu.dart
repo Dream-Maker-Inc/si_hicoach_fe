@@ -5,7 +5,7 @@ import 'package:si_hicoach_fe/common/components/divider.dart';
 import 'package:si_hicoach_fe/common/shared_preferences/key.dart';
 import 'package:si_hicoach_fe/ui/account/login/views/login.dart';
 import 'package:si_hicoach_fe/domain/common/business/business.dart';
-import 'package:si_hicoach_fe/domain/common/edit_password/edit_password.dart';
+import 'package:si_hicoach_fe/ui/common/edit_password/edit_password.dart';
 import 'package:si_hicoach_fe/common/invite/invite.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/my/account/account.dart';
 
