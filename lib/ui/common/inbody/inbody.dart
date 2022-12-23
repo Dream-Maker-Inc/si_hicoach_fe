@@ -5,6 +5,7 @@ import 'package:si_hicoach_fe/common/components/dialog.dart';
 import 'package:si_hicoach_fe/common/components/empty_patch.dart';
 import 'package:si_hicoach_fe/common/components/http_error_dialog.dart';
 import 'package:si_hicoach_fe/common/components/overlay_circular_progress_indicator.dart';
+import 'package:si_hicoach_fe/common/components/snackbar.dart';
 import 'package:si_hicoach_fe/common/constants/constants.dart';
 import 'package:si_hicoach_fe/common/exceptions/common_exceptions.dart';
 import 'package:si_hicoach_fe/common/file_picker/file_picker_func.dart';
@@ -102,30 +103,24 @@ class _Detail extends MyGetXState<InbodyView, InBodyViewModel> {
     vm.todayInBodyCreateSuccess.listen((b) {
       if (!b) return;
 
-      Get.snackbar(
-        "인바디 등록 성공",
-        "인바디 정보가 등록되었습니다.",
-        snackPosition: SnackPosition.BOTTOM,
-      );
+      showMySnackBar("인바디 등록 성공", "인바디 정보가 등록되었습니다.");
     });
 
     vm.inBodyUpdateSuccess.listen((b) {
       if (!b) return;
 
-      Get.snackbar(
+      showMySnackBar(
         "인바디 수정 성공",
         "인바디 정보가 수정되었습니다.",
-        snackPosition: SnackPosition.BOTTOM,
       );
     });
 
     vm.inBodyDeleteSuccess.listen((b) {
       if (!b) return;
 
-      Get.snackbar(
+      showMySnackBar(
         "인바디 삭제 성공",
         "인바디 정보가 삭제되었습니다.",
-        snackPosition: SnackPosition.BOTTOM,
       );
     });
 

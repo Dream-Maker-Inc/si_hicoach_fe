@@ -24,7 +24,7 @@ class TrainerMemberApi {
   }
 
   static Future<Result<Exception, GetMemberOfTrainerResponse>>
-      getMemberOfTrainer(String email) async {
+      getMemberWithMatching(String email) async {
     return safeApiCall<GetMemberOfTrainerResponse>(() async {
       Dio dio = DioHelper().dio;
       String path = '/api/v2/member/with-matching';

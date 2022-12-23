@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:si_hicoach_fe/common/components/app_bar_with_logo.dart';
 import 'package:si_hicoach_fe/common/getx/my_getx_state.dart';
-import 'package:si_hicoach_fe/domain/trainer/views/member/add/add.dart';
+import 'package:si_hicoach_fe/ui/trainer/members/add/find_or_recover/find_or_recover_view.dart';
 import 'package:si_hicoach_fe/ui/trainer/members/list/member_list_vm.dart';
 import 'package:si_hicoach_fe/ui/trainer/members/list/sections/tabs.dart';
 import 'package:si_hicoach_fe/ui/trainer/members/list/sections/tabs_header.dart';
@@ -50,7 +50,7 @@ class _TrainerMemberListPageState extends _Detail {
 class _Detail
     extends MyGetXState<TrainerMemberListPage, TrainerMemberListViewModel> {
   handleAddButtonPressed() {
-    Get.to(const TrainerMemberAddView())?.then((_) => vm.refetch());
+    Get.to(const TrainerMemberFindOrRecoverView())?.then((_) => vm.refetch());
   }
 
   @override
