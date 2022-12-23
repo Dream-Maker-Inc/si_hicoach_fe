@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:si_hicoach_fe/common/components/dialog.dart';
+import 'package:si_hicoach_fe/common/components/http_error_dialog.dart';
 import 'package:si_hicoach_fe/common/getx/my_getx_state.dart';
 import 'package:si_hicoach_fe/common/components/app_bar.dart';
 import 'package:si_hicoach_fe/common/third_party/iamport/iamport_certification_view.dart';
-import 'package:si_hicoach_fe/domain/auth/certification/certification_vm.dart';
+import 'package:si_hicoach_fe/ui/auth/certification/certification_vm.dart';
 import 'package:si_hicoach_fe/infrastructure/auth/dto/request_certifications_response.dart';
 import 'package:si_hicoach_fe/secret/secret.dart';
 
@@ -34,23 +35,22 @@ class _CertificationViewState extends _Detail {
   _buildIamportCertificationView() {
     return IamPortCertificationView(
       iamportUserCode: IAMPORT_USER_CODE,
-      onSuccess: handleCertificationSuccess,
-      onFailure: handleCertificationFail,
+      onSuccess: _handleCertificationSuccess,
+      onFailure: _handleCertificationFail,
     );
   }
 }
 
 class _Detail extends MyGetXState<CertificationView, CertificationViewModel> {
   _refresh() {
-    Navigator.pushReplacement(context,
-        MaterialPageRoute(builder: (BuildContext context) => super.widget));
+    Get.off(super.widget);
   }
 
-  handleCertificationSuccess(String impUid) {
+  _handleCertificationSuccess(String impUid) {
     vm.certificate(impUid);
   }
 
-  handleCertificationFail() {
+  _handleCertificationFail() {
     showMySimpleDialog(
         context: context,
         title: '인증 실패',
@@ -73,19 +73,7 @@ class _Detail extends MyGetXState<CertificationView, CertificationViewModel> {
     vm.apiError.listen((e) {
       if (e == null) return;
 
-      String title = "Error";
-      String message = e.toString();
-
-      vm.apiError.value = null;
-
-      showMySimpleDialog(
-          context: context,
-          title: title,
-          content: message,
-          onConfirm: () {
-            Get.back();
-            _refresh();
-          });
+      showMyHttpErrorDialog(e.toString()).then((value) => _refresh());
     });
   }
 

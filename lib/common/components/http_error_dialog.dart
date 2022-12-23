@@ -130,6 +130,6 @@ class _MyHttpErrorDialogState extends State<MyHttpErrorDialog> {
 }
 
 //
-showMyHttpErrorDialog(String e) {
-  Get.dialog(MyHttpErrorDialog(errorMsg: e));
+Future showMyHttpErrorDialog(String e) async {
+  return Get.dialog(MyHttpErrorDialog(errorMsg: e));
 }

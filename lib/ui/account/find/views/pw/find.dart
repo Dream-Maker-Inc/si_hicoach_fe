@@ -10,7 +10,7 @@ import 'package:si_hicoach_fe/common/components/title_with_description.dart';
 import 'package:si_hicoach_fe/common/constants/constants.dart';
 import 'package:si_hicoach_fe/common/theme/button.dart';
 import 'package:si_hicoach_fe/ui/account/find/views/pw/pw_reset.dart';
-import 'package:si_hicoach_fe/domain/auth/certification/certification_view.dart';
+import 'package:si_hicoach_fe/ui/auth/certification/certification_view.dart';
 
 class PasswordFindView extends StatefulWidget {
   const PasswordFindView({Key? key}) : super(key: key);

@@ -2,9 +2,9 @@ import 'package:get/get.dart';
 import 'package:si_hicoach_fe/infrastructure/auth/auth_api.dart';
 import 'package:si_hicoach_fe/infrastructure/auth/dto/request_certifications_response.dart';
 
-class CertificationViewModel extends _FetchController {}
+class CertificationViewModel extends _CertificationFeature {}
 
-class _FetchController extends GetxController {
+class _CertificationFeature extends GetxController {
   Rx<Exception?> apiError = Rx(null);
 
   // fetch
@@ -22,7 +22,16 @@ class _FetchController extends GetxController {
   Future certificate(String uid) async {
     final result = await AuthApi.certificate(uid);
 
-    result.when((e) => (apiError.value = e),
-        (response) => (certifiationsResponse.value = response));
+    result.when(
+      (e) => (apiError.value = e),
+      (response) => (certifiationsResponse.value = response),
+    );
+  }
+
+  @override
+  void onInit() {
+    super.onInit();
+
+    ever(apiError, (_) => (apiError.value = null));
   }
 }
