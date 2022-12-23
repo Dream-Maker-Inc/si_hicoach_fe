@@ -9,8 +9,18 @@ class FindIdViewModel extends GetxController {
   Future findId(String certificationToken) async {
     final result = await MemberApi.findId(certificationToken);
 
-    result.when((e) => (apiError.value = e), (res) {
-      findedId.value = res.data;
-    });
+    result.when(
+      (e) => (apiError.value = e),
+      (res) {
+        findedId.value = res.data;
+      },
+    );
+  }
+
+  @override
+  void onInit() {
+    super.onInit();
+
+    ever(apiError, (_) => (apiError.value = null));
   }
 }

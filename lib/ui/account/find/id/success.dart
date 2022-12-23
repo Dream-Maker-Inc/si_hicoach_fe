@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:si_hicoach_fe/ui/account/login/views/login.dart';
 import 'package:si_hicoach_fe/common/components/app_bar.dart';
 import 'package:si_hicoach_fe/common/components/title_with_description.dart';
@@ -13,10 +14,7 @@ class IDFindSuccessView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     handleSubmitButtonPressed() {
-      Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(builder: (context) => const LoginView()),
-        (Route<dynamic> route) => false,
-      );
+      Get.offAll(const LoginView());
     }
 
     return Scaffold(
