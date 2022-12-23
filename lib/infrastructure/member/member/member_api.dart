@@ -40,7 +40,7 @@ class MemberApi {
       Dio dio = DioHelper().dio;
       String path = '/api/v2/member/$memberId/password';
 
-      await dio.post(path, data: dto.toMap());
+      await dio.patch(path, data: dto.toMap());
 
       return const Success(true);
     }, handleError: (DioError e) {

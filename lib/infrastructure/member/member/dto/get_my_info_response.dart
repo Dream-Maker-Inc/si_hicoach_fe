@@ -59,6 +59,8 @@ class Member extends BaseDto {
   late final String phone;
   late final TrainerInfo? trainerInfo;
 
+  bool get isRoleTrainer => (trainerInfo != null);
+
   factory Member.fromJson(Map<String, dynamic> json) => _$MemberFromJson(json);
 
   Map<String, dynamic> toJson() => _$MemberToJson(this);

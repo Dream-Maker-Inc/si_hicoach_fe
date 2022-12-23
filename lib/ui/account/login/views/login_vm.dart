@@ -77,10 +77,10 @@ class MyInfoFetchFeature extends DeviceInfoAddFeature {
 
   Future _handleGetMyInfoSuccess(GetMyInfoResponse res) async {
     final userId = res.data.member.id;
-    final trainerInfo = res.data.member.trainerInfo;
-    final isRoleTrainer = (trainerInfo != null);
+    final isRoleTrainer = res.data.member.isRoleTrainer;
 
     await saveUserId(userId);
+    await saveRoleTrainer(isRoleTrainer);
 
     _isRoleTrainer.value = isRoleTrainer;
   }
@@ -102,7 +102,9 @@ class DeviceInfoAddFeature extends LocalDataSaveFeature {
     final result = await MemberDevicesApi.add(dto);
 
     result.when(
-        (e) => apiError.value = e, (res) => addDeviceSuccess.value = res);
+      (e) => apiError.value = e,
+      (res) => addDeviceSuccess.value = res,
+    );
   }
 }
 
@@ -110,6 +112,10 @@ class DeviceInfoAddFeature extends LocalDataSaveFeature {
 class LocalDataSaveFeature extends BaseLoginViewModel {
   Future saveUserId(int userId) async {
     SharedPrefsManager().setUserId(userId);
+  }
+
+  Future saveRoleTrainer(bool isRoleTrainer) async {
+    SharedPrefsManager().setRoleTrainerType(isRoleTrainer);
   }
 
   Future saveAccessTokenToDevice(String accessToken) async {
