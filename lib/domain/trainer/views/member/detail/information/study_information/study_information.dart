@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:si_hicoach_fe/common/components/title_with_description.dart';
 import 'package:si_hicoach_fe/common/constants/constants.dart';
 import 'package:si_hicoach_fe/common/theme/button.dart';
-import 'package:si_hicoach_fe/domain/common/inbody/inbody.dart';
+import 'package:si_hicoach_fe/ui/common/inbody/inbody.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/detail/detail_vm.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/detail/information/study_information/summary.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/detail/tickets/tickets.dart';

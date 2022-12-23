@@ -3,24 +3,25 @@ import 'package:get/get.dart';
 import 'package:si_hicoach_fe/common/components/app_bar.dart';
 import 'package:si_hicoach_fe/common/components/dialog.dart';
 import 'package:si_hicoach_fe/common/components/empty_patch.dart';
+import 'package:si_hicoach_fe/common/components/http_error_dialog.dart';
 import 'package:si_hicoach_fe/common/components/overlay_circular_progress_indicator.dart';
 import 'package:si_hicoach_fe/common/constants/constants.dart';
 import 'package:si_hicoach_fe/common/exceptions/common_exceptions.dart';
 import 'package:si_hicoach_fe/common/file_picker/file_picker_func.dart';
 import 'package:si_hicoach_fe/common/getx/my_getx_state.dart';
-import 'package:si_hicoach_fe/domain/common/inbody/inbody_vm.dart';
-import 'package:si_hicoach_fe/domain/common/inbody/item.dart';
+import 'package:si_hicoach_fe/ui/common/inbody/inbody_vm.dart';
+import 'package:si_hicoach_fe/ui/common/inbody/item.dart';
 
 class InbodyView extends StatefulWidget {
   final int memberId;
   final int matchingId;
-  final bool addable;
+  final bool isRoleTrainer;
 
   const InbodyView({
     super.key,
     required this.memberId,
     required this.matchingId,
-    this.addable = true,
+    this.isRoleTrainer = true,
   });
 
   @override
@@ -28,6 +29,8 @@ class InbodyView extends StatefulWidget {
 }
 
 class _InbodyViewState extends _Detail {
+  bool get isRoleTrainer => widget.isRoleTrainer;
+
   @override
   Widget build(BuildContext context) {
     super.build(context);
@@ -35,45 +38,51 @@ class _InbodyViewState extends _Detail {
     return Obx(() {
       final loadingMsg = vm.loadingMsg.value;
 
-      final List<Widget>? renderActionIcon = widget.addable
-          ? [
-              IconButton(
-                onPressed: handleUploadClick,
-                icon: const Icon(Icons.add_rounded),
-              )
-            ]
-          : null;
-
       return OverlayCircularProgressIndicator(
           message: loadingMsg,
           child: Scaffold(
-            appBar: CustomAppBarArrowBack(
-              titleText: '인바디 데이터',
-              actionsWidget: renderActionIcon,
-            ),
+            appBar: _buildAppbar(),
             body: _buildGrid(),
           ));
     });
   }
 
+  _buildAppbar() {
+    final List<Widget> renderActionIcon = !isRoleTrainer
+        ? <Widget>[]
+        : [
+            IconButton(
+              onPressed: handleUploadClick,
+              icon: const Icon(Icons.add_rounded),
+            )
+          ];
+
+    return CustomAppBarArrowBack(
+      titleText: '인바디 데이터',
+      actionsWidget: renderActionIcon,
+    );
+  }
+
   _buildGrid() {
     return Obx(() {
       final models = vm.inBodyModels;
-      final isRoleTrainer = vm.isRoleTrainer.value;
 
-      return models.isNotEmpty
-          ? GridView.count(
-              crossAxisSpacing: defaultPadding,
-              mainAxisSpacing: 20,
-              crossAxisCount: 2,
-              padding: const EdgeInsets.all(defaultPadding),
-              children: List.from(
-                models.map(
-                  (it) => InbodyItem(model: it, editable: isRoleTrainer),
-                ),
+      if (models.isEmpty) return const EmptyDataPatch();
+
+      return GridView.count(
+        crossAxisSpacing: defaultPadding,
+        mainAxisSpacing: 20,
+        crossAxisCount: 2,
+        padding: const EdgeInsets.all(defaultPadding),
+        children: models
+            .map(
+              (it) => InbodyItem(
+                model: it,
+                editable: isRoleTrainer,
               ),
             )
-          : const EmptyDataPatch();
+            .toList(),
+      );
     });
   }
 }
@@ -83,50 +92,45 @@ class _Detail extends MyGetXState<InbodyView, InBodyViewModel> {
     final result = await showFilePickerAndGet();
     if (result == null) return;
 
-    vm.createTodayInBody(result);
+    vm.createTodayInBody(vm.memberId, result);
   }
 
   @override
   void initState() {
     super.initState();
 
-    vm.memberId = widget.memberId;
-    vm.matchingId = widget.matchingId;
+    vm.todayInBodyCreateSuccess.listen((b) {
+      if (!b) return;
 
-    vm.createTodayInBodySuccess.listen((isSuccess) {
-      if (isSuccess == false) return;
-
-      Get.snackbar("인바디 등록 성공", "인바디 정보가 등록되었습니다.",
-          snackPosition: SnackPosition.BOTTOM);
-      vm.createTodayInBodySuccess.value = false;
+      Get.snackbar(
+        "인바디 등록 성공",
+        "인바디 정보가 등록되었습니다.",
+        snackPosition: SnackPosition.BOTTOM,
+      );
     });
 
-    vm.updateInBodySuccess.listen((isSuccess) {
-      if (isSuccess == false) return;
+    vm.inBodyUpdateSuccess.listen((b) {
+      if (!b) return;
 
       Get.snackbar(
         "인바디 수정 성공",
         "인바디 정보가 수정되었습니다.",
         snackPosition: SnackPosition.BOTTOM,
       );
-      vm.updateInBodySuccess.value = false;
     });
 
-    vm.deleteInBodySuccess.listen((isSuccess) {
-      if (isSuccess == false) return;
+    vm.inBodyDeleteSuccess.listen((b) {
+      if (!b) return;
 
       Get.snackbar(
         "인바디 삭제 성공",
         "인바디 정보가 삭제되었습니다.",
         snackPosition: SnackPosition.BOTTOM,
       );
-      vm.deleteInBodySuccess.value = false;
     });
 
     vm.apiError.listen((e) {
       if (e == null) return;
-
-      vm.apiError.value = null;
 
       if (e is AlreadyInBodyException) {
         return showMySimpleDialog(
@@ -138,25 +142,22 @@ class _Detail extends MyGetXState<InbodyView, InBodyViewModel> {
             });
       }
 
-      showMySimpleDialog(
-          context: context,
-          title: 'Error',
-          content: e.toString(),
-          onConfirm: () {
-            Get.back();
-          });
+      showMyHttpErrorDialog(e.toString());
     });
   }
 
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      Future.wait([vm.fetchMemberInbodies(vm.memberId), vm.fetchMyInfo()]);
+      Future.wait([vm.fetchMemberInbodies(vm.memberId)]);
     });
 
     return widget;
   }
 
   @override
-  InBodyViewModel createViewModel() => InBodyViewModel();
+  InBodyViewModel createViewModel() => InBodyViewModel(
+        memberId: widget.memberId,
+        matchingId: widget.matchingId,
+      );
 }

@@ -5,8 +5,9 @@ class InBodyModel {
 
   DateTime get registedDate => DateTime.parse(registedAt);
 
-  InBodyModel(
-      {required this.inbodyId,
-      required this.imageUrl,
-      required this.registedAt});
+  InBodyModel({
+    required this.inbodyId,
+    required this.imageUrl,
+    required this.registedAt,
+  });
 }
