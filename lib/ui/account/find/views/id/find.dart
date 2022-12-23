@@ -7,8 +7,8 @@ import 'package:si_hicoach_fe/common/constants/constants.dart';
 import 'package:si_hicoach_fe/common/exceptions/common_exceptions.dart';
 import 'package:si_hicoach_fe/common/getx/my_getx_state.dart';
 import 'package:si_hicoach_fe/common/theme/button.dart';
-import 'package:si_hicoach_fe/ui/account/find/id/find_id_vm.dart';
-import 'package:si_hicoach_fe/ui/account/find/id/success.dart';
+import 'package:si_hicoach_fe/ui/account/find/views/id/find_id_vm.dart';
+import 'package:si_hicoach_fe/ui/account/find/views/id/success.dart';
 import 'package:si_hicoach_fe/domain/auth/certification/certification_view.dart';
 
 class IDFindView extends StatefulWidget {

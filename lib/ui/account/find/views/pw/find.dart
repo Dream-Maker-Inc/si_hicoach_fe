@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:si_hicoach_fe/common/components/dialog.dart';
+import 'package:si_hicoach_fe/common/components/http_error_dialog.dart';
 import 'package:si_hicoach_fe/common/exceptions/signup_exceptions.dart';
 import 'package:si_hicoach_fe/common/getx/my_getx_state.dart';
-import 'package:si_hicoach_fe/domain/account/find/views/pw/find_pw_vm.dart';
+import 'package:si_hicoach_fe/ui/account/find/views/pw/find_pw_vm.dart';
 import 'package:si_hicoach_fe/common/components/text_field.dart';
 import 'package:si_hicoach_fe/common/components/title_with_description.dart';
 import 'package:si_hicoach_fe/common/constants/constants.dart';
 import 'package:si_hicoach_fe/common/theme/button.dart';
-import 'package:si_hicoach_fe/domain/account/find/views/pw/pw_reset.dart';
+import 'package:si_hicoach_fe/ui/account/find/views/pw/pw_reset.dart';
 import 'package:si_hicoach_fe/domain/auth/certification/certification_view.dart';
 
 class PasswordFindView extends StatefulWidget {
@@ -21,6 +22,8 @@ class PasswordFindView extends StatefulWidget {
 class _PasswordFindViewState extends _Detail {
   @override
   Widget build(BuildContext context) {
+    super.build(context);
+
     return Container(
       width: double.infinity,
       margin: const EdgeInsets.all(defaultPadding),
@@ -70,10 +73,12 @@ class _Detail extends MyGetXState<PasswordFindView, FindPasswordViewModel> {
     Get.off(PasswordResetView(certificationToken: certificationToken));
   }
 
-  navigateCertificationView() {
-    Get.to(CertificationView(onSuccess: (res) {
-      navigatePasswordResetView(res.data.certificationToken);
-    }));
+  void navigateCertificationView() {
+    Get.to(CertificationView(
+      onSuccess: (res) {
+        navigatePasswordResetView(res.data.certificationToken);
+      },
+    ));
   }
 
   @override
@@ -89,30 +94,17 @@ class _Detail extends MyGetXState<PasswordFindView, FindPasswordViewModel> {
           content: "유저 정보가 없습니다.",
           onConfirm: () {
             Get.back();
-            vm.validateEmailSuccess.value = false;
           });
     });
 
     vm.apiError.listen((e) {
       if (e == null) return;
 
-      String title = "Error";
-      String message = e.toString();
-
-      vm.apiError.value = null;
-
       if (e is AlreadyUsedEmailException) {
-        navigateCertificationView();
-        return;
+        return navigateCertificationView();
       }
 
-      showMySimpleDialog(
-          context: context,
-          title: title,
-          content: message,
-          onConfirm: () {
-            Get.back();
-          });
+      showMyHttpErrorDialog(e.toString());
     });
   }
 

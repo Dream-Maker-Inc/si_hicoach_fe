@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:si_hicoach_fe/common/components/dialog.dart';
-import 'package:si_hicoach_fe/domain/account/find/views/pw/find_pw_vm.dart';
+import 'package:si_hicoach_fe/common/components/http_error_dialog.dart';
+import 'package:si_hicoach_fe/ui/account/find/views/pw/find_pw_vm.dart';
 import 'package:si_hicoach_fe/ui/account/login/views/login.dart';
 import 'package:si_hicoach_fe/common/components/app_bar.dart';
 import 'package:si_hicoach_fe/common/components/text_field.dart';
@@ -58,18 +59,7 @@ class _PasswordResetViewState extends State<PasswordResetView> {
     _vm.apiError.listen((e) {
       if (e == null) return;
 
-      String title = "Error";
-      String message = e.toString();
-
-      _vm.apiError.value = null;
-
-      showMySimpleDialog(
-          context: context,
-          title: title,
-          content: message,
-          onConfirm: () {
-            Get.back();
-          });
+      showMyHttpErrorDialog(e.toString());
     });
   }
 
