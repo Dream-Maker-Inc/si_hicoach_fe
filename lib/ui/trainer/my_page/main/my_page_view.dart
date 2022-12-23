@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:si_hicoach_fe/common/components/app_bar_with_logo.dart';
-import 'package:si_hicoach_fe/common/components/dialog.dart';
+import 'package:si_hicoach_fe/common/components/http_error_dialog.dart';
 import 'package:si_hicoach_fe/common/getx/my_getx_state.dart';
-import 'package:si_hicoach_fe/domain/trainer/views/my/my/menu.dart';
-import 'package:si_hicoach_fe/domain/trainer/views/my/my/mypage_vm.dart';
-import 'package:si_hicoach_fe/domain/trainer/views/my/my/summary.dart';
+import 'package:si_hicoach_fe/ui/trainer/my_page/main/sections/menu.dart';
+import 'package:si_hicoach_fe/ui/trainer/my_page/main/my_page_vm.dart';
+import 'package:si_hicoach_fe/ui/trainer/my_page/main/sections/summary.dart';
 
 class TrainerMyPageView extends StatefulWidget {
   const TrainerMyPageView({Key? key}) : super(key: key);
@@ -28,7 +28,7 @@ class _TrainerMyPageViewState extends _Detail {
   }
 
   _buildContent() {
-    return GetBuilder<MyPageViewModel>(builder: (builder) {
+    return Obx(() {
       final memberName = vm.memberName;
       final companyName = vm.companyName;
       final lastMonthStudyCount = vm.lastMonthStudyCount;
@@ -60,15 +60,7 @@ class _Detail extends MyGetXState<TrainerMyPageView, MyPageViewModel> {
     vm.apiError.listen((e) {
       if (e == null) return;
 
-      showMySimpleDialog(
-          context: context,
-          title: 'Error',
-          content: e.toString(),
-          confirmText: "뒤로가기",
-          onConfirm: () {
-            Get.back();
-            Get.back();
-          });
+      showMyHttpErrorDialog(e.toString()).then((_) => Get.back());
     });
   }
 
