@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:si_hicoach_fe/common/components/empty_patch.dart';
 import 'package:si_hicoach_fe/domain/member/views/main/main_vm.dart';
 import 'package:si_hicoach_fe/domain/member/views/main/present/models/study_item_model.dart';
-import 'package:si_hicoach_fe/domain/common/study/detail/detail.dart';
+import 'package:si_hicoach_fe/ui/common/study/detail/detail.dart';
 
 class PresentListView extends StatefulWidget {
   final List<StudyItemModel> models;

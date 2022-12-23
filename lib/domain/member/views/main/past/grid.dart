@@ -9,7 +9,7 @@ import 'package:si_hicoach_fe/common/getx/my_getx_state.dart';
 import 'package:si_hicoach_fe/common/theme/typography.dart';
 import 'package:si_hicoach_fe/domain/member/views/main/past/grid_item.dart';
 import 'package:si_hicoach_fe/domain/member/views/main/past/main_latest_study_vm.dart';
-import 'package:si_hicoach_fe/domain/common/study/detail/detail.dart';
+import 'package:si_hicoach_fe/ui/common/study/detail/detail.dart';
 
 class PastGridView extends StatefulWidget {
   const PastGridView({Key? key}) : super(key: key);
