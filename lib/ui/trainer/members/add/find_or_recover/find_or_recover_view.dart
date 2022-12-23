@@ -12,7 +12,7 @@ import 'package:si_hicoach_fe/common/getx/my_getx_state.dart';
 import 'package:si_hicoach_fe/common/theme/button.dart';
 import 'package:si_hicoach_fe/common/theme/typography.dart';
 import 'package:si_hicoach_fe/ui/trainer/members/add/find_or_recover/find_or_recover_vm.dart';
-import 'package:si_hicoach_fe/domain/trainer/views/member/add/additional_information.dart';
+import 'package:si_hicoach_fe/ui/trainer/members/add/matching_create/matching_create_view.dart';
 
 class TrainerMemberFindOrRecoverView extends StatefulWidget {
   const TrainerMemberFindOrRecoverView({super.key});
@@ -139,7 +139,7 @@ class _Detail extends MyGetXState<TrainerMemberFindOrRecoverView,
     }
 
     Get.to(
-      AddAdditionalInformation(memberId: vm.memberId),
+      MatchingCreateView(memberId: vm.memberId),
     );
   }
 
