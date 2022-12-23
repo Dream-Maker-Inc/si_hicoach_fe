@@ -13,7 +13,7 @@ import 'package:si_hicoach_fe/domain/common/study/detail/components/memo.dart';
 import 'package:si_hicoach_fe/domain/common/study/detail/components/time.dart';
 import 'package:si_hicoach_fe/common/theme/typography.dart';
 import 'package:si_hicoach_fe/domain/common/study/detail/study_detail_vm.dart';
-import 'package:si_hicoach_fe/domain/common/study/update/study_update.dart';
+import 'package:si_hicoach_fe/ui/common/study/update/study_update.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/detail/detail.dart';
 
 class StudyDetailView extends StatefulWidget {
