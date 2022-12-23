@@ -3,34 +3,44 @@ import 'package:get/get.dart';
 import 'package:si_hicoach_fe/common/components/app_bar.dart';
 import 'package:si_hicoach_fe/common/components/divider.dart';
 import 'package:si_hicoach_fe/common/constants/constants.dart';
-import 'package:si_hicoach_fe/domain/common/study/common/components/exercise.dart';
-import 'package:si_hicoach_fe/domain/common/study/common/components/exercise_item.dart';
-import 'package:si_hicoach_fe/domain/common/study/common/components/time/time.dart';
-import 'package:si_hicoach_fe/domain/common/study/common/components/memo.dart';
-import 'package:si_hicoach_fe/domain/common/study/common/templates/study_form_vm.dart';
+import 'package:si_hicoach_fe/ui/common/study/common/components/exercise.dart';
+import 'package:si_hicoach_fe/ui/common/study/common/components/exercise_item.dart';
+import 'package:si_hicoach_fe/ui/common/study/common/components/time/time.dart';
+import 'package:si_hicoach_fe/ui/common/study/common/components/memo.dart';
+import 'package:si_hicoach_fe/ui/common/study/common/templates/study_form_vm.dart';
+import 'package:si_hicoach_fe/infrastructure/exercises/exercise_item/dto/get_exercise_items_response.dart';
 
 class StudyForm extends StatefulWidget {
   final String formTitle;
   final StudyFormViewModel vm;
 
-  const StudyForm({super.key, required this.vm, this.formTitle = "운동 일지 작성"});
+  const StudyForm({
+    super.key,
+    required this.vm,
+    this.formTitle = "운동 일지 작성",
+  });
 
   @override
   State<StudyForm> createState() => _StudyFormState();
 }
 
 class _StudyFormState extends State<StudyForm> {
-  late final StudyFormViewModel vm;
+  StudyFormViewModel get vm => widget.vm;
+
+  handleMemoChange(String v) {
+    vm.memo.value = v;
+  }
+
+  handleAddExercise(ExerciseItem exercise) {
+    vm.addExerciseItem(exercise);
+  }
+
+  handleTimeSelect(int hour) {
+    vm.setStudyTime(hour);
+  }
 
   handleSubmitButtonPressed() {
     vm.submit();
-  }
-
-  @override
-  void initState() {
-    super.initState();
-
-    vm = widget.vm;
   }
 
   @override
@@ -38,7 +48,7 @@ class _StudyFormState extends State<StudyForm> {
     return Scaffold(
       appBar: CustomAppBarArrowBack(
         titleText: widget.formTitle,
-        actionsWidget: <Widget>[_buildSubmitButton()],
+        actionsWidget: [_buildSubmitButton()],
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -46,7 +56,7 @@ class _StudyFormState extends State<StudyForm> {
           child: Padding(
             padding: const EdgeInsets.all(defaultPadding),
             child: Column(
-              children: <Widget>[
+              children: [
                 _buildTimeSection(),
                 const SizedBox(height: widePadding),
                 _buildEditExerciseSection(),
@@ -77,10 +87,6 @@ class _StudyFormState extends State<StudyForm> {
 
   // 스터디 시간 설정 섹션
   _buildTimeSection() {
-    handleTimeSelect(int hour) {
-      vm.setStudyTime(hour);
-    }
-
     return Obx(() {
       final model = vm.editTimeModel.value;
 
@@ -93,24 +99,24 @@ class _StudyFormState extends State<StudyForm> {
 
   // 내 운동 목록 설정 섹션
   _buildEditExerciseSection() {
-    final handleAddExercise = vm.addExerciseItem;
-
     return Obx(() {
       final models = vm.exerciseItemModels.toList();
       final List<StudyEditExerciseItemProps> itemProps = models
-          .map((it) => StudyEditExerciseItemProps(
-                model: it,
-                onWeightChange: (weight) {
-                  vm.handleExerciseItemStateChange(it.id, weight: weight);
-                },
-                onCountChange: (count) {
-                  vm.handleExerciseItemStateChange(it.id, count: count);
-                },
-                onSetsChange: (sets) {
-                  vm.handleExerciseItemStateChange(it.id, sets: sets);
-                },
-                onDelete: vm.handleExerciseItemDelete,
-              ))
+          .map(
+            (it) => StudyEditExerciseItemProps(
+              model: it,
+              onWeightChange: (weight) {
+                vm.handleExerciseItemStateChange(it.id, weight: weight);
+              },
+              onCountChange: (count) {
+                vm.handleExerciseItemStateChange(it.id, count: count);
+              },
+              onSetsChange: (sets) {
+                vm.handleExerciseItemStateChange(it.id, sets: sets);
+              },
+              onDelete: vm.handleExerciseItemDelete,
+            ),
+          )
           .toList();
 
       return EditExercise(
@@ -122,10 +128,6 @@ class _StudyFormState extends State<StudyForm> {
 
   // 메모 섹션
   _buildEditMemoSection() {
-    handleMemoChange(String v) {
-      vm.memo.value = v;
-    }
-
     return Obx(() {
       final memo = vm.memo.value;
 

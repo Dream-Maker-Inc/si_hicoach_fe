@@ -5,8 +5,8 @@ import 'package:get/get.dart';
 import 'package:si_hicoach_fe/common/components/dialog.dart';
 import 'package:si_hicoach_fe/common/exceptions/common_exceptions.dart';
 import 'package:si_hicoach_fe/common/getx/my_getx_state.dart';
-import 'package:si_hicoach_fe/domain/common/study/common/templates/study_form.dart';
-import 'package:si_hicoach_fe/domain/common/study/create/study_create_vm.dart';
+import 'package:si_hicoach_fe/ui/common/study/common/templates/study_form.dart';
+import 'package:si_hicoach_fe/ui/common/study/create/study_create_vm.dart';
 
 class StudyCreateView extends StatefulWidget {
   final int matchingId;
@@ -53,7 +53,7 @@ class _Detail extends MyGetXState<StudyCreateView, StudyCreateViewModel> {
 
     _setInitialViewModelData();
 
-    vm.createStudySuccess.listen((isSuccess) {
+    vm.studyCreateSuccess.listen((isSuccess) {
       if (isSuccess == false) return;
 
       showMySimpleDialog(

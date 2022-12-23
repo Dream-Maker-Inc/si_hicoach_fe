@@ -1,4 +1,4 @@
-import 'package:si_hicoach_fe/domain/common/study/common/components/exercise_item.dart';
+import 'package:si_hicoach_fe/ui/common/study/common/components/exercise_item.dart';
 
 class StudyFormModel {
   final int studyRound;
@@ -21,9 +21,9 @@ class StudyFormModel {
 
   _initStartedAt(DateTime? initialDate) {
     if (initialDate != null) {
-      startedAt = initialDate;
-    } else {
-      startedAt = DateTime.now();
+      return startedAt = initialDate;
     }
+
+    startedAt = DateTime.now();
   }
 }

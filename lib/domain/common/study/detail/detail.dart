@@ -7,7 +7,7 @@ import 'package:si_hicoach_fe/common/constants/constants.dart';
 import 'package:si_hicoach_fe/common/exceptions/common_exceptions.dart';
 import 'package:si_hicoach_fe/common/getx/my_getx_state.dart';
 import 'package:si_hicoach_fe/ui/account/login/views/login.dart';
-import 'package:si_hicoach_fe/domain/common/study/common/components/exercise_item.dart';
+import 'package:si_hicoach_fe/ui/common/study/common/components/exercise_item.dart';
 import 'package:si_hicoach_fe/domain/common/study/detail/components/exercise.dart';
 import 'package:si_hicoach_fe/domain/common/study/detail/components/memo.dart';
 import 'package:si_hicoach_fe/domain/common/study/detail/components/time.dart';
