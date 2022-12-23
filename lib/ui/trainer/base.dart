@@ -26,7 +26,7 @@ class _TrainerBaseViewState extends State<TrainerBaseView> {
     BottomNavigationBarItem(icon: Icon(Icons.home), label: "홈"),
     BottomNavigationBarItem(icon: Icon(Icons.calendar_month), label: "캘린더"),
     BottomNavigationBarItem(icon: Icon(Icons.list), label: "회원 목록"),
-    BottomNavigationBarItem(icon: Icon(Icons.person), label: "머아페이지"),
+    BottomNavigationBarItem(icon: Icon(Icons.person), label: "마이페이지"),
   ];
 
   Widget _bottomNavigationBar() {
@@ -43,13 +43,9 @@ class _TrainerBaseViewState extends State<TrainerBaseView> {
 
   _onTap(int tabIndex) {
     _pages.map(
-      (page) => MaterialPageRoute(
-        builder: (BuildContext context) {
-          return page;
-        },
-      ),
+      (page) => MaterialPageRoute(builder: (_) => page),
     );
-    setState(() => _currentTabIndex = tabIndex);
+    setState(() => (_currentTabIndex = tabIndex));
   }
 
   @override

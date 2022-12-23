@@ -7,7 +7,7 @@ import 'package:si_hicoach_fe/ui/account/login/views/login.dart';
 import 'package:si_hicoach_fe/domain/member/views/base.dart';
 import 'package:si_hicoach_fe/ui/common/splash/splash_section.dart';
 import 'package:si_hicoach_fe/ui/common/splash/splash_vm.dart';
-import 'package:si_hicoach_fe/domain/trainer/views/base.dart';
+import 'package:si_hicoach_fe/ui/trainer/base.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({Key? key}) : super(key: key);
