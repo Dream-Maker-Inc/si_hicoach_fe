@@ -5,7 +5,7 @@ import 'package:si_hicoach_fe/domain/calendar/weekly/components/item.dart';
 import 'package:si_hicoach_fe/common/theme/typography.dart';
 import 'package:si_hicoach_fe/domain/calendar/weekly/weekly_calendar_vm.dart';
 import 'package:si_hicoach_fe/ui/common/study/detail/detail.dart';
-import 'package:si_hicoach_fe/domain/trainer/views/member/list-popup/member_list_popup.dart';
+import 'package:si_hicoach_fe/ui/trainer/members/list-popup/member_list_popup.dart';
 
 const dayTimeCount = 24;
 const weekDays = [7, 1, 2, 3, 4, 5, 6];

@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:logger/logger.dart';
 import 'package:si_hicoach_fe/common/components/divider.dart';
 import 'package:si_hicoach_fe/common/getx/my_getx_state.dart';
 import 'package:si_hicoach_fe/common/theme/typography.dart';
 import 'package:si_hicoach_fe/common/utils/number_format.dart';
 import 'package:si_hicoach_fe/ui/common/study/create/study_create.dart';
-import 'package:si_hicoach_fe/domain/trainer/views/member/list-popup/components/list_item.dart';
-import 'package:si_hicoach_fe/domain/trainer/views/member/list-popup/member_list_popup_vm.dart';
+import 'package:si_hicoach_fe/ui/trainer/members/list-popup/components/list_item.dart';
+import 'package:si_hicoach_fe/ui/trainer/members/list-popup/member_list_popup_vm.dart';
 
 class MemberListPopup extends StatefulWidget {
   final DateTime targetDateTime;
@@ -25,11 +24,10 @@ class MemberListPopupState extends _Detail {
   Widget build(BuildContext context) {
     super.build(context);
 
-    Logger().e(widget.targetDateTime.toString());
-
     return Dialog(
         shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(16))),
+          borderRadius: BorderRadius.all(Radius.circular(16)),
+        ),
         child: _buildLayout(
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -67,8 +65,10 @@ class MemberListPopupState extends _Detail {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text("회원 목록", style: headlineSmall),
-              Text("수강중 (총 ${totalMemberCount.toKC}명)",
-                  style: bodyMedium.copyWith(color: Colors.grey.shade500)),
+              Text(
+                "수강중 (총 ${totalMemberCount.toKC}명)",
+                style: bodyMedium.copyWith(color: Colors.grey.shade500),
+              ),
             ],
           ),
         ),
