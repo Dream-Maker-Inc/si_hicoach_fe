@@ -18,7 +18,7 @@ class _TrainerBaseViewState extends State<TrainerBaseView> {
   final List _pages = [
     const TrainerMainView(),
     const WeeklyCalendarView(),
-    const MemberListPage(),
+    const TrainerMemberListPage(),
     const TrainerMyPageView(),
   ];
 

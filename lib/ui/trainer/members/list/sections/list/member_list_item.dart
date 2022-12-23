@@ -23,7 +23,7 @@ class MemberListItem extends StatelessWidget {
   final int totalTicketCount;
   final int matchingId;
 
-  final MemberListViewModel _vm = Get.find<MemberListViewModel>();
+  final TrainerMemberListViewModel _vm = Get.find<TrainerMemberListViewModel>();
 
   handleDetailButtonPressed(BuildContext context) {
     Get.to(DetailView(memberId: id))?.then((_) => _vm.refetch());

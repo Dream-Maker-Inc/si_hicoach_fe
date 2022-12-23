@@ -8,18 +8,18 @@ import 'package:si_hicoach_fe/ui/common/study/create/study_create.dart';
 import 'package:si_hicoach_fe/ui/trainer/members/list-popup/components/list_item.dart';
 import 'package:si_hicoach_fe/ui/trainer/members/list-popup/member_list_popup_vm.dart';
 
-class MemberListPopup extends StatefulWidget {
+class TrainerMemberListPopup extends StatefulWidget {
   final DateTime targetDateTime;
   final VoidCallback onSuccess;
 
-  const MemberListPopup(
+  const TrainerMemberListPopup(
       {super.key, required this.targetDateTime, required this.onSuccess});
 
   @override
-  MemberListPopupState createState() => MemberListPopupState();
+  TrainerMemberListPopupState createState() => TrainerMemberListPopupState();
 }
 
-class MemberListPopupState extends _Detail {
+class TrainerMemberListPopupState extends _Detail {
   @override
   Widget build(BuildContext context) {
     super.build(context);
@@ -104,7 +104,8 @@ class MemberListPopupState extends _Detail {
   }
 }
 
-class _Detail extends MyGetXState<MemberListPopup, MemberListPopupViewModel> {
+class _Detail extends MyGetXState<TrainerMemberListPopup,
+    TrainerMemberListPopupViewModel> {
   _closeThisPopup() {
     Get.back();
   }
@@ -139,5 +140,6 @@ class _Detail extends MyGetXState<MemberListPopup, MemberListPopupViewModel> {
   }
 
   @override
-  MemberListPopupViewModel createViewModel() => MemberListPopupViewModel();
+  TrainerMemberListPopupViewModel createViewModel() =>
+      TrainerMemberListPopupViewModel();
 }

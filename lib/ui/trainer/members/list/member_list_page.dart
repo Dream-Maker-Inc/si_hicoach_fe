@@ -7,14 +7,14 @@ import 'package:si_hicoach_fe/ui/trainer/members/list/member_list_vm.dart';
 import 'package:si_hicoach_fe/ui/trainer/members/list/sections/tabs.dart';
 import 'package:si_hicoach_fe/ui/trainer/members/list/sections/tabs_header.dart';
 
-class MemberListPage extends StatefulWidget {
-  const MemberListPage({Key? key}) : super(key: key);
+class TrainerMemberListPage extends StatefulWidget {
+  const TrainerMemberListPage({Key? key}) : super(key: key);
 
   @override
-  State<MemberListPage> createState() => _MemberListPageState();
+  State<TrainerMemberListPage> createState() => _TrainerMemberListPageState();
 }
 
-class _MemberListPageState extends _Detail {
+class _TrainerMemberListPageState extends _Detail {
   @override
   Widget build(BuildContext context) {
     super.build(context);
@@ -47,9 +47,10 @@ class _MemberListPageState extends _Detail {
   }
 }
 
-class _Detail extends MyGetXState<MemberListPage, MemberListViewModel> {
+class _Detail
+    extends MyGetXState<TrainerMemberListPage, TrainerMemberListViewModel> {
   handleAddButtonPressed() {
-    Get.to(const AddView())?.then((_) => vm.refetch());
+    Get.to(const TrainerMemberAddView())?.then((_) => vm.refetch());
   }
 
   @override
@@ -67,5 +68,5 @@ class _Detail extends MyGetXState<MemberListPage, MemberListViewModel> {
   }
 
   @override
-  MemberListViewModel createViewModel() => MemberListViewModel();
+  TrainerMemberListViewModel createViewModel() => TrainerMemberListViewModel();
 }

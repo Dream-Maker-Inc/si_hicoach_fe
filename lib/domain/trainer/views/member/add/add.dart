@@ -11,14 +11,14 @@ import 'package:si_hicoach_fe/common/theme/typography.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/add/add_vm.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/add/additional_information.dart';
 
-class AddView extends StatefulWidget {
-  const AddView({Key? key}) : super(key: key);
+class TrainerMemberAddView extends StatefulWidget {
+  const TrainerMemberAddView({super.key});
 
   @override
-  State<AddView> createState() => _AddViewState();
+  State<TrainerMemberAddView> createState() => _TrainerMemberAddViewState();
 }
 
-class _AddViewState extends _Detail {
+class _TrainerMemberAddViewState extends _Detail {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -110,7 +110,7 @@ class _AddViewState extends _Detail {
   }
 }
 
-class _Detail extends State<AddView> {
+class _Detail extends State<TrainerMemberAddView> {
   late TrainerMemberAddViewModel _vm;
 
   handleIDValidationButtonClicked() {

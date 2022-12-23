@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 import 'package:si_hicoach_fe/infrastructure/page/trainer/members/dto/get_members_page_response.dart';
 import 'package:si_hicoach_fe/infrastructure/page/trainer/members/trainer_members_page_api.dart';
 
-class MemberListPopupViewModel extends GetxController {
+class TrainerMemberListPopupViewModel extends GetxController {
   // 수강중인 회원 수
   int get totalMemberCount =>
       _getInClassMembersResponse.value?.data.metaData.totalItemCount ?? 0;

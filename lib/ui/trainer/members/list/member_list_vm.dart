@@ -3,7 +3,7 @@ import 'package:si_hicoach_fe/ui/trainer/members/list/models/member_model.dart';
 import 'package:si_hicoach_fe/infrastructure/page/trainer/members/dto/get_members_page_response.dart';
 import 'package:si_hicoach_fe/infrastructure/page/trainer/members/trainer_members_page_api.dart';
 
-class MemberListViewModel extends FinishedMembersFetchFeature {
+class TrainerMemberListViewModel extends FinishedMembersFetchFeature {
   RxInt tabIndex = RxInt(0);
 
   int get totalMemberCount {

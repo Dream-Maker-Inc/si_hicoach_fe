@@ -98,7 +98,7 @@ class _WeeklyCalendarState extends State<WeeklyCalendar> {
     return InkWell(
         onTap: () {
           Get.dialog(
-              MemberListPopup(
+              TrainerMemberListPopup(
                 targetDateTime: targetDateTime,
                 onSuccess: () => vm.fetchMemberStudies(),
               ),

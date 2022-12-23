@@ -15,7 +15,7 @@ class MemberListTabs extends StatefulWidget {
 
 class _MemberListTabsState extends State<MemberListTabs>
     with SingleTickerProviderStateMixin {
-  final MemberListViewModel _vm = Get.find<MemberListViewModel>();
+  final TrainerMemberListViewModel _vm = Get.find<TrainerMemberListViewModel>();
 
   late final tabController = TabController(length: 2, vsync: this);
 
