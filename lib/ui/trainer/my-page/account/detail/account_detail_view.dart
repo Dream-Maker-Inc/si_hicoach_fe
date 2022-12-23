@@ -1,26 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:si_hicoach_fe/common/components/app_bar.dart';
-import 'package:si_hicoach_fe/common/components/dialog.dart';
+import 'package:si_hicoach_fe/common/components/http_error_dialog.dart';
 import 'package:si_hicoach_fe/common/getx/my_getx_state.dart';
-import 'package:si_hicoach_fe/domain/trainer/views/my/account/account_vm.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/my/account/edit.dart';
+import 'package:si_hicoach_fe/ui/trainer/my-page/account/detail/account_detail_vm.dart';
 
-class AccountView extends StatefulWidget {
-  const AccountView({Key? key}) : super(key: key);
+class TrainerMyAccountDetailView extends StatefulWidget {
+  const TrainerMyAccountDetailView({Key? key}) : super(key: key);
 
   @override
-  State<AccountView> createState() => _AccountViewState();
+  State<TrainerMyAccountDetailView> createState() =>
+      _TrainerMyAccountDetailViewState();
 }
 
-class _AccountViewState extends _Detail {
+class _TrainerMyAccountDetailViewState extends _Detail {
   handleEditClick() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (_) => MypageEditView(companyName: vm.companyName),
-      ),
-    ).then((value) => setState(() {}));
+    Get.to(MypageEditView(companyName: vm.companyName))?.then(
+      (_) => vm.refetch(),
+    );
   }
 
   @override
@@ -42,7 +40,7 @@ class _AccountViewState extends _Detail {
   }
 
   _buildMyInfo() {
-    return GetBuilder<MyAccountViewModel>(builder: (builder) {
+    return Obx(() {
       final memberName = vm.memberName;
       final memberEmail = vm.memberEmail;
       final birthday = vm.birthday;
@@ -56,12 +54,26 @@ class _AccountViewState extends _Detail {
           context: context,
           tiles: List.of(
             <Widget>[
-              ListTile(title: const Text('이름'), trailing: Text(memberName)),
               ListTile(
-                  title: const Text('아이디 (이메일)'), trailing: Text(memberEmail)),
-              ListTile(title: const Text('생년월일'), trailing: Text(birthday)),
-              ListTile(title: const Text('소속'), trailing: Text(companyName)),
-              ListTile(title: const Text('전화번호'), trailing: Text(phone)),
+                title: const Text('이름'),
+                trailing: Text(memberName),
+              ),
+              ListTile(
+                title: const Text('아이디 (이메일)'),
+                trailing: Text(memberEmail),
+              ),
+              ListTile(
+                title: const Text('생년월일'),
+                trailing: Text(birthday),
+              ),
+              ListTile(
+                title: const Text('소속'),
+                trailing: Text(companyName),
+              ),
+              ListTile(
+                title: const Text('전화번호'),
+                trailing: Text(phone),
+              ),
             ],
           ),
         ).toList(),
@@ -70,7 +82,8 @@ class _AccountViewState extends _Detail {
   }
 }
 
-class _Detail extends MyGetXState<AccountView, MyAccountViewModel> {
+class _Detail extends MyGetXState<TrainerMyAccountDetailView,
+    TrainerMyAccountDetailViewModel> {
   @override
   void initState() {
     super.initState();
@@ -78,15 +91,7 @@ class _Detail extends MyGetXState<AccountView, MyAccountViewModel> {
     vm.apiError.listen((e) {
       if (e == null) return;
 
-      showMySimpleDialog(
-          context: context,
-          title: 'Error',
-          content: e.toString(),
-          confirmText: "뒤로가기",
-          onConfirm: () {
-            Get.back();
-            Get.back();
-          });
+      showMyHttpErrorDialog(e.toString());
     });
   }
 
@@ -100,5 +105,6 @@ class _Detail extends MyGetXState<AccountView, MyAccountViewModel> {
   }
 
   @override
-  MyAccountViewModel createViewModel() => MyAccountViewModel();
+  TrainerMyAccountDetailViewModel createViewModel() =>
+      TrainerMyAccountDetailViewModel();
 }
