@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/common/components/title_with_description.dart';
 import 'package:si_hicoach_fe/common/constants/constants.dart';
 
-class MemberListTitle extends StatelessWidget {
-  const MemberListTitle({Key? key, required this.totalCount}) : super(key: key);
+class MemberListHeader extends StatelessWidget {
+  const MemberListHeader({super.key, required this.totalCount});
   final int totalCount;
 
   @override

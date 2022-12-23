@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import 'package:si_hicoach_fe/common/components/divider.dart';
 import 'package:si_hicoach_fe/common/theme/color.dart';
 import 'package:si_hicoach_fe/common/theme/typography.dart';
-import 'package:si_hicoach_fe/domain/trainer/views/member/list/member_list_vm.dart';
-import 'package:si_hicoach_fe/domain/trainer/views/member/studying/studying_list.dart';
+import 'package:si_hicoach_fe/ui/trainer/members/list/member_list_vm.dart';
+import 'package:si_hicoach_fe/ui/trainer/members/list/sections/list/member_list.dart';
 
 class MemberListTabs extends StatefulWidget {
   const MemberListTabs({Key? key}) : super(key: key);
@@ -73,8 +73,8 @@ class _MemberListTabsState extends State<MemberListTabs>
       return TabBarView(
         controller: tabController,
         children: [
-          StudyingListView(list: inClassMembers),
-          StudyingListView(list: finishedMembers),
+          MemberListView(list: inClassMembers),
+          MemberListView(list: finishedMembers),
         ],
       );
     });

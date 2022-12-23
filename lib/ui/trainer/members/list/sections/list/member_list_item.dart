@@ -3,10 +3,10 @@ import 'package:get/get.dart';
 import 'package:si_hicoach_fe/common/theme/typography.dart';
 import 'package:si_hicoach_fe/common/utils/number_format.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/detail/detail.dart';
-import 'package:si_hicoach_fe/domain/trainer/views/member/list/member_list_vm.dart';
+import 'package:si_hicoach_fe/ui/trainer/members/list/member_list_vm.dart';
 
-class StudyingListItemView extends StatelessWidget {
-  StudyingListItemView(
+class MemberListItem extends StatelessWidget {
+  MemberListItem(
       {Key? key,
       required this.id,
       required this.name,
@@ -26,13 +26,7 @@ class StudyingListItemView extends StatelessWidget {
   final MemberListViewModel _vm = Get.find<MemberListViewModel>();
 
   handleDetailButtonPressed(BuildContext context) {
-    Navigator.of(context)
-        .push(
-          MaterialPageRoute(
-            builder: (context) => DetailView(memberId: id),
-          ),
-        )
-        .then((value) => _vm.refetch());
+    Get.to(DetailView(memberId: id))?.then((_) => _vm.refetch());
   }
 
   @override
