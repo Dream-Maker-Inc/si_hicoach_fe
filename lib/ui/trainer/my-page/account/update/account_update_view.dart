@@ -2,23 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:si_hicoach_fe/common/components/app_bar.dart';
 import 'package:si_hicoach_fe/common/components/dialog.dart';
+import 'package:si_hicoach_fe/common/components/http_error_dialog.dart';
 import 'package:si_hicoach_fe/common/components/text_field.dart';
 import 'package:si_hicoach_fe/common/components/title_with_description.dart';
 import 'package:si_hicoach_fe/common/constants/constants.dart';
 import 'package:si_hicoach_fe/common/getx/my_getx_state.dart';
 import 'package:si_hicoach_fe/common/theme/color.dart';
-import 'package:si_hicoach_fe/domain/trainer/views/my/account/my_company_edit_vm.dart';
+import 'package:si_hicoach_fe/ui/trainer/my-page/account/update/account_update_vm.dart';
 
-class MypageEditView extends StatefulWidget {
+class TrainerMyAccountUpdateView extends StatefulWidget {
   final String companyName;
 
-  const MypageEditView({super.key, required this.companyName});
+  const TrainerMyAccountUpdateView({super.key, required this.companyName});
 
   @override
-  State<MypageEditView> createState() => _MypageEditViewState();
+  State<TrainerMyAccountUpdateView> createState() =>
+      _TrainerMyAccountUpdateViewState();
 }
 
-class _MypageEditViewState extends _Detail {
+class _TrainerMyAccountUpdateViewState extends _Detail {
   @override
   Widget build(BuildContext context) {
     super.build(context);
@@ -68,7 +70,8 @@ class _MypageEditViewState extends _Detail {
   }
 }
 
-class _Detail extends MyGetXState<MypageEditView, MyCompanyEditViewModel> {
+class _Detail extends MyGetXState<TrainerMyAccountUpdateView,
+    TrainerAccountUpdateViewModel> {
   handleInputChange(String v) {
     vm.companyName.value = v;
   }
@@ -80,9 +83,6 @@ class _Detail extends MyGetXState<MypageEditView, MyCompanyEditViewModel> {
   @override
   void initState() {
     super.initState();
-
-    vm.initialCompanyName.value = widget.companyName;
-    vm.companyName.value = widget.companyName;
 
     vm.updateMyCompanyResponse.listen((res) {
       if (res == false) return;
@@ -100,15 +100,7 @@ class _Detail extends MyGetXState<MypageEditView, MyCompanyEditViewModel> {
     vm.apiError.listen((e) {
       if (e == null) return;
 
-      showMySimpleDialog(
-          context: context,
-          title: 'Error',
-          content: e.toString(),
-          confirmText: "뒤로가기",
-          onConfirm: () {
-            Get.back();
-            Get.back();
-          });
+      showMyHttpErrorDialog(e.toString()).then((value) => Get.back());
     });
   }
 
@@ -118,5 +110,6 @@ class _Detail extends MyGetXState<MypageEditView, MyCompanyEditViewModel> {
   }
 
   @override
-  MyCompanyEditViewModel createViewModel() => MyCompanyEditViewModel();
+  TrainerAccountUpdateViewModel createViewModel() =>
+      TrainerAccountUpdateViewModel(initialCompanyName: widget.companyName);
 }

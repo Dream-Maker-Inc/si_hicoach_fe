@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:si_hicoach_fe/common/components/app_bar.dart';
 import 'package:si_hicoach_fe/common/components/http_error_dialog.dart';
 import 'package:si_hicoach_fe/common/getx/my_getx_state.dart';
-import 'package:si_hicoach_fe/domain/trainer/views/my/account/edit.dart';
+import 'package:si_hicoach_fe/ui/trainer/my-page/account/update/account_update_view.dart';
 import 'package:si_hicoach_fe/ui/trainer/my-page/account/detail/account_detail_vm.dart';
 
 class TrainerMyAccountDetailView extends StatefulWidget {
@@ -16,7 +16,7 @@ class TrainerMyAccountDetailView extends StatefulWidget {
 
 class _TrainerMyAccountDetailViewState extends _Detail {
   handleEditClick() {
-    Get.to(MypageEditView(companyName: vm.companyName))?.then(
+    Get.to(TrainerMyAccountUpdateView(companyName: vm.companyName))?.then(
       (_) => vm.refetch(),
     );
   }
@@ -91,7 +91,7 @@ class _Detail extends MyGetXState<TrainerMyAccountDetailView,
     vm.apiError.listen((e) {
       if (e == null) return;
 
-      showMyHttpErrorDialog(e.toString());
+      showMyHttpErrorDialog(e.toString()).then((_) => Get.back());
     });
   }
 
