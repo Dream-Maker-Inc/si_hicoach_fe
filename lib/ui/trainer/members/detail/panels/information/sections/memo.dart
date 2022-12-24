@@ -4,7 +4,7 @@ import 'package:si_hicoach_fe/common/components/title_with_description.dart';
 import 'package:si_hicoach_fe/common/constants/constants.dart';
 import 'package:si_hicoach_fe/common/theme/color.dart';
 import 'package:si_hicoach_fe/ui/trainer/members/detail/detail_vm.dart';
-import 'package:si_hicoach_fe/domain/trainer/views/member/edit/memo.dart';
+import 'package:si_hicoach_fe/ui/trainer/members/matching/memo/update/memo.dart';
 
 class Memo extends StatelessWidget {
   Memo({Key? key}) : super(key: key);

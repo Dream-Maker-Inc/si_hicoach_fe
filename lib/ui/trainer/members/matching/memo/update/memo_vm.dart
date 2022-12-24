@@ -6,20 +6,9 @@ import 'package:si_hicoach_fe/infrastructure/matching/dto/get_matching_response.
 import 'package:si_hicoach_fe/infrastructure/matching/dto/update_matching_dto.dart';
 import 'package:si_hicoach_fe/infrastructure/matching/matching_api.dart';
 
-class MemoEditViewModel extends _FetchController {
+class MemoEditViewModel extends _MatchingUpdateFeature {
   RxString initialMemo = RxString('');
   RxString memo = RxString('');
-
-  // update matching goal
-  final RxBool updateMatchingSuccess = RxBool(false);
-
-  handleSubmit(int matchingId) async {
-    final dto = UpdateMatchingDto(memo: memo.value);
-    final result = await MatchingApi.update(matchingId, dto);
-
-    result.when((e) => (apiError.value = e),
-        (res) => (updateMatchingSuccess.value = res));
-  }
 
   @override
   Future<void> onInit() async {
@@ -31,8 +20,24 @@ class MemoEditViewModel extends _FetchController {
   }
 }
 
-class _FetchController extends GetxController {
-  //
+// 매칭 정보 수정 서비스
+class _MatchingUpdateFeature extends _MatchingFetchFeature {
+  // update matching goal
+  final RxBool matchingUpdateSuccess = RxBool(false);
+
+  handleSubmit(int matchingId, String memo) async {
+    final dto = UpdateMatchingDto(memo: memo);
+    final result = await MatchingApi.update(matchingId, dto);
+
+    result.when(
+      (e) => (apiError.value = e),
+      (res) => (matchingUpdateSuccess.value = res),
+    );
+  }
+}
+
+// 매칭 정보 불러오기 서비스
+class _MatchingFetchFeature extends GetxController {
   Rx<Exception?> apiError = Rx(null);
 
   // fetch matching
@@ -47,6 +52,6 @@ class _FetchController extends GetxController {
     final result = await MatchingApi.findOne(matchingId);
 
     result.when((e) => (apiError.value = e),
-        (response) => (_fetchMatchingResponse.value = response));
+        (res) => (_fetchMatchingResponse.value = res));
   }
 }

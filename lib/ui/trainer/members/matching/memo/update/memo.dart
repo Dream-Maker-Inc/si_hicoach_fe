@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:si_hicoach_fe/common/components/app_bar.dart';
 import 'package:si_hicoach_fe/common/components/dialog.dart';
+import 'package:si_hicoach_fe/common/components/http_error_dialog.dart';
 import 'package:si_hicoach_fe/common/constants/constants.dart';
 import 'package:si_hicoach_fe/common/getx/my_getx_state.dart';
 import 'package:si_hicoach_fe/common/theme/color.dart';
-import 'package:si_hicoach_fe/domain/trainer/views/member/edit/memo_vm.dart';
+import 'package:si_hicoach_fe/ui/trainer/members/matching/memo/update/memo_vm.dart';
 
 class MemoEditView extends StatefulWidget {
   final int matchingId;
@@ -75,14 +76,14 @@ class _Detail extends MyGetXState<MemoEditView, MemoEditViewModel> {
   }
 
   handleSubmit() {
-    vm.handleSubmit(widget.matchingId);
+    vm.handleSubmit(widget.matchingId, vm.memo.value);
   }
 
   @override
   void initState() {
     super.initState();
 
-    vm.updateMatchingSuccess.listen((isSuccess) {
+    vm.matchingUpdateSuccess.listen((isSuccess) {
       if (isSuccess == false) return;
 
       showMySimpleDialog(
@@ -98,13 +99,7 @@ class _Detail extends MyGetXState<MemoEditView, MemoEditViewModel> {
     vm.apiError.listen((e) {
       if (e == null) return;
 
-      showMySimpleDialog(
-          context: context,
-          title: 'Error',
-          content: e.toString(),
-          onConfirm: () {
-            Get.back();
-          });
+      showMyHttpErrorDialog(e.toString());
     });
   }
 
@@ -114,7 +109,7 @@ class _Detail extends MyGetXState<MemoEditView, MemoEditViewModel> {
       Future.wait([vm.fetchMatching(widget.matchingId)]);
     });
 
-    return const SizedBox.shrink();
+    return widget;
   }
 
   @override
