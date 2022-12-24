@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/calendar/monthly/calendar.dart';
 import 'package:si_hicoach_fe/common/components/divider.dart';
 import 'package:si_hicoach_fe/domain/member/views/main/main.dart';
-import 'package:si_hicoach_fe/domain/member/views/studies/studies.dart';
+import 'package:si_hicoach_fe/ui/member/studies/studies.dart';
 import 'package:si_hicoach_fe/ui/member/my_page/main/my_page_view.dart';
 
 class MemberBaseView extends StatefulWidget {
