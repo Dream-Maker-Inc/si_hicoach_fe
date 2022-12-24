@@ -6,18 +6,18 @@ import 'package:si_hicoach_fe/common/components/http_error_dialog.dart';
 import 'package:si_hicoach_fe/common/constants/constants.dart';
 import 'package:si_hicoach_fe/common/getx/my_getx_state.dart';
 import 'package:si_hicoach_fe/common/theme/color.dart';
-import 'package:si_hicoach_fe/ui/trainer/members/matching/memo/update/memo_vm.dart';
+import 'package:si_hicoach_fe/ui/trainer/members/matching/memo/update/memo_update_vm.dart';
 
-class MemoEditView extends StatefulWidget {
+class MemoUpdateView extends StatefulWidget {
   final int matchingId;
 
-  const MemoEditView({super.key, required this.matchingId});
+  const MemoUpdateView({super.key, required this.matchingId});
 
   @override
-  State<MemoEditView> createState() => _MemoEditViewState();
+  State<MemoUpdateView> createState() => _MemoUpdateViewState();
 }
 
-class _MemoEditViewState extends _Detail {
+class _MemoUpdateViewState extends _Detail {
   @override
   Widget build(BuildContext context) {
     super.build(context);
@@ -70,7 +70,7 @@ class _MemoEditViewState extends _Detail {
   }
 }
 
-class _Detail extends MyGetXState<MemoEditView, MemoEditViewModel> {
+class _Detail extends MyGetXState<MemoUpdateView, MemoUpdateViewModel> {
   handleMemoChange(String v) {
     vm.memo.value = v;
   }
@@ -113,5 +113,5 @@ class _Detail extends MyGetXState<MemoEditView, MemoEditViewModel> {
   }
 
   @override
-  MemoEditViewModel createViewModel() => MemoEditViewModel();
+  MemoUpdateViewModel createViewModel() => MemoUpdateViewModel();
 }

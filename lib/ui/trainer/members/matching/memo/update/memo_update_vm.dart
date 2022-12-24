@@ -6,7 +6,7 @@ import 'package:si_hicoach_fe/infrastructure/matching/dto/get_matching_response.
 import 'package:si_hicoach_fe/infrastructure/matching/dto/update_matching_dto.dart';
 import 'package:si_hicoach_fe/infrastructure/matching/matching_api.dart';
 
-class MemoEditViewModel extends _MatchingUpdateFeature {
+class MemoUpdateViewModel extends _MatchingUpdateFeature {
   RxString initialMemo = RxString('');
   RxString memo = RxString('');
 

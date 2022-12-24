@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:si_hicoach_fe/common/components/chip.dart';
 import 'package:si_hicoach_fe/common/components/title_with_description.dart';
 import 'package:si_hicoach_fe/ui/trainer/members/detail/detail_vm.dart';
-import 'package:si_hicoach_fe/domain/trainer/views/member/edit/purpose.dart';
+import 'package:si_hicoach_fe/ui/trainer/members/matching/exercise_goals/update/exercise_goals_update_view.dart';
 
 class ExercisePurpose extends StatefulWidget {
   ExercisePurpose({super.key});
@@ -18,7 +18,7 @@ class _ExercisePurposeState extends State<ExercisePurpose> {
   final MemberDetailViewModel _vm = Get.find<MemberDetailViewModel>();
 
   onEditIconPressed(BuildContext ctx) {
-    Get.to(PurposeEditView(matchingId: _vm.matchingId))
+    Get.to(ExerciseGoalsUpdateView(matchingId: _vm.matchingId))
         ?.then((_) => _vm.refetch());
   }
 

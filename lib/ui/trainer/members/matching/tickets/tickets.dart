@@ -5,13 +5,14 @@ import 'package:get/get.dart';
 import 'package:si_hicoach_fe/common/components/alert_widget.dart';
 import 'package:si_hicoach_fe/common/components/app_bar.dart';
 import 'package:si_hicoach_fe/common/components/dialog.dart';
+import 'package:si_hicoach_fe/common/components/http_error_dialog.dart';
 import 'package:si_hicoach_fe/common/constants/constants.dart';
 import 'package:si_hicoach_fe/common/theme/color.dart';
 import 'package:si_hicoach_fe/common/theme/typography.dart';
-import 'package:si_hicoach_fe/domain/trainer/views/member/tickets/add_dialog.dart';
+import 'package:si_hicoach_fe/ui/trainer/members/matching/tickets/add_dialog.dart';
 import 'package:si_hicoach_fe/common/getx/my_getx_state.dart';
-import 'package:si_hicoach_fe/domain/trainer/views/member/tickets/remove_dialog.dart';
-import 'package:si_hicoach_fe/domain/trainer/views/member/tickets/tickets_vm.dart';
+import 'package:si_hicoach_fe/ui/trainer/members/matching/tickets/remove_dialog.dart';
+import 'package:si_hicoach_fe/ui/trainer/members/matching/tickets/tickets_vm.dart';
 
 class TicketsView extends StatefulWidget {
   int matchingId;
@@ -27,13 +28,16 @@ class _TicketsViewState extends _Detail {
     showDialog<String>(
       context: context,
       barrierDismissible: false,
-      builder: (BuildContext context) => CustomAlertDialogWidget(
+      builder: (_) => CustomAlertDialogWidget(
         title: 'PT 횟수 추가',
         content: EditTicketDialog(),
         positiveText: '추가하기',
-        onPositivePressed: () => vm.increaseTickets(),
+        onPositivePressed: () => vm.increaseTickets(
+          vm.matchingId,
+          vm.countOfAdd.value,
+        ),
         negativeText: '취소',
-        onNegativePressed: () => Navigator.pop(context),
+        onNegativePressed: () => Get.back(),
       ),
     );
   }
@@ -42,13 +46,16 @@ class _TicketsViewState extends _Detail {
     showDialog<String>(
       context: context,
       barrierDismissible: false,
-      builder: (BuildContext context) => CustomAlertDialogWidget(
+      builder: (_) => CustomAlertDialogWidget(
         title: 'PT 횟수 차감',
         content: RemoveTicketDialog(),
         positiveText: '차감하기',
-        onPositivePressed: () => vm.decreaseTickets(),
+        onPositivePressed: () => vm.decreaseTickets(
+          vm.matchingId,
+          vm.countOfMinus.value,
+        ),
         negativeText: '취소',
-        onNegativePressed: () => Navigator.pop(context),
+        onNegativePressed: () => Get.back(),
       ),
     );
   }
@@ -60,29 +67,13 @@ class _TicketsViewState extends _Detail {
     return Scaffold(
       appBar: const CustomAppBarArrowBack(titleText: '수강권 관리'),
       body: SizedBox(
-        width: double.infinity,
-        child: Obx(() {
-          final finishedStudyCount = vm.finishedStudyCount.value;
-          final remainingTicketCount = vm.remainingTicketCount;
-          final totalTicketCount = vm.totalTicketCount;
-
-          return Column(
-            children: <Widget>[
+          width: double.infinity,
+          child: Column(
+            children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Expanded(
-                    flex: 1,
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 18),
-                      child: Text(
-                        'PT 잔여 횟수 : $remainingTicketCount회',
-                        style: bodyLarge.copyWith(
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                    ),
-                  ),
+                children: [
+                  _buildRemainingTicketCount(),
                   Container(
                     margin: const EdgeInsets.all(smallPadding),
                     decoration: BoxDecoration(
@@ -90,7 +81,7 @@ class _TicketsViewState extends _Detail {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Row(
-                      children: <Widget>[
+                      children: [
                         _buildMinusButton(),
                         Container(
                           width: 1,
@@ -105,17 +96,47 @@ class _TicketsViewState extends _Detail {
                   ),
                 ],
               ),
-              ListTile(
-                  title: const Text('PT 완료 횟수'),
-                  trailing: Text('$finishedStudyCount회')),
-              ListTile(
-                  title: const Text('PT 총 횟수'),
-                  trailing: Text('$totalTicketCount회')),
+              _buildBottom()
             ],
-          );
-        }),
-      ),
+          )),
     );
+  }
+
+  _buildBottom() {
+    return Obx(() {
+      final finishedStudyCount = vm.finishedStudyCount;
+      final totalTicketCount = vm.totalTicketCount;
+
+      return Column(
+        children: [
+          ListTile(
+            title: const Text('PT 완료 횟수'),
+            trailing: Text('$finishedStudyCount회'),
+          ),
+          ListTile(
+            title: const Text('PT 총 횟수'),
+            trailing: Text('$totalTicketCount회'),
+          ),
+        ],
+      );
+    });
+  }
+
+  _buildRemainingTicketCount() {
+    return Obx(() {
+      final remainingTicketCount = vm.remainingTicketCount;
+
+      return Expanded(
+        flex: 1,
+        child: Padding(
+          padding: const EdgeInsets.only(left: 18),
+          child: Text(
+            'PT 잔여 횟수 : $remainingTicketCount회',
+            style: bodyLarge.copyWith(fontWeight: FontWeight.w700),
+          ),
+        ),
+      );
+    });
   }
 
   _buildMinusButton() {
@@ -136,7 +157,7 @@ class _TicketsViewState extends _Detail {
     });
   }
 
-  IconButton _buildAddButton() {
+  _buildAddButton() {
     return IconButton(
       onPressed: handleAddButtonPressed,
       icon: Icon(
@@ -152,51 +173,49 @@ class _Detail extends MyGetXState<TicketsView, TicketsViewModel> {
   void initState() {
     super.initState();
 
-    vm.matchingId = widget.matchingId;
-
-    vm.increaseTicketsSuccess.listen((isSuccess) {
-      if (isSuccess == false) return;
+    vm.increaseTicketsSuccess.listen((b) {
+      if (!b) return;
 
       showMySimpleDialog(
           context: context,
           title: "요청 처리",
           content: "회원의 수강권 횟수를 추가했습니다.",
           onConfirm: () {
-            Navigator.pop(context);
-            Navigator.pop(context);
+            Get.back();
+            Get.back();
           });
-
-      vm.increaseTicketsSuccess.value = false;
     });
 
-    vm.decreaseTicketsSuccess.listen((isSuccess) {
-      if (isSuccess == false) return;
+    vm.decreaseTicketsSuccess.listen((b) {
+      if (!b) return;
 
       showMySimpleDialog(
           context: context,
           title: "요청 처리",
           content: "회원의 수강권 횟수를 차감했습니다.",
           onConfirm: () {
-            Navigator.pop(context);
-            Navigator.pop(context);
+            Get.back();
+            Get.back();
           });
-
-      vm.decreaseTicketsSuccess.value = false;
     });
 
     vm.apiError.listen((e) {
-      showMySimpleDialog(context: context, title: "에러", content: e.toString());
+      if (e == null) return;
+
+      showMyHttpErrorDialog(e.toString());
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance
-        .addPostFrameCallback((_) => {vm.fetchTicketsInfo()});
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      vm.fetchTicketsInfo(vm.matchingId);
+    });
 
     return widget;
   }
 
   @override
-  TicketsViewModel createViewModel() => TicketsViewModel();
+  TicketsViewModel createViewModel() =>
+      TicketsViewModel(matchingId: widget.matchingId);
 }

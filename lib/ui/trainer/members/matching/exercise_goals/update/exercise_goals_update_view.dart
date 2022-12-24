@@ -3,22 +3,24 @@ import 'package:get/get.dart';
 import 'package:si_hicoach_fe/common/components/app_bar.dart';
 import 'package:si_hicoach_fe/common/components/chip.dart';
 import 'package:si_hicoach_fe/common/components/dialog.dart';
+import 'package:si_hicoach_fe/common/components/http_error_dialog.dart';
 import 'package:si_hicoach_fe/common/components/title_with_description.dart';
 import 'package:si_hicoach_fe/common/constants/constants.dart';
 import 'package:si_hicoach_fe/common/getx/my_getx_state.dart';
 import 'package:si_hicoach_fe/common/theme/color.dart';
-import 'package:si_hicoach_fe/domain/trainer/views/member/edit/purpose_vm.dart';
+import 'package:si_hicoach_fe/ui/trainer/members/matching/exercise_goals/update/exercise_goals_update_vm.dart';
 
-class PurposeEditView extends StatefulWidget {
+class ExerciseGoalsUpdateView extends StatefulWidget {
   final int matchingId;
 
-  const PurposeEditView({super.key, required this.matchingId});
+  const ExerciseGoalsUpdateView({super.key, required this.matchingId});
 
   @override
-  State<PurposeEditView> createState() => _PurposeEditViewState();
+  State<ExerciseGoalsUpdateView> createState() =>
+      _ExerciseGoalsUpdateViewState();
 }
 
-class _PurposeEditViewState extends _Detail {
+class _ExerciseGoalsUpdateViewState extends _Detail {
   @override
   Widget build(BuildContext context) {
     super.build(context);
@@ -26,7 +28,7 @@ class _PurposeEditViewState extends _Detail {
     return Scaffold(
       appBar: CustomAppBarArrowBack(
         titleText: '운동 목표 수정',
-        actionsWidget: <Widget>[
+        actionsWidget: [
           IconButton(
             onPressed: handleSubmit,
             icon: Icon(
@@ -41,13 +43,13 @@ class _PurposeEditViewState extends _Detail {
         margin: const EdgeInsets.all(defaultPadding),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
+          children: [
             const TitleWithDescription(
               title: '운동 목표를 선택해주세요.',
               description: '복수 선택이 가능합니다.',
             ),
             const SizedBox(height: defaultPadding),
-            Obx(() => _buildChips())
+            _buildChips()
           ],
         ),
       ),
@@ -55,21 +57,26 @@ class _PurposeEditViewState extends _Detail {
   }
 
   _buildChips() {
-    return Wrap(
-      children: vm.customChipProps
-          .map((it) => CustomChip(
+    return Obx(() {
+      return Wrap(
+        children: vm.customChipProps
+            .map(
+              (it) => CustomChip(
                 label: it.label,
-                isChecked: it.isChecked,
+                isChecked: vm.getGoalChecked(it.id),
                 onPressed: () => handleChipClick(it.id),
-              ))
-          .toList(),
-    );
+              ),
+            )
+            .toList(),
+      );
+    });
   }
 }
 
-class _Detail extends MyGetXState<PurposeEditView, PurposeEditViewModel> {
+class _Detail
+    extends MyGetXState<ExerciseGoalsUpdateView, ExerciseGoalsUpdateViewModel> {
   handleChipClick(int id) {
-    vm.handleGoalClick(id);
+    vm.toggleGoalChecked(id);
   }
 
   handleSubmit() {
@@ -80,8 +87,8 @@ class _Detail extends MyGetXState<PurposeEditView, PurposeEditViewModel> {
   void initState() {
     super.initState();
 
-    vm.updateMatchingSuccess.listen((isSuccess) {
-      if (isSuccess == false) return;
+    vm.updateMatchingSuccess.listen((b) {
+      if (!b) return;
 
       showMySimpleDialog(
           context: context,
@@ -96,25 +103,23 @@ class _Detail extends MyGetXState<PurposeEditView, PurposeEditViewModel> {
     vm.apiError.listen((e) {
       if (e == null) return;
 
-      showMySimpleDialog(
-          context: context,
-          title: 'Error',
-          content: e.toString(),
-          onConfirm: () {
-            Get.back();
-          });
+      showMyHttpErrorDialog(e.toString());
     });
   }
 
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      Future.wait([vm.fetchGoals(), vm.fetchMatching(widget.matchingId)]);
+      Future.wait([
+        vm.fetchGoals(),
+        vm.fetchMatching(widget.matchingId),
+      ]);
     });
 
-    return const SizedBox.shrink();
+    return widget;
   }
 
   @override
-  PurposeEditViewModel createViewModel() => PurposeEditViewModel();
+  ExerciseGoalsUpdateViewModel createViewModel() =>
+      ExerciseGoalsUpdateViewModel();
 }

@@ -4,7 +4,7 @@ import 'package:si_hicoach_fe/common/components/text_field.dart';
 import 'package:si_hicoach_fe/common/constants/constants.dart';
 import 'package:si_hicoach_fe/common/text_field/range_text_input_formatter.dart';
 import 'package:si_hicoach_fe/common/theme/typography.dart';
-import 'package:si_hicoach_fe/domain/trainer/views/member/tickets/tickets_vm.dart';
+import 'package:si_hicoach_fe/ui/trainer/members/matching/tickets/tickets_vm.dart';
 
 class RemoveTicketDialog extends StatelessWidget {
   RemoveTicketDialog({Key? key}) : super(key: key);

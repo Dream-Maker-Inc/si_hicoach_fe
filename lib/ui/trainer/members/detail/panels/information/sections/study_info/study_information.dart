@@ -8,7 +8,7 @@ import 'package:si_hicoach_fe/common/theme/button.dart';
 import 'package:si_hicoach_fe/ui/common/inbody/inbody.dart';
 import 'package:si_hicoach_fe/ui/trainer/members/detail/detail_vm.dart';
 import 'package:si_hicoach_fe/ui/trainer/members/detail/panels/information/sections/study_info/summary.dart';
-import 'package:si_hicoach_fe/domain/trainer/views/member/tickets/tickets.dart';
+import 'package:si_hicoach_fe/ui/trainer/members/matching/tickets/tickets.dart';
 
 class StudyInformation extends StatelessWidget {
   StudyInformation({super.key});

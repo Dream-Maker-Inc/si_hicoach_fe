@@ -4,7 +4,7 @@ import 'package:si_hicoach_fe/common/components/title_with_description.dart';
 import 'package:si_hicoach_fe/common/constants/constants.dart';
 import 'package:si_hicoach_fe/common/theme/color.dart';
 import 'package:si_hicoach_fe/ui/trainer/members/detail/detail_vm.dart';
-import 'package:si_hicoach_fe/ui/trainer/members/matching/memo/update/memo.dart';
+import 'package:si_hicoach_fe/ui/trainer/members/matching/memo/update/memo_update.dart';
 
 class Memo extends StatelessWidget {
   Memo({Key? key}) : super(key: key);
@@ -12,7 +12,7 @@ class Memo extends StatelessWidget {
   final MemberDetailViewModel _vm = Get.find<MemberDetailViewModel>();
 
   onEditIconPressed(BuildContext ctx) {
-    Get.to(MemoEditView(matchingId: _vm.matchingId))
+    Get.to(MemoUpdateView(matchingId: _vm.matchingId))
         ?.then((_) => _vm.refetch());
   }
 

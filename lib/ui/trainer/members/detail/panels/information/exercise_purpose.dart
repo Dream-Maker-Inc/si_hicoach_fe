@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:si_hicoach_fe/common/components/chip.dart';
 import 'package:si_hicoach_fe/common/components/title_with_description.dart';
 import 'package:si_hicoach_fe/ui/trainer/members/detail/detail_vm.dart';
-import 'package:si_hicoach_fe/domain/trainer/views/member/edit/purpose.dart';
+import 'package:si_hicoach_fe/ui/trainer/members/matching/exercise_goals/update/exercise_goals_update_view.dart';
 
 class ExercisePurpose extends StatefulWidget {
   ExercisePurpose({super.key});
@@ -22,7 +22,7 @@ class _ExercisePurposeState extends State<ExercisePurpose> {
       ctx,
       MaterialPageRoute(
         builder: (BuildContext context) =>
-            PurposeEditView(matchingId: _vm.matchingId),
+            ExerciseGoalsUpdateView(matchingId: _vm.matchingId),
       ),
     ).then((value) => _vm.refetch());
   }
