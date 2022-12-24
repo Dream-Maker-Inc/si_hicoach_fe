@@ -2,7 +2,7 @@
 
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:si_hicoach_fe/domain/trainer/views/main/todo_list/list_item.dart';
+import 'package:si_hicoach_fe/ui/trainer/main/todo_list/list_item.dart';
 import 'package:si_hicoach_fe/infrastructure/member/member/dto/get_my_info_response.dart'
     as MyInfo;
 import 'package:si_hicoach_fe/infrastructure/member/member/member_api.dart';
@@ -10,12 +10,11 @@ import 'package:si_hicoach_fe/infrastructure/page/trainer/main/dto/get_trainer_m
 import 'package:si_hicoach_fe/infrastructure/page/trainer/main/trainer_main_page_api.dart';
 import 'package:collection/collection.dart';
 
-class MainViewModel extends _FetchController {
+class MainViewModel extends _MainPageDataFetchFeature {
   Rx<DateTime> targetDate = Rx(DateTime.now());
   String get targetDateString =>
       DateFormat('yyyy-MM-dd').format(targetDate.value);
 
-  //
   String get memberName => _member?.name ?? "";
 
   List<TrainerMainTodoItemModel> get todoItemModels => data
@@ -39,11 +38,8 @@ class MainViewModel extends _FetchController {
   }
 }
 
-class _FetchController extends GetxController {
-  //
-  Rx<Exception?> apiError = Rx(null);
-
-  // fetch main data
+// 메인 페이지 데이터 불러오기 서비스
+class _MainPageDataFetchFeature extends _MyInfoFetchFeature {
   final Rxn<GetTrainerMainResponse> _fetchMainResponse = Rxn();
 
   List<Data> get data => _fetchMainResponse.value?.data ?? [];
@@ -54,8 +50,12 @@ class _FetchController extends GetxController {
     result.when((e) => (apiError.value = e),
         (response) => (_fetchMainResponse.value = response));
   }
+}
 
-  // fetch my info
+// 내 정보 불러오기 서비스
+class _MyInfoFetchFeature extends GetxController {
+  Rx<Exception?> apiError = Rx(null);
+
   final Rxn<MyInfo.GetMyInfoResponse> _fetchMyInfoResponse = Rxn();
 
   MyInfo.Member? get _member => _fetchMyInfoResponse.value?.data.member;
