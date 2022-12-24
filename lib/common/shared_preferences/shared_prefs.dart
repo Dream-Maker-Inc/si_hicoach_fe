@@ -58,4 +58,10 @@ class SharedPrefsManager {
     final sp = await _getSharedPrefsInstance();
     return sp.getBool(SharedPrefsKeys.isRoleTrainer.key) ?? false;
   }
+
+  // 전체 삭제
+  clear() async {
+    final sp = await _getSharedPrefsInstance();
+    sp.clear();
+  }
 }

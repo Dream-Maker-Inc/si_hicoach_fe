@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:si_hicoach_fe/common/shared_preferences/shared_prefs.dart';
 import 'package:si_hicoach_fe/infrastructure/page/member/my_page/dto/get_member_my_page_response.dart';
 import 'package:si_hicoach_fe/infrastructure/page/member/my_page/member_my_page_api.dart';
 
@@ -25,6 +26,11 @@ class MemberMyPageViewModel extends _MyPageDataFetchFeature {
     super.onInit();
 
     ever(apiError, (_) => (apiError.value = null));
+  }
+
+  // 디바이스에 저장된 앱 캐시 데이터 모두 삭제
+  Future deviceAppCacheClear() async {
+    SharedPrefsManager().clear();
   }
 }
 

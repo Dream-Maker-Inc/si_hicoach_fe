@@ -40,7 +40,7 @@ class _MemberMypageViewState
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               SummaryView(),
-              const MenuView(),
+              MenuView(),
             ],
           ),
         ),
