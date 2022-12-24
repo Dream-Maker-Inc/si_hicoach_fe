@@ -14,7 +14,7 @@ import 'package:si_hicoach_fe/ui/common/study/detail/components/time.dart';
 import 'package:si_hicoach_fe/common/theme/typography.dart';
 import 'package:si_hicoach_fe/ui/common/study/detail/study_detail_vm.dart';
 import 'package:si_hicoach_fe/ui/common/study/update/study_update.dart';
-import 'package:si_hicoach_fe/domain/trainer/views/member/detail/detail.dart';
+import 'package:si_hicoach_fe/ui/trainer/members/detail/detail.dart';
 
 class StudyDetailView extends StatefulWidget {
   final int studyId;

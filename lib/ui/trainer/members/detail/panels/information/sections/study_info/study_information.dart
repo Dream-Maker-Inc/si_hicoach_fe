@@ -6,33 +6,27 @@ import 'package:si_hicoach_fe/common/components/title_with_description.dart';
 import 'package:si_hicoach_fe/common/constants/constants.dart';
 import 'package:si_hicoach_fe/common/theme/button.dart';
 import 'package:si_hicoach_fe/ui/common/inbody/inbody.dart';
-import 'package:si_hicoach_fe/domain/trainer/views/member/detail/detail_vm.dart';
-import 'package:si_hicoach_fe/domain/trainer/views/member/detail/information/study_information/summary.dart';
-import 'package:si_hicoach_fe/domain/trainer/views/member/detail/tickets/tickets.dart';
+import 'package:si_hicoach_fe/ui/trainer/members/detail/detail_vm.dart';
+import 'package:si_hicoach_fe/ui/trainer/members/detail/panels/information/sections/study_info/summary.dart';
+import 'package:si_hicoach_fe/domain/trainer/views/member/tickets/tickets.dart';
 
 class StudyInformation extends StatelessWidget {
   StudyInformation({super.key});
 
   final MemberDetailViewModel _vm = Get.find<MemberDetailViewModel>();
 
-  onDetailTicketButtonPressed(BuildContext ctx) {
-    final matchingId = _vm.matchingId;
+  int get _memberId => _vm.memberId;
+  int get _matchingId => _vm.matchingId;
 
-    Navigator.of(ctx)
-        .push(
-          MaterialPageRoute(
-            builder: (BuildContext context) =>
-                TicketsView(matchingId: matchingId),
-          ),
-        )
-        .then((value) => _vm.fetchMemberInfo());
+  onDetailTicketButtonPressed(BuildContext ctx) {
+    Get.to(TicketsView(matchingId: _matchingId))?.then((_) => _vm.refetch());
   }
 
   onDetailInBodyButtonPressed(BuildContext ctx) {
-    Navigator.of(ctx).push(
-      MaterialPageRoute(
-        builder: (BuildContext context) =>
-            InbodyView(memberId: _vm.memberId, matchingId: _vm.matchingId),
+    Get.to(
+      InbodyView(
+        memberId: _memberId,
+        matchingId: _matchingId,
       ),
     );
   }
@@ -68,7 +62,7 @@ class StudyInformation extends StatelessWidget {
 
   _buildTicketManageButton(BuildContext context) {
     return Obx(() {
-      final onClick = _vm.isPersonalMatching
+      final onClick = _vm.isPersonalMatching.value
           ? null
           : () => onDetailTicketButtonPressed(context);
 

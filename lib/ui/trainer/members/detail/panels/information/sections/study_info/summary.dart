@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:si_hicoach_fe/common/constants/constants.dart';
 import 'package:si_hicoach_fe/common/theme/typography.dart';
 import 'package:si_hicoach_fe/common/utils/number_format.dart';
-import 'package:si_hicoach_fe/domain/trainer/views/member/detail/detail_vm.dart';
+import 'package:si_hicoach_fe/ui/trainer/members/detail/detail_vm.dart';
 
 class Summary extends StatelessWidget {
   Summary({super.key});

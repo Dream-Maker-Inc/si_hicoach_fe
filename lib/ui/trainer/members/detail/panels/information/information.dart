@@ -2,9 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/common/constants/constants.dart';
-import 'package:si_hicoach_fe/domain/trainer/views/member/detail/information/exercise_purpose.dart';
-import 'package:si_hicoach_fe/domain/trainer/views/member/detail/information/memo.dart';
-import 'package:si_hicoach_fe/domain/trainer/views/member/detail/information/study_information/study_information.dart';
+import 'package:si_hicoach_fe/ui/trainer/members/detail/panels/information/sections/exercise_purpose.dart';
+import 'package:si_hicoach_fe/ui/trainer/members/detail/panels/information/sections/memo.dart';
+import 'package:si_hicoach_fe/ui/trainer/members/detail/panels/information/sections/study_info/study_information.dart';
 
 class Information extends StatefulWidget {
   Information({super.key});

@@ -8,10 +8,10 @@ import 'package:si_hicoach_fe/common/components/dialog.dart';
 import 'package:si_hicoach_fe/common/constants/constants.dart';
 import 'package:si_hicoach_fe/common/theme/color.dart';
 import 'package:si_hicoach_fe/common/theme/typography.dart';
-import 'package:si_hicoach_fe/domain/trainer/views/member/detail/tickets/add_dialog.dart';
+import 'package:si_hicoach_fe/domain/trainer/views/member/tickets/add_dialog.dart';
 import 'package:si_hicoach_fe/common/getx/my_getx_state.dart';
-import 'package:si_hicoach_fe/domain/trainer/views/member/detail/tickets/remove_dialog.dart';
-import 'package:si_hicoach_fe/domain/trainer/views/member/detail/tickets/tickets_vm.dart';
+import 'package:si_hicoach_fe/domain/trainer/views/member/tickets/remove_dialog.dart';
+import 'package:si_hicoach_fe/domain/trainer/views/member/tickets/tickets_vm.dart';
 
 class TicketsView extends StatefulWidget {
   int matchingId;

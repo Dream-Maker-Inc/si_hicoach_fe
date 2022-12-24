@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:si_hicoach_fe/common/components/chip.dart';
 import 'package:si_hicoach_fe/common/components/title_with_description.dart';
-import 'package:si_hicoach_fe/domain/trainer/views/member/detail/detail_vm.dart';
+import 'package:si_hicoach_fe/ui/trainer/members/detail/detail_vm.dart';
 import 'package:si_hicoach_fe/domain/trainer/views/member/edit/purpose.dart';
 
 class ExercisePurpose extends StatefulWidget {
@@ -18,13 +18,8 @@ class _ExercisePurposeState extends State<ExercisePurpose> {
   final MemberDetailViewModel _vm = Get.find<MemberDetailViewModel>();
 
   onEditIconPressed(BuildContext ctx) {
-    Navigator.push(
-      ctx,
-      MaterialPageRoute(
-        builder: (BuildContext context) =>
-            PurposeEditView(matchingId: _vm.matchingId),
-      ),
-    ).then((value) => _vm.fetchMemberInfo());
+    Get.to(PurposeEditView(matchingId: _vm.matchingId))
+        ?.then((_) => _vm.refetch());
   }
 
   @override

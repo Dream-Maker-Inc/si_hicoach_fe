@@ -7,19 +7,18 @@ import 'package:si_hicoach_fe/common/components/app_bar.dart';
 import 'package:si_hicoach_fe/common/components/dialog.dart';
 import 'package:si_hicoach_fe/common/components/divider.dart';
 import 'package:si_hicoach_fe/common/getx/my_getx_state.dart';
-import 'package:si_hicoach_fe/ui/common/study/create/study_create.dart';
-import 'package:si_hicoach_fe/domain/trainer/views/member/detail/detail_vm.dart';
-import 'package:si_hicoach_fe/domain/trainer/views/member/detail/information/information.dart';
-import 'package:si_hicoach_fe/domain/trainer/views/member/detail/study/studying_list.dart';
-import 'package:si_hicoach_fe/domain/trainer/views/member/detail/tab/header.dart';
+import 'package:si_hicoach_fe/ui/trainer/members/detail/detail_vm.dart';
+import 'package:si_hicoach_fe/ui/trainer/members/detail/panels/information/information.dart';
+import 'package:si_hicoach_fe/ui/trainer/members/detail/panels/studies/studying_list.dart';
+import 'package:si_hicoach_fe/ui/trainer/members/detail/header/tabs_header.dart';
 
 class DetailView extends StatefulWidget {
+  final int memberId;
+
   DetailView({
     super.key,
     required this.memberId,
   });
-
-  final int memberId;
 
   @override
   State<DetailView> createState() => _DetailViewState();
@@ -32,20 +31,24 @@ class _DetailViewState extends _Detail {
 
     return Obx(() {
       final memberName = vm.member.name;
-      final isPersonal = vm.isPersonalMatching;
+      final isPersonal = vm.isPersonalMatching.value;
+
+      final actionsWidget = [
+        !isPersonal
+            ? IconButton(
+                icon: const SizedBox(
+                  width: 20,
+                  child: Icon(Icons.delete_outline),
+                ),
+                onPressed: onMemberDeleteIconPressed,
+              )
+            : Container()
+      ];
 
       return Scaffold(
         appBar: CustomAppBarArrowBack(
           titleText: '$memberName 님',
-          actionsWidget: <Widget>[
-            !isPersonal
-                ? IconButton(
-                    icon: const SizedBox(
-                        width: 20, child: Icon(Icons.delete_outline)),
-                    onPressed: () => onMemberDeleteIconPressed(context),
-                  )
-                : Container(),
-          ],
+          actionsWidget: actionsWidget,
         ),
         body: SizedBox(
           width: double.infinity,
@@ -64,7 +67,7 @@ class _DetailViewState extends _Detail {
                         const CustomDivider(),
                         Expanded(
                           child: TabBarView(
-                            children: <Widget>[
+                            children: [
                               Information(),
                               StudyingListView(),
                             ],
@@ -84,20 +87,10 @@ class _DetailViewState extends _Detail {
 }
 
 class _Detail extends MyGetXState<DetailView, MemberDetailViewModel> {
-  onStudyAddIconPressed(BuildContext context) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (BuildContext context) => StudyCreateView(
-            matchingId: vm.matchingId,
-            nextStudyRound: vm.nextStudyRound,
-            totalTicketCount: vm.latestStudy.totalStudyCount),
-      ),
-    );
-  }
+  int get memberId => widget.memberId;
 
-  onMemberDeleteIconPressed(BuildContext context) {
-    showDialog<String>(
+  onMemberDeleteIconPressed() {
+    showDialog(
       context: context,
       barrierDismissible: false,
       builder: (BuildContext context) => CustomAlertDialog(
@@ -105,9 +98,9 @@ class _Detail extends MyGetXState<DetailView, MemberDetailViewModel> {
         content:
             '회원 매칭을 취소하시면\n\n - 해당 회원의 예약 수업 정보 모두 삭제\n - 회원 리스트에서 해당 회원 조회 불가\n\n처리됩니다.',
         positiveText: '매칭 취소하기',
-        onPositivePressed: () => vm.removeMatching(),
+        onPositivePressed: () => vm.removeMatching(vm.matchingId),
         negativeText: '뒤로',
-        onNegativePressed: () => Navigator.of(context).pop(),
+        onNegativePressed: () => Get.back(),
       ),
     );
   }
@@ -115,8 +108,6 @@ class _Detail extends MyGetXState<DetailView, MemberDetailViewModel> {
   @override
   void initState() {
     super.initState();
-
-    vm.memberId = widget.memberId;
 
     vm.removeMatchingSuccess.listen((b) {
       if (!b) return;
@@ -135,11 +126,14 @@ class _Detail extends MyGetXState<DetailView, MemberDetailViewModel> {
 
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback((_) => {vm.fetchMemberInfo()});
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      vm.fetchMemberInfo(memberId);
+    });
 
-    return const SizedBox.shrink();
+    return widget;
   }
 
   @override
-  MemberDetailViewModel createViewModel() => MemberDetailViewModel();
+  MemberDetailViewModel createViewModel() =>
+      MemberDetailViewModel(memberId: memberId);
 }

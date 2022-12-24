@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:si_hicoach_fe/common/theme/typography.dart';
 import 'package:si_hicoach_fe/common/utils/number_format.dart';
-import 'package:si_hicoach_fe/domain/trainer/views/member/detail/detail.dart';
+import 'package:si_hicoach_fe/ui/trainer/members/detail/detail.dart';
 import 'package:si_hicoach_fe/ui/trainer/members/list/member_list_vm.dart';
 
 class MemberListItem extends StatelessWidget {
