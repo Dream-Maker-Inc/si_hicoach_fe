@@ -3,24 +3,24 @@ import 'package:get/get.dart';
 import 'package:si_hicoach_fe/common/components/divider.dart';
 import 'package:si_hicoach_fe/common/theme/color.dart';
 import 'package:si_hicoach_fe/common/theme/typography.dart';
-import 'package:si_hicoach_fe/domain/member/views/main/main_vm.dart';
-import 'package:si_hicoach_fe/domain/member/views/main/past/grid.dart';
-import 'package:si_hicoach_fe/domain/member/views/main/present/list.dart';
+import 'package:si_hicoach_fe/infrastructure/page/member/home/main_vm.dart';
+import 'package:si_hicoach_fe/infrastructure/page/member/home/sections/panels/latest_study_info/latest_study_info_view.dart';
+import 'package:si_hicoach_fe/infrastructure/page/member/home/sections/panels/study_list/study_list_view.dart';
 
-class MemberMainTab extends StatefulWidget {
-  const MemberMainTab({Key? key}) : super(key: key);
+class MemberMainTabs extends StatefulWidget {
+  const MemberMainTabs({Key? key}) : super(key: key);
 
   @override
-  State<MemberMainTab> createState() => _MemberMainTabState();
+  State<MemberMainTabs> createState() => _MemberMainTabsState();
 }
 
-class _MemberMainTabState extends State<MemberMainTab>
+class _MemberMainTabsState extends State<MemberMainTabs>
     with SingleTickerProviderStateMixin {
-  MainPageViewModel vm = Get.find<MainPageViewModel>();
+  MemberMainViewModel vm = Get.find<MemberMainViewModel>();
 
-  List<String> tabTitle = ['완료 수업', '오늘 수업', '예정 수업'];
+  List<String> tabTitles = ['완료 수업', '오늘 수업', '예정 수업'];
   late final tabController =
-      TabController(length: tabTitle.length, vsync: this);
+      TabController(length: tabTitles.length, vsync: this);
 
   @override
   void initState() {
@@ -33,20 +33,16 @@ class _MemberMainTabState extends State<MemberMainTab>
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> tabBar = <Widget>[
-      const PastGridView(),
-      _buildTodayStudies(),
-      _buildNextStudies(),
-    ];
-
-    PreferredSizeWidget memberMainAppBar() {
-      return AppBar(
+    return Scaffold(
+      appBar: AppBar(
         automaticallyImplyLeading: false,
         title: TabBar(
           controller: tabController,
-          tabs: <Widget>[
-            for (var item in tabTitle) Tab(text: item, height: 54)
-          ],
+          tabs: tabTitles
+              .map(
+                (it) => Tab(text: it, height: 54),
+              )
+              .toList(),
           labelColor: primaryColor,
           unselectedLabelColor: Colors.black,
           labelStyle: labelLarge,
@@ -59,18 +55,21 @@ class _MemberMainTabState extends State<MemberMainTab>
           preferredSize: Size.fromHeight(1),
           child: CustomDivider(),
         ),
-      );
-    }
-
-    return Scaffold(
-      appBar: memberMainAppBar(),
-      body: TabBarView(controller: tabController, children: tabBar),
+      ),
+      body: TabBarView(
+        controller: tabController,
+        children: [
+          const MainLatestStudyInfoView(),
+          _buildTodayStudies(),
+          _buildNextStudies(),
+        ],
+      ),
     );
   }
 
   _buildNextStudies() {
     return Obx(() {
-      return PresentListView(
+      return MainStudyListView(
         models: vm.nextStudyItemModels,
       );
     });
@@ -78,7 +77,7 @@ class _MemberMainTabState extends State<MemberMainTab>
 
   _buildTodayStudies() {
     return Obx(() {
-      return PresentListView(
+      return MainStudyListView(
         models: vm.todayStudyItemModels,
       );
     });

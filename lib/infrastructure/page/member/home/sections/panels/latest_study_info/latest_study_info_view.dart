@@ -1,51 +1,52 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
-import 'package:si_hicoach_fe/common/components/dialog.dart';
 import 'package:si_hicoach_fe/common/components/empty_patch.dart';
+import 'package:si_hicoach_fe/common/components/http_error_dialog.dart';
 import 'package:si_hicoach_fe/common/constants/constants.dart';
 import 'package:si_hicoach_fe/common/exceptions/common_exceptions.dart';
 import 'package:si_hicoach_fe/common/getx/my_getx_state.dart';
 import 'package:si_hicoach_fe/common/theme/typography.dart';
-import 'package:si_hicoach_fe/domain/member/views/main/past/grid_item.dart';
-import 'package:si_hicoach_fe/domain/member/views/main/past/main_latest_study_vm.dart';
+import 'package:si_hicoach_fe/infrastructure/page/member/home/sections/panels/latest_study_info/latest_study_info_item.dart';
+import 'package:si_hicoach_fe/infrastructure/page/member/home/sections/panels/latest_study_info/latest_study_info_vm.dart';
 import 'package:si_hicoach_fe/ui/common/study/detail/detail.dart';
 
-class PastGridView extends StatefulWidget {
-  const PastGridView({Key? key}) : super(key: key);
+class MainLatestStudyInfoView extends StatefulWidget {
+  const MainLatestStudyInfoView({Key? key}) : super(key: key);
 
   @override
-  State<PastGridView> createState() => _PastGridViewState();
+  State<MainLatestStudyInfoView> createState() =>
+      _MainLatestStudyInfoViewState();
 }
 
-class _PastGridViewState extends _Detail {
+class _MainLatestStudyInfoViewState extends _Detail {
   @override
   Widget build(BuildContext context) {
     super.build(context);
 
     return Obx(() {
-      final modelsIsNotEmpty = vm.pastGridModels.isNotEmpty;
+      if (vm.pastGridModels.isEmpty) {
+        return const EmptyDataPatch();
+      }
 
-      return modelsIsNotEmpty
-          ? SingleChildScrollView(
-              child: Container(
-                width: double.infinity,
-                padding: const EdgeInsets.only(
-                  top: defaultPadding,
-                  left: defaultPadding,
-                  right: defaultPadding,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: <Widget>[
-                    _buildDateCaption(),
-                    const SizedBox(height: smallPadding),
-                    _buildListView(),
-                  ],
-                ),
-              ),
-            )
-          : const EmptyDataPatch();
+      return SingleChildScrollView(
+        child: Container(
+          width: double.infinity,
+          padding: const EdgeInsets.only(
+            top: defaultPadding,
+            left: defaultPadding,
+            right: defaultPadding,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              _buildDateCaption(),
+              const SizedBox(height: smallPadding),
+              _buildListView(),
+            ],
+          ),
+        ),
+      );
     });
   }
 
@@ -81,7 +82,7 @@ class _PastGridViewState extends _Detail {
                     borderRadius: borderRadius,
                   ),
                   padding: const EdgeInsets.all(defaultPadding),
-                  child: GridItem(
+                  child: MainLatestStudyInfoItem(
                     name: it.name,
                     count: it.count,
                     set: it.set,
@@ -96,7 +97,8 @@ class _PastGridViewState extends _Detail {
   }
 }
 
-class _Detail extends MyGetXState<PastGridView, MainLatestStudyViewModel> {
+class _Detail
+    extends MyGetXState<MainLatestStudyInfoView, MainLatestStudyInfoViewModel> {
   handleItemClick(int studyId) {
     Get.to(StudyDetailView(
       studyId: studyId,
@@ -114,32 +116,23 @@ class _Detail extends MyGetXState<PastGridView, MainLatestStudyViewModel> {
 
       if (e is NotExistException) {
         Logger().w("not exist latest study data");
-
         return;
       }
 
-      String title = "Error";
-      String message = e.toString();
-
-      vm.apiError.value = null;
-
-      showMySimpleDialog(
-          context: context,
-          title: title,
-          content: message,
-          onConfirm: () {
-            Get.back();
-          });
+      showMyHttpErrorDialog(e.toString());
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback((_) => vm.fetchData());
+    WidgetsBinding.instance.addPostFrameCallback(
+      (_) => vm.fetchData(),
+    );
 
     return widget;
   }
 
   @override
-  MainLatestStudyViewModel createViewModel() => MainLatestStudyViewModel();
+  MainLatestStudyInfoViewModel createViewModel() =>
+      MainLatestStudyInfoViewModel();
 }

@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:si_hicoach_fe/common/components/app_bar_with_logo.dart';
 import 'package:si_hicoach_fe/common/components/dialog.dart';
+import 'package:si_hicoach_fe/common/components/http_error_dialog.dart';
 import 'package:si_hicoach_fe/common/exceptions/common_exceptions.dart';
 import 'package:si_hicoach_fe/common/getx/my_getx_state.dart';
-import 'package:si_hicoach_fe/domain/member/views/main/main_vm.dart';
-import 'package:si_hicoach_fe/domain/member/views/main/tab.dart';
+import 'package:si_hicoach_fe/infrastructure/page/member/home/main_vm.dart';
+import 'package:si_hicoach_fe/infrastructure/page/member/home/sections/tabs.dart';
 
 class MemberMainView extends StatefulWidget {
   const MemberMainView({Key? key}) : super(key: key);
@@ -24,14 +25,14 @@ class _MemberMainViewState extends _Detail {
         appBar: CustomAppBarWithLogo(titleText: '${vm.memberName}님'),
         body: const SizedBox(
           width: double.infinity,
-          child: MemberMainTab(),
+          child: MemberMainTabs(),
         ),
       );
     });
   }
 }
 
-class _Detail extends MyGetXState<MemberMainView, MainPageViewModel> {
+class _Detail extends MyGetXState<MemberMainView, MemberMainViewModel> {
   @override
   void initState() {
     super.initState();
@@ -39,35 +40,33 @@ class _Detail extends MyGetXState<MemberMainView, MainPageViewModel> {
     vm.apiError.listen((e) {
       if (e == null) return;
 
-      String title = "Error";
-      String message = e.toString();
-
       if (e is UnauthorizedException) {
-        title = "인증 실패";
-        message = "비정상적인 인증 요청입니다.";
+        showMySimpleDialog(
+            context: context,
+            title: "인증 실패",
+            content: "비정상적인 인증 요청입니다.",
+            onConfirm: () {
+              Get.back();
+              Get.back();
+            });
       }
 
-      vm.apiError.value = null;
-
-      showMySimpleDialog(
-          context: context,
-          title: title,
-          content: message,
-          onConfirm: () {
-            Get.back();
-            Get.back();
-          });
+      showMyHttpErrorDialog(e.toString()).then((_) => Get.back());
     });
   }
 
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback(
-        (_) => Future.wait([vm.fetchTodayStudies(), vm.fetchMyInfo()]));
+      (_) => Future.wait([
+        vm.fetchTodayStudies(),
+        vm.fetchMyInfo(),
+      ]),
+    );
 
     return widget;
   }
 
   @override
-  MainPageViewModel createViewModel() => MainPageViewModel();
+  MemberMainViewModel createViewModel() => MemberMainViewModel();
 }

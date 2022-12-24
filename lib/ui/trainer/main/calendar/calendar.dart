@@ -12,7 +12,7 @@ class Calendar extends StatefulWidget {
 }
 
 class _CalendarState extends State<Calendar> {
-  final MainViewModel _vm = Get.find<MainViewModel>();
+  final TrainerMainViewModel _vm = Get.find<TrainerMainViewModel>();
 
   _handleDayPressed(String it) {
     _vm.targetDate.value = DateTime.parse(it);

@@ -1,4 +1,4 @@
-import 'package:si_hicoach_fe/domain/member/models/gender_types.dart';
+import 'package:si_hicoach_fe/domain/member/gender_types.dart';
 
 class RequestSignUpDto {
   SignupMember member;

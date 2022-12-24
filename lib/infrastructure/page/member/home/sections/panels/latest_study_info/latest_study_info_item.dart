@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/common/constants/constants.dart';
 import 'package:si_hicoach_fe/common/theme/typography.dart';
 
-class GridItem extends StatelessWidget {
+class MainLatestStudyInfoItem extends StatelessWidget {
   final String name;
   final int weight;
   final int set;
   final int count;
 
-  const GridItem({
+  const MainLatestStudyInfoItem({
     Key? key,
     required this.name,
     required this.weight,

@@ -1,11 +1,11 @@
-class PastGridModel {
+class MainLatestStudyInfoModel {
   final int id;
   final String name;
   final int weight;
   final int set;
   final int count;
 
-  PastGridModel(
+  MainLatestStudyInfoModel(
       {required this.id,
       required this.name,
       required this.weight,

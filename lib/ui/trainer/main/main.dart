@@ -69,7 +69,7 @@ class _TrainerMainViewState extends _Detail {
   }
 }
 
-class _Detail extends MyGetXState<TrainerMainView, MainViewModel> {
+class _Detail extends MyGetXState<TrainerMainView, TrainerMainViewModel> {
   @override
   void initState() {
     super.initState();
@@ -94,5 +94,5 @@ class _Detail extends MyGetXState<TrainerMainView, MainViewModel> {
   }
 
   @override
-  MainViewModel createViewModel() => MainViewModel();
+  TrainerMainViewModel createViewModel() => TrainerMainViewModel();
 }

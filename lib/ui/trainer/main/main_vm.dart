@@ -10,7 +10,7 @@ import 'package:si_hicoach_fe/infrastructure/page/trainer/main/dto/get_trainer_m
 import 'package:si_hicoach_fe/infrastructure/page/trainer/main/trainer_main_page_api.dart';
 import 'package:collection/collection.dart';
 
-class MainViewModel extends _MainPageDataFetchFeature {
+class TrainerMainViewModel extends _MainPageDataFetchFeature {
   Rx<DateTime> targetDate = Rx(DateTime.now());
   String get targetDateString =>
       DateFormat('yyyy-MM-dd').format(targetDate.value);
