@@ -52,7 +52,7 @@ class _TrainerMyPageViewState extends _Detail {
   }
 }
 
-class _Detail extends MyGetXState<TrainerMyPageView, MyPageViewModel> {
+class _Detail extends MyGetXState<TrainerMyPageView, TrainerMyPageViewModel> {
   @override
   void initState() {
     super.initState();
@@ -74,5 +74,5 @@ class _Detail extends MyGetXState<TrainerMyPageView, MyPageViewModel> {
   }
 
   @override
-  MyPageViewModel createViewModel() => MyPageViewModel();
+  TrainerMyPageViewModel createViewModel() => TrainerMyPageViewModel();
 }

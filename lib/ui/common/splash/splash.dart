@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:si_hicoach_fe/common/getx/my_getx_state.dart';
 import 'package:si_hicoach_fe/ui/account/login/views/login.dart';
-import 'package:si_hicoach_fe/domain/member/views/base.dart';
+import 'package:si_hicoach_fe/ui/member/my_page/base.dart';
 import 'package:si_hicoach_fe/ui/common/splash/splash_section.dart';
 import 'package:si_hicoach_fe/ui/common/splash/splash_vm.dart';
 import 'package:si_hicoach_fe/ui/trainer/base.dart';

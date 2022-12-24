@@ -3,7 +3,7 @@ import 'package:si_hicoach_fe/common/shared_preferences/shared_prefs.dart';
 import 'package:si_hicoach_fe/infrastructure/page/trainer/my_page/dto/get_my_page_response.dart';
 import 'package:si_hicoach_fe/infrastructure/page/trainer/my_page/trainer_my_page_api.dart';
 
-class MyPageViewModel extends _MyPageDataFetchFeature {
+class TrainerMyPageViewModel extends _MyPageDataFetchFeature {
   String get memberName => data?.trainer.name ?? "";
   String get companyName => data?.trainer.trainerInfo.companyName ?? "";
   int get lastMonthStudyCount => data?.finishedStudiesCount.lastMonth ?? 0;

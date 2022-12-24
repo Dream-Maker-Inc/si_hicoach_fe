@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:si_hicoach_fe/common/components/app_bar_with_logo.dart';
-import 'package:si_hicoach_fe/common/components/dialog.dart';
+import 'package:si_hicoach_fe/common/components/http_error_dialog.dart';
 import 'package:si_hicoach_fe/common/getx/my_getx_state.dart';
-import 'package:si_hicoach_fe/domain/member/views/my/my/menu.dart';
-import 'package:si_hicoach_fe/domain/member/views/my/my/mypage_vm.dart';
-import 'package:si_hicoach_fe/domain/member/views/my/my/summary.dart';
+import 'package:si_hicoach_fe/ui/member/my_page/main/sections/menu.dart';
+import 'package:si_hicoach_fe/ui/member/my_page/main/my_page_vm.dart';
+import 'package:si_hicoach_fe/ui/member/my_page/main/sections/summary.dart';
 
-class MypageView extends StatefulWidget {
-  const MypageView({Key? key}) : super(key: key);
+class MemberMypageView extends StatefulWidget {
+  const MemberMypageView({Key? key}) : super(key: key);
 
   @override
-  State<MypageView> createState() => _MypageViewState();
+  State<MemberMypageView> createState() => _MemberMypageViewState();
 }
 
-class _MypageViewState extends MyGetXState<MypageView, MemberMyPageViewModel> {
+class _MemberMypageViewState
+    extends MyGetXState<MemberMypageView, MemberMyPageViewModel> {
   @override
   void initState() {
     super.initState();
@@ -22,15 +22,7 @@ class _MypageViewState extends MyGetXState<MypageView, MemberMyPageViewModel> {
     vm.apiError.listen((e) {
       if (e == null) return;
 
-      vm.apiError.value = null;
-
-      showMySimpleDialog(
-          context: context,
-          title: 'Error',
-          content: e.toString(),
-          onConfirm: () {
-            Get.back();
-          });
+      showMyHttpErrorDialog(e.toString());
     });
   }
 

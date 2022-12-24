@@ -7,7 +7,7 @@ import 'package:si_hicoach_fe/common/theme/button.dart';
 import 'package:si_hicoach_fe/common/theme/typography.dart';
 import 'package:si_hicoach_fe/ui/common/inbody/inbody.dart';
 import 'package:si_hicoach_fe/domain/member/views/my/memo/memo.dart';
-import 'package:si_hicoach_fe/domain/member/views/my/my/mypage_vm.dart';
+import 'package:si_hicoach_fe/ui/member/my_page/main/my_page_vm.dart';
 
 class SummaryView extends StatelessWidget {
   SummaryView({Key? key}) : super(key: key);
@@ -15,22 +15,17 @@ class SummaryView extends StatelessWidget {
   final _vm = Get.find<MemberMyPageViewModel>();
 
   handleInBodyClick(BuildContext context) {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (BuildContext context) => InbodyView(
-            memberId: _vm.memberId,
-            matchingId: _vm.matchingId,
-            isRoleTrainer: false),
+    Get.to(
+      InbodyView(
+        memberId: _vm.memberId,
+        matchingId: _vm.matchingId,
+        isRoleTrainer: false,
       ),
     );
   }
 
   handleMemoClick(BuildContext context) {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (BuildContext context) => const MemoListView(),
-      ),
-    );
+    Get.to(const MemoListView());
   }
 
   @override
@@ -72,7 +67,7 @@ class SummaryView extends StatelessWidget {
   _buildSummary() {
     return Obx(() {
       final trainerNameLabel =
-          (_vm.trainerName.isEmpty) ? "" : '${_vm.trainerName} 코치님';
+          _vm.trainerName.isEmpty ? "" : '${_vm.trainerName} 코치님';
 
       return Container(
         margin: const EdgeInsets.all(defaultPadding),

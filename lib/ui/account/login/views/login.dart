@@ -9,7 +9,7 @@ import 'package:si_hicoach_fe/common/theme/button.dart';
 import 'package:si_hicoach_fe/common/theme/typography.dart';
 import 'package:si_hicoach_fe/ui/account/find/views/info_find/info_find.dart';
 import 'package:si_hicoach_fe/ui/account/login/views/login_vm.dart';
-import 'package:si_hicoach_fe/domain/member/views/base.dart';
+import 'package:si_hicoach_fe/ui/member/my_page/base.dart';
 import 'package:si_hicoach_fe/ui/trainer/base.dart';
 import 'package:si_hicoach_fe/ui/account/signup/views/signup_page.dart';
 import 'package:get/get.dart';
