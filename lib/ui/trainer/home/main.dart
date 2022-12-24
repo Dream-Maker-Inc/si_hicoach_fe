@@ -8,9 +8,9 @@ import 'package:si_hicoach_fe/common/components/title_with_description.dart';
 import 'package:si_hicoach_fe/common/constants/constants.dart';
 import 'package:si_hicoach_fe/common/getx/my_getx_state.dart';
 import 'package:si_hicoach_fe/common/utils/date_format.dart';
-import 'package:si_hicoach_fe/ui/trainer/main/calendar/calendar.dart';
-import 'package:si_hicoach_fe/ui/trainer/main/main_vm.dart';
-import 'package:si_hicoach_fe/ui/trainer/main/todo_list/list_item.dart';
+import 'package:si_hicoach_fe/ui/trainer/home/calendar/calendar.dart';
+import 'package:si_hicoach_fe/ui/trainer/home/main_vm.dart';
+import 'package:si_hicoach_fe/ui/trainer/home/todo_list/list_item.dart';
 
 class TrainerMainView extends StatefulWidget {
   const TrainerMainView({Key? key}) : super(key: key);

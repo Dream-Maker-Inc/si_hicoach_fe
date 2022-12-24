@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:si_hicoach_fe/common/utils/get_date_time.dart';
-import 'package:si_hicoach_fe/ui/trainer/main/calendar/calendar_item.dart';
-import 'package:si_hicoach_fe/ui/trainer/main/main_vm.dart';
+import 'package:si_hicoach_fe/ui/trainer/home/calendar/calendar_item.dart';
+import 'package:si_hicoach_fe/ui/trainer/home/main_vm.dart';
 
 class Calendar extends StatefulWidget {
   const Calendar({Key? key}) : super(key: key);

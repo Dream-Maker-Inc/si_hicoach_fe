@@ -2,7 +2,7 @@
 
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:si_hicoach_fe/ui/trainer/main/todo_list/list_item.dart';
+import 'package:si_hicoach_fe/ui/trainer/home/todo_list/list_item.dart';
 import 'package:si_hicoach_fe/infrastructure/member/member/dto/get_my_info_response.dart'
     as MyInfo;
 import 'package:si_hicoach_fe/infrastructure/member/member/member_api.dart';
@@ -18,13 +18,16 @@ class TrainerMainViewModel extends _MainPageDataFetchFeature {
   String get memberName => _member?.name ?? "";
 
   List<TrainerMainTodoItemModel> get todoItemModels => data
-      .map((data) => TrainerMainTodoItemModel(
+      .map(
+        (data) => TrainerMainTodoItemModel(
           studyId: data.study.id,
           time: data.study.startedAt.hour,
           name: data.member.name,
-          isCompleted: data.study.isFinished,
+          isCompleted: isFinished(data.study.endedAt),
           studyCount: data.totalStudyCount,
-          totalTicketCount: data.matching.ticketCount))
+          totalTicketCount: data.matching.ticketCount,
+        ),
+      )
       .sorted((a, b) => a.time - b.time)
       .toList();
 
@@ -44,11 +47,17 @@ class _MainPageDataFetchFeature extends _MyInfoFetchFeature {
 
   List<Data> get data => _fetchMainResponse.value?.data ?? [];
 
+  bool isFinished(DateTime endedAt) {
+    return DateTime.now().isAfter(endedAt);
+  }
+
   Future fetchData(String date) async {
     final result = await TrainerMainPageApi.getData(date);
 
-    result.when((e) => (apiError.value = e),
-        (response) => (_fetchMainResponse.value = response));
+    result.when(
+      (e) => (apiError.value = e),
+      (res) => (_fetchMainResponse.value = res),
+    );
   }
 }
 

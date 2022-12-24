@@ -80,13 +80,11 @@ class Study {
     required this.round,
     required this.startedAt,
     required this.endedAt,
-    required this.isFinished,
   });
   late final int id;
   late final int round;
   late final DateTime startedAt;
   late final DateTime endedAt;
-  late final bool isFinished;
 
   factory Study.fromJson(Map<String, dynamic> json) => _$StudyFromJson(json);
 

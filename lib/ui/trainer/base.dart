@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/domain/calendar/weekly/calendar.dart';
 import 'package:si_hicoach_fe/common/components/divider.dart';
-import 'package:si_hicoach_fe/ui/trainer/main/main.dart';
+import 'package:si_hicoach_fe/ui/trainer/home/main.dart';
 import 'package:si_hicoach_fe/ui/trainer/members/list/member_list_page.dart';
 import 'package:si_hicoach_fe/ui/trainer/my_page/main/my_page_view.dart';
 

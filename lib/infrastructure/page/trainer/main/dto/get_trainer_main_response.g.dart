@@ -69,7 +69,6 @@ Study _$StudyFromJson(Map<String, dynamic> json) => Study(
       round: json['round'] as int,
       startedAt: DateTime.parse(json['startedAt'] as String),
       endedAt: DateTime.parse(json['endedAt'] as String),
-      isFinished: json['isFinished'] as bool,
     );
 
 Map<String, dynamic> _$StudyToJson(Study instance) => <String, dynamic>{
@@ -77,5 +76,4 @@ Map<String, dynamic> _$StudyToJson(Study instance) => <String, dynamic>{
       'round': instance.round,
       'startedAt': instance.startedAt.toIso8601String(),
       'endedAt': instance.endedAt.toIso8601String(),
-      'isFinished': instance.isFinished,
     };
