@@ -6,7 +6,7 @@ import 'package:si_hicoach_fe/common/constants/constants.dart';
 import 'package:si_hicoach_fe/common/theme/button.dart';
 import 'package:si_hicoach_fe/common/theme/typography.dart';
 import 'package:si_hicoach_fe/ui/common/inbody/inbody.dart';
-import 'package:si_hicoach_fe/domain/member/views/my/memo/memo.dart';
+import 'package:si_hicoach_fe/ui/member/my_page/memo/list/memo_list_view.dart';
 import 'package:si_hicoach_fe/ui/member/my_page/main/my_page_vm.dart';
 
 class SummaryView extends StatelessWidget {
@@ -25,7 +25,7 @@ class SummaryView extends StatelessWidget {
   }
 
   handleMemoClick(BuildContext context) {
-    Get.to(const MemoListView());
+    Get.to(const MyMemoListView());
   }
 
   @override
