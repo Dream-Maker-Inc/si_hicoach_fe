@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:si_hicoach_fe/common/components/app_bar.dart';
-import 'package:si_hicoach_fe/common/components/dialog.dart';
+import 'package:si_hicoach_fe/common/components/http_error_dialog.dart';
 import 'package:si_hicoach_fe/common/getx/my_getx_state.dart';
-import 'package:si_hicoach_fe/domain/member/views/my/account/account_vm.dart';
+import 'package:si_hicoach_fe/ui/member/my_page/account/detail/account_vm.dart';
 
-class AccountView extends StatefulWidget {
-  const AccountView({Key? key}) : super(key: key);
+class MemberAccountDetailView extends StatefulWidget {
+  const MemberAccountDetailView({Key? key}) : super(key: key);
 
   @override
-  State<AccountView> createState() => _AccountViewState();
+  State<MemberAccountDetailView> createState() =>
+      _MemberAccountDetailViewState();
 }
 
-class _AccountViewState extends _Detail {
+class _MemberAccountDetailViewState extends _Detail {
   @override
   Widget build(BuildContext context) {
     super.build(context);
@@ -35,8 +36,12 @@ class _AccountViewState extends _Detail {
         children: ListTile.divideTiles(
                 context: context,
                 tiles: columns
-                    .map((it) => ListTile(
-                        title: Text(it.item1), trailing: Text(it.item2)))
+                    .map(
+                      (it) => ListTile(
+                        title: Text(it.item1),
+                        trailing: Text(it.item2),
+                      ),
+                    )
                     .toList())
             .toList(),
       );
@@ -44,7 +49,8 @@ class _AccountViewState extends _Detail {
   }
 }
 
-class _Detail extends MyGetXState<AccountView, AccountPageViewModel> {
+class _Detail
+    extends MyGetXState<MemberAccountDetailView, MemberAccountDetailViewModel> {
   @override
   void initState() {
     super.initState();
@@ -52,15 +58,7 @@ class _Detail extends MyGetXState<AccountView, AccountPageViewModel> {
     vm.apiError.listen((e) {
       if (e == null) return;
 
-      vm.apiError.value = null;
-
-      showMySimpleDialog(
-          context: context,
-          title: 'Error',
-          content: e.toString(),
-          onConfirm: () {
-            Get.back();
-          });
+      showMyHttpErrorDialog(e.toString());
     });
   }
 
@@ -74,5 +72,6 @@ class _Detail extends MyGetXState<AccountView, AccountPageViewModel> {
   }
 
   @override
-  AccountPageViewModel createViewModel() => AccountPageViewModel();
+  MemberAccountDetailViewModel createViewModel() =>
+      MemberAccountDetailViewModel();
 }

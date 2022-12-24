@@ -3,7 +3,7 @@ import 'package:si_hicoach_fe/infrastructure/member/member/dto/get_my_info_respo
 import 'package:si_hicoach_fe/infrastructure/member/member/member_api.dart';
 import 'package:tuple/tuple.dart';
 
-class AccountPageViewModel extends _FetchController {
+class MemberAccountDetailViewModel extends _MyInfoFetchFeature {
   String get name => member?.name ?? "";
   String get email => member?.email ?? "";
   String get birthDay => member?.birthDay ?? "";
@@ -21,11 +21,10 @@ class AccountPageViewModel extends _FetchController {
       ];
 }
 
-class _FetchController extends GetxController {
-  //
+// 내 정보 불러오기
+class _MyInfoFetchFeature extends GetxController {
   Rx<Exception?> apiError = Rx(null);
 
-  // fetch data
   final Rxn<GetMyInfoResponse> fetchAccountPageResponse = Rxn();
   Data? get data => fetchAccountPageResponse.value?.data;
 
@@ -35,7 +34,16 @@ class _FetchController extends GetxController {
   Future fetchData() async {
     final result = await MemberApi.findMe();
 
-    result.when((e) => (apiError.value = e),
-        (res) => (fetchAccountPageResponse.value = res));
+    result.when(
+      (e) => (apiError.value = e),
+      (res) => (fetchAccountPageResponse.value = res),
+    );
+  }
+
+  @override
+  void onInit() {
+    super.onInit();
+
+    ever(apiError, (_) => (apiError.value = null));
   }
 }

@@ -6,7 +6,7 @@ import 'package:si_hicoach_fe/ui/account/login/views/login.dart';
 import 'package:si_hicoach_fe/ui/common/business/business.dart';
 import 'package:si_hicoach_fe/ui/common/edit_password/edit_password.dart';
 import 'package:si_hicoach_fe/common/invite/invite.dart';
-import 'package:si_hicoach_fe/domain/member/views/my/account/account.dart';
+import 'package:si_hicoach_fe/ui/member/my_page/account/detail/account_view.dart';
 import 'package:si_hicoach_fe/ui/member/my_page/main/my_page_vm.dart';
 import 'package:si_hicoach_fe/ui/member/my_page/notification/notification_view.dart';
 
@@ -16,7 +16,7 @@ class MenuView extends StatelessWidget {
   final _vm = Get.find<MemberMyPageViewModel>();
 
   _handleAccountMenuClick() {
-    Get.to(const AccountView());
+    Get.to(const MemberAccountDetailView());
   }
 
   _handleNotificationMenuClick() {
