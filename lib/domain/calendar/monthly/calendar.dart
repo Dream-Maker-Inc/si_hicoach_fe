@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:si_hicoach_fe/common/components/app_bar.dart';
 import 'package:si_hicoach_fe/common/components/app_bar_with_logo.dart';
-import 'package:si_hicoach_fe/common/components/dialog.dart';
+import 'package:si_hicoach_fe/common/components/http_error_dialog.dart';
 import 'package:si_hicoach_fe/common/getx/my_getx_state.dart';
-import 'package:si_hicoach_fe/common/utils/calendar.dart';
-import 'package:si_hicoach_fe/common/utils/get_date_time.dart';
+import 'package:si_hicoach_fe/common/calendar/calendar.dart';
 import 'package:si_hicoach_fe/domain/calendar/monthly/header.dart';
 import 'package:si_hicoach_fe/domain/calendar/monthly/item.dart';
 import 'package:si_hicoach_fe/domain/calendar/monthly/monthly_calendar_vm.dart';
@@ -14,8 +14,11 @@ import 'package:si_hicoach_fe/ui/common/study/detail/detail.dart';
 const weekDays = [7, 1, 2, 3, 4, 5, 6];
 
 class MonthlyCalendarView extends StatefulWidget {
+  final DateTime targetDate;
+
   const MonthlyCalendarView({
     super.key,
+    required this.targetDate,
     this.isBackButtonEnabled = false,
   });
 
@@ -26,10 +29,43 @@ class MonthlyCalendarView extends StatefulWidget {
 }
 
 class _MonthlyCalendarViewState extends _Detail {
+  final DateFormat _formatter = DateFormat('yyyy년 MM월');
+
   @override
   Widget build(BuildContext context) {
     super.build(context);
 
+    final appbarTitle = _formatter.format(vm.targetDate);
+
+    PreferredSizeWidget appbar = widget.isBackButtonEnabled
+        ? CustomAppBarArrowBack(
+            titleText: appbarTitle,
+          ) as PreferredSizeWidget
+        : CustomAppBarWithLogo(
+            titleText: appbarTitle,
+          );
+
+    return Scaffold(
+      appBar: appbar,
+      body: Column(
+        children: <Widget>[
+          MonthlyCalendarHeader(),
+          Expanded(
+            child: CustomScrollView(
+              slivers: [
+                SliverFillRemaining(
+                  hasScrollBody: false,
+                  child: _buildTable(),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  _buildTable() {
     TableBorder tableBorder = const TableBorder(
       horizontalInside: BorderSide(
         width: 1,
@@ -43,35 +79,6 @@ class _MonthlyCalendarViewState extends _Detail {
       ),
     );
 
-    PreferredSizeWidget appbar = widget.isBackButtonEnabled
-        ? CustomAppBarArrowBack(
-            titleText: Utils.getCurrentDateTime('year_month'),
-          ) as PreferredSizeWidget
-        : CustomAppBarWithLogo(
-            titleText: Utils.getCurrentDateTime('year_month'),
-          );
-
-    return Scaffold(
-      appBar: appbar,
-      body: Column(
-        children: <Widget>[
-          MonthlyCalendarHeader(),
-          Expanded(
-            child: CustomScrollView(
-              slivers: [
-                SliverFillRemaining(
-                  hasScrollBody: false,
-                  child: _buildTable(tableBorder),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  _buildTable(TableBorder tableBorder) {
     useIncreaseIndex() {
       int index = 0;
 
@@ -155,15 +162,15 @@ class _MonthlyCalendarViewState extends _Detail {
 
 class _Detail
     extends MyGetXState<MonthlyCalendarView, MonthlyCalendarViewModel> {
+  DateTime get targetDate => widget.targetDate;
+
   handleWeeklyCalendarItemClick(int studyId) {
-    Navigator.of(context)
-        .push(
-          MaterialPageRoute(
-            builder: (BuildContext context) =>
-                StudyDetailView(studyId: studyId, isMemberDetailEnabled: false),
-          ),
-        )
-        .then((_) => vm.fetchMemberStudies());
+    Get.to(
+      StudyDetailView(
+        studyId: studyId,
+        isMemberDetailEnabled: false,
+      ),
+    )?.then((value) => vm.refetch());
   }
 
   @override
@@ -173,26 +180,22 @@ class _Detail
     vm.apiError.listen((e) {
       if (e == null) return;
 
-      vm.apiError.value = null;
-
-      showMySimpleDialog(
-          context: context,
-          title: 'Error',
-          content: e.toString(),
-          onConfirm: () {
-            Get.back();
-          });
+      showMyHttpErrorDialog(e.toString()).then((value) => Get.back());
     });
   }
 
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      Future.wait([vm.fetchMemberStudies(), vm.fetchHolidaysOfThisMonth()]);
+      Future.wait([
+        vm.fetchMemberStudies(targetDate),
+        vm.fetchHolidaysOfThisMonth(targetDate),
+      ]);
     });
     return widget;
   }
 
   @override
-  MonthlyCalendarViewModel createViewModel() => MonthlyCalendarViewModel();
+  MonthlyCalendarViewModel createViewModel() =>
+      MonthlyCalendarViewModel(targetDate: targetDate);
 }

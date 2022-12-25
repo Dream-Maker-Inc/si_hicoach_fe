@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:intl/intl.dart';
 import 'package:multiple_result/multiple_result.dart';
 import 'package:si_hicoach_fe/common/dio/dio_helper.dart';
 import 'package:si_hicoach_fe/common/dio/http_utils.dart';
@@ -71,11 +70,10 @@ class StudyApi {
   }
 
   static Future<Result<Exception, GetWeeklyCalendarResponse>>
-      getWeeklyCalendarStudies({required int trainerId}) async {
-    final yearMonth = DateFormat('yyyy-MM').format(DateTime.now());
-
-    const groupBy = "week";
-
+      getWeeklyCalendarStudies({
+    required int trainerId,
+    required String yearMonth,
+  }) async {
     return safeApiCall<GetWeeklyCalendarResponse>(() async {
       Dio dio = DioHelper().dio;
       String path = '/api/v2/study';
@@ -84,7 +82,7 @@ class StudyApi {
         'size': 9999,
         'trainerId': trainerId,
         'yearMonth': yearMonth,
-        'groupBy': groupBy
+        'groupBy': "week"
       });
 
       return Success(GetWeeklyCalendarResponse.fromJson(response.data));

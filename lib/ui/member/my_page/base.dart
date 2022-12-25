@@ -17,7 +17,10 @@ class _TrainerBaseViewState extends State<MemberBaseView> {
 
   final List _pages = [
     const MemberMainView(),
-    const MonthlyCalendarView(isBackButtonEnabled: false),
+    MonthlyCalendarView(
+      targetDate: DateTime.now(),
+      isBackButtonEnabled: false,
+    ),
     const MemberStudiesView(),
     const MemberMypageView(),
   ];

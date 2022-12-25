@@ -1,9 +1,8 @@
 // ignore_for_file: library_prefixes
 
 import 'package:get/get.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:si_hicoach_fe/common/shared_preferences/key.dart';
-import 'package:si_hicoach_fe/common/utils/calendar.dart';
+import 'package:si_hicoach_fe/common/calendar/calendar.dart';
+import 'package:si_hicoach_fe/common/shared_preferences/shared_prefs.dart';
 import 'package:si_hicoach_fe/common/utils/date_format.dart';
 import 'package:si_hicoach_fe/domain/calendar/models/monthly_day_item.dart';
 import 'package:si_hicoach_fe/infrastructure/holiday/dto/get_holiday_response.dart'
@@ -13,6 +12,10 @@ import 'package:si_hicoach_fe/infrastructure/study/dto/get_weekly_calendar_respo
 import 'package:si_hicoach_fe/infrastructure/study/study_api.dart';
 
 class MonthlyCalendarViewModel extends _FetchController {
+  DateTime targetDate;
+
+  MonthlyCalendarViewModel({required this.targetDate});
+
   int get weeks => getThisMonthWeeks();
 
   List<MonthlyDayItemModel> getStudyItemModelsByWeek(int week) => _items
@@ -35,19 +38,21 @@ class MonthlyCalendarViewModel extends _FetchController {
   }
 
   @override
-  onInit() {
+  void onInit() {
     super.onInit();
 
-    ever(fetchWeeklyCalendarResponse,
-        (res) => _handleFetchWeeklyCalendarResponse(res));
+    ever(apiError, (_) => (apiError.value = null));
   }
 
-  _handleFetchWeeklyCalendarResponse(GetWeeklyCalendarResponse? res) {}
+  Future refetch() async {
+    Future.wait([
+      fetchMemberStudies(targetDate),
+      fetchHolidaysOfThisMonth(targetDate),
+    ]);
+  }
 }
 
 class _FetchController extends GetxController {
-  int userId = 0;
-
   Rx<Exception?> apiError = Rx(null);
 
   // fetch
@@ -55,14 +60,19 @@ class _FetchController extends GetxController {
 
   List<Items> get _items => fetchWeeklyCalendarResponse.value?.data.items ?? [];
 
-  Future fetchMemberStudies() async {
-    final trainerId = await getUserId();
+  Future fetchMemberStudies(DateTime targetDate) async {
+    final trainerId = await SharedPrefsManager().getUserId();
+    final yearMonth = targetDate.toYearMonth;
 
-    final result =
-        await StudyApi.getWeeklyCalendarStudies(trainerId: trainerId);
+    final result = await StudyApi.getWeeklyCalendarStudies(
+      trainerId: trainerId,
+      yearMonth: yearMonth,
+    );
 
-    result.when((e) => (apiError.value = e),
-        (response) => (fetchWeeklyCalendarResponse.value = response));
+    result.when(
+      (e) => (apiError.value = e),
+      (res) => (fetchWeeklyCalendarResponse.value = res),
+    );
   }
 
   // fetch holidays of this month
@@ -70,27 +80,12 @@ class _FetchController extends GetxController {
 
   List<Holiday.Data> get holidays => fetchHolidayResponse.value?.data ?? [];
 
-  Future fetchHolidaysOfThisMonth() async {
-    final now = DateTime.now();
-    final yearMonth = now.toYearMonth;
+  Future fetchHolidaysOfThisMonth(DateTime targetDate) async {
+    final yearMonth = targetDate.toYearMonth;
 
     final result = await HolidayApi.getHolidays(yearMonth);
 
     result.when((e) => (apiError.value = e),
         (response) => (fetchHolidayResponse.value = response));
-  }
-
-  //
-  @override
-  onInit() async {
-    super.onInit();
-
-    userId = await getUserId();
-  }
-
-  //
-  getUserId() async {
-    final prefs = await SharedPreferences.getInstance();
-    return prefs.getInt(SharedPrefsKeys.id.key) ?? 0;
   }
 }
