@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:si_hicoach_fe/ui/calendar/weekly/components/calendar_common.dart';
+import 'package:si_hicoach_fe/ui/calendar/common/calendar_common.dart';
 
-class CalendarItemWrapper extends StatelessWidget {
+class WeeklyCalendarItemWrapper extends StatelessWidget {
   final Widget child;
   final VoidCallback? onClick;
 
-  const CalendarItemWrapper({
+  const WeeklyCalendarItemWrapper({
     super.key,
     required this.child,
     this.onClick,
@@ -23,7 +23,7 @@ class CalendarItemWrapper extends StatelessWidget {
               bottom: calendarBorder,
             ),
           ),
-          height: calendarItemHeight,
+          height: weeklyCalendarItemHeight,
           child: Align(
             alignment: Alignment.topCenter,
             child: child,

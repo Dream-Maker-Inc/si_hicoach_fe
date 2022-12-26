@@ -16,7 +16,7 @@ extension DateFormatExtension on DateTime {
     return formatter.format(this);
   }
 
-  String get toOnlyDate {
+  String get toDateOnly {
     final DateFormat formatter = DateFormat('yyyy-MM-dd');
     return formatter.format(this);
   }

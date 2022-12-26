@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:si_hicoach_fe/common/components/http_error_dialog.dart';
 import 'package:si_hicoach_fe/common/getx/my_getx_state.dart';
-import 'package:si_hicoach_fe/domain/calendar/monthly/calendar.dart';
+import 'package:si_hicoach_fe/ui/calendar/monthly/monthly_calendar_view.dart';
 import 'package:si_hicoach_fe/ui/calendar/weekly/components/calendar.dart';
 import 'package:si_hicoach_fe/ui/calendar/weekly/weekly_calendar_vm.dart';
 

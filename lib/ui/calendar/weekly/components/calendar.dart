@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:si_hicoach_fe/common/theme/typography.dart';
-import 'package:si_hicoach_fe/ui/calendar/weekly/components/calendar_common.dart';
+import 'package:si_hicoach_fe/ui/calendar/common/calendar_common.dart';
 import 'package:si_hicoach_fe/ui/calendar/weekly/components/calendar_header.dart';
 import 'package:si_hicoach_fe/ui/calendar/weekly/components/calendar_item.dart';
 import 'package:si_hicoach_fe/ui/calendar/weekly/components/calendar_item_wrapper.dart';
@@ -80,7 +80,7 @@ class _WeeklyCalendarState extends State<WeeklyCalendar> {
       final child =
           isDataNull ? Container() : WeeklyCalendarItem(name: data.member.name);
 
-      return CalendarItemWrapper(
+      return WeeklyCalendarItemWrapper(
         onClick: onClick,
         child: child,
       );
@@ -105,8 +105,8 @@ class _WeeklyCalendarState extends State<WeeklyCalendar> {
           bottom: calendarBorder,
         ),
       ),
-      width: getTimeItemWidth(context),
-      height: calendarItemHeight,
+      width: getWeeklyCalendarTimeItemWidth(context),
+      height: weeklyCalendarItemHeight,
       child: Align(
         alignment: Alignment.topCenter,
         child: Text(

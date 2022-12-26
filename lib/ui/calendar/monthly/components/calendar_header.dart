@@ -6,13 +6,13 @@ import 'package:si_hicoach_fe/ui/calendar/common/calendar_common.dart';
 
 final List<String> _DAY_LIST = ['일', '월', '화', '수', '목', '금', '토'];
 
-class WeeklyCalendarHeader extends StatelessWidget {
-  const WeeklyCalendarHeader({super.key});
+class MonthlyCalendarHeader extends StatelessWidget {
+  const MonthlyCalendarHeader({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Row(
-      children: [_TimeItem(context), _WeekItems()],
+      children: [_WeekItems()],
     );
   }
 
@@ -49,21 +49,5 @@ class WeeklyCalendarHeader extends StatelessWidget {
         ),
       ),
     ));
-  }
-
-  // 시간 아이템
-  _TimeItem(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        border: Border(
-          top: calendarBorder,
-          right: calendarBorder,
-          bottom: calendarBorder,
-        ),
-      ),
-      width: getWeeklyCalendarTimeItemWidth(context),
-      height: calendarHeaderHeight,
-      child: Container(),
-    );
   }
 }
