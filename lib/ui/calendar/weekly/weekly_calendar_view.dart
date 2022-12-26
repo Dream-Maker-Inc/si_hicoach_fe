@@ -5,8 +5,11 @@ import 'dart:async';
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:si_hicoach_fe/common/calendar/calendar.dart';
+import 'package:si_hicoach_fe/common/calendar/week_model.dart';
 import 'package:si_hicoach_fe/common/components/http_error_dialog.dart';
 import 'package:si_hicoach_fe/common/getx/my_getx_state.dart';
+import 'package:si_hicoach_fe/common/theme/color.dart';
 import 'package:si_hicoach_fe/ui/calendar/monthly/monthly_calendar_view.dart';
 import 'package:si_hicoach_fe/ui/calendar/weekly/components/calendar.dart';
 import 'package:si_hicoach_fe/ui/calendar/weekly/weekly_calendar_vm.dart';
@@ -19,6 +22,8 @@ class WeeklyCalendarView extends StatefulWidget {
 }
 
 class _WeeklyCalendarViewState extends _Detail {
+  final swiperController = SwiperController();
+
   @override
   Widget build(BuildContext context) {
     super.build(context);
@@ -41,7 +46,11 @@ class _WeeklyCalendarViewState extends _Detail {
       title: SizedBox(
         width: double.infinity,
         height: 40,
-        child: _AppbarTitle(),
+        child: Row(children: [
+          _LeftSwipeIconButton(),
+          Expanded(child: _AppbarTitle()),
+          _RightswipeIconButton(),
+        ]),
       ),
       actions: [
         IconButton(
@@ -52,26 +61,59 @@ class _WeeklyCalendarViewState extends _Detail {
     );
   }
 
+  Widget _RightswipeIconButton() {
+    return Tooltip(
+      message: "다음주로 스와이프",
+      child: IconButton(
+        onPressed: () {
+          swiperController.next();
+        },
+        icon: Icon(
+          Icons.keyboard_arrow_right,
+          color: primaryColor.withOpacity(0.7),
+        ),
+      ),
+    );
+  }
+
+  Widget _LeftSwipeIconButton() {
+    return Tooltip(
+      message: "저번주로 스와이프",
+      child: IconButton(
+        onPressed: () {
+          swiperController.previous();
+        },
+        icon: Icon(
+          Icons.keyboard_arrow_left,
+          color: primaryColor.withOpacity(0.7),
+        ),
+      ),
+    );
+  }
+
   Widget _AppbarTitle() {
     return Obx(() {
-      final weekModels = vm.weekModels;
+      final weekModels = vm.monthWeeks;
       final initialIndex = vm.initialSwiperIndex.value;
 
       return Swiper(
-          outer: false,
-          itemCount: weekModels.length,
-          itemBuilder: (context, index) {
-            final item = weekModels[index];
+        outer: false,
+        itemCount: weekModels.length,
+        itemBuilder: (context, index) {
+          final item = weekModels[index];
 
-            return Container(
-              alignment: Alignment.center,
-              child: Text(item.label),
-            );
-          },
-          onIndexChanged: (index) {
-            vm.swiperIndex.value = index;
-          },
-          index: initialIndex);
+          return Container(
+            alignment: Alignment.center,
+            child: Text(item),
+          );
+        },
+        onIndexChanged: (index) {
+          vm.swiperIndex.value = index;
+        },
+        controller: swiperController,
+        index: initialIndex,
+        duration: 1,
+      );
     });
   }
 }
@@ -107,4 +149,11 @@ class _Detail extends MyGetXState<WeeklyCalendarView, WeeklyCalendarViewModel> {
 
   @override
   WeeklyCalendarViewModel createViewModel() => WeeklyCalendarViewModel();
+}
+
+extension WeekModelExtension on WeekModel {
+  String get thisWeekLabel =>
+      DateTime.now().isThisWeek(year, month, week) ? " (이번주)" : "";
+
+  String get label => "$month월 $week주차$thisWeekLabel";
 }

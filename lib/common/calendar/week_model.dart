@@ -4,8 +4,6 @@ class WeekModel {
   int week;
   List<DateTime> dates;
 
-  String get label => "$month월 $week주차";
-
   WeekModel({
     required this.year,
     required this.month,

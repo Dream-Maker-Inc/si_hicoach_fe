@@ -55,8 +55,28 @@ class _SwiperFeature extends _WeeklyCalendarDataFetchFeature {
   }
 
   _handleSwiperIndexChange(int index) async {
-    final weekModel = weekModels[index];
-    _targetDate.value = weekModel.dates[0];
+    bool isLeft = index == 0;
+    bool isRight = index == 2;
+
+    if (isLeft) {
+      final weekDetail = getWeekDetail(
+        year: targetDate.weekDetail.year,
+        month: targetDate.weekDetail.month,
+        week: targetDate.weekDetail.week - 1,
+      );
+
+      return _targetDate.value = weekDetail.dates.first;
+    }
+
+    if (isRight) {
+      final weekDetail = getWeekDetail(
+        year: targetDate.weekDetail.year,
+        month: targetDate.weekDetail.month,
+        week: targetDate.weekDetail.week + 1,
+      );
+
+      return _targetDate.value = weekDetail.dates.first;
+    }
   }
 }
 
@@ -93,7 +113,7 @@ class _CalendarUiFeature extends GetxController {
   RxList<DateTime> datesOnStartedSunday = RxList();
 
   // 월 주차 모델 목록
-  RxList<WeekModel> weekModels = RxList();
+  RxList<String> monthWeeks = RxList();
 
   // time, weekday로 데이트 타임 찾기
   DateTime? getDateTimeByTimeAndWeekDay(int time, int weekDay) {
@@ -120,7 +140,7 @@ class _CalendarUiFeature extends GetxController {
 
   _init() async {
     _initTargetDateWeekDetail();
-    _initWeekModels();
+    _initMonthWeeks();
   }
 
   // 일요일부터 시작하는 캘린더 형식에 맞춰 날짜 데이터 배열 수정
@@ -141,25 +161,20 @@ class _CalendarUiFeature extends GetxController {
   }
 
   // 월 주차 모델 초기화
-  _initWeekModels() async {
+  _initMonthWeeks() async {
     final weekDetail = getWeekDetail(
       year: targetDate.weekDetail.year,
       month: targetDate.weekDetail.month,
       week: targetDate.weekDetail.week,
     );
 
-    weekModels.value = [
-      getWeekDetail(
-        year: weekDetail.year,
-        month: weekDetail.month,
-        week: weekDetail.week - 1,
-      ),
-      weekDetail,
-      getWeekDetail(
-        year: weekDetail.year,
-        month: weekDetail.month,
-        week: weekDetail.week + 1,
-      ),
-    ];
+    monthWeeks.value = ["", weekDetail.label, ""];
   }
+}
+
+extension WeekModelExtension on WeekModel {
+  String get thisWeekLabel =>
+      DateTime.now().isThisWeek(year, month, week) ? " (이번주)" : "";
+
+  String get label => "$month월 $week주차$thisWeekLabel";
 }

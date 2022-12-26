@@ -28,6 +28,13 @@ extension DateTimeExtension on DateTime {
     return month == now.month;
   }
 
+  // 이번 주에 속하는지
+  bool isThisWeek(int year, int month, int week) {
+    final wd = weekDetail;
+
+    return (wd.year == year) && (wd.month == month) && (wd.week == week);
+  }
+
   // 해당 날짜가 속한 월의 모든 날짜 리턴
   List<DateTime> get dateTimesOfMonth {
     final endedDay = DateTime(year, month + 1, 0).day;
