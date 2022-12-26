@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:si_hicoach_fe/common/components/divider.dart';
@@ -60,23 +62,30 @@ class _MemberListTabsState extends State<MemberListTabs>
             ),
           ),
         ),
-        body: _buildTabBarView(),
+        body: TabBarView(
+          controller: tabController,
+          children: [
+            _InClassMembersListView(),
+            _FinishedMembersListView(),
+          ],
+        ),
       ),
     );
   }
 
-  _buildTabBarView() {
+  Widget _InClassMembersListView() {
     return Obx(() {
       final inClassMembers = _vm.inClassMembers;
+
+      return MemberListView(list: inClassMembers);
+    });
+  }
+
+  Widget _FinishedMembersListView() {
+    return Obx(() {
       final finishedMembers = _vm.finishedMembers;
 
-      return TabBarView(
-        controller: tabController,
-        children: [
-          MemberListView(list: inClassMembers),
-          MemberListView(list: finishedMembers),
-        ],
-      );
+      return MemberListView(list: finishedMembers);
     });
   }
 }

@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:si_hicoach_fe/common/components/dialog.dart';
+import 'package:si_hicoach_fe/common/components/http_error_dialog.dart';
 import 'package:si_hicoach_fe/common/exceptions/common_exceptions.dart';
 import 'package:si_hicoach_fe/common/getx/my_getx_state.dart';
 import 'package:si_hicoach_fe/ui/common/study/common/templates/study_form.dart';
@@ -36,6 +37,19 @@ class _StudyCreateViewState extends _Detail {
 }
 
 class _Detail extends MyGetXState<StudyCreateView, StudyCreateViewModel> {
+  _handleIfTicketNotUseable() {
+    if (!vm.isTicketUseable()) {
+      showMySimpleDialog(
+          context: context,
+          title: '수강권 부족',
+          content: "회원의 잔여 수강권이 부족합니다.",
+          onConfirm: () {
+            Get.back();
+            Get.back();
+          });
+    }
+  }
+
   // 뷰모델 초기값 설정
   _setInitialViewModelData() {
     final targetDate = widget.targetDateTime ?? DateTime.now();
@@ -75,20 +89,20 @@ class _Detail extends MyGetXState<StudyCreateView, StudyCreateViewModel> {
         return;
       }
 
-      showMySimpleDialog(
-          context: context,
-          title: 'Error',
-          content: e.toString(),
-          confirmText: "뒤로가기",
-          onConfirm: () {
-            Get.back();
-            Get.back();
-          });
+      showMyHttpErrorDialog(e.toString()).then((_) => Get.back());
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Future.wait([
+        vm.fetchTicketsInfo(widget.matchingId),
+      ]).then((_) {
+        _handleIfTicketNotUseable();
+      });
+    });
+
     return widget;
   }
 
