@@ -3,10 +3,12 @@
 import 'package:get/get.dart';
 import 'package:si_hicoach_fe/common/calendar/calendar.dart';
 import 'package:si_hicoach_fe/common/calendar/week_model.dart';
+import 'package:si_hicoach_fe/common/shared_preferences/shared_prefs.dart';
 import 'package:si_hicoach_fe/common/utils/date_format.dart';
 import 'package:si_hicoach_fe/infrastructure/holiday/dto/get_holiday_response.dart'
     as Holiday;
 import 'package:si_hicoach_fe/infrastructure/holiday/holiday_api.dart';
+import 'package:si_hicoach_fe/infrastructure/page/member/calendar/member_calendar_api.dart';
 import 'package:si_hicoach_fe/infrastructure/page/trainer/calendar/dto/get_monthly_calendar_response.dart';
 import 'package:si_hicoach_fe/infrastructure/page/trainer/calendar/trainer_calendar_api.dart';
 
@@ -59,11 +61,17 @@ class _MonthlyCalendarDataFetchFeature extends _HolidayFetchFeature {
   }
 
   Future fetchMemberStudies(DateTime targetDate) async {
+    final isRoleTrainer = await SharedPrefsManager().isRoleTrainer();
+
     final yearMonth = targetDate.toYearMonth;
 
-    final result = await TrainerCalendarApi.getMonthlyData(
-      yearMonth,
-    );
+    final result = isRoleTrainer
+        ? await TrainerCalendarApi.getMonthlyData(
+            yearMonth,
+          )
+        : await MemberCalendarApi.getMonthlyData(
+            yearMonth,
+          );
 
     result.when(
       (e) => (apiError.value = e),

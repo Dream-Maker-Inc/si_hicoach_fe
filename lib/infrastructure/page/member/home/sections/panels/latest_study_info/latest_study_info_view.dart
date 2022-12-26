@@ -55,7 +55,7 @@ class _MainLatestStudyInfoViewState extends _Detail {
       final studyDateSt = vm.studyDateSt;
 
       return Text(
-        '수업 일자 : $studyDateSt',
+        '최근 수업 일자 : $studyDateSt',
         style: bodyMedium.copyWith(
           color: Colors.grey.shade500,
         ),
