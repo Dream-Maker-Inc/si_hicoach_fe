@@ -3,10 +3,11 @@ import 'dart:async';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:si_hicoach_fe/common/calendar/calendar.dart';
+import 'package:si_hicoach_fe/common/calendar/week_model.dart';
 import 'package:si_hicoach_fe/common/utils/date_format.dart';
 import 'package:si_hicoach_fe/infrastructure/page/trainer/calendar/dto/get_calendar_data_response.dart';
 import 'package:si_hicoach_fe/infrastructure/page/trainer/calendar/trainer_calendar_api.dart';
-import 'package:si_hicoach_fe/common/calendar/week_model.dart';
+import 'package:si_hicoach_fe/ui/calendar/weekly/week_model_extension.dart';
 
 class WeeklyCalendarViewModel extends _SwiperFeature {
   final DateFormat _formatter = DateFormat('yyyy-MM-dd HH');
@@ -112,6 +113,9 @@ class _CalendarUiFeature extends GetxController {
   // 일요일부터 시작하는 week dates
   RxList<DateTime> datesOnStartedSunday = RxList();
 
+  // 타겟 월 주차 상세
+  Rxn<WeekModel> targetWeekDetail = Rxn();
+
   // 월 주차 모델 목록
   RxList<String> monthWeeks = RxList();
 
@@ -127,6 +131,14 @@ class _CalendarUiFeature extends GetxController {
     );
   }
 
+  // 현재 선택된 월 주차가 이번주인지
+  bool get isThisWeek {
+    final weekDetail = targetWeekDetail.value;
+    if (weekDetail == null) return false;
+
+    return weekDetail.isThisWeek;
+  }
+
   @override
   void onInit() {
     super.onInit();
@@ -139,12 +151,13 @@ class _CalendarUiFeature extends GetxController {
   }
 
   _init() async {
-    _initTargetDateWeekDetail();
+    _initDatesOnStartedSunday();
+    _initWeekDetail();
     _initMonthWeeks();
   }
 
   // 일요일부터 시작하는 캘린더 형식에 맞춰 날짜 데이터 배열 수정
-  _initTargetDateWeekDetail() async {
+  _initDatesOnStartedSunday() async {
     final targetWeekDetail = targetDate.weekDetail;
     final prevWeekDetail = getWeekDetail(
       year: targetWeekDetail.year,
@@ -160,6 +173,14 @@ class _CalendarUiFeature extends GetxController {
     datesOnStartedSunday.value = [...targetWeekDates, prevWeekLastDate];
   }
 
+  _initWeekDetail() async {
+    targetWeekDetail.value = getWeekDetail(
+      year: targetDate.weekDetail.year,
+      month: targetDate.weekDetail.month,
+      week: targetDate.weekDetail.week,
+    );
+  }
+
   // 월 주차 모델 초기화
   _initMonthWeeks() async {
     final weekDetail = getWeekDetail(
@@ -170,11 +191,4 @@ class _CalendarUiFeature extends GetxController {
 
     monthWeeks.value = ["", weekDetail.label, ""];
   }
-}
-
-extension WeekModelExtension on WeekModel {
-  String get thisWeekLabel =>
-      DateTime.now().isThisWeek(year, month, week) ? " (이번주)" : "";
-
-  String get label => "$month월 $week주차$thisWeekLabel";
 }

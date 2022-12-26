@@ -5,8 +5,6 @@ import 'dart:async';
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:si_hicoach_fe/common/calendar/calendar.dart';
-import 'package:si_hicoach_fe/common/calendar/week_model.dart';
 import 'package:si_hicoach_fe/common/components/http_error_dialog.dart';
 import 'package:si_hicoach_fe/common/getx/my_getx_state.dart';
 import 'package:si_hicoach_fe/common/theme/color.dart';
@@ -70,7 +68,7 @@ class _WeeklyCalendarViewState extends _Detail {
         },
         icon: Icon(
           Icons.keyboard_arrow_right,
-          color: primaryColor.withOpacity(0.7),
+          color: primaryColor.withOpacity(0.8),
         ),
       ),
     );
@@ -85,7 +83,7 @@ class _WeeklyCalendarViewState extends _Detail {
         },
         icon: Icon(
           Icons.keyboard_arrow_left,
-          color: primaryColor.withOpacity(0.7),
+          color: primaryColor.withOpacity(0.8),
         ),
       ),
     );
@@ -96,6 +94,13 @@ class _WeeklyCalendarViewState extends _Detail {
       final weekModels = vm.monthWeeks;
       final initialIndex = vm.initialSwiperIndex.value;
 
+      final titleStyle = vm.isThisWeek
+          ? TextStyle(
+              fontWeight: FontWeight.w600,
+              color: primaryColor,
+            )
+          : null;
+
       return Swiper(
         outer: false,
         itemCount: weekModels.length,
@@ -104,7 +109,7 @@ class _WeeklyCalendarViewState extends _Detail {
 
           return Container(
             alignment: Alignment.center,
-            child: Text(item),
+            child: Text(item, style: titleStyle),
           );
         },
         onIndexChanged: (index) {
@@ -149,11 +154,4 @@ class _Detail extends MyGetXState<WeeklyCalendarView, WeeklyCalendarViewModel> {
 
   @override
   WeeklyCalendarViewModel createViewModel() => WeeklyCalendarViewModel();
-}
-
-extension WeekModelExtension on WeekModel {
-  String get thisWeekLabel =>
-      DateTime.now().isThisWeek(year, month, week) ? " (이번주)" : "";
-
-  String get label => "$month월 $week주차$thisWeekLabel";
 }
