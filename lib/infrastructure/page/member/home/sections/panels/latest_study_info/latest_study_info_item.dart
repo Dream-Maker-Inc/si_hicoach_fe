@@ -19,58 +19,62 @@ class MainLatestStudyInfoItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
-        Text(name, style: bodyLarge),
+        Text(
+          name,
+          style: bodyMedium.copyWith(
+            fontWeight: FontWeight.w700,
+          ),
+        ),
         const SizedBox(height: smallPadding),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        Column(
           children: <Widget>[
             Row(
               children: <Widget>[
-                Icon(
+                const Icon(
                   Icons.fitness_center_rounded,
                   size: 16,
-                  color: Colors.grey.shade500,
+                  color: Colors.black,
                 ),
                 const SizedBox(width: smallPadding),
                 Text(
-                  '${weight}KG',
+                  '${weight}kg',
                   style: bodyMedium.copyWith(
-                    color: Colors.grey.shade500,
+                    color: Colors.black,
                   ),
                 ),
               ],
             ),
             Row(
               children: <Widget>[
-                Icon(
+                const Icon(
                   Icons.repeat_rounded,
                   size: 16,
-                  color: Colors.grey.shade500,
+                  color: Colors.black,
                 ),
                 const SizedBox(width: smallPadding),
                 Text(
-                  '${set}SET',
+                  '${set}set',
                   style: bodyMedium.copyWith(
-                    color: Colors.grey.shade500,
+                    color: Colors.black,
                   ),
                 ),
               ],
             ),
             Row(
               children: <Widget>[
-                Icon(
+                const Icon(
                   Icons.timer_outlined,
                   size: 16,
-                  color: Colors.grey.shade500,
+                  color: Colors.black,
                 ),
                 const SizedBox(width: smallPadding),
                 Text(
                   '$count회',
                   style: bodyMedium.copyWith(
-                    color: Colors.grey.shade500,
+                    color: Colors.black,
                   ),
                 ),
               ],

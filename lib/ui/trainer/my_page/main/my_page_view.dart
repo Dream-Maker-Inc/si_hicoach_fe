@@ -34,18 +34,20 @@ class _TrainerMyPageViewState extends _Detail {
       final lastMonthStudyCount = vm.lastMonthStudyCount;
       final thisMonthAtUntilToday = vm.thisMonthAtUntilToday;
 
-      return SizedBox(
-        width: double.infinity,
-        child: Column(
-          children: <Widget>[
-            TrainerMypageSummaryView(
-              name: memberName,
-              companyName: companyName,
-              currentStudy: thisMonthAtUntilToday,
-              pastStudy: lastMonthStudyCount,
-            ),
-            const MypageMenuView(),
-          ],
+      return SingleChildScrollView(
+        child: SizedBox(
+          width: double.infinity,
+          child: Column(
+            children: <Widget>[
+              TrainerMypageSummaryView(
+                name: memberName,
+                companyName: companyName,
+                currentStudy: thisMonthAtUntilToday,
+                pastStudy: lastMonthStudyCount,
+              ),
+              const MypageMenuView(),
+            ],
+          ),
         ),
       );
     });

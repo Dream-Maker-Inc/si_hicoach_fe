@@ -71,12 +71,15 @@ class _MainLatestStudyInfoViewState extends _Detail {
 
       return Wrap(
         runSpacing: 16,
+        spacing: 16,
         children: models
             .map(
               (it) => InkWell(
                 onTap: () => handleItemClick(vm.studyId),
                 borderRadius: borderRadius,
                 child: Container(
+                  width: (MediaQuery.of(context).size.width / 2.1) -
+                      (smallPadding * 2),
                   decoration: BoxDecoration(
                     border: Border.all(color: Colors.grey.shade300),
                     borderRadius: borderRadius,
