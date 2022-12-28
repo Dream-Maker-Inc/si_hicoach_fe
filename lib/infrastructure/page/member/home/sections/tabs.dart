@@ -18,7 +18,7 @@ class _MemberMainTabsState extends State<MemberMainTabs>
     with SingleTickerProviderStateMixin {
   MemberMainViewModel vm = Get.find<MemberMainViewModel>();
 
-  List<String> tabTitles = ['완료 수업', '오늘 수업', '예정 수업'];
+  List<String> tabTitles = ['직전 수업', '오늘 수업', '예정 수업'];
   late final tabController =
       TabController(length: tabTitles.length, vsync: this);
 
