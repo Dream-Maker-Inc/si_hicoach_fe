@@ -31,7 +31,7 @@ class Memo extends StatelessWidget {
               flex: 1,
               child: TitleWithDescription(
                 title: '메모',
-                description: '회원님에 대해 기억해야 할 사항을 자유롭게 기록하세요.',
+                description: '회원님에 대해 자유롭게 기록하세요.',
               ),
             ),
             IconButton(

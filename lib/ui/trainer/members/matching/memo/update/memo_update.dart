@@ -56,7 +56,7 @@ class _MemoUpdateViewState extends _Detail {
         maxLines: 100,
         decoration: InputDecoration(
           counterText: '',
-          hintText: '회원님에 대해 기억해야 할 사항을 자유롭게 기록하세요.',
+          hintText: '회원님에 대해 자유롭게 기록하세요.',
           border: OutlineInputBorder(
             borderSide: BorderSide(
               color: primaryColor,

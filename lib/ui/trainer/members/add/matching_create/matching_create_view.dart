@@ -119,7 +119,7 @@ class _MatchingCreateViewState extends _Detail {
         children: [
           TitleWithDescription(
             title: '메모 (선택)',
-            description: '$memberName 회원님에 대해 기억해야 할 사항을 자유롭게 기록하세요.',
+            description: '$memberName 회원님에 대해 자유롭게 기록하세요.',
           ),
           SizedBox(
             width: double.infinity,
