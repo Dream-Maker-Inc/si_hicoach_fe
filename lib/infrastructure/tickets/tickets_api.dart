@@ -6,14 +6,15 @@ import 'package:si_hicoach_fe/infrastructure/tickets/dto/get_tickets_info_respon
 
 class TicketsApi {
   static Future<Result<Exception, GetTicketsInfoResponse>> getTicketsInfo(
-      int matchingId) async {
+    int matchingId,
+  ) async {
     return safeApiCall<GetTicketsInfoResponse>(() async {
       Dio dio = DioHelper().dio;
       String path = '/api/v2/trainer/matching/$matchingId/tickets';
 
-      final response = await dio.get(path);
+      final res = await dio.get(path);
 
-      return Success(GetTicketsInfoResponse.fromJson(response.data));
+      return Success(GetTicketsInfoResponse.fromJson(res.data));
     });
   }
 
