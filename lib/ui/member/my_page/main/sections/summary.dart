@@ -100,7 +100,8 @@ class SummaryView extends StatelessWidget {
         padding: const EdgeInsets.all(defaultPadding),
         child: TitleWithDescription(
           title: '${_vm.memberName}님',
-          description: '현재 ${_vm.latestRound}회차 · 총 ${_vm.totalTicketCount}회',
+          description:
+              '완료 수업 ${_vm.totalStudyCount}회 · 총 ${_vm.totalTicketCount}회',
         ),
       );
     });
