@@ -7,13 +7,7 @@ class MemberMyPageViewModel extends _MyPageDataFetchFeature {
   String get memberName => data?.member.name ?? "";
 
   int get latestRound => data?.latestStudy?.round ?? 0;
-  int get remainingTicketCount => data?.matching?.ticketCount ?? 0;
-
-  int get totalTicketCount {
-    final totalStudyCount = data?.totalStudyCount ?? 0;
-
-    return totalStudyCount + remainingTicketCount;
-  }
+  int get totalTicketCount => data?.matching?.ticketCount ?? 0;
 
   String get companyName => data?.trainer?.companyName ?? "";
   String get trainerName => data?.trainer?.name ?? "";
