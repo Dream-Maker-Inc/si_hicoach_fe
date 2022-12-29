@@ -26,6 +26,7 @@ class TrainerMainViewModel extends _MainPageDataFetchFeature {
           isCompleted: isFinished(data.study.endedAt),
           studyCount: data.totalStudyCount,
           totalTicketCount: data.matching.ticketCount,
+          isPersonal: data.matching.isPersonal,
         ),
       )
       .sorted((a, b) => a.time - b.time)

@@ -11,6 +11,7 @@ class TrainerMainTodoItemModel {
   final bool isCompleted;
   final int studyCount;
   final int totalTicketCount;
+  final bool isPersonal;
 
   TrainerMainTodoItemModel({
     required this.studyId,
@@ -19,6 +20,7 @@ class TrainerMainTodoItemModel {
     required this.isCompleted,
     required this.studyCount,
     required this.totalTicketCount,
+    required this.isPersonal,
   });
 }
 
@@ -47,6 +49,7 @@ class TrainerMainTodoItem extends StatelessWidget {
     final bool isCompleted = model.isCompleted;
     final int currentStudy = model.studyCount;
     final int totalStudy = model.totalTicketCount;
+    final String userType = model.isPersonal ? "코치님" : "회원님";
 
     ButtonStyle buttonStyle = ButtonStyle(
       backgroundColor: MaterialStateProperty.all(
@@ -86,7 +89,7 @@ class TrainerMainTodoItem extends StatelessWidget {
                 onPressed: () => handleItemPressed(context),
                 child: ListTile(
                   title: Text(
-                    '$name 회원님',
+                    '$name $userType',
                     style: titleMedium.copyWith(
                       color: Colors.grey.shade700,
                     ),
