@@ -31,13 +31,14 @@ Data _$DataFromJson(Map<String, dynamic> json) => Data(
           ? null
           : LatestStudy.fromJson(json['latestStudy'] as Map<String, dynamic>),
       totalStudyCount: json['totalStudyCount'] as int,
-    );
+    )..nextStudyRound = json['nextStudyRound'] as int;
 
 Map<String, dynamic> _$DataToJson(Data instance) => <String, dynamic>{
       'member': instance.member,
       'matching': instance.matching,
       'latestStudy': instance.latestStudy,
       'totalStudyCount': instance.totalStudyCount,
+      'nextStudyRound': instance.nextStudyRound,
     };
 
 Member _$MemberFromJson(Map<String, dynamic> json) => Member(

@@ -32,6 +32,7 @@ class Data {
   late final Matching matching;
   late final LatestStudy? latestStudy;
   late final int totalStudyCount;
+  late final int nextStudyRound;
 
   factory Data.fromJson(Map<String, dynamic> json) => _$DataFromJson(json);
 

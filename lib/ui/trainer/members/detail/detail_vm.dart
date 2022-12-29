@@ -75,13 +75,10 @@ class MemberDetailViewModel extends MatchingRemoveFeature {
   }
 
   refetch() {
-    final index = tabIndex.value;
-
-    if (index == 0) {
-      return fetchMemberInfo(memberId);
-    }
-
-    fetchMemberStudies(matchingId);
+    Future.wait([
+      fetchMemberInfo(memberId),
+      fetchMemberStudies(matchingId),
+    ]);
   }
 }
 
@@ -106,7 +103,7 @@ class MemberStudiesFetchFeature extends MemberInfoFetchFeature {
   List<Items> get memberStudies =>
       fetchMemberStudiesResponse.value?.data.items ?? [];
 
-  fetchMemberStudies(int matchingId) async {
+  Future fetchMemberStudies(int matchingId) async {
     final result = await StudyApi.getMemberStudies(matchingId: matchingId);
 
     result.when(
@@ -145,15 +142,10 @@ class MemberInfoFetchFeature extends GetxController {
       _fetchMemberPageResponse.value?.data.latestStudy;
 
   // 다음 스터디 회차
-  int get nextStudyRound {
-    if (_latestStudy == null) {
-      return _totalStudyCount + 1;
-    }
+  int get nextStudyRound =>
+      _fetchMemberPageResponse.value?.data.nextStudyRound ?? 1;
 
-    return _latestStudy!.round + 1;
-  }
-
-  fetchMemberInfo(int memberId) async {
+  Future fetchMemberInfo(int memberId) async {
     final result = await TrainerMemberPageApi.getData(memberId);
 
     result.when(
