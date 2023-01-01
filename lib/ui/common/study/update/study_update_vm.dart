@@ -33,7 +33,7 @@ class StudyUpdateViewModel extends OldStudyFetchFeature {
       myExercises: myExercisesDto,
     );
 
-    final result = await StudyApi.updateStudy(studyId, dto);
+    final result = await StudyApi.updateStudy(matchingId, studyId, dto);
 
     result.when(
       (e) => (apiError.value = e),
@@ -51,8 +51,8 @@ class OldStudyFetchFeature extends StudyFormViewModel {
   Rx<Exception?> apiError = Rx(null);
   Rxn<GetStudyResponse> fetchStudyResponse = Rxn();
 
-  Member? get member => fetchStudyResponse.value?.data.member;
-  Study? get study => fetchStudyResponse.value?.data.study;
+  Data? get _data => fetchStudyResponse.value?.data;
+  int get matchingId => _data?.id ?? 0;
 
   Future fetchStudy(int studyId) async {
     final result = await StudyApi.findOne(studyId);
@@ -76,14 +76,14 @@ class OldStudyFetchFeature extends StudyFormViewModel {
   _handleFetchStudyResponse(GetStudyResponse? res) {
     if (res == null) return;
 
-    final study = res.data.study;
-    final matching = res.data.matching;
+    final matching = res.data;
+    final study = matching.study;
 
     final exerciseItemModels = study.myExercises
         .map(
           (it) => ExerciseItemModel(
-            id: it.exercise.id,
-            name: it.exercise.title,
+            id: it.exerciseId,
+            name: it.title,
             count: it.interval,
             sets: it.set,
             weight: it.weight,
@@ -93,10 +93,10 @@ class OldStudyFetchFeature extends StudyFormViewModel {
 
     final fm = StudyFormModel(
       studyRound: study.round,
-      ticketCount: matching.ticketCount,
-      startedAt: study.startedDate,
+      ticketCount: matching.totalTicketCount,
+      startedAt: study.startedAt,
       exerciseItemModels: exerciseItemModels,
-      memo: study.memo,
+      memo: matching.memo,
     );
 
     super.initialStudyFormModel(fm);

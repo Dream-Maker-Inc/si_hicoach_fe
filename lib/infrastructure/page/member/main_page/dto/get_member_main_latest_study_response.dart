@@ -28,16 +28,16 @@ class Data extends BaseDto {
     required super.updatedAt,
     super.deletedAt,
     required this.id,
-    required this.round,
     required this.matchingId,
+    required this.round,
     required this.startedAt,
     required this.endedAt,
     required this.memo,
     required this.myExercises,
   });
   late final int id;
-  late final int round;
   late final int matchingId;
+  late final int round;
   late final DateTime startedAt;
   late final DateTime endedAt;
   late final String memo;
@@ -54,37 +54,19 @@ class MyExercises {
     required this.interval,
     required this.set,
     required this.weight,
-    required this.exercise,
+    required this.title,
+    required this.part,
+    required this.type,
   });
   late final int interval;
   late final int set;
   late final int weight;
-  late final Exercise exercise;
+  late final String title;
+  late final String part;
+  late final String type;
 
   factory MyExercises.fromJson(Map<String, dynamic> json) =>
       _$MyExercisesFromJson(json);
 
   Map<String, dynamic> toJson() => _$MyExercisesToJson(this);
-}
-
-@JsonSerializable()
-class Exercise extends BaseDto {
-  Exercise({
-    required super.createdAt,
-    required super.updatedAt,
-    super.deletedAt,
-    required this.id,
-    required this.title,
-    required this.part,
-    required this.type,
-  });
-  late final int id;
-  late final String title;
-  late final String part;
-  late final String type;
-
-  factory Exercise.fromJson(Map<String, dynamic> json) =>
-      _$ExerciseFromJson(json);
-
-  Map<String, dynamic> toJson() => _$ExerciseToJson(this);
 }

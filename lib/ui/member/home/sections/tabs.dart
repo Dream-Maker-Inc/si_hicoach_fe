@@ -3,9 +3,9 @@ import 'package:get/get.dart';
 import 'package:si_hicoach_fe/common/components/divider.dart';
 import 'package:si_hicoach_fe/common/theme/color.dart';
 import 'package:si_hicoach_fe/common/theme/typography.dart';
-import 'package:si_hicoach_fe/infrastructure/page/member/home/main_vm.dart';
-import 'package:si_hicoach_fe/infrastructure/page/member/home/sections/panels/latest_study_info/latest_study_info_view.dart';
-import 'package:si_hicoach_fe/infrastructure/page/member/home/sections/panels/study_list/study_list_view.dart';
+import 'package:si_hicoach_fe/ui/member/home/main_vm.dart';
+import 'package:si_hicoach_fe/ui/member/home/sections/panels/latest_study_info/latest_study_info_view.dart';
+import 'package:si_hicoach_fe/ui/member/home/sections/panels/study_list/study_list_view.dart';
 
 class MemberMainTabs extends StatefulWidget {
   const MemberMainTabs({Key? key}) : super(key: key);

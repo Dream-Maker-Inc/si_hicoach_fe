@@ -104,7 +104,7 @@ class _TicketsViewState extends _Detail {
 
   _buildBottom() {
     return Obx(() {
-      final finishedStudyCount = vm.finishedStudyCount;
+      final finishedStudyCount = vm.totalStudyCount;
       final totalTicketCount = vm.totalTicketCount;
 
       return Column(

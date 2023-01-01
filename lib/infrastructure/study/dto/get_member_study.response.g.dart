@@ -23,24 +23,61 @@ Map<String, dynamic> _$GetStudyResponseToJson(GetStudyResponse instance) =>
     };
 
 Data _$DataFromJson(Map<String, dynamic> json) => Data(
-      member: Member.fromJson(json['member'] as Map<String, dynamic>),
-      study: Study.fromJson(json['study'] as Map<String, dynamic>),
-    )..matching = Matching.fromJson(json['matching'] as Map<String, dynamic>);
-
-Map<String, dynamic> _$DataToJson(Data instance) => <String, dynamic>{
-      'member': instance.member,
-      'study': instance.study,
-      'matching': instance.matching,
-    };
-
-Member _$MemberFromJson(Map<String, dynamic> json) => Member(
       id: json['id'] as int,
-      name: json['name'] as String,
+      trainerId: json['trainerId'] as int,
+      memberId: json['memberId'] as int,
+      memo: json['memo'] as String,
+      totalTicketCount: json['totalTicketCount'] as int,
+      totalStudyCount: json['totalStudyCount'] as int,
+      lastStudyRound: json['lastStudyRound'] as int,
+      createdAt: json['createdAt'] as String,
+      updatedAt: json['updatedAt'] as String,
+      deletedAt: json['deletedAt'] as String?,
+      exerciseGoals: (json['exerciseGoals'] as List<dynamic>)
+          .map((e) => ExerciseGoals.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextStudyRound: json['nextStudyRound'] as int,
+      availableTicketsCount: json['availableTicketsCount'] as int,
+      isExistAvailableTicket: json['isExistAvailableTicket'] as bool,
+      isPersonal: json['isPersonal'] as bool,
+      study: Study.fromJson(json['study'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$MemberToJson(Member instance) => <String, dynamic>{
+Map<String, dynamic> _$DataToJson(Data instance) => <String, dynamic>{
+      'createdAt': instance.createdAt,
+      'updatedAt': instance.updatedAt,
+      'deletedAt': instance.deletedAt,
       'id': instance.id,
-      'name': instance.name,
+      'trainerId': instance.trainerId,
+      'memberId': instance.memberId,
+      'memo': instance.memo,
+      'totalTicketCount': instance.totalTicketCount,
+      'totalStudyCount': instance.totalStudyCount,
+      'lastStudyRound': instance.lastStudyRound,
+      'exerciseGoals': instance.exerciseGoals,
+      'nextStudyRound': instance.nextStudyRound,
+      'availableTicketsCount': instance.availableTicketsCount,
+      'isExistAvailableTicket': instance.isExistAvailableTicket,
+      'isPersonal': instance.isPersonal,
+      'study': instance.study,
+    };
+
+ExerciseGoals _$ExerciseGoalsFromJson(Map<String, dynamic> json) =>
+    ExerciseGoals(
+      createdAt: json['createdAt'] as String,
+      updatedAt: json['updatedAt'] as String,
+      deletedAt: json['deletedAt'] as String?,
+      id: json['id'] as int,
+      title: json['title'] as String,
+    );
+
+Map<String, dynamic> _$ExerciseGoalsToJson(ExerciseGoals instance) =>
+    <String, dynamic>{
+      'createdAt': instance.createdAt,
+      'updatedAt': instance.updatedAt,
+      'deletedAt': instance.deletedAt,
+      'id': instance.id,
+      'title': instance.title,
     };
 
 Study _$StudyFromJson(Map<String, dynamic> json) => Study(
@@ -48,15 +85,15 @@ Study _$StudyFromJson(Map<String, dynamic> json) => Study(
       updatedAt: json['updatedAt'] as String,
       deletedAt: json['deletedAt'] as String?,
       id: json['id'] as int,
-      round: json['round'] as int,
       matchingId: json['matchingId'] as int,
-      startedAt: json['startedAt'] as String,
-      endedAt: json['endedAt'] as String,
+      startedAt: DateTime.parse(json['startedAt'] as String),
+      endedAt: DateTime.parse(json['endedAt'] as String),
       memo: json['memo'] as String,
+      isDummy: json['isDummy'] as bool,
       myExercises: (json['myExercises'] as List<dynamic>)
           .map((e) => MyExercises.fromJson(e as Map<String, dynamic>))
           .toList(),
-      isFinished: json['isFinished'] as bool,
+      round: json['round'] as int,
     );
 
 Map<String, dynamic> _$StudyToJson(Study instance) => <String, dynamic>{
@@ -64,20 +101,23 @@ Map<String, dynamic> _$StudyToJson(Study instance) => <String, dynamic>{
       'updatedAt': instance.updatedAt,
       'deletedAt': instance.deletedAt,
       'id': instance.id,
-      'round': instance.round,
       'matchingId': instance.matchingId,
-      'startedAt': instance.startedAt,
-      'endedAt': instance.endedAt,
+      'startedAt': instance.startedAt.toIso8601String(),
+      'endedAt': instance.endedAt.toIso8601String(),
       'memo': instance.memo,
+      'isDummy': instance.isDummy,
       'myExercises': instance.myExercises,
-      'isFinished': instance.isFinished,
+      'round': instance.round,
     };
 
 MyExercises _$MyExercisesFromJson(Map<String, dynamic> json) => MyExercises(
       weight: json['weight'] as int,
       interval: json['interval'] as int,
       set: json['set'] as int,
-      exercise: Exercise.fromJson(json['exercise'] as Map<String, dynamic>),
+      exerciseId: json['exerciseId'] as int,
+      title: json['title'] as String,
+      part: json['part'] as String,
+      type: json['type'] as String,
     );
 
 Map<String, dynamic> _$MyExercisesToJson(MyExercises instance) =>
@@ -85,29 +125,8 @@ Map<String, dynamic> _$MyExercisesToJson(MyExercises instance) =>
       'weight': instance.weight,
       'interval': instance.interval,
       'set': instance.set,
-      'exercise': instance.exercise,
-    };
-
-Exercise _$ExerciseFromJson(Map<String, dynamic> json) => Exercise(
-      id: json['id'] as int,
-      title: json['title'] as String,
-      part: json['part'] as String,
-      type: json['type'] as String,
-    );
-
-Map<String, dynamic> _$ExerciseToJson(Exercise instance) => <String, dynamic>{
-      'id': instance.id,
+      'exerciseId': instance.exerciseId,
       'title': instance.title,
       'part': instance.part,
       'type': instance.type,
-    };
-
-Matching _$MatchingFromJson(Map<String, dynamic> json) => Matching(
-      id: json['id'] as int,
-      ticketCount: json['ticketCount'] as int,
-    );
-
-Map<String, dynamic> _$MatchingToJson(Matching instance) => <String, dynamic>{
-      'id': instance.id,
-      'ticketCount': instance.ticketCount,
     };

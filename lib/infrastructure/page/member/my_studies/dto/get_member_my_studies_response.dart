@@ -22,15 +22,19 @@ class GetMemberMyStudiesResponse extends BaseResponse<List<Data>> {
 class Data {
   Data({
     required this.id,
-    required this.ticketCount,
-    required this.isPersonal,
+    required this.totalTicketCount,
     required this.totalStudyCount,
+    required this.nextStudyRound,
+    required this.isPersonal,
+    required this.availableTicketsCount,
     required this.studies,
   });
   late final int id;
-  late final int ticketCount;
-  late final bool isPersonal;
+  late final int totalTicketCount;
   late final int totalStudyCount;
+  late final int nextStudyRound;
+  late final bool isPersonal;
+  late final int availableTicketsCount;
   late final List<Studies> studies;
 
   factory Data.fromJson(Map<String, dynamic> json) => _$DataFromJson(json);

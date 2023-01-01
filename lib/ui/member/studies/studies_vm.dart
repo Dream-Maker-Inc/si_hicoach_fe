@@ -68,7 +68,7 @@ class _MemberMyStudiesFetchFeature extends GetxController {
   int get nextPersonalStudyRound => _latestPersonalStudyRound + 1;
 
   // 총 개인 일정용 매칭 수강권 개수 (사용한 것 포함)
-  int get totalPersonalTicketCount => personalMatching?.ticketCount ?? 0;
+  int get totalPersonalTicketCount => personalMatching?.totalTicketCount ?? 0;
 
   // 해당 매칭이 개인 일정용 매칭인지
   bool isPersonalMatching(int matchingId) {

@@ -9,7 +9,7 @@ class HolidayApi {
       String yearMonth) async {
     return safeApiCall<GetHolidayResponse>(() async {
       Dio dio = DioHelper().dio;
-      String path = '/api/v2/holidays';
+      String path = '/api/v4/holidays';
 
       final response =
           await dio.get(path, queryParameters: {'yearMonth': yearMonth});

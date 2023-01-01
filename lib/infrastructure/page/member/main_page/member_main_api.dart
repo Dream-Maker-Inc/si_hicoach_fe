@@ -13,7 +13,7 @@ class MemberMainPageApi {
       getLatestStudy() async {
     return safeApiCall<GetMemberMainLatestStudyResponse>(() async {
       Dio dio = DioHelper().dio;
-      String path = '/api/v2/app/member/main';
+      String path = '/api/v4/app/member/main';
 
       final res = await dio.get(path, queryParameters: {'type': 'latest'});
 
@@ -29,7 +29,7 @@ class MemberMainPageApi {
       getTodayStudies() async {
     return safeApiCall<GetMemberMainTodayStudiesResponse>(() async {
       Dio dio = DioHelper().dio;
-      String path = '/api/v2/app/member/main';
+      String path = '/api/v4/app/member/main';
 
       final res = await dio.get(path, queryParameters: {'type': 'today'});
 
@@ -41,7 +41,7 @@ class MemberMainPageApi {
       getNextStudies() async {
     return safeApiCall<GetMemberMainNextStudiesResponse>(() async {
       Dio dio = DioHelper().dio;
-      String path = '/api/v2/app/member/main';
+      String path = '/api/v4/app/member/main';
 
       final res = await dio.get(path, queryParameters: {'type': 'next'});
 

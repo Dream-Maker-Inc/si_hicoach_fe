@@ -11,7 +11,7 @@ class MatchingApi {
   static Future<Result<Exception, bool>> create(CreateMatchingDto dto) async {
     return safeApiCall<bool>(() async {
       Dio dio = DioHelper().dio;
-      String path = '/api/v2/trainer/matching';
+      String path = '/api/v4/matching';
 
       await dio.post(path, data: dto.toMap());
 
@@ -23,7 +23,7 @@ class MatchingApi {
       int matchingId) async {
     return safeApiCall<GetMatchingResponse>(() async {
       Dio dio = DioHelper().dio;
-      String path = '/api/v2/matching/$matchingId';
+      String path = '/api/v4/matching/$matchingId';
 
       final response = await dio.get(path);
 
@@ -35,7 +35,7 @@ class MatchingApi {
       int matchingId) async {
     return safeApiCall<RecoverMatchingResponse>(() async {
       Dio dio = DioHelper().dio;
-      String path = '/api/v2/trainer/matching/$matchingId/recover';
+      String path = '/api/v4/matching/$matchingId/recover';
 
       final response = await dio.patch(path);
 
@@ -47,7 +47,7 @@ class MatchingApi {
       int matchingId, UpdateMatchingDto dto) async {
     return safeApiCall<bool>(() async {
       Dio dio = DioHelper().dio;
-      String path = '/api/v2/trainer/matching/$matchingId';
+      String path = '/api/v4/matching/$matchingId';
 
       await dio.patch(path, data: dto.toMap());
 
@@ -58,7 +58,7 @@ class MatchingApi {
   static Future<Result<Exception, bool>> remove(int matchingId) async {
     return safeApiCall<bool>(() async {
       Dio dio = DioHelper().dio;
-      String path = '/api/v2/trainer/matching/$matchingId';
+      String path = '/api/v4/matching/$matchingId';
 
       await dio.delete(path);
 

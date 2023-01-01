@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:si_hicoach_fe/common/components/empty_patch.dart';
-import 'package:si_hicoach_fe/infrastructure/page/member/home/main_vm.dart';
-import 'package:si_hicoach_fe/infrastructure/page/member/home/sections/panels/study_list/models/study_list_item_model.dart';
+import 'package:si_hicoach_fe/ui/member/home/main_vm.dart';
+import 'package:si_hicoach_fe/ui/member/home/sections/panels/study_list/models/study_list_item_model.dart';
 import 'package:si_hicoach_fe/ui/common/study/detail/detail.dart';
 
 class MainStudyListView extends StatefulWidget {

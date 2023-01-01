@@ -10,7 +10,7 @@ class MemberDevicesApi {
   static Future<Result<Exception, bool>> add(AddDeviceDto dto) async {
     return safeApiCall<bool>(() async {
       Dio dio = DioHelper().dio;
-      String path = '/api/v2/member/devices';
+      String path = '/api/v4/member/devices';
 
       final response = await dio.post(path, data: dto.toMap());
 

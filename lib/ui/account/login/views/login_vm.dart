@@ -71,16 +71,20 @@ class MyInfoFetchFeature extends DeviceInfoAddFeature {
   Future _fetchMyInfo() async {
     final result = await MemberApi.findMe();
 
-    result.when((e) => apiError.value = e,
-        (response) async => await _handleGetMyInfoSuccess(response));
+    result.when(
+      (e) => apiError.value = e,
+      (res) async => await _handleGetMyInfoSuccess(res),
+    );
   }
 
   Future _handleGetMyInfoSuccess(GetMyInfoResponse res) async {
     final userId = res.data.member.id;
     final isRoleTrainer = res.data.member.isRoleTrainer;
+    final userName = res.data.member.name;
 
     await saveUserId(userId);
     await saveRoleTrainer(isRoleTrainer);
+    await saveUserName(userName);
 
     _isRoleTrainer.value = isRoleTrainer;
   }
@@ -116,6 +120,10 @@ class LocalDataSaveFeature extends BaseLoginViewModel {
 
   Future saveRoleTrainer(bool isRoleTrainer) async {
     SharedPrefsManager().setRoleTrainerType(isRoleTrainer);
+  }
+
+  Future saveUserName(String name) async {
+    SharedPrefsManager().setUserName(name);
   }
 
   Future saveAccessTokenToDevice(String accessToken) async {

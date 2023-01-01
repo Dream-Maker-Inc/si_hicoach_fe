@@ -14,7 +14,7 @@ class MemberApi {
   static Future<Result<Exception, GetMyInfoResponse>> findMe() async {
     return safeApiCall<GetMyInfoResponse>(() async {
       Dio dio = DioHelper().dio;
-      String path = '/api/v2/member/me';
+      String path = '/api/v4/member/me';
 
       final response = await dio.get(path);
 
@@ -26,7 +26,7 @@ class MemberApi {
       UpdateMyInfoDto dto) async {
     return safeApiCall<bool>(() async {
       Dio dio = DioHelper().dio;
-      String path = '/api/v2/member';
+      String path = '/api/v4/member';
 
       await dio.patch(path, data: dto.toMap());
 
@@ -38,7 +38,7 @@ class MemberApi {
       int memberId, UpdatePasswordDto dto) async {
     return safeApiCall<bool>(() async {
       Dio dio = DioHelper().dio;
-      String path = '/api/v2/member/$memberId/password';
+      String path = '/api/v4/member/$memberId/password';
 
       await dio.patch(path, data: dto.toMap());
 
@@ -53,7 +53,7 @@ class MemberApi {
       String certificationToken) async {
     return safeApiCall<FindIdResponse>(() async {
       Dio dio = DioHelper().pureDio;
-      String path = '/api/v2/member/email';
+      String path = '/api/v4/member/email';
       dio.options.headers['Authorization'] = 'Bearer $certificationToken';
 
       final res = await dio.get(path);
@@ -70,7 +70,7 @@ class MemberApi {
       String certificationToken, String newPassword) async {
     return safeApiCall<bool>(() async {
       Dio dio = DioHelper().pureDio;
-      String path = '/api/v2/member/password';
+      String path = '/api/v4/member/password';
       dio.options.headers['Authorization'] = 'Bearer $certificationToken';
 
       final res = await dio.patch(path, data: {'newPassword': newPassword});

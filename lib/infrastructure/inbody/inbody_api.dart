@@ -15,7 +15,7 @@ class InBodyApi {
     return safeApiCall<bool>(() async {
       Dio dio = DioHelper().dio;
 
-      String path = '/api/v2/inbody/today';
+      String path = '/api/v4/inbody/today';
 
       final res = await dio.post(path, data: dto.toFormData());
 
@@ -32,7 +32,7 @@ class InBodyApi {
     return safeApiCall<bool>(() async {
       Dio dio = DioHelper().dio;
 
-      String path = '/api/v2/inbody/$id';
+      String path = '/api/v4/inbody/$id';
 
       await dio.put(path, data: dto.toFormData());
 
@@ -46,7 +46,7 @@ class InBodyApi {
     return safeApiCall<bool>(() async {
       Dio dio = DioHelper().dio;
 
-      String path = '/api/v2/inbody/$id';
+      String path = '/api/v4/inbody/$id';
 
       await dio.delete(path);
 
@@ -59,7 +59,7 @@ class InBodyApi {
     return safeApiCall<GetInbodiesResponse>(() async {
       Dio dio = DioHelper().dio;
 
-      String path = '/api/v2/inbody';
+      String path = '/api/v4/inbody';
 
       final response = await dio
           .get(path, queryParameters: {'size': 9999, 'memberId': memberId});

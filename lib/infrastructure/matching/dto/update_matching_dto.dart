@@ -14,9 +14,9 @@ class UpdateMatchingDto {
   Map<String, dynamic> toMap() {
     final Map<String, dynamic> map = {};
 
-    map.addIf(goals != null, "goals", goals);
+    map.addIf(goals != null, "exerciseGoalIds", goals);
     map.addIf(memo != null, "memo", memo);
-    map.addIf(ticketCount != null, 'ticketCount', ticketCount);
+    map.addIf(ticketCount != null, 'totalTicketCount', ticketCount);
 
     return map;
   }

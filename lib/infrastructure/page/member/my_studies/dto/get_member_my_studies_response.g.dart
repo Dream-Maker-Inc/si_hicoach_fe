@@ -28,9 +28,11 @@ Map<String, dynamic> _$GetMemberMyStudiesResponseToJson(
 
 Data _$DataFromJson(Map<String, dynamic> json) => Data(
       id: json['id'] as int,
-      ticketCount: json['ticketCount'] as int,
-      isPersonal: json['isPersonal'] as bool,
+      totalTicketCount: json['totalTicketCount'] as int,
       totalStudyCount: json['totalStudyCount'] as int,
+      nextStudyRound: json['nextStudyRound'] as int,
+      isPersonal: json['isPersonal'] as bool,
+      availableTicketsCount: json['availableTicketsCount'] as int,
       studies: (json['studies'] as List<dynamic>)
           .map((e) => Studies.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -38,9 +40,11 @@ Data _$DataFromJson(Map<String, dynamic> json) => Data(
 
 Map<String, dynamic> _$DataToJson(Data instance) => <String, dynamic>{
       'id': instance.id,
-      'ticketCount': instance.ticketCount,
-      'isPersonal': instance.isPersonal,
+      'totalTicketCount': instance.totalTicketCount,
       'totalStudyCount': instance.totalStudyCount,
+      'nextStudyRound': instance.nextStudyRound,
+      'isPersonal': instance.isPersonal,
+      'availableTicketsCount': instance.availableTicketsCount,
       'studies': instance.studies,
     };
 

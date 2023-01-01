@@ -46,7 +46,7 @@ Member _$MemberFromJson(Map<String, dynamic> json) => Member(
       email: json['email'] as String,
       name: json['name'] as String,
       gender: json['gender'] as String,
-      birthDay: json['birthDay'] as String,
+      birthDay: DateTime.parse(json['birthDay'] as String),
       phone: json['phone'] as String,
       trainerInfo: json['trainerInfo'] == null
           ? null
@@ -61,7 +61,7 @@ Map<String, dynamic> _$MemberToJson(Member instance) => <String, dynamic>{
       'email': instance.email,
       'name': instance.name,
       'gender': instance.gender,
-      'birthDay': instance.birthDay,
+      'birthDay': instance.birthDay.toIso8601String(),
       'phone': instance.phone,
       'trainerInfo': instance.trainerInfo,
     };

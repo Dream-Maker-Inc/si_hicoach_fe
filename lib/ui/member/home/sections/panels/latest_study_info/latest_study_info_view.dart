@@ -7,8 +7,8 @@ import 'package:si_hicoach_fe/common/constants/constants.dart';
 import 'package:si_hicoach_fe/common/exceptions/common_exceptions.dart';
 import 'package:si_hicoach_fe/common/getx/my_getx_state.dart';
 import 'package:si_hicoach_fe/common/theme/typography.dart';
-import 'package:si_hicoach_fe/infrastructure/page/member/home/sections/panels/latest_study_info/latest_study_info_item.dart';
-import 'package:si_hicoach_fe/infrastructure/page/member/home/sections/panels/latest_study_info/latest_study_info_vm.dart';
+import 'package:si_hicoach_fe/ui/member/home/sections/panels/latest_study_info/latest_study_info_item.dart';
+import 'package:si_hicoach_fe/ui/member/home/sections/panels/latest_study_info/latest_study_info_vm.dart';
 import 'package:si_hicoach_fe/ui/common/study/detail/detail.dart';
 
 class MainLatestStudyInfoView extends StatefulWidget {

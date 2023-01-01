@@ -8,7 +8,7 @@ class ExerciseGoalsApi {
   static Future<Result<Exception, GetExerciseGoalResponse>> findAll() async {
     return safeApiCall<GetExerciseGoalResponse>(() async {
       Dio dio = DioHelper().dio;
-      String path = '/api/v2/exercise-goal';
+      String path = '/api/v4/exercise-goal';
 
       final response = await dio.get(path);
 

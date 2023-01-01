@@ -8,7 +8,7 @@ class MyMemberStudiesApi {
   static Future<Result<Exception, GetMemberMyStudiesResponse>> getData() async {
     return safeApiCall<GetMemberMyStudiesResponse>(() async {
       Dio dio = DioHelper().dio;
-      String path = '/api/v2/app/member/my-studies';
+      String path = '/api/v4/app/member/my-studies';
 
       final response = await dio.get(path);
 

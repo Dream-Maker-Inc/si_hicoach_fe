@@ -12,7 +12,7 @@ class LoginApi {
       RequestLoginDto dto) async {
     return safeApiCall<LoginResponse>(() async {
       Dio dio = DioHelper().dio;
-      String path = '/api/v2/auth/login';
+      String path = '/api/v4/auth/login';
 
       final response = await dio.post(path, data: dto.toMap());
 

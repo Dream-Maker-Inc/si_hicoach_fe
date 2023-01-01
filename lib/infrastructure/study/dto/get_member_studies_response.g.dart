@@ -39,8 +39,8 @@ Map<String, dynamic> _$DataToJson(Data instance) => <String, dynamic>{
 Items _$ItemsFromJson(Map<String, dynamic> json) => Items(
       id: json['id'] as int,
       round: json['round'] as int,
-      startedAt: json['startedAt'] as String,
-      endedAt: json['endedAt'] as String,
+      startedAt: DateTime.parse(json['startedAt'] as String),
+      endedAt: DateTime.parse(json['endedAt'] as String),
       myExercises: (json['myExercises'] as List<dynamic>)
           .map((e) => MyExercises.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -50,8 +50,8 @@ Items _$ItemsFromJson(Map<String, dynamic> json) => Items(
 Map<String, dynamic> _$ItemsToJson(Items instance) => <String, dynamic>{
       'id': instance.id,
       'round': instance.round,
-      'startedAt': instance.startedAt,
-      'endedAt': instance.endedAt,
+      'startedAt': instance.startedAt.toIso8601String(),
+      'endedAt': instance.endedAt.toIso8601String(),
       'myExercises': instance.myExercises,
       'memo': instance.memo,
     };
@@ -60,7 +60,9 @@ MyExercises _$MyExercisesFromJson(Map<String, dynamic> json) => MyExercises(
       weight: json['weight'] as int,
       interval: json['interval'] as int,
       set: json['set'] as int,
-      exercise: Exercise.fromJson(json['exercise'] as Map<String, dynamic>),
+      title: json['title'] as String,
+      part: json['part'] as String,
+      type: json['type'] as String,
     );
 
 Map<String, dynamic> _$MyExercisesToJson(MyExercises instance) =>
@@ -68,16 +70,6 @@ Map<String, dynamic> _$MyExercisesToJson(MyExercises instance) =>
       'weight': instance.weight,
       'interval': instance.interval,
       'set': instance.set,
-      'exercise': instance.exercise,
-    };
-
-Exercise _$ExerciseFromJson(Map<String, dynamic> json) => Exercise(
-      title: json['title'] as String,
-      part: json['part'] as String,
-      type: json['type'] as String,
-    );
-
-Map<String, dynamic> _$ExerciseToJson(Exercise instance) => <String, dynamic>{
       'title': instance.title,
       'part': instance.part,
       'type': instance.type,

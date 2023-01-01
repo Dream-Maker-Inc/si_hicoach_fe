@@ -28,16 +28,19 @@ class Data extends BaseDto {
     required this.trainerId,
     required this.memberId,
     required this.memo,
-    required this.ticketCount,
-    required this.goals,
+    required this.totalTicketCount,
+    required this.totalStudyCount,
+    required this.lastStudyRound,
+    required this.exerciseGoals,
   });
-
   late final int id;
   late final int trainerId;
   late final int memberId;
   late final String memo;
-  late final int ticketCount;
-  late final List<Goals> goals;
+  late final int totalTicketCount;
+  late final int totalStudyCount;
+  late final int lastStudyRound;
+  late final List<ExerciseGoals> exerciseGoals;
 
   factory Data.fromJson(Map<String, dynamic> json) => _$DataFromJson(json);
 
@@ -45,8 +48,8 @@ class Data extends BaseDto {
 }
 
 @JsonSerializable()
-class Goals extends BaseDto {
-  Goals({
+class ExerciseGoals extends BaseDto {
+  ExerciseGoals({
     required super.createdAt,
     required super.updatedAt,
     super.deletedAt,
@@ -57,7 +60,8 @@ class Goals extends BaseDto {
   late final int id;
   late final String title;
 
-  factory Goals.fromJson(Map<String, dynamic> json) => _$GoalsFromJson(json);
+  factory ExerciseGoals.fromJson(Map<String, dynamic> json) =>
+      _$ExerciseGoalsFromJson(json);
 
-  Map<String, dynamic> toJson() => _$GoalsToJson(this);
+  Map<String, dynamic> toJson() => _$ExerciseGoalsToJson(this);
 }

@@ -55,7 +55,7 @@ class Member extends BaseDto {
   late final String email;
   late final String name;
   late final String gender;
-  late final String birthDay;
+  late final DateTime birthDay;
   late final String phone;
   late final TrainerInfo? trainerInfo;
 

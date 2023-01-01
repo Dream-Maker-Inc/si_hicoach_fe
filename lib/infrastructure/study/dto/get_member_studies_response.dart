@@ -46,12 +46,10 @@ class Items {
 
   late final int id;
   late final int round;
-  late final String startedAt;
-  late final String endedAt;
+  late final DateTime startedAt;
+  late final DateTime endedAt;
   late final List<MyExercises> myExercises;
   late final String memo;
-
-  DateTime get startedDate => DateTime.parse(startedAt);
 
   factory Items.fromJson(Map<String, dynamic> json) => _$ItemsFromJson(json);
 
@@ -64,34 +62,20 @@ class MyExercises {
     required this.weight,
     required this.interval,
     required this.set,
-    required this.exercise,
-  });
-
-  late final int weight;
-  late final int interval;
-  late final int set;
-  late final Exercise exercise;
-
-  factory MyExercises.fromJson(Map<String, dynamic> json) =>
-      _$MyExercisesFromJson(json);
-
-  Map<String, dynamic> toJson() => _$MyExercisesToJson(this);
-}
-
-@JsonSerializable()
-class Exercise {
-  Exercise({
     required this.title,
     required this.part,
     required this.type,
   });
 
+  late final int weight;
+  late final int interval;
+  late final int set;
   late final String title;
   late final String part;
   late final String type;
 
-  factory Exercise.fromJson(Map<String, dynamic> json) =>
-      _$ExerciseFromJson(json);
+  factory MyExercises.fromJson(Map<String, dynamic> json) =>
+      _$MyExercisesFromJson(json);
 
-  Map<String, dynamic> toJson() => _$ExerciseToJson(this);
+  Map<String, dynamic> toJson() => _$MyExercisesToJson(this);
 }

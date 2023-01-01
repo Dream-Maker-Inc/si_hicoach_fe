@@ -9,7 +9,7 @@ class MemberMyPageApi {
       {bool isFinished = false}) async {
     return safeApiCall<GetMemberMyPageResponse>(() async {
       Dio dio = DioHelper().dio;
-      String path = '/api/v2/app/member/my-page';
+      String path = '/api/v4/app/member/my-page';
 
       final response = await dio.get(path);
 

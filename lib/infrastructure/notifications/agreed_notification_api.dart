@@ -9,7 +9,7 @@ class AgreedNotificationApi {
   static Future<Result<Exception, bool>> create(PushNotifiTypes type) async {
     return safeApiCall<bool>(() async {
       Dio dio = DioHelper().dio;
-      String path = '/api/v2/agreed-push-noti';
+      String path = '/api/v4/agreed-push-noti';
 
       await dio.post(path, data: {'type': type.key});
 
@@ -20,7 +20,7 @@ class AgreedNotificationApi {
   static Future<Result<Exception, bool>> delete(int agreedNotifiId) async {
     return safeApiCall<bool>(() async {
       Dio dio = DioHelper().dio;
-      String path = '/api/v2/agreed-push-noti/$agreedNotifiId';
+      String path = '/api/v4/agreed-push-noti/$agreedNotifiId';
 
       await dio.delete(path);
 
@@ -32,7 +32,7 @@ class AgreedNotificationApi {
       getAgreedNotifiList() async {
     return safeApiCall<GetAgreedNotifiListResponse>(() async {
       Dio dio = DioHelper().dio;
-      String path = '/api/v2/agreed-push-noti';
+      String path = '/api/v4/agreed-push-noti';
 
       final res = await dio.get(path);
 

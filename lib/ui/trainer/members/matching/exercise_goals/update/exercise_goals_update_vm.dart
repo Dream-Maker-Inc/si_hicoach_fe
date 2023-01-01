@@ -43,7 +43,8 @@ class _MatchingFetchFeature extends ExerciseGoalsCheckFeature {
   MatchingResponse.Data? get matching => _fetchMatchingResponse.value?.data;
   int get _matchingId => matching?.id ?? 0;
 
-  List<MatchingResponse.Goals> get oldGoals => matching?.goals ?? [];
+  List<MatchingResponse.ExerciseGoals> get oldGoals =>
+      matching?.exerciseGoals ?? [];
   List<int> get oldGoalIds => oldGoals.map((it) => it.id).toList();
 
   Future fetchMatching(int matchingId) async {

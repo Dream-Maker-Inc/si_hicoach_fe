@@ -15,10 +15,10 @@ class CreateMatchingDto {
   Map<String, dynamic> toMap() {
     return {
       'memberId': memberId,
-      'goals': goals,
+      'exerciseGoalIds': goals,
       'memo': memo,
       'totalTicketCount': totalTicketCount,
-      'finishedTicketCount': finishedTicketCount
+      'usedTicketCount': finishedTicketCount
     };
   }
 }

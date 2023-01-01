@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:si_hicoach_fe/common/shared_preferences/shared_prefs.dart';
 import 'package:si_hicoach_fe/common/utils/date_format.dart';
 import 'package:si_hicoach_fe/ui/common/study/common/components/exercise_item.dart';
 import 'package:si_hicoach_fe/infrastructure/study/dto/get_member_study.response.dart';
@@ -9,19 +10,18 @@ class StudyDetailViewModel extends _StudyDeleteFeature {
 
   StudyDetailViewModel({required this.studyId});
 
-  String get memberName => member?.name ?? "";
-  String get startedDateString => study?.startedDate.toKoreanFormat ?? "";
-  String get startedTimeString => study?.startedDate.toKoreanTimeFormat ?? "";
-  String get endedTimeSting => study?.endedDate.toKoreanTimeFormat ?? "";
-  String get memo => study?.memo ?? "";
-  int get matchingId => study?.matchingId ?? 0;
+  String get startedDateString => _data?.study.startedAt.toKoreanFormat ?? "";
+  String get startedTimeString =>
+      _data?.study.startedAt.toKoreanTimeFormat ?? "";
+  String get endedTimeSting => _data?.study.endedAt.toKoreanTimeFormat ?? "";
+  String get memo => _data?.memo ?? "";
 
   List<ExerciseItemModel> get exerciseItemModels =>
-      study?.myExercises
+      _data?.study.myExercises
           .map(
             (it) => ExerciseItemModel(
-              id: it.exercise.id,
-              name: it.exercise.title,
+              id: it.exerciseId,
+              name: it.title,
               count: it.interval,
               sets: it.set,
               weight: it.weight,
@@ -39,7 +39,7 @@ class _StudyDeleteFeature extends _StudyFetchFeature {
   RxBool deleteStudyResponse = RxBool(false);
 
   Future deleteStudy(int studyId) async {
-    final result = await StudyApi.deleteStudy(studyId);
+    final result = await StudyApi.removeStudy(matchingId, studyId);
 
     result.when(
       (e) => (apiError.value = e),
@@ -48,12 +48,12 @@ class _StudyDeleteFeature extends _StudyFetchFeature {
   }
 }
 
-class _StudyFetchFeature extends GetxController {
+class _StudyFetchFeature extends _MyInfoFetchFeature {
   Rx<Exception?> apiError = Rx(null);
   Rxn<GetStudyResponse> fetchStudyResponse = Rxn();
 
-  Member? get member => fetchStudyResponse.value?.data.member;
-  Study? get study => fetchStudyResponse.value?.data.study;
+  Data? get _data => fetchStudyResponse.value?.data;
+  int get matchingId => _data?.id ?? 0;
 
   Future fetchStudy(int studyId) async {
     final result = await StudyApi.findOne(studyId);
@@ -62,5 +62,15 @@ class _StudyFetchFeature extends GetxController {
       (e) => (apiError.value = e),
       (res) => (fetchStudyResponse.value = res),
     );
+  }
+}
+
+class _MyInfoFetchFeature extends GetxController {
+  RxString userName = RxString("");
+  RxInt userId = RxInt(0);
+
+  Future fetchMyInfo() async {
+    userName.value = await SharedPrefsManager().getUserName();
+    userId.value = await SharedPrefsManager().getUserId();
   }
 }

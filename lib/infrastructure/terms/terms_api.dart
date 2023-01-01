@@ -8,7 +8,7 @@ class TermsApi {
   static Future<Result<Exception, GetTermsResponse>> getTerms() async {
     return safeApiCall<GetTermsResponse>(() async {
       Dio dio = DioHelper().dio;
-      String path = '/api/v2/terms';
+      String path = '/api/v4/terms';
 
       final response = await dio.get(path);
 

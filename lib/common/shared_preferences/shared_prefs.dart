@@ -45,6 +45,16 @@ class SharedPrefsManager {
     return sp.getInt(SharedPrefsKeys.id.key) ?? 0;
   }
 
+  Future<bool> setUserName(String name) async {
+    final sp = await _getSharedPrefsInstance();
+    return await sp.setString(SharedPrefsKeys.userName.key, name);
+  }
+
+  Future<String> getUserName() async {
+    final sp = await _getSharedPrefsInstance();
+    return sp.getString(SharedPrefsKeys.userName.key) ?? "";
+  }
+
   //
   Future<bool> setRoleTrainerType(bool isRoleTrainer) async {
     final sp = await _getSharedPrefsInstance();

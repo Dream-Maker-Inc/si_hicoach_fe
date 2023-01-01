@@ -22,16 +22,10 @@ class GetMemberMyPageResponse extends BaseResponse<Data> {
 class Data {
   Data({
     required this.member,
-    required this.totalStudyCount,
-    this.latestStudy,
     this.matching,
-    this.trainer,
   });
   late final Member member;
-  late final int totalStudyCount;
-  late final LatestStudy? latestStudy;
   late final Matching? matching;
-  late final Trainer? trainer;
 
   factory Data.fromJson(Map<String, dynamic> json) => _$DataFromJson(json);
 
@@ -53,28 +47,25 @@ class Member {
 }
 
 @JsonSerializable()
-class LatestStudy {
-  LatestStudy({
-    required this.id,
-    required this.round,
-  });
-  late final int id;
-  late final int round;
-
-  factory LatestStudy.fromJson(Map<String, dynamic> json) =>
-      _$LatestStudyFromJson(json);
-
-  Map<String, dynamic> toJson() => _$LatestStudyToJson(this);
-}
-
-@JsonSerializable()
 class Matching {
   Matching({
     required this.id,
-    required this.ticketCount,
+    required this.totalTicketCount,
+    required this.totalStudyCount,
+    required this.lastStudyRound,
+    required this.nextStudyRound,
+    required this.isPersonal,
+    required this.availableTicketsCount,
+    required this.trainer,
   });
   late final int id;
-  late final int ticketCount;
+  late final int totalTicketCount;
+  late final int totalStudyCount;
+  late final int lastStudyRound;
+  late final int nextStudyRound;
+  late final bool isPersonal;
+  late final int availableTicketsCount;
+  late final Trainer trainer;
 
   factory Matching.fromJson(Map<String, dynamic> json) =>
       _$MatchingFromJson(json);

@@ -13,10 +13,7 @@ class _BaseMutateStudyDto {
 }
 
 class CreateStudyDto extends _BaseMutateStudyDto {
-  int matchingId;
-
   CreateStudyDto({
-    required this.matchingId,
     required super.startedAt,
     required super.endedAt,
     required super.memo,
@@ -25,7 +22,6 @@ class CreateStudyDto extends _BaseMutateStudyDto {
 
   Map<String, dynamic> toMap() {
     return {
-      'matchingId': matchingId,
       'startedAt': startedAt,
       'endedAt': endedAt,
       'memo': memo,

@@ -9,7 +9,7 @@ class MemberCalendarApi {
       String yearMonth) async {
     return safeApiCall<GetMonthlyCalendarResponse>(() async {
       Dio dio = DioHelper().dio;
-      String path = '/api/v2/app/member/calendar/monthly';
+      String path = '/api/v4/app/member/calendar/monthly';
 
       final res =
           await dio.get(path, queryParameters: {'yearMonth': yearMonth});

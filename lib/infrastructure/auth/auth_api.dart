@@ -9,7 +9,7 @@ class AuthApi {
       String uid) async {
     return safeApiCall<RequestCertificationsResponse>(() async {
       Dio dio = DioHelper().dio;
-      String path = '/api/v2/auth/certifications';
+      String path = '/api/v4/auth/certifications';
 
       final response = await dio.post(path, data: {'uid': uid});
 

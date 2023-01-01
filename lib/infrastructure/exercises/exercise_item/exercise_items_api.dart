@@ -9,7 +9,7 @@ class ExerciseItemsApi {
       String title) async {
     return safeApiCall<GetExerciseItemsResponse>(() async {
       Dio dio = DioHelper().dio;
-      String path = '/api/v2/exercise';
+      String path = '/api/v4/exercise';
 
       final response =
           await dio.get(path, queryParameters: {'size': 9999, 'title': title});

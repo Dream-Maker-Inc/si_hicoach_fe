@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:si_hicoach_fe/common/utils/date_format.dart';
 import 'package:si_hicoach_fe/infrastructure/member/member/dto/get_my_info_response.dart';
 import 'package:si_hicoach_fe/infrastructure/member/member/member_api.dart';
 import 'package:tuple/tuple.dart';
@@ -6,7 +7,7 @@ import 'package:tuple/tuple.dart';
 class MemberAccountDetailViewModel extends _MyInfoFetchFeature {
   String get name => member?.name ?? "";
   String get email => member?.email ?? "";
-  String get birthDay => member?.birthDay ?? "";
+  String get birthDay => member?.birthDay.toKoreanFormat ?? "";
   String get phone => member?.phone ?? "";
   String get trainerName => trainer?.name ?? "";
   String get trainerCompanyName => trainer?.trainerInfo.companyName ?? "";

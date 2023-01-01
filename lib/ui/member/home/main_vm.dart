@@ -1,7 +1,7 @@
 // ignore_for_file: library_prefixes
 
 import 'package:get/get.dart';
-import 'package:si_hicoach_fe/infrastructure/page/member/home/sections/panels/study_list/models/study_list_item_model.dart';
+import 'package:si_hicoach_fe/ui/member/home/sections/panels/study_list/models/study_list_item_model.dart';
 import 'package:si_hicoach_fe/infrastructure/member/member/dto/get_my_info_response.dart';
 import 'package:si_hicoach_fe/infrastructure/member/member/member_api.dart';
 import 'package:si_hicoach_fe/infrastructure/page/member/main_page/dto/get_member_main_next_studies.response.dart'

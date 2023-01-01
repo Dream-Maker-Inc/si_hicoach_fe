@@ -47,7 +47,7 @@ class StudyingListView extends StatelessWidget {
             (it) => StudyingListItemModel(
               studyId: it.id,
               title: '${it.round}회차',
-              subtitle: it.startedDate.toKoreanFormat,
+              subtitle: it.startedAt.toKoreanFormat,
             ),
           )
           .toList();

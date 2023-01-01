@@ -5,8 +5,8 @@ import 'package:si_hicoach_fe/common/components/dialog.dart';
 import 'package:si_hicoach_fe/common/components/http_error_dialog.dart';
 import 'package:si_hicoach_fe/common/exceptions/common_exceptions.dart';
 import 'package:si_hicoach_fe/common/getx/my_getx_state.dart';
-import 'package:si_hicoach_fe/infrastructure/page/member/home/main_vm.dart';
-import 'package:si_hicoach_fe/infrastructure/page/member/home/sections/tabs.dart';
+import 'package:si_hicoach_fe/ui/member/home/main_vm.dart';
+import 'package:si_hicoach_fe/ui/member/home/sections/tabs.dart';
 
 class MemberMainView extends StatefulWidget {
   const MemberMainView({Key? key}) : super(key: key);

@@ -11,7 +11,7 @@ class TrainerMyAccountDetailViewModel extends _MyInfoFetchFeature {
   String get birthday {
     if (_member?.birthDay == null) return "";
 
-    return DateTime.parse(_member!.birthDay).toKoreanFormat;
+    return _member!.birthDay.toKoreanFormat;
   }
 
   @override

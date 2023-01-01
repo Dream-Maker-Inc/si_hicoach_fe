@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:si_hicoach_fe/infrastructure/tickets/dto/get_tickets_info_response.dart';
+import 'package:si_hicoach_fe/infrastructure/matching/dto/get_matching_response.dart';
 import 'package:si_hicoach_fe/infrastructure/tickets/tickets_api.dart';
 
 class TicketsViewModel extends TicketDecreaseFeature {
@@ -8,7 +8,7 @@ class TicketsViewModel extends TicketDecreaseFeature {
   TicketsViewModel({required this.matchingId});
 
   // 남은 수강권 개수
-  int get remainingTicketCount => totalTicketCount - finishedStudyCount;
+  int get remainingTicketCount => totalTicketCount - totalStudyCount;
 
   //
   RxInt countOfAdd = RxInt(0);
@@ -76,11 +76,11 @@ class TicketIncreaseFeature extends TicketsInfoFetchFeature {
 class TicketsInfoFetchFeature extends GetxController {
   Rx<Exception?> apiError = Rx(null);
 
-  final Rxn<GetTicketsInfoResponse> fetchTicketsInfoResponse = Rxn();
+  final Rxn<GetMatchingResponse> fetchTicketsInfoResponse = Rxn();
   Data? get _data => fetchTicketsInfoResponse.value?.data;
 
-  int get finishedStudyCount => _data?.finishedStudyCount ?? 0;
-  int get totalTicketCount => _data?.remainingTicketCount ?? 0;
+  int get totalStudyCount => _data?.totalStudyCount ?? 0;
+  int get totalTicketCount => _data?.totalTicketCount ?? 0;
 
   fetchTicketsInfo(int matchingId) async {
     final result = await TicketsApi.getTicketsInfo(matchingId);

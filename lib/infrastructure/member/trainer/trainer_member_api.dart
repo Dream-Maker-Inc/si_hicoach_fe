@@ -11,7 +11,7 @@ class TrainerMemberApi {
   static Future<Result<Exception, GetMemberResponse>> findOne(int id) async {
     return safeApiCall<GetMemberResponse>(() async {
       Dio dio = DioHelper().dio;
-      String path = '/api/v2/member/$id';
+      String path = '/api/v4/member/$id';
 
       final response = await dio.get(path);
 
@@ -27,7 +27,7 @@ class TrainerMemberApi {
       getMemberWithMatching(String email) async {
     return safeApiCall<GetMemberOfTrainerResponse>(() async {
       Dio dio = DioHelper().dio;
-      String path = '/api/v2/member/with-matching';
+      String path = '/api/v4/member/with-matching';
 
       final response = await dio.get(path, queryParameters: {'email': email});
 

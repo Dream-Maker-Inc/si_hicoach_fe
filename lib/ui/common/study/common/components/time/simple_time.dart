@@ -31,7 +31,7 @@ class SimpleTime {
   }
 
   String getLocalDateFormat(DateTime date) {
-    return DateFormat("yyyy-MM-dd HH:mm:ss:SSS'Z'").format(date);
+    return DateFormat("yyyy-MM-dd'T'HH:mm:ss").format(date);
   }
 
   String getLocalDate() {

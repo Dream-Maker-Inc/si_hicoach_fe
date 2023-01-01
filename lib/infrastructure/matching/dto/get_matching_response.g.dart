@@ -31,9 +31,11 @@ Data _$DataFromJson(Map<String, dynamic> json) => Data(
       trainerId: json['trainerId'] as int,
       memberId: json['memberId'] as int,
       memo: json['memo'] as String,
-      ticketCount: json['ticketCount'] as int,
-      goals: (json['goals'] as List<dynamic>)
-          .map((e) => Goals.fromJson(e as Map<String, dynamic>))
+      totalTicketCount: json['totalTicketCount'] as int,
+      totalStudyCount: json['totalStudyCount'] as int,
+      lastStudyRound: json['lastStudyRound'] as int,
+      exerciseGoals: (json['exerciseGoals'] as List<dynamic>)
+          .map((e) => ExerciseGoals.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
@@ -45,11 +47,14 @@ Map<String, dynamic> _$DataToJson(Data instance) => <String, dynamic>{
       'trainerId': instance.trainerId,
       'memberId': instance.memberId,
       'memo': instance.memo,
-      'ticketCount': instance.ticketCount,
-      'goals': instance.goals,
+      'totalTicketCount': instance.totalTicketCount,
+      'totalStudyCount': instance.totalStudyCount,
+      'lastStudyRound': instance.lastStudyRound,
+      'exerciseGoals': instance.exerciseGoals,
     };
 
-Goals _$GoalsFromJson(Map<String, dynamic> json) => Goals(
+ExerciseGoals _$ExerciseGoalsFromJson(Map<String, dynamic> json) =>
+    ExerciseGoals(
       createdAt: json['createdAt'] as String,
       updatedAt: json['updatedAt'] as String,
       deletedAt: json['deletedAt'] as String?,
@@ -57,7 +62,8 @@ Goals _$GoalsFromJson(Map<String, dynamic> json) => Goals(
       title: json['title'] as String,
     );
 
-Map<String, dynamic> _$GoalsToJson(Goals instance) => <String, dynamic>{
+Map<String, dynamic> _$ExerciseGoalsToJson(ExerciseGoals instance) =>
+    <String, dynamic>{
       'createdAt': instance.createdAt,
       'updatedAt': instance.updatedAt,
       'deletedAt': instance.deletedAt,

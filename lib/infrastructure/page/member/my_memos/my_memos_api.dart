@@ -9,7 +9,7 @@ class MyMemosPageApi {
       {bool isFinished = false}) async {
     return safeApiCall<GetMyMemosResponse>(() async {
       Dio dio = DioHelper().dio;
-      String path = '/api/v2/app/member/my-memos';
+      String path = '/api/v4/app/member/my-memos';
 
       final response = await dio.get(path, queryParameters: {'size': 9999});
 

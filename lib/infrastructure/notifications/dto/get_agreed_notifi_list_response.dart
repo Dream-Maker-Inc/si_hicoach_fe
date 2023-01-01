@@ -1,5 +1,4 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:si_hicoach_fe/domain/notification/notification_types.dart';
 import 'package:si_hicoach_fe/infrastructure/common/base_dto.dart';
 import 'package:si_hicoach_fe/infrastructure/common/base_response.dart';
 import 'package:si_hicoach_fe/infrastructure/common/meta_data_response.dart';

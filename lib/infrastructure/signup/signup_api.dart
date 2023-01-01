@@ -11,7 +11,7 @@ class SignupApi {
   static Future<Result<Exception, bool>> signup(RequestSignUpDto dto) async {
     return safeApiCall<bool>(() async {
       Dio dio = DioHelper().dio;
-      String path = '/api/v2/member/signUp';
+      String path = '/api/v4/member/signUp';
 
       final response = await dio.post(path, data: dto.toMap());
 
@@ -36,7 +36,7 @@ class SignupApi {
       String email) async {
     return safeApiCall<ValidateResponse>(() async {
       Dio dio = DioHelper().dio;
-      String path = '/api/v2/member/email/validate';
+      String path = '/api/v4/member/email/validate';
 
       var response = await dio.post(path, data: {"email": email});
 
@@ -52,7 +52,7 @@ class SignupApi {
       String phone) async {
     return safeApiCall<ValidateResponse>(() async {
       Dio dio = DioHelper().dio;
-      String path = '/api/v2/member/phone/validate';
+      String path = '/api/v4/member/phone/validate';
 
       var response = await dio.post(path, data: {"phone": phone});
 

@@ -105,7 +105,7 @@ class _StudyDetailViewState extends _Detail {
 
   _buildMemberInfoSection() {
     return Obx(() {
-      final memberName = vm.memberName;
+      final memberName = vm.userName.value;
       final startedDate = vm.startedDateString;
 
       return Column(children: [
@@ -187,7 +187,7 @@ class _Detail extends MyGetXState<StudyDetailView, StudyDetailViewModel> {
   }
 
   handleMemberDetailButtonPressed() {
-    final memberId = vm.member?.id ?? 0;
+    final memberId = vm.userId.value;
 
     Get.to(DetailView(memberId: memberId));
   }
@@ -241,7 +241,10 @@ class _Detail extends MyGetXState<StudyDetailView, StudyDetailViewModel> {
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      Future.wait([vm.fetchStudy(widget.studyId)]);
+      Future.wait([
+        vm.fetchStudy(widget.studyId),
+        vm.fetchMyInfo(),
+      ]);
     });
 
     return widget;
