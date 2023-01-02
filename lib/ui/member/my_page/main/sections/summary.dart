@@ -106,7 +106,7 @@ class SummaryView extends StatelessWidget {
       final notMatchedTrainer = _vm.isNotMatchedTrainer;
       final desc = notMatchedTrainer
           ? "매칭된 코치님이 없어요!"
-          : '완료 수업 ${_vm.totalStudyCount}회 · 총 ${_vm.totalTicketCount}회';
+          : '완료 수업 ${_vm.completedStudyCount}회 · 총 ${_vm.totalTicketCount}회';
 
       return Padding(
         padding: const EdgeInsets.all(defaultPadding),

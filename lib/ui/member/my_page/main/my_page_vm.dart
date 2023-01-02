@@ -6,7 +6,7 @@ import 'package:si_hicoach_fe/infrastructure/page/member/my_page/member_my_page_
 class MemberMyPageViewModel extends _MyPageDataFetchFeature {
   String get memberName => data?.member.name ?? "";
 
-  int get totalStudyCount => data?.matching?.totalStudyCount ?? 0;
+  int get completedStudyCount => data?.matching?.completedStudyCount ?? 0;
   int get totalTicketCount => data?.matching?.totalTicketCount ?? 0;
 
   String get companyName => data?.matching?.trainer.companyName ?? "";

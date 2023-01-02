@@ -52,6 +52,7 @@ class Matching {
     required this.id,
     required this.totalTicketCount,
     required this.totalStudyCount,
+    required this.completedStudyCount,
     required this.lastStudyRound,
     required this.nextStudyRound,
     required this.isPersonal,
@@ -61,6 +62,7 @@ class Matching {
   late final int id;
   late final int totalTicketCount;
   late final int totalStudyCount;
+  late final int completedStudyCount;
   late final int lastStudyRound;
   late final int nextStudyRound;
   late final bool isPersonal;
