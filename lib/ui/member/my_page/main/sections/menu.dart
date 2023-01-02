@@ -98,6 +98,7 @@ class MenuView extends StatelessWidget {
           trailing: const Icon(Icons.keyboard_arrow_right_rounded),
           onTap: () => _handleLogoutClick(context),
         ),
+        const CustomDivider(),
       ],
     );
   }

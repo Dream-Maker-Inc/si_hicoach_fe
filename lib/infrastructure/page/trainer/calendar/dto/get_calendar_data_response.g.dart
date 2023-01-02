@@ -37,15 +37,25 @@ Map<String, dynamic> _$DataToJson(Data instance) => <String, dynamic>{
     };
 
 Items _$ItemsFromJson(Map<String, dynamic> json) => Items(
-      study: Study.fromJson(json['study'] as Map<String, dynamic>),
-      matching: Matching.fromJson(json['matching'] as Map<String, dynamic>),
+      id: json['id'] as int,
       member: Member.fromJson(json['member'] as Map<String, dynamic>),
+      study: Study.fromJson(json['study'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$ItemsToJson(Items instance) => <String, dynamic>{
-      'study': instance.study,
-      'matching': instance.matching,
+      'id': instance.id,
       'member': instance.member,
+      'study': instance.study,
+    };
+
+Member _$MemberFromJson(Map<String, dynamic> json) => Member(
+      id: json['id'] as int,
+      name: json['name'] as String,
+    );
+
+Map<String, dynamic> _$MemberToJson(Member instance) => <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
     };
 
 Study _$StudyFromJson(Map<String, dynamic> json) => Study(
@@ -62,22 +72,4 @@ Map<String, dynamic> _$StudyToJson(Study instance) => <String, dynamic>{
       'memo': instance.memo,
       'startedAt': instance.startedAt.toIso8601String(),
       'endedAt': instance.endedAt.toIso8601String(),
-    };
-
-Matching _$MatchingFromJson(Map<String, dynamic> json) => Matching(
-      id: json['id'] as int,
-    );
-
-Map<String, dynamic> _$MatchingToJson(Matching instance) => <String, dynamic>{
-      'id': instance.id,
-    };
-
-Member _$MemberFromJson(Map<String, dynamic> json) => Member(
-      id: json['id'] as int,
-      name: json['name'] as String,
-    );
-
-Map<String, dynamic> _$MemberToJson(Member instance) => <String, dynamic>{
-      'id': instance.id,
-      'name': instance.name,
     };

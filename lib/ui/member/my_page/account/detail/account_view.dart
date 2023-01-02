@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:si_hicoach_fe/common/components/app_bar.dart';
+import 'package:si_hicoach_fe/common/components/divider.dart';
 import 'package:si_hicoach_fe/common/components/http_error_dialog.dart';
 import 'package:si_hicoach_fe/common/getx/my_getx_state.dart';
 import 'package:si_hicoach_fe/ui/member/my_page/account/detail/account_vm.dart';
@@ -30,20 +31,21 @@ class _MemberAccountDetailViewState extends _Detail {
     return Obx(() {
       final columns = vm.columns;
 
-      return ListView(
-        scrollDirection: Axis.vertical,
-        shrinkWrap: true,
-        children: ListTile.divideTiles(
-                context: context,
-                tiles: columns
-                    .map(
-                      (it) => ListTile(
-                        title: Text(it.item1),
-                        trailing: Text(it.item2),
-                      ),
-                    )
-                    .toList())
-            .toList(),
+      return ListView.builder(
+        itemCount: columns.length,
+        itemBuilder: (context, index) {
+          final item = columns[index];
+
+          return Column(
+            children: [
+              ListTile(
+                title: Text(item.item1),
+                trailing: Text(item.item2),
+              ),
+              const CustomDivider()
+            ],
+          );
+        },
       );
     });
   }

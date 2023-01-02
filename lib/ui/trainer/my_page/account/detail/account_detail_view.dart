@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:si_hicoach_fe/common/components/app_bar.dart';
+import 'package:si_hicoach_fe/common/components/divider.dart';
 import 'package:si_hicoach_fe/common/components/http_error_dialog.dart';
 import 'package:si_hicoach_fe/common/getx/my_getx_state.dart';
 import 'package:si_hicoach_fe/ui/trainer/my_page/account/update/account_update_view.dart';
@@ -50,33 +51,35 @@ class _TrainerMyAccountDetailViewState extends _Detail {
       return ListView(
         scrollDirection: Axis.vertical,
         shrinkWrap: true,
-        children: ListTile.divideTiles(
-          context: context,
-          tiles: List.of(
-            <Widget>[
-              ListTile(
-                title: const Text('이름'),
-                trailing: Text(memberName),
-              ),
-              ListTile(
-                title: const Text('아이디 (이메일)'),
-                trailing: Text(memberEmail),
-              ),
-              ListTile(
-                title: const Text('생년월일'),
-                trailing: Text(birthday),
-              ),
-              ListTile(
-                title: const Text('소속'),
-                trailing: Text(companyName),
-              ),
-              ListTile(
-                title: const Text('전화번호'),
-                trailing: Text(phone),
-              ),
-            ],
-          ),
-        ).toList(),
+        children: List.of(
+          <Widget>[
+            ListTile(
+              title: const Text('이름'),
+              trailing: Text(memberName),
+            ),
+            const CustomDivider(),
+            ListTile(
+              title: const Text('아이디 (이메일)'),
+              trailing: Text(memberEmail),
+            ),
+            const CustomDivider(),
+            ListTile(
+              title: const Text('생년월일'),
+              trailing: Text(birthday),
+            ),
+            const CustomDivider(),
+            ListTile(
+              title: const Text('소속'),
+              trailing: Text(companyName),
+            ),
+            const CustomDivider(),
+            ListTile(
+              title: const Text('전화번호'),
+              trailing: Text(phone),
+            ),
+            const CustomDivider(),
+          ],
+        ),
       );
     });
   }

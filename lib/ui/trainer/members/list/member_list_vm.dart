@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:si_hicoach_fe/common/utils/date_format.dart';
 import 'package:si_hicoach_fe/ui/trainer/members/list/models/member_model.dart';
 import 'package:si_hicoach_fe/infrastructure/page/trainer/members/dto/get_members_page_response.dart';
 import 'package:si_hicoach_fe/infrastructure/page/trainer/members/trainer_members_page_api.dart';
@@ -34,16 +35,16 @@ class TrainerMemberListViewModel extends FinishedMembersFetchFeature {
       _getFinishedMembersResponse.value?.data.metaData.totalItemCount ?? 0;
 
   MemberModel _mapToMemberProps(Items items) {
-    final latestStudyRound =
-        items.latestStudy?.round ?? (items.totalStudyCount + 1);
+    final latestStudyRound = items.nextStudyRound - 1;
 
     return MemberModel(
       id: items.member.id,
       name: items.member.name,
-      matchedDate: items.matching.createdAtLabel,
+      matchedDate: items.createdAt.toKoreanFormat,
       latestStudyRound: latestStudyRound,
-      totalStudyCount: items.matching.ticketCount,
-      matchingId: items.matching.id,
+      totalTicketCount: items.totalTicketCount,
+      matchingId: items.id,
+      isTrainer: items.member.isRoleTrainer,
     );
   }
 

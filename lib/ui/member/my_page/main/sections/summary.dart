@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:si_hicoach_fe/common/components/divider.dart';
@@ -66,13 +68,18 @@ class SummaryView extends StatelessWidget {
 
   _buildSummary() {
     return Obx(() {
+      final notMatchedTrainer = _vm.isNotMatchedTrainer;
       final trainerNameLabel =
           _vm.trainerName.isEmpty ? "" : '${_vm.trainerName} 코치님';
+
+      if (notMatchedTrainer) {
+        return Container();
+      }
 
       return Container(
         margin: const EdgeInsets.all(defaultPadding),
         child: Column(
-          children: <Widget>[
+          children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
@@ -96,12 +103,16 @@ class SummaryView extends StatelessWidget {
 
   _buildHeader() {
     return Obx(() {
+      final notMatchedTrainer = _vm.isNotMatchedTrainer;
+      final desc = notMatchedTrainer
+          ? "매칭된 코치님이 없어요!"
+          : '완료 수업 ${_vm.totalStudyCount}회 · 총 ${_vm.totalTicketCount}회';
+
       return Padding(
         padding: const EdgeInsets.all(defaultPadding),
         child: TitleWithDescription(
           title: '${_vm.memberName}님',
-          description:
-              '완료 수업 ${_vm.totalStudyCount}회 · 총 ${_vm.totalTicketCount}회',
+          description: desc,
         ),
       );
     });

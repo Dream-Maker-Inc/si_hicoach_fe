@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:si_hicoach_fe/common/components/app_bar.dart';
+import 'package:si_hicoach_fe/common/components/divider.dart';
 import 'package:si_hicoach_fe/common/components/http_error_dialog.dart';
 import 'package:si_hicoach_fe/common/getx/my_getx_state.dart';
 import 'package:si_hicoach_fe/common/theme/color.dart';
@@ -24,15 +25,12 @@ class _MemberNotificationViewState extends _Detail {
       body: ListView(
         scrollDirection: Axis.vertical,
         shrinkWrap: true,
-        children: ListTile.divideTiles(
-          context: context,
-          tiles: List.of(
-            <Widget>[
-              _buildStudyCreatedNotifi(),
-              _buildTicketCountChageNotifi(),
-            ],
-          ),
-        ).toList(),
+        children: List.of(
+          <Widget>[
+            _buildStudyCreatedNotifi(),
+            _buildTicketCountChageNotifi(),
+          ],
+        ),
       ),
     );
   }
@@ -41,19 +39,24 @@ class _MemberNotificationViewState extends _Detail {
     return Obx(() {
       final isAllow = vm.isTicketCountChangeNotifiAllow;
 
-      return ListTile(
-        onTap: () {
-          handleTicketCountChangeNotifiAllow();
-        },
-        title: const Text('수업 횟수 변경 알림'),
-        trailing: Switch(
-          value: isAllow,
-          onChanged: (value) {
-            handleTicketCountChangeNotifiAllow();
-          },
-          activeTrackColor: secondaryColor,
-          activeColor: primaryColor,
-        ),
+      return Column(
+        children: [
+          ListTile(
+            onTap: () {
+              handleTicketCountChangeNotifiAllow();
+            },
+            title: const Text('수업 횟수 변경 알림'),
+            trailing: Switch(
+              value: isAllow,
+              onChanged: (value) {
+                handleTicketCountChangeNotifiAllow();
+              },
+              activeTrackColor: secondaryColor,
+              activeColor: primaryColor,
+            ),
+          ),
+          const CustomDivider()
+        ],
       );
     });
   }
@@ -62,19 +65,24 @@ class _MemberNotificationViewState extends _Detail {
     return Obx(() {
       final isAllow = vm.isStudyCreatedNotifiAllow;
 
-      return ListTile(
-        onTap: () {
-          handleStudyCreateNotifiAllow();
-        },
-        title: const Text('수업 일지 등록 알림'),
-        trailing: Switch(
-          value: isAllow,
-          onChanged: (value) {
-            handleStudyCreateNotifiAllow();
-          },
-          activeTrackColor: secondaryColor,
-          activeColor: primaryColor,
-        ),
+      return Column(
+        children: [
+          ListTile(
+            onTap: () {
+              handleStudyCreateNotifiAllow();
+            },
+            title: const Text('수업 일지 등록 알림'),
+            trailing: Switch(
+              value: isAllow,
+              onChanged: (value) {
+                handleStudyCreateNotifiAllow();
+              },
+              activeTrackColor: secondaryColor,
+              activeColor: primaryColor,
+            ),
+          ),
+          const CustomDivider()
+        ],
       );
     });
   }

@@ -31,7 +31,7 @@ class _DetailViewState extends _Detail {
 
     return Obx(() {
       final memberName = vm.member.name;
-      final isPersonal = vm.isPersonalMatching.value;
+      final isPersonal = vm.isPersonalMatching2;
 
       final actionsWidget = [
         !isPersonal

@@ -9,7 +9,7 @@ class TrainerMemberPageApi {
       int memberId) async {
     return safeApiCall<GetMemberPageResponse>(() async {
       Dio dio = DioHelper().dio;
-      String path = '/api/v2/app/trainer/members/$memberId';
+      String path = '/api/v4/app/trainer/members/$memberId';
 
       final response = await dio.get(path);
 

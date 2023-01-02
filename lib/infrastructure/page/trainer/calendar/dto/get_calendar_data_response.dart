@@ -36,17 +36,31 @@ class Data {
 @JsonSerializable()
 class Items {
   Items({
-    required this.study,
-    required this.matching,
+    required this.id,
     required this.member,
+    required this.study,
   });
-  late final Study study;
-  late final Matching matching;
+  late final int id;
   late final Member member;
+  late final Study study;
 
   factory Items.fromJson(Map<String, dynamic> json) => _$ItemsFromJson(json);
 
   Map<String, dynamic> toJson() => _$ItemsToJson(this);
+}
+
+@JsonSerializable()
+class Member {
+  Member({
+    required this.id,
+    required this.name,
+  });
+  late final int id;
+  late final String name;
+
+  factory Member.fromJson(Map<String, dynamic> json) => _$MemberFromJson(json);
+
+  Map<String, dynamic> toJson() => _$MemberToJson(this);
 }
 
 @JsonSerializable()
@@ -67,31 +81,4 @@ class Study {
   factory Study.fromJson(Map<String, dynamic> json) => _$StudyFromJson(json);
 
   Map<String, dynamic> toJson() => _$StudyToJson(this);
-}
-
-@JsonSerializable()
-class Matching {
-  Matching({
-    required this.id,
-  });
-  late final int id;
-
-  factory Matching.fromJson(Map<String, dynamic> json) =>
-      _$MatchingFromJson(json);
-
-  Map<String, dynamic> toJson() => _$MatchingToJson(this);
-}
-
-@JsonSerializable()
-class Member {
-  Member({
-    required this.id,
-    required this.name,
-  });
-  late final int id;
-  late final String name;
-
-  factory Member.fromJson(Map<String, dynamic> json) => _$MemberFromJson(json);
-
-  Map<String, dynamic> toJson() => _$MemberToJson(this);
 }

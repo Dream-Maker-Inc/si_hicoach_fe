@@ -15,8 +15,8 @@ class ExerciseGoalsUpdateFeature extends _MatchingFetchFeature {
   final RxBool updateMatchingSuccess = RxBool(false);
 
   handleSubmit() async {
-    final goals = checkedChipProps.map((it) => it.label).toList();
-    final dto = UpdateMatchingDto(goals: goals);
+    final goalIds = checkedChipProps.map((it) => it.id).toList();
+    final dto = UpdateMatchingDto(goals: goalIds);
 
     final result = await MatchingApi.update(_matchingId, dto);
 

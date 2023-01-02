@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:si_hicoach_fe/common/constants/constants.dart';
 import 'package:si_hicoach_fe/ui/common/study/detail/detail.dart';
 import 'package:si_hicoach_fe/common/theme/color.dart';
 import 'package:si_hicoach_fe/common/theme/typography.dart';
+import 'package:si_hicoach_fe/ui/trainer/home/main_vm.dart';
 
 class TrainerMainTodoItemModel {
   final int studyId;
@@ -27,19 +29,17 @@ class TrainerMainTodoItemModel {
 class TrainerMainTodoItem extends StatelessWidget {
   final TrainerMainTodoItemModel model;
 
-  const TrainerMainTodoItem({
+  TrainerMainTodoItem({
     Key? key,
     required this.model,
   }) : super(key: key);
 
+  final vm = Get.find<TrainerMainViewModel>();
+
   handleItemPressed(BuildContext context) {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => StudyDetailView(
-          studyId: model.studyId,
-        ),
-      ),
-    );
+    Get.to(StudyDetailView(
+      studyId: model.studyId,
+    ))?.then((_) => vm.refetch());
   }
 
   @override

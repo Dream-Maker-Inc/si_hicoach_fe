@@ -14,7 +14,7 @@ class StudyDetailViewModel extends _StudyDeleteFeature {
   String get startedTimeString =>
       _data?.study.startedAt.toKoreanTimeFormat ?? "";
   String get endedTimeSting => _data?.study.endedAt.toKoreanTimeFormat ?? "";
-  String get memo => _data?.memo ?? "";
+  String get memo => _data?.study.memo ?? "";
 
   List<ExerciseItemModel> get exerciseItemModels =>
       _data?.study.myExercises
@@ -54,6 +54,7 @@ class _StudyFetchFeature extends _MyInfoFetchFeature {
 
   Data? get _data => fetchStudyResponse.value?.data;
   int get matchingId => _data?.id ?? 0;
+  String get memberName => _data?.member.name ?? "";
 
   Future fetchStudy(int studyId) async {
     final result = await StudyApi.findOne(studyId);
@@ -66,11 +67,9 @@ class _StudyFetchFeature extends _MyInfoFetchFeature {
 }
 
 class _MyInfoFetchFeature extends GetxController {
-  RxString userName = RxString("");
   RxInt userId = RxInt(0);
 
   Future fetchMyInfo() async {
-    userName.value = await SharedPrefsManager().getUserName();
     userId.value = await SharedPrefsManager().getUserId();
   }
 }

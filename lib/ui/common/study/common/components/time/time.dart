@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:si_hicoach_fe/common/theme/color.dart';
 import 'package:si_hicoach_fe/common/theme/typography.dart';
+import 'package:si_hicoach_fe/common/utils/number_format.dart';
 import 'package:si_hicoach_fe/ui/common/study/common/components/time/simple_time.dart';
 
 class EditTimeModel {
@@ -50,8 +51,8 @@ class EditTime extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final time = model.time;
-    final studyRound = model.studyRound;
-    final totalStudyCount = model.totalStudyCount;
+    final studyRound = model.studyRound.toKC;
+    final totalStudyCount = model.totalStudyCount.toKC;
 
     return Column(
       children: <Widget>[

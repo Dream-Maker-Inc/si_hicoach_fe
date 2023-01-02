@@ -6,15 +6,16 @@ import 'package:si_hicoach_fe/ui/trainer/members/detail/detail.dart';
 import 'package:si_hicoach_fe/ui/trainer/members/list/member_list_vm.dart';
 
 class MemberListItem extends StatelessWidget {
-  MemberListItem(
-      {Key? key,
-      required this.id,
-      required this.name,
-      required this.regDate,
-      required this.currentStudy,
-      required this.totalTicketCount,
-      required this.matchingId})
-      : super(key: key);
+  MemberListItem({
+    Key? key,
+    required this.id,
+    required this.name,
+    required this.regDate,
+    required this.currentStudy,
+    required this.totalTicketCount,
+    required this.matchingId,
+    this.isTrainer = false,
+  }) : super(key: key);
 
   final int id;
   final String name;
@@ -22,6 +23,7 @@ class MemberListItem extends StatelessWidget {
   final int currentStudy;
   final int totalTicketCount;
   final int matchingId;
+  final bool isTrainer;
 
   final TrainerMemberListViewModel _vm = Get.find<TrainerMemberListViewModel>();
 
@@ -31,9 +33,11 @@ class MemberListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final userType = isTrainer ? "코치님" : "회원님";
+
     return ListTile(
       onTap: () => handleDetailButtonPressed(context),
-      title: Text('$name 회원님'),
+      title: Text('$name $userType'),
       subtitle: Text(
         '등록일자 : $regDate',
         style: bodySmall.copyWith(

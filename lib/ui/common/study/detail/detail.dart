@@ -105,7 +105,7 @@ class _StudyDetailViewState extends _Detail {
 
   _buildMemberInfoSection() {
     return Obx(() {
-      final memberName = vm.userName.value;
+      final memberName = vm.memberName;
       final startedDate = vm.startedDateString;
 
       return Column(children: [

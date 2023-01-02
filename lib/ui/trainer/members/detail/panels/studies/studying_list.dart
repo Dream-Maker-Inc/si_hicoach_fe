@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:si_hicoach_fe/common/components/divider.dart';
 import 'package:si_hicoach_fe/common/components/empty_patch.dart';
 import 'package:si_hicoach_fe/ui/common/study/create/study_create.dart';
 import 'package:si_hicoach_fe/common/theme/color.dart';
@@ -57,14 +58,16 @@ class StudyingListView extends StatelessWidget {
       return ListView(
         scrollDirection: Axis.vertical,
         shrinkWrap: true,
-        children: ListTile.divideTiles(
-          context: context,
-          tiles: models.map(
-            (it) => StudyingListItemView(
-              model: it,
-            ),
-          ),
-        ).toList(),
+        children: models
+            .map(
+              (it) => Column(
+                children: [
+                  StudyingListItemView(model: it),
+                  const CustomDivider()
+                ],
+              ),
+            )
+            .toList(),
       );
     });
   }

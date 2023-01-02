@@ -11,6 +11,7 @@ class MemberMyPageViewModel extends _MyPageDataFetchFeature {
 
   String get companyName => data?.matching?.trainer.companyName ?? "";
   String get trainerName => data?.matching?.trainer.name ?? "";
+  bool get isNotMatchedTrainer => trainerName == "";
 
   int get memberId => data?.member.id ?? 0;
   int get matchingId => data?.matching?.id ?? 0;

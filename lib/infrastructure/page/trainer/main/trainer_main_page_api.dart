@@ -9,7 +9,7 @@ class TrainerMainPageApi {
       String date) async {
     return safeApiCall<GetTrainerMainResponse>(() async {
       Dio dio = DioHelper().dio;
-      String path = '/api/v2/app/trainer/main';
+      String path = '/api/v4/app/trainer/main';
 
       final response = await dio.get(path, queryParameters: {'date': date});
 

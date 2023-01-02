@@ -19,8 +19,7 @@ class GetStudyResponse extends BaseResponse<Data> {
 }
 
 @JsonSerializable()
-
-class Data extends BaseDto{
+class Data extends BaseDto {
   Data({
     required this.id,
     required this.trainerId,
@@ -31,7 +30,9 @@ class Data extends BaseDto{
     required this.lastStudyRound,
     required super.createdAt,
     required super.updatedAt,
-     super.deletedAt,
+    super.deletedAt,
+    required this.member,
+    required this.trainer,
     required this.exerciseGoals,
     required this.nextStudyRound,
     required this.availableTicketsCount,
@@ -46,15 +47,16 @@ class Data extends BaseDto{
   late final int totalTicketCount;
   late final int totalStudyCount;
   late final int lastStudyRound;
+  late final Member member;
+  late final Trainer trainer;
   late final List<ExerciseGoals> exerciseGoals;
   late final int nextStudyRound;
   late final int availableTicketsCount;
   late final bool isExistAvailableTicket;
   late final bool isPersonal;
   late final Study study;
-  
-   factory Data.fromJson(Map<String, dynamic> json) =>
-      _$DataFromJson(json);
+
+  factory Data.fromJson(Map<String, dynamic> json) => _$DataFromJson(json);
 
   Map<String, dynamic> toJson() => _$DataToJson(this);
 }
@@ -64,25 +66,56 @@ class ExerciseGoals extends BaseDto {
   ExerciseGoals({
     required super.createdAt,
     required super.updatedAt,
-     super.deletedAt,
+    super.deletedAt,
     required this.id,
     required this.title,
   });
   late final int id;
   late final String title;
 
-     factory ExerciseGoals.fromJson(Map<String, dynamic> json) =>
+  factory ExerciseGoals.fromJson(Map<String, dynamic> json) =>
       _$ExerciseGoalsFromJson(json);
 
   Map<String, dynamic> toJson() => _$ExerciseGoalsToJson(this);
 }
 
 @JsonSerializable()
-class Study extends BaseDto{
+class Member {
+  Member({
+    required this.id,
+    required this.name,
+  });
+  late final int id;
+  late final String name;
+
+  factory Member.fromJson(Map<String, dynamic> json) => _$MemberFromJson(json);
+
+  Map<String, dynamic> toJson() => _$MemberToJson(this);
+}
+
+@JsonSerializable()
+class Trainer {
+  Trainer({
+    required this.id,
+    required this.name,
+    required this.companyName,
+  });
+  late final int id;
+  late final String name;
+  late final String companyName;
+
+  factory Trainer.fromJson(Map<String, dynamic> json) =>
+      _$TrainerFromJson(json);
+
+  Map<String, dynamic> toJson() => _$TrainerToJson(this);
+}
+
+@JsonSerializable()
+class Study extends BaseDto {
   Study({
     required super.createdAt,
     required super.updatedAt,
-     super.deletedAt,
+    super.deletedAt,
     required this.id,
     required this.matchingId,
     required this.startedAt,
@@ -100,9 +133,8 @@ class Study extends BaseDto{
   late final bool isDummy;
   late final List<MyExercises> myExercises;
   late final int round;
-  
-    factory Study.fromJson(Map<String, dynamic> json) =>
-      _$StudyFromJson(json);
+
+  factory Study.fromJson(Map<String, dynamic> json) => _$StudyFromJson(json);
 
   Map<String, dynamic> toJson() => _$StudyToJson(this);
 }
@@ -125,8 +157,8 @@ class MyExercises {
   late final String title;
   late final String part;
   late final String type;
-  
-    factory MyExercises.fromJson(Map<String, dynamic> json) =>
+
+  factory MyExercises.fromJson(Map<String, dynamic> json) =>
       _$MyExercisesFromJson(json);
 
   Map<String, dynamic> toJson() => _$MyExercisesToJson(this);

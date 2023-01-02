@@ -33,6 +33,8 @@ Data _$DataFromJson(Map<String, dynamic> json) => Data(
       createdAt: json['createdAt'] as String,
       updatedAt: json['updatedAt'] as String,
       deletedAt: json['deletedAt'] as String?,
+      member: Member.fromJson(json['member'] as Map<String, dynamic>),
+      trainer: Trainer.fromJson(json['trainer'] as Map<String, dynamic>),
       exerciseGoals: (json['exerciseGoals'] as List<dynamic>)
           .map((e) => ExerciseGoals.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -54,6 +56,8 @@ Map<String, dynamic> _$DataToJson(Data instance) => <String, dynamic>{
       'totalTicketCount': instance.totalTicketCount,
       'totalStudyCount': instance.totalStudyCount,
       'lastStudyRound': instance.lastStudyRound,
+      'member': instance.member,
+      'trainer': instance.trainer,
       'exerciseGoals': instance.exerciseGoals,
       'nextStudyRound': instance.nextStudyRound,
       'availableTicketsCount': instance.availableTicketsCount,
@@ -78,6 +82,28 @@ Map<String, dynamic> _$ExerciseGoalsToJson(ExerciseGoals instance) =>
       'deletedAt': instance.deletedAt,
       'id': instance.id,
       'title': instance.title,
+    };
+
+Member _$MemberFromJson(Map<String, dynamic> json) => Member(
+      id: json['id'] as int,
+      name: json['name'] as String,
+    );
+
+Map<String, dynamic> _$MemberToJson(Member instance) => <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+    };
+
+Trainer _$TrainerFromJson(Map<String, dynamic> json) => Trainer(
+      id: json['id'] as int,
+      name: json['name'] as String,
+      companyName: json['companyName'] as String,
+    );
+
+Map<String, dynamic> _$TrainerToJson(Trainer instance) => <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      'companyName': instance.companyName,
     };
 
 Study _$StudyFromJson(Map<String, dynamic> json) => Study(

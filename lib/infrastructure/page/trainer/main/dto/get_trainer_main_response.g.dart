@@ -27,17 +27,25 @@ Map<String, dynamic> _$GetTrainerMainResponseToJson(
     };
 
 Data _$DataFromJson(Map<String, dynamic> json) => Data(
-      member: Member.fromJson(json['member'] as Map<String, dynamic>),
-      matching: Matching.fromJson(json['matching'] as Map<String, dynamic>),
-      study: Study.fromJson(json['study'] as Map<String, dynamic>),
+      id: json['id'] as int,
+      totalTicketCount: json['totalTicketCount'] as int,
       totalStudyCount: json['totalStudyCount'] as int,
+      nextStudyRound: json['nextStudyRound'] as int,
+      isPersonal: json['isPersonal'] as bool,
+      availableTicketsCount: json['availableTicketsCount'] as int,
+      member: Member.fromJson(json['member'] as Map<String, dynamic>),
+      study: Study.fromJson(json['study'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$DataToJson(Data instance) => <String, dynamic>{
-      'member': instance.member,
-      'matching': instance.matching,
-      'study': instance.study,
+      'id': instance.id,
+      'totalTicketCount': instance.totalTicketCount,
       'totalStudyCount': instance.totalStudyCount,
+      'nextStudyRound': instance.nextStudyRound,
+      'isPersonal': instance.isPersonal,
+      'availableTicketsCount': instance.availableTicketsCount,
+      'member': instance.member,
+      'study': instance.study,
     };
 
 Member _$MemberFromJson(Map<String, dynamic> json) => Member(
@@ -48,20 +56,6 @@ Member _$MemberFromJson(Map<String, dynamic> json) => Member(
 Map<String, dynamic> _$MemberToJson(Member instance) => <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
-    };
-
-Matching _$MatchingFromJson(Map<String, dynamic> json) => Matching(
-      id: json['id'] as int,
-      createdAt: DateTime.parse(json['createdAt'] as String),
-      ticketCount: json['ticketCount'] as int,
-      isPersonal: json['isPersonal'] as bool,
-    );
-
-Map<String, dynamic> _$MatchingToJson(Matching instance) => <String, dynamic>{
-      'id': instance.id,
-      'createdAt': instance.createdAt.toIso8601String(),
-      'ticketCount': instance.ticketCount,
-      'isPersonal': instance.isPersonal,
     };
 
 Study _$StudyFromJson(Map<String, dynamic> json) => Study(

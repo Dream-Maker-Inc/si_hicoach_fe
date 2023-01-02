@@ -12,14 +12,21 @@ class MemberAccountDetailViewModel extends _MyInfoFetchFeature {
   String get trainerName => trainer?.name ?? "";
   String get trainerCompanyName => trainer?.trainerInfo.companyName ?? "";
 
-  List<Tuple2<String, String>> get columns => [
-        Tuple2("이름", name),
-        Tuple2("담당 트레이너", trainerName),
-        Tuple2("아이디 (이메일)", email),
-        Tuple2("생년월일", birthDay),
-        Tuple2("소속", trainerCompanyName),
-        Tuple2("전화번호", phone)
-      ];
+  List<Tuple2<String, String>> get columns {
+    final list = [
+      Tuple2("이름", name),
+      Tuple2("아이디 (이메일)", email),
+      Tuple2("생년월일", birthDay),
+      Tuple2("전화번호", phone),
+    ];
+
+    if (trainerName.isNotEmpty) {
+      list.add(Tuple2("담당 트레이너", trainerName));
+      list.add(Tuple2("소속", trainerCompanyName));
+    }
+
+    return list;
+  }
 }
 
 // 내 정보 불러오기

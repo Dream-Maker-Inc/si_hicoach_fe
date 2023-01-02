@@ -25,8 +25,8 @@ class TrainerMainViewModel extends _MainPageDataFetchFeature {
           name: data.member.name,
           isCompleted: isFinished(data.study.endedAt),
           studyCount: data.totalStudyCount,
-          totalTicketCount: data.matching.ticketCount,
-          isPersonal: data.matching.isPersonal,
+          totalTicketCount: data.totalTicketCount,
+          isPersonal: data.isPersonal,
         ),
       )
       .sorted((a, b) => a.time - b.time)
@@ -39,6 +39,10 @@ class TrainerMainViewModel extends _MainPageDataFetchFeature {
     ever(targetDate, (_) {
       fetchData(targetDateString);
     });
+  }
+
+  refetch() {
+    fetchData(targetDateString);
   }
 }
 

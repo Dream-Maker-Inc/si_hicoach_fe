@@ -96,7 +96,7 @@ class OldStudyFetchFeature extends StudyFormViewModel {
       ticketCount: matching.totalTicketCount,
       startedAt: study.startedAt,
       exerciseItemModels: exerciseItemModels,
-      memo: matching.memo,
+      memo: study.memo,
     );
 
     super.initialStudyFormModel(fm);

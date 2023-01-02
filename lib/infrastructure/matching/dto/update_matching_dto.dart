@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 
 class UpdateMatchingDto {
-  List<String>? goals;
+  List<int>? goals;
   String? memo;
   int? ticketCount;
 

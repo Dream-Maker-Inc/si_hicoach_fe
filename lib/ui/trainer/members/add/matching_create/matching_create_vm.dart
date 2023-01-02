@@ -14,11 +14,11 @@ class MatchingCreateFeature extends ExerciseGoalCheckFeature {
   Rx<bool> createMatchingSuccess = Rx(false);
 
   createMatching(int memberId) async {
-    final selectedGoals = checkedChipProps.map((it) => it.label).toList();
+    final selectedGoalIds = checkedChipProps.map((it) => it.id).toList();
 
     final dto = CreateMatchingDto(
       memberId: memberId,
-      goals: selectedGoals,
+      goals: selectedGoalIds,
       memo: memo.value,
       totalTicketCount: totalTicketCount.value,
       finishedTicketCount: finishedTicketCount.value,

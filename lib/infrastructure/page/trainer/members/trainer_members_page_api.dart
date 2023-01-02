@@ -9,10 +9,10 @@ class TrainerMembersPageApi {
       {bool isFinished = false}) async {
     return safeApiCall<GetMembersPageResponse>(() async {
       Dio dio = DioHelper().dio;
-      String path = '/api/v2/app/trainer/members';
+      String path = '/api/v4/app/trainer/members';
 
-      final response =
-          await dio.get(path, queryParameters: {'isFinished': isFinished});
+      final response = await dio
+          .get(path, queryParameters: {'isNotLeftTickets': isFinished});
 
       return Success(GetMembersPageResponse.fromJson(response.data));
     });

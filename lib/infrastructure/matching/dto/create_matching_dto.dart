@@ -1,6 +1,6 @@
 class CreateMatchingDto {
   int memberId;
-  List<String> goals;
+  List<int> goals;
   String memo;
   int totalTicketCount;
   int finishedTicketCount;

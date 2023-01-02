@@ -1,11 +1,13 @@
+// ignore_for_file: library_prefixes
+
 import 'package:get/get.dart';
-import 'package:si_hicoach_fe/common/shared_preferences/shared_prefs.dart';
 import 'package:si_hicoach_fe/common/utils/date_format.dart';
 import 'package:si_hicoach_fe/ui/trainer/members/detail/models/exercise_goal_model.dart';
 import 'package:si_hicoach_fe/ui/trainer/members/detail/models/latest_study_model.dart';
 import 'package:si_hicoach_fe/ui/trainer/members/detail/models/member_model.dart';
 import 'package:si_hicoach_fe/infrastructure/matching/matching_api.dart';
-import 'package:si_hicoach_fe/infrastructure/page/trainer/member/dto/get_member_page_response.dart';
+import 'package:si_hicoach_fe/infrastructure/page/trainer/member/dto/get_member_page_response.dart'
+    as MemberPage;
 import 'package:si_hicoach_fe/infrastructure/page/trainer/member/trainer_member_page_api.dart';
 import 'package:si_hicoach_fe/infrastructure/study/dto/get_member_studies_response.dart';
 import 'package:si_hicoach_fe/infrastructure/study/study_api.dart';
@@ -33,23 +35,30 @@ class MemberDetailViewModel extends MatchingRemoveFeature {
 
   // 가장 최근 스터디 모델
   LatestStudyModel get latestStudy {
-    final startedAt = (_latestStudy != null)
-        ? DateTime.parse(_latestStudy!.startedAt).toKoreanFormat
-        : "";
+    final study = _latestStudy;
+
+    if (study == null) {
+      return LatestStudyModel(
+        id: 0,
+        round: 0,
+        startedAt: "",
+        finishedStudyCount: 0,
+        totalStudyCount: 0,
+      );
+    }
 
     return LatestStudyModel(
-      id: _latestStudy?.id ?? 0,
-      round: _latestStudy?.round ?? 0,
-      startedAt: startedAt,
-      finishedStudyCount:
-          _fetchMemberPageResponse.value?.data.totalStudyCount ?? 0,
-      totalStudyCount: _matching?.ticketCount ?? 0,
+      id: study.id,
+      round: study.round,
+      startedAt: study.startedAt.toKoreanFormat,
+      finishedStudyCount: _matching?.totalStudyCount ?? 0,
+      totalStudyCount: _matching?.totalStudyCount ?? 0,
     );
   }
 
   // 남은 사용 가능 티켓 개수
   int get remainingTicketCount {
-    final totalTicketCount = _matching?.ticketCount;
+    final totalTicketCount = _matching?.totalTicketCount;
 
     if (totalTicketCount == null) return 0;
 
@@ -58,7 +67,7 @@ class MemberDetailViewModel extends MatchingRemoveFeature {
 
   // 운동 목표 모델 리스트
   List<ExerciseGoalModel> get exerciseGoals =>
-      _matching?.goals
+      _matching?.exerciseGoals
           .map((it) => ExerciseGoalModel(id: it.id, title: it.title))
           .toList() ??
       [];
@@ -117,33 +126,25 @@ class MemberStudiesFetchFeature extends MemberInfoFetchFeature {
 class MemberInfoFetchFeature extends GetxController {
   Rx<Exception?> apiError = Rx(null);
 
-  final Rxn<GetMemberPageResponse> _fetchMemberPageResponse = Rxn();
+  final Rxn<MemberPage.GetMemberPageResponse> _fetchMemberPageResponse = Rxn();
 
-  // 개인 일정 여부
-  RxBool isPersonalMatching = RxBool(false);
+  MemberPage.Member? get _member => _fetchMemberPageResponse.value?.data.member;
 
-  _setIsPersonalMatching() async {
-    final userId = await SharedPrefsManager().getUserId();
-    isPersonalMatching.value = (_memberId == userId);
-  }
-
-  // 총 스터디 개수
-  int get _totalStudyCount =>
-      _fetchMemberPageResponse.value?.data.totalStudyCount ?? 0;
-
-  Member? get _member => _fetchMemberPageResponse.value?.data.member;
-  int get _memberId => _member?.id ?? 0;
-
-  Matching? get _matching => _fetchMemberPageResponse.value?.data.matching;
+  MemberPage.Data? get _matching => _fetchMemberPageResponse.value?.data;
   int get matchingId => _matching?.id ?? 0;
 
   // 가장 최근 스터디
-  LatestStudy? get _latestStudy =>
+  MemberPage.LatestStudy? get _latestStudy =>
       _fetchMemberPageResponse.value?.data.latestStudy;
 
+  // 총 스터디 개수
+  int get _totalStudyCount => _matching?.totalStudyCount ?? 0;
+
   // 다음 스터디 회차
-  int get nextStudyRound =>
-      _fetchMemberPageResponse.value?.data.nextStudyRound ?? 1;
+  int get nextStudyRound => _matching?.nextStudyRound ?? 1;
+
+  // 개인 일정 여부
+  bool get isPersonalMatching2 => _matching?.isPersonal ?? true;
 
   Future fetchMemberInfo(int memberId) async {
     final result = await TrainerMemberPageApi.getData(memberId);
@@ -152,12 +153,5 @@ class MemberInfoFetchFeature extends GetxController {
       (e) => (apiError.value = e),
       (res) => (_fetchMemberPageResponse.value = res),
     );
-  }
-
-  @override
-  void onInit() {
-    super.onInit();
-
-    ever(_fetchMemberPageResponse, (res) => _setIsPersonalMatching());
   }
 }

@@ -25,15 +25,23 @@ class GetTrainerMainResponse {
 @JsonSerializable()
 class Data {
   Data({
-    required this.member,
-    required this.matching,
-    required this.study,
+    required this.id,
+    required this.totalTicketCount,
     required this.totalStudyCount,
+    required this.nextStudyRound,
+    required this.isPersonal,
+    required this.availableTicketsCount,
+    required this.member,
+    required this.study,
   });
-  late final Member member;
-  late final Matching matching;
-  late final Study study;
+  late final int id;
+  late final int totalTicketCount;
   late final int totalStudyCount;
+  late final int nextStudyRound;
+  late final bool isPersonal;
+  late final int availableTicketsCount;
+  late final Member member;
+  late final Study study;
 
   factory Data.fromJson(Map<String, dynamic> json) => _$DataFromJson(json);
 
@@ -52,25 +60,6 @@ class Member {
   factory Member.fromJson(Map<String, dynamic> json) => _$MemberFromJson(json);
 
   Map<String, dynamic> toJson() => _$MemberToJson(this);
-}
-
-@JsonSerializable()
-class Matching {
-  Matching({
-    required this.id,
-    required this.createdAt,
-    required this.ticketCount,
-    required this.isPersonal,
-  });
-  late final int id;
-  late final DateTime createdAt;
-  late final int ticketCount;
-  late final bool isPersonal;
-
-  factory Matching.fromJson(Map<String, dynamic> json) =>
-      _$MatchingFromJson(json);
-
-  Map<String, dynamic> toJson() => _$MatchingToJson(this);
 }
 
 @JsonSerializable()

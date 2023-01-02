@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:si_hicoach_fe/common/components/divider.dart';
 import 'package:si_hicoach_fe/common/getx/my_getx_state.dart';
 import 'package:si_hicoach_fe/common/theme/typography.dart';
+import 'package:si_hicoach_fe/common/utils/date_format.dart';
 import 'package:si_hicoach_fe/common/utils/number_format.dart';
 import 'package:si_hicoach_fe/ui/common/study/create/study_create.dart';
 import 'package:si_hicoach_fe/ui/trainer/members/list-popup/components/list_item.dart';
@@ -92,9 +93,9 @@ class TrainerMemberListPopupState extends _Detail {
               MemberListPopupItem(
                 id: item.member.id,
                 name: item.member.name,
-                regDate: item.matching.createdAtLabel,
-                currentStudy: item.latestStudy?.round ?? 1,
-                totalTicketCount: item.matching.ticketCount,
+                regDate: item.createdAt.toKoreanFormat,
+                currentStudy: item.nextStudyRound - 1,
+                totalTicketCount: item.totalTicketCount,
                 onClick: handleItemClick,
               ),
               const CustomDivider()
@@ -116,9 +117,9 @@ class _Detail extends MyGetXState<TrainerMemberListPopup,
     final item = vm.findItemByMemberId(memberId);
     if (item == null) return;
 
-    final matchingId = item.matching.id;
-    final nextStudyRound = (item.latestStudy?.round ?? 0) + 1;
-    final totalTicketCount = item.matching.ticketCount;
+    final matchingId = item.id;
+    final nextStudyRound = item.nextStudyRound;
+    final totalTicketCount = item.totalTicketCount;
 
     Get.to(
       StudyCreateView(

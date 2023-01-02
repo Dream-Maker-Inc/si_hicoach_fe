@@ -37,52 +37,35 @@ Map<String, dynamic> _$DataToJson(Data instance) => <String, dynamic>{
     };
 
 Items _$ItemsFromJson(Map<String, dynamic> json) => Items(
-      member: Member.fromJson(json['member'] as Map<String, dynamic>),
-      matching: Matching.fromJson(json['matching'] as Map<String, dynamic>),
+      id: json['id'] as int,
+      totalTicketCount: json['totalTicketCount'] as int,
       totalStudyCount: json['totalStudyCount'] as int,
-      latestStudy: json['latestStudy'] == null
-          ? null
-          : LatestStudy.fromJson(json['latestStudy'] as Map<String, dynamic>),
+      nextStudyRound: json['nextStudyRound'] as int,
+      isPersonal: json['isPersonal'] as bool,
+      availableTicketsCount: json['availableTicketsCount'] as int,
+      createdAt: DateTime.parse(json['createdAt'] as String),
+      member: Member.fromJson(json['member'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$ItemsToJson(Items instance) => <String, dynamic>{
-      'member': instance.member,
-      'matching': instance.matching,
-      'latestStudy': instance.latestStudy,
+      'id': instance.id,
+      'totalTicketCount': instance.totalTicketCount,
       'totalStudyCount': instance.totalStudyCount,
+      'nextStudyRound': instance.nextStudyRound,
+      'isPersonal': instance.isPersonal,
+      'availableTicketsCount': instance.availableTicketsCount,
+      'createdAt': instance.createdAt.toIso8601String(),
+      'member': instance.member,
     };
 
 Member _$MemberFromJson(Map<String, dynamic> json) => Member(
       id: json['id'] as int,
       name: json['name'] as String,
+      isRoleTrainer: json['isRoleTrainer'] as bool,
     );
 
 Map<String, dynamic> _$MemberToJson(Member instance) => <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
-    };
-
-Matching _$MatchingFromJson(Map<String, dynamic> json) => Matching(
-      id: json['id'] as int,
-      createdAt: DateTime.parse(json['createdAt'] as String),
-      ticketCount: json['ticketCount'] as int,
-    );
-
-Map<String, dynamic> _$MatchingToJson(Matching instance) => <String, dynamic>{
-      'id': instance.id,
-      'createdAt': instance.createdAt.toIso8601String(),
-      'ticketCount': instance.ticketCount,
-    };
-
-LatestStudy _$LatestStudyFromJson(Map<String, dynamic> json) => LatestStudy(
-      id: json['id'] as int,
-      round: json['round'] as int,
-      isFinished: json['isFinished'] as bool,
-    );
-
-Map<String, dynamic> _$LatestStudyToJson(LatestStudy instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'round': instance.round,
-      'isFinished': instance.isFinished,
+      'isRoleTrainer': instance.isRoleTrainer,
     };

@@ -6,6 +6,7 @@ import 'package:kakao_flutter_sdk_share/kakao_flutter_sdk_share.dart';
 import 'package:logger/logger.dart';
 import 'package:si_hicoach_fe/common/components/app_bar.dart';
 import 'package:si_hicoach_fe/common/components/dialog.dart';
+import 'package:si_hicoach_fe/common/components/divider.dart';
 
 class InviteView extends StatelessWidget {
   InviteView({Key? key}) : super(key: key);
@@ -93,23 +94,30 @@ class InviteView extends StatelessWidget {
       body: ListView(
         scrollDirection: Axis.vertical,
         shrinkWrap: true,
-        children: ListTile.divideTiles(
-          context: context,
-          tiles: List.of(
-            <Widget>[
-              ListTile(
-                onTap: () => _handleShareWithKakao(context),
-                title: const Text('카카오톡 초대하기'),
-                trailing: const Icon(Icons.keyboard_arrow_right_rounded),
-              ),
-              ListTile(
-                onTap: () => _handleSendMMSPressed(context),
-                title: const Text('메시지로 초대하기'),
-                trailing: const Icon(Icons.keyboard_arrow_right_rounded),
-              ),
-            ],
-          ),
-        ).toList(),
+        children: List.of(
+          <Widget>[
+            Column(
+              children: [
+                ListTile(
+                  onTap: () => _handleShareWithKakao(context),
+                  title: const Text('카카오톡 초대하기'),
+                  trailing: const Icon(Icons.keyboard_arrow_right_rounded),
+                ),
+                const CustomDivider()
+              ],
+            ),
+            Column(
+              children: [
+                ListTile(
+                  onTap: () => _handleSendMMSPressed(context),
+                  title: const Text('메시지로 초대하기'),
+                  trailing: const Icon(Icons.keyboard_arrow_right_rounded),
+                ),
+                const CustomDivider()
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
