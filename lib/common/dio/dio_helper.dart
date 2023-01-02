@@ -2,8 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:si_hicoach_fe/common/shared_preferences/key.dart';
 
-String url = 'http://192.168.45.231:3000';
-// String url = 'http://hicoch-alb-1137226405.ap-northeast-2.elb.amazonaws.com';
+// String url = 'http://192.168.45.231:3000';
+String url = 'http://hicoch-alb-1137226405.ap-northeast-2.elb.amazonaws.com';
 
 BaseOptions _options = BaseOptions(baseUrl: url);
 Interceptor _interceptor =
