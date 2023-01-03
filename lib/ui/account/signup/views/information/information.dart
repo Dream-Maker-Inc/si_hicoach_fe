@@ -50,7 +50,7 @@ class _SignUpInformationViewState extends _Detail {
                         const TitleWithDescription(
                           title: '비밀번호',
                           description:
-                              '영문 대·소문자와 특수문자가 포함된 8자 이상의 비밀번호를 설정해 주세요.\n\n*사용 가능한 특수문자 : !@#\$%^&*',
+                              '영문 대·소문자와 특수문자, 숫자가 포함된 8자 이상의 비밀번호를 설정해 주세요.\n\n*사용 가능한 특수문자 : !@#\$%^&*',
                         ),
                         _buildPwTextField(),
                         const SizedBox(height: defaultPadding),
