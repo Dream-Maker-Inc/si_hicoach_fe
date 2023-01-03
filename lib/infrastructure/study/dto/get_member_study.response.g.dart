@@ -97,7 +97,7 @@ Map<String, dynamic> _$MemberToJson(Member instance) => <String, dynamic>{
 Trainer _$TrainerFromJson(Map<String, dynamic> json) => Trainer(
       id: json['id'] as int,
       name: json['name'] as String,
-      companyName: json['companyName'] as String,
+      companyName: json['companyName'] as String?,
     );
 
 Map<String, dynamic> _$TrainerToJson(Trainer instance) => <String, dynamic>{

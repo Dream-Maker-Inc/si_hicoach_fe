@@ -98,11 +98,11 @@ class Trainer {
   Trainer({
     required this.id,
     required this.name,
-    required this.companyName,
+    this.companyName,
   });
   late final int id;
   late final String name;
-  late final String companyName;
+  late final String? companyName;
 
   factory Trainer.fromJson(Map<String, dynamic> json) =>
       _$TrainerFromJson(json);

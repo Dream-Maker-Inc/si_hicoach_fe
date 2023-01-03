@@ -25,9 +25,9 @@ class MatchingApi {
       Dio dio = DioHelper().dio;
       String path = '/api/v4/matching/$matchingId';
 
-      final response = await dio.get(path);
+      final res = await dio.get(path);
 
-      return Success(GetMatchingResponse.fromJson(response.data));
+      return Success(GetMatchingResponse.fromJson(res.data));
     });
   }
 
