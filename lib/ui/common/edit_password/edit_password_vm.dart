@@ -39,7 +39,7 @@ class PasswordEditFeature extends UserIdFetchFeature {
   bool get isValidNewPw => passwordRegex.hasMatch(newPassword.value);
 
   String? get newPwValidationMsg => (newPassword.isNotEmpty && !isValidNewPw)
-      ? "영문, 특수문자를 포함하여 8자 이상의 비밀번호를 설정해 주세요."
+      ? "영문, 특수문자( !@#\$%^&* )를 포함하여 8자 이상의 비밀번호를 설정해 주세요."
       : null;
 
   // 비밀번호 재확인 일치 여부

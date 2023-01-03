@@ -91,7 +91,7 @@ class _PasswordResetViewState extends State<PasswordResetView> {
                           const TitleWithDescription(
                             title: '비밀번호',
                             description:
-                                '영문 대문자와 특수문자가 포함된 8자 이상의 비밀번호를 설정해 주세요.',
+                                '영문 대·소문자와 특수문자가 포함된 8자 이상의 비밀번호를 설정해 주세요.\n\n*사용 가능한 특수문자 : !@#\$%^&*',
                           ),
                           _buildPwField(),
                           const SizedBox(height: widePadding),
