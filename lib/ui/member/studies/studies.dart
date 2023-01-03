@@ -45,12 +45,13 @@ class _MemberStudiesViewState extends _Detail {
         itemCount: items.length,
         itemBuilder: (context, index) {
           final item = items[index];
+          final itemTypeLabel = item.isPersonal ? "개인일정" : "수업";
 
           return Column(children: [
             ListTile(
               title: Padding(
                   padding: const EdgeInsets.only(top: 8),
-                  child: Text('${item.round}회차 수업')),
+                  child: Text('${item.round}회차 $itemTypeLabel')),
               subtitle: Padding(
                 padding: const EdgeInsets.only(top: 8),
                 child: Column(
