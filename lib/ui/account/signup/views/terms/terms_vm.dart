@@ -74,6 +74,11 @@ class BaseTermsViewModel extends TermsFetchFeature {
 
     checkedTermIds.value = [...termIds];
   }
+
+  // 이용약관 가져오기
+  TermModel? getTermById(int termId) {
+    return terms.firstWhereOrNull((it) => it.id == termId);
+  }
 }
 
 class TermsFetchFeature extends GetxController {

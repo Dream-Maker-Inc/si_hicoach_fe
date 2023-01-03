@@ -26,7 +26,7 @@ class CheckAllItem extends StatelessWidget {
       title: Text(
         '모든 약관에 동의합니다.',
         style: TextStyle(
-          color: isChecked ? primaryColor : Colors.grey,
+          color: isChecked ? primaryColor : Colors.grey.shade500,
           fontSize: 16,
         ),
       ),

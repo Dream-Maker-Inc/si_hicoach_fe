@@ -10,6 +10,7 @@ import 'package:si_hicoach_fe/ui/account/signup/views/terms/list_item/check_all_
 import 'package:si_hicoach_fe/ui/account/signup/views/terms/list_item/list_item.dart';
 import 'package:si_hicoach_fe/ui/account/signup/views/verify/verify.dart';
 import 'package:get/get.dart';
+import 'package:si_hicoach_fe/ui/common/terms/detail/detail.dart';
 
 class SignUpTermsView extends StatefulWidget {
   const SignUpTermsView({Key? key}) : super(key: key);
@@ -110,11 +111,13 @@ class _SignUpTermsViewState extends _Detail {
       final termsModels = terms.map(
         (it) => TermListItem(
           model: TermListItemModel(
-              id: it.id,
-              title: it.labeledTitle,
-              isChecked: vm.getTermChecked(it.id)),
+            id: it.id,
+            title: it.labeledTitle,
+            isChecked: vm.getTermChecked(it.id),
+          ),
           onClick: _handleItemClick,
           onChecked: _handleItemCheck,
+          onIconClick: _handleItemIconClick,
         ),
       );
 
@@ -141,6 +144,18 @@ class _Detail extends MyGetXState<SignUpTermsView, TermsViewModel> {
 
   _handleItemCheck(int id) {
     vm.toggleTermChecked(id);
+  }
+
+  _handleItemIconClick(int id) {
+    final termModel = vm.getTermById(id);
+    if (termModel == null) return;
+
+    Get.to(
+      TermsDetailView(
+        title: termModel.title,
+        content: termModel.content,
+      ),
+    );
   }
 
   _handleSubmitButtonPressed() {
