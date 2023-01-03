@@ -44,6 +44,34 @@ class TrainerMainViewModel extends _MainPageDataFetchFeature {
   refetch() {
     fetchData(targetDateString);
   }
+
+  // 선택일 기준 [이전 3일, 선택 날짜, 다음 3일] 가져오기
+  List<DateTime> getMainDates() {
+    final dateTime = targetDate.value;
+    const datePadding = 3;
+
+    final pastDates = List.generate(
+      datePadding,
+      (index) => DateTime(
+        dateTime.year,
+        dateTime.month,
+        dateTime.day - (index + 1),
+      ),
+    ).reversed;
+
+    final nextDates = List.generate(
+      datePadding,
+      (index) => DateTime(
+        dateTime.year,
+        dateTime.month,
+        dateTime.day + (index + 1),
+      ),
+    );
+
+    final dates = [...pastDates, dateTime, ...nextDates];
+
+    return dates;
+  }
 }
 
 // 메인 페이지 데이터 불러오기 서비스

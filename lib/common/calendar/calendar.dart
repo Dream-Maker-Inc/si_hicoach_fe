@@ -8,7 +8,10 @@ import 'package:tuple/tuple.dart';
 // =================================================================
 
 const _SEVEN_DAYS = 7;
+
+const _MON_DAY = 1;
 const _THURS_DAY = 4;
+const _SUN_DAY = 7;
 
 // =================================================================
 extension DateTimeExtension on DateTime {
@@ -261,6 +264,38 @@ extension DateTimeExtension on DateTime {
       month: month,
       week: row - 1,
     );
+  }
+
+  // weekday 한국어 표기 가져오기
+  String get weekdayLabel {
+    final weekday = this.weekday;
+
+    if (weekday < _MON_DAY) return "";
+    if (weekday > _SUN_DAY) return "";
+
+    switch (weekday) {
+      case 1:
+        return "월";
+      case 2:
+        return "화";
+      case 3:
+        return "수";
+      case 4:
+        return "목";
+      case 5:
+        return "금";
+      case 6:
+        return "토";
+      case 7:
+        return "일";
+    }
+
+    return "";
+  }
+
+  // yyyy-MM-DD가 같은지
+  bool isEqualDate(DateTime date) {
+    return dateOnly == date.dateOnly;
   }
 }
 

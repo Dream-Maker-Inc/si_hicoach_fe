@@ -82,23 +82,6 @@ class Utils {
     return lastDayOfThisMonth;
   }
 
-  static List<String> getThisWeekDays() {
-    List<String> list = [];
-    DateFormat formatter = DateFormat('yyyy-MM-dd');
-
-    for (int i = -3; i <= 3; i++) {
-      String formattedDate = formatter.format(
-        DateTime(
-          dateTime.year,
-          dateTime.month,
-          dateTime.day + i,
-        ),
-      );
-      list.add(formattedDate);
-    }
-    return list;
-  }
-
   static String getDayTextFromDayNumber(int dayNumber) {
     DateTime day = DateTime(dateTime.year, dateTime.month, dayNumber);
     String engResult = DateFormat('E').format(day);

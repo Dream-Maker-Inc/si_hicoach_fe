@@ -84,7 +84,7 @@ class _Detail extends MyGetXState<StudyCreateView, StudyCreateViewModel> {
       if (e == null) return;
 
       if (e is ExistStudyException) {
-        Get.snackbar('등록 실패', "이미 해당 시간에 등록된 스터디가 있어요",
+        Get.snackbar('등록 실패', "이미 해당 시간에 등록된 일정이 있어요",
             snackPosition: SnackPosition.BOTTOM);
         return;
       }
