@@ -1,9 +1,7 @@
 // ignore_for_file: library_prefixes
 
 import 'package:get/get.dart';
-import 'package:si_hicoach_fe/common/utils/date_format.dart';
 import 'package:si_hicoach_fe/ui/trainer/members/detail/models/exercise_goal_model.dart';
-import 'package:si_hicoach_fe/ui/trainer/members/detail/models/latest_study_model.dart';
 import 'package:si_hicoach_fe/ui/trainer/members/detail/models/member_model.dart';
 import 'package:si_hicoach_fe/infrastructure/matching/matching_api.dart';
 import 'package:si_hicoach_fe/infrastructure/page/trainer/member/dto/get_member_page_response.dart'
@@ -33,36 +31,13 @@ class MemberDetailViewModel extends MatchingRemoveFeature {
     );
   }
 
-  // 가장 최근 스터디 모델
-  LatestStudyModel get latestStudy {
-    final study = _latestStudy;
-
-    if (study == null) {
-      return LatestStudyModel(
-        id: 0,
-        round: 0,
-        startedAt: "",
-        finishedStudyCount: 0,
-        totalStudyCount: 0,
-      );
-    }
-
-    return LatestStudyModel(
-      id: study.id,
-      round: study.round,
-      startedAt: study.startedAt.toKoreanFormat,
-      finishedStudyCount: _matching?.totalStudyCount ?? 0,
-      totalStudyCount: _matching?.totalStudyCount ?? 0,
-    );
-  }
-
   // 남은 사용 가능 티켓 개수
   int get remainingTicketCount {
     final totalTicketCount = _matching?.totalTicketCount;
 
     if (totalTicketCount == null) return 0;
 
-    return totalTicketCount - _totalStudyCount;
+    return totalTicketCount - totalStudyCount;
   }
 
   // 운동 목표 모델 리스트
@@ -133,18 +108,20 @@ class MemberInfoFetchFeature extends GetxController {
   MemberPage.Data? get _matching => _fetchMemberPageResponse.value?.data;
   int get matchingId => _matching?.id ?? 0;
 
-  // 가장 최근 스터디
-  MemberPage.LatestStudy? get _latestStudy =>
-      _fetchMemberPageResponse.value?.data.latestStudy;
+  // 매칭 등록 일자
+  DateTime get matchedAt => _matching?.createdAt ?? DateTime.now();
 
   // 총 스터디 개수
-  int get _totalStudyCount => _matching?.totalStudyCount ?? 0;
+  int get totalStudyCount => _matching?.totalStudyCount ?? 0;
+
+  // 현재 시간 (DB) 기준 완료된 수업 개수
+  int get completedStudyCount => _matching?.completedStudyCount ?? 0;
 
   // 다음 스터디 회차
   int get nextStudyRound => _matching?.nextStudyRound ?? 1;
 
   // 개인 일정 여부
-  bool get isPersonalMatching2 => _matching?.isPersonal ?? true;
+  bool get isPersonalMatching => _matching?.isPersonal ?? true;
 
   Future fetchMemberInfo(int memberId) async {
     final result = await TrainerMemberPageApi.getData(memberId);

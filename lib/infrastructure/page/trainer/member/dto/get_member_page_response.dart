@@ -25,24 +25,26 @@ class Data {
     required this.id,
     required this.totalTicketCount,
     required this.totalStudyCount,
+    required this.completedStudyCount,
     required this.nextStudyRound,
     required this.isPersonal,
     required this.availableTicketsCount,
     required this.memo,
+    required this.createdAt,
     required this.exerciseGoals,
     required this.member,
-    required this.latestStudy,
   });
   late final int id;
   late final int totalTicketCount;
   late final int totalStudyCount;
+  late final int completedStudyCount;
   late final int nextStudyRound;
   late final bool isPersonal;
   late final int availableTicketsCount;
   late final String memo;
+  late final DateTime createdAt;
   late final List<ExerciseGoals> exerciseGoals;
   late final Member member;
-  late final LatestStudy? latestStudy;
 
   factory Data.fromJson(Map<String, dynamic> json) => _$DataFromJson(json);
 
@@ -83,23 +85,4 @@ class Member {
   factory Member.fromJson(Map<String, dynamic> json) => _$MemberFromJson(json);
 
   Map<String, dynamic> toJson() => _$MemberToJson(this);
-}
-
-@JsonSerializable()
-class LatestStudy {
-  LatestStudy({
-    required this.id,
-    required this.round,
-    required this.startedAt,
-    required this.endedAt,
-  });
-  late final int id;
-  late final int round;
-  late final DateTime startedAt;
-  late final DateTime endedAt;
-
-  factory LatestStudy.fromJson(Map<String, dynamic> json) =>
-      _$LatestStudyFromJson(json);
-
-  Map<String, dynamic> toJson() => _$LatestStudyToJson(this);
 }

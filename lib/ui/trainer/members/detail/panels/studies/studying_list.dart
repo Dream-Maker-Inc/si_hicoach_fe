@@ -18,7 +18,7 @@ class StudyingListView extends StatelessWidget {
       StudyCreateView(
         matchingId: _vm.matchingId,
         nextStudyRound: _vm.nextStudyRound,
-        totalTicketCount: _vm.latestStudy.totalStudyCount,
+        totalTicketCount: _vm.totalStudyCount,
       ),
     )?.then((_) => _vm.refetch());
   }

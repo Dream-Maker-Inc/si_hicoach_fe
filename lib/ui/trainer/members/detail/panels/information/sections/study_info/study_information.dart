@@ -62,7 +62,7 @@ class StudyInformation extends StatelessWidget {
 
   _buildTicketManageButton(BuildContext context) {
     return Obx(() {
-      final onClick = _vm.isPersonalMatching2
+      final onClick = _vm.isPersonalMatching
           ? null
           : () => onDetailTicketButtonPressed(context);
 

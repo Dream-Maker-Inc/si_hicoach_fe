@@ -28,30 +28,30 @@ Data _$DataFromJson(Map<String, dynamic> json) => Data(
       id: json['id'] as int,
       totalTicketCount: json['totalTicketCount'] as int,
       totalStudyCount: json['totalStudyCount'] as int,
+      completedStudyCount: json['completedStudyCount'] as int,
       nextStudyRound: json['nextStudyRound'] as int,
       isPersonal: json['isPersonal'] as bool,
       availableTicketsCount: json['availableTicketsCount'] as int,
       memo: json['memo'] as String,
+      createdAt: DateTime.parse(json['createdAt'] as String),
       exerciseGoals: (json['exerciseGoals'] as List<dynamic>)
           .map((e) => ExerciseGoals.fromJson(e as Map<String, dynamic>))
           .toList(),
       member: Member.fromJson(json['member'] as Map<String, dynamic>),
-      latestStudy: json['latestStudy'] == null
-          ? null
-          : LatestStudy.fromJson(json['latestStudy'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$DataToJson(Data instance) => <String, dynamic>{
       'id': instance.id,
       'totalTicketCount': instance.totalTicketCount,
       'totalStudyCount': instance.totalStudyCount,
+      'completedStudyCount': instance.completedStudyCount,
       'nextStudyRound': instance.nextStudyRound,
       'isPersonal': instance.isPersonal,
       'availableTicketsCount': instance.availableTicketsCount,
       'memo': instance.memo,
+      'createdAt': instance.createdAt.toIso8601String(),
       'exerciseGoals': instance.exerciseGoals,
       'member': instance.member,
-      'latestStudy': instance.latestStudy,
     };
 
 ExerciseGoals _$ExerciseGoalsFromJson(Map<String, dynamic> json) =>
@@ -84,19 +84,4 @@ Map<String, dynamic> _$MemberToJson(Member instance) => <String, dynamic>{
       'name': instance.name,
       'birthDay': instance.birthDay,
       'gender': instance.gender,
-    };
-
-LatestStudy _$LatestStudyFromJson(Map<String, dynamic> json) => LatestStudy(
-      id: json['id'] as int,
-      round: json['round'] as int,
-      startedAt: DateTime.parse(json['startedAt'] as String),
-      endedAt: DateTime.parse(json['endedAt'] as String),
-    );
-
-Map<String, dynamic> _$LatestStudyToJson(LatestStudy instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'round': instance.round,
-      'startedAt': instance.startedAt.toIso8601String(),
-      'endedAt': instance.endedAt.toIso8601String(),
     };
