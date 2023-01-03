@@ -83,8 +83,6 @@ class StudyApi {
     int studyId,
   ) async {
     return safeApiCall<GetStudyResponse>(() async {
-      Logger().w(studyId);
-
       Dio dio = DioHelper().dio;
       String path = '/api/v4/matching/study/$studyId';
 

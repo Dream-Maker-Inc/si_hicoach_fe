@@ -187,7 +187,7 @@ class _Detail extends MyGetXState<StudyDetailView, StudyDetailViewModel> {
   }
 
   handleMemberDetailButtonPressed() {
-    final memberId = vm.userId.value;
+    final memberId = vm.memberId;
 
     Get.to(DetailView(memberId: memberId));
   }
@@ -243,7 +243,6 @@ class _Detail extends MyGetXState<StudyDetailView, StudyDetailViewModel> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       Future.wait([
         vm.fetchStudy(widget.studyId),
-        vm.fetchMyInfo(),
       ]);
     });
 

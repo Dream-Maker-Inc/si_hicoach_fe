@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-import 'package:si_hicoach_fe/common/shared_preferences/shared_prefs.dart';
 import 'package:si_hicoach_fe/common/utils/date_format.dart';
 import 'package:si_hicoach_fe/ui/common/study/common/components/exercise_item.dart';
 import 'package:si_hicoach_fe/infrastructure/study/dto/get_member_study.response.dart';
@@ -48,13 +47,14 @@ class _StudyDeleteFeature extends _StudyFetchFeature {
   }
 }
 
-class _StudyFetchFeature extends _MyInfoFetchFeature {
+class _StudyFetchFeature extends GetxController {
   Rx<Exception?> apiError = Rx(null);
   Rxn<GetStudyResponse> fetchStudyResponse = Rxn();
 
   Data? get _data => fetchStudyResponse.value?.data;
   int get matchingId => _data?.id ?? 0;
   String get memberName => _data?.member.name ?? "";
+  int get memberId => _data?.memberId ?? 0;
 
   Future fetchStudy(int studyId) async {
     final result = await StudyApi.findOne(studyId);
@@ -63,13 +63,5 @@ class _StudyFetchFeature extends _MyInfoFetchFeature {
       (e) => (apiError.value = e),
       (res) => (fetchStudyResponse.value = res),
     );
-  }
-}
-
-class _MyInfoFetchFeature extends GetxController {
-  RxInt userId = RxInt(0);
-
-  Future fetchMyInfo() async {
-    userId.value = await SharedPrefsManager().getUserId();
   }
 }
