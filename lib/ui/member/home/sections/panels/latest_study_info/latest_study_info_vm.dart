@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:si_hicoach_fe/common/utils/date_format.dart';
-import 'package:si_hicoach_fe/ui/member/home/sections/panels/latest_study_info/models/latest_study_info_model.dart';
+import 'package:si_hicoach_fe/ui/member/home/components/grid/models/study_info_grid_item_model.dart';
 import 'package:si_hicoach_fe/infrastructure/page/member/main_page/dto/get_member_main_latest_study_response.dart';
 import 'package:si_hicoach_fe/infrastructure/page/member/main_page/member_main_api.dart';
 
@@ -9,10 +9,10 @@ class MainLatestStudyInfoViewModel extends GetxController {
 
   int get studyId => data?.id ?? 0;
 
-  List<MainLatestStudyInfoModel> get pastGridModels =>
+  List<MainStudyInfoGridItemModel> get gridModels =>
       data?.myExercises
           .map(
-            (e) => MainLatestStudyInfoModel(
+            (e) => MainStudyInfoGridItemModel(
               name: e.title,
               weight: e.weight,
               set: e.set,

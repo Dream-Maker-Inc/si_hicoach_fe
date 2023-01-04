@@ -6,6 +6,7 @@ import 'package:si_hicoach_fe/common/theme/typography.dart';
 import 'package:si_hicoach_fe/ui/member/home/main_vm.dart';
 import 'package:si_hicoach_fe/ui/member/home/sections/panels/latest_study_info/latest_study_info_view.dart';
 import 'package:si_hicoach_fe/ui/member/home/sections/panels/study_list/study_list_view.dart';
+import 'package:si_hicoach_fe/ui/member/home/sections/panels/today_study_info/today_study_info_view.dart';
 
 class MemberMainTabs extends StatefulWidget {
   const MemberMainTabs({Key? key}) : super(key: key);
@@ -60,7 +61,7 @@ class _MemberMainTabsState extends State<MemberMainTabs>
         controller: tabController,
         children: [
           const MainLatestStudyInfoView(),
-          _buildTodayStudies(),
+          const MainTodayStudyInfoView(),
           _buildNextStudies(),
         ],
       ),
@@ -71,14 +72,6 @@ class _MemberMainTabsState extends State<MemberMainTabs>
     return Obx(() {
       return MainStudyListView(
         models: vm.nextStudyItemModels,
-      );
-    });
-  }
-
-  _buildTodayStudies() {
-    return Obx(() {
-      return MainStudyListView(
-        models: vm.todayStudyItemModels,
       );
     });
   }

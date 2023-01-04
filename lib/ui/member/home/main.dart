@@ -59,7 +59,6 @@ class _Detail extends MyGetXState<MemberMainView, MemberMainViewModel> {
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback(
       (_) => Future.wait([
-        vm.fetchTodayStudies(),
         vm.fetchMyInfo(),
       ]),
     );

@@ -8,18 +8,17 @@ import 'package:si_hicoach_fe/common/exceptions/common_exceptions.dart';
 import 'package:si_hicoach_fe/common/getx/my_getx_state.dart';
 import 'package:si_hicoach_fe/common/theme/typography.dart';
 import 'package:si_hicoach_fe/ui/member/home/components/grid/models/study_info_grid_item.dart';
-import 'package:si_hicoach_fe/ui/member/home/sections/panels/latest_study_info/latest_study_info_vm.dart';
 import 'package:si_hicoach_fe/ui/common/study/detail/detail.dart';
+import 'package:si_hicoach_fe/ui/member/home/sections/panels/today_study_info/today_study_info_vm.dart';
 
-class MainLatestStudyInfoView extends StatefulWidget {
-  const MainLatestStudyInfoView({Key? key}) : super(key: key);
+class MainTodayStudyInfoView extends StatefulWidget {
+  const MainTodayStudyInfoView({Key? key}) : super(key: key);
 
   @override
-  State<MainLatestStudyInfoView> createState() =>
-      _MainLatestStudyInfoViewState();
+  State<MainTodayStudyInfoView> createState() => _MainTodayStudyInfoViewState();
 }
 
-class _MainLatestStudyInfoViewState extends _Detail {
+class _MainTodayStudyInfoViewState extends _Detail {
   @override
   Widget build(BuildContext context) {
     super.build(context);
@@ -101,7 +100,7 @@ class _MainLatestStudyInfoViewState extends _Detail {
 }
 
 class _Detail
-    extends MyGetXState<MainLatestStudyInfoView, MainLatestStudyInfoViewModel> {
+    extends MyGetXState<MainTodayStudyInfoView, MainTodayStudyInfoViewModel> {
   handleItemClick(int studyId) {
     Get.to(StudyDetailView(
       studyId: studyId,
@@ -136,6 +135,6 @@ class _Detail
   }
 
   @override
-  MainLatestStudyInfoViewModel createViewModel() =>
-      MainLatestStudyInfoViewModel();
+  MainTodayStudyInfoViewModel createViewModel() =>
+      MainTodayStudyInfoViewModel();
 }

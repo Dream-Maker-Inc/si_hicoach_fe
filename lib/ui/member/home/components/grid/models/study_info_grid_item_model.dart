@@ -1,10 +1,10 @@
-class MainLatestStudyInfoModel {
+class MainStudyInfoGridItemModel {
   final String name;
   final int weight;
   final int set;
   final int count;
 
-  MainLatestStudyInfoModel(
+  MainStudyInfoGridItemModel(
       {required this.name,
       required this.weight,
       required this.set,

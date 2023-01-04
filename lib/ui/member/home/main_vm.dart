@@ -1,32 +1,17 @@
 // ignore_for_file: library_prefixes
 
 import 'package:get/get.dart';
-import 'package:si_hicoach_fe/ui/member/home/sections/panels/study_list/models/study_list_item_model.dart';
 import 'package:si_hicoach_fe/infrastructure/member/member/dto/get_my_info_response.dart';
 import 'package:si_hicoach_fe/infrastructure/member/member/member_api.dart';
 import 'package:si_hicoach_fe/infrastructure/page/member/main_page/dto/get_member_main_next_studies.response.dart'
     as Next;
-import 'package:si_hicoach_fe/infrastructure/page/member/main_page/dto/get_member_main_today_studies.response.dart'
-    as Today;
 import 'package:si_hicoach_fe/infrastructure/page/member/main_page/member_main_api.dart';
+import 'package:si_hicoach_fe/ui/member/home/sections/panels/study_list/models/study_list_item_model.dart';
 
 class MemberMainViewModel extends _MemberMainNextStudiesFetchFeature {
   RxInt tabIndex = RxInt(0);
 
   String get memberName => member?.name ?? "";
-
-  List<StudyItemModel> get todayStudyItemModels =>
-      todayData
-          ?.map(
-            (e) => StudyItemModel(
-              id: e.id,
-              round: e.round,
-              startedAt: e.startedAt,
-              endedAt: e.endedAt,
-            ),
-          )
-          .toList() ??
-      [];
 
   List<StudyItemModel> get nextStudyItemModels =>
       nextData
@@ -53,8 +38,6 @@ class MemberMainViewModel extends _MemberMainNextStudiesFetchFeature {
     final tabIndex = this.tabIndex.value;
 
     switch (tabIndex) {
-      case 1:
-        return fetchTodayStudies();
       case 2:
         return fetchNextStudies();
     }
@@ -62,8 +45,7 @@ class MemberMainViewModel extends _MemberMainNextStudiesFetchFeature {
 }
 
 // 진행 예정인 스터디 일정 불러오기
-class _MemberMainNextStudiesFetchFeature
-    extends _MemberMainTodayStudiesFetchFeature {
+class _MemberMainNextStudiesFetchFeature extends _MyInfoFetchFeature {
   Rxn<Next.GetMemberMainNextStudiesResponse> fetchNextStudiesResponse = Rxn();
 
   List<Next.Data>? get nextData => fetchNextStudiesResponse.value?.data;
@@ -74,23 +56,6 @@ class _MemberMainNextStudiesFetchFeature
     result.when(
       (e) => (apiError.value = e),
       (res) => (fetchNextStudiesResponse.value = res),
-    );
-  }
-}
-
-// 오늘 스터디 일정 불러오기
-class _MemberMainTodayStudiesFetchFeature extends _MyInfoFetchFeature {
-  Rxn<Today.GetMemberMainTodayStudiesResponse> fetchTodayStudiesResponse =
-      Rxn();
-
-  List<Today.Data>? get todayData => fetchTodayStudiesResponse.value?.data;
-
-  Future fetchTodayStudies() async {
-    final result = await MemberMainPageApi.getTodayStudies();
-
-    result.when(
-      (e) => (apiError.value = e),
-      (res) => (fetchTodayStudiesResponse.value = res),
     );
   }
 }
