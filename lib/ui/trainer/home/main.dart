@@ -4,9 +4,9 @@ import 'package:si_hicoach_fe/common/components/app_bar_with_logo.dart';
 import 'package:si_hicoach_fe/common/components/divider.dart';
 import 'package:si_hicoach_fe/common/components/empty_patch.dart';
 import 'package:si_hicoach_fe/common/components/http_error_dialog.dart';
+import 'package:si_hicoach_fe/common/components/title_with_description.dart';
 import 'package:si_hicoach_fe/common/constants/constants.dart';
 import 'package:si_hicoach_fe/common/getx/my_getx_state.dart';
-import 'package:si_hicoach_fe/common/theme/typography.dart';
 import 'package:si_hicoach_fe/common/utils/date_format.dart';
 import 'package:si_hicoach_fe/ui/trainer/home/calendar/calendar.dart';
 import 'package:si_hicoach_fe/ui/trainer/home/main_vm.dart';
@@ -43,30 +43,13 @@ class _TrainerMainViewState extends _Detail {
   _buildHeader() {
     return Obx(() {
       final memberName = vm.memberName;
-      final targetDate = vm.targetDate.value;
-      final now = DateTime.now();
+      final targetDate = DateTime.now();
 
       return Padding(
         padding: const EdgeInsets.all(defaultPadding),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            Text('반갑습니다, $memberName 코치님', style: customTitleStyle),
-            const SizedBox(height: smallPadding),
-            Text(
-              now.toKoreanFormat,
-              style: bodyMedium.copyWith(
-                color: Colors.grey.shade500,
-              ),
-            ),
-            Text(
-              targetDate.toKoreanFormat,
-              style: bodyMedium.copyWith(
-                color: Colors.grey.shade500,
-              ),
-            ),
-            const SizedBox(height: smallPadding),
-          ],
+        child: TitleWithDescription(
+          title: '반갑습니다, $memberName 코치님',
+          description: targetDate.toKoreanFormat,
         ),
       );
     });
