@@ -45,9 +45,9 @@ class TrainerMainViewModel extends _MainPageDataFetchFeature {
     fetchData(targetDateString);
   }
 
-  // 선택일 기준 [이전 3일, 선택 날짜, 다음 3일] 가져오기
+  // [이전 3일, 기준 날짜, 다음 3일] 가져오기
   List<DateTime> getMainDates() {
-    final dateTime = targetDate.value;
+    final dateTime = DateTime.now(); // 선택일
     const datePadding = 3;
 
     final pastDates = List.generate(
